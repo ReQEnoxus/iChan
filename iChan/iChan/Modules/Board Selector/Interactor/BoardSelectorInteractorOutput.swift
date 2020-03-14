@@ -10,5 +10,7 @@ import Foundation
 
 protocol BoardSelectorInteractorOutput: AnyObject {
     
+    /// tell interactor's output that the boards are obtained
+    /// - Parameter boards: obtained boards
     func didFinishObtainingBoards(boards: BoardCategories)
 }

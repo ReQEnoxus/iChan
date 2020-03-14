@@ -10,5 +10,6 @@ import Foundation
 
 protocol BoardSelectorInteractorInput: AnyObject {
     
+    /// tell interactor to get boards
     func obtainBoards()
 }

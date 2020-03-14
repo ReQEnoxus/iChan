@@ -10,9 +10,18 @@ import Foundation
 
 protocol BoardSelectorViewOutput: AnyObject {
     
+    /// tells presenter that particular cell was selected
+    /// - Parameter indexPath: index of the selected cell
     func didSelectRow(at indexPath: IndexPath)
+    /// initial setup of the view
     func initialSetup()
+    /// asks presenter for title for particular section
+    /// - Parameter section: section index
     func titleForHeaderInSection(section: Int) -> String?
+    /// tells presenter that user wants to pin an item
+    /// - Parameter at: index of the item to pin
     func pinItem(at: IndexPath)
+    /// tells presenter that user wants to unpin an item
+    /// - Parameter at: index of the item to unpin
     func unpinItem(at: IndexPath)
 }
