@@ -32,6 +32,10 @@ class BoardsDataSource: NSObject, BoardsDataSourceProtocol {
         cell.configure(with: "/\(board.id)/ - \(board.name)")
         cell.backgroundColor = .darkCellBg
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .darkCellBgSelected
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
