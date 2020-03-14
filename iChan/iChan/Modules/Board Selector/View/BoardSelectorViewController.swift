@@ -27,12 +27,19 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         static let headerLabelOffsetLeft = 16
         static let headerLabelOffsetRight = 16
         
+        static let pinActionLeftOffset: CGFloat = 15
+        static let pinActionTopOffset: CGFloat = 0
+        static let unpinActionLeftOffset: CGFloat = 13
+        static let unpinActionTopOffset: CGFloat = 0
+        static let pinActionSize = CGSize(width: 30, height: 30)
+        static let unpinActionSize = CGSize(width: 30, height: 30)
+        
         //MARK: - View Constants
         static let title = "Доски"
         static let pinActionTitle = "Закрепить"
         static let unpinActionTitle = "Открепить"
-        static let pinActionImage = "pin"
-        static let unpinActionImage = "pin.slash"
+        static let pinActionImage = "SF_pin_slash_fill"
+        static let unpinActionImage = "SF_pin_slash"
         static let numberOfLinesInLabel = 0
     }
     
@@ -134,13 +141,11 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         
         if pinning {
             
-            favAction.title = Appearance.pinActionTitle
-            favAction.image = UIImage(systemName: Appearance.pinActionImage)
+            favAction.image = UIImage(named: Appearance.pinActionImage)?.resizeAndShift(newSize: Appearance.pinActionSize, shiftLeft: Appearance.pinActionLeftOffset, shiftTop: Appearance.pinActionTopOffset)
         }
         else {
             
-            favAction.title = Appearance.unpinActionTitle
-            favAction.image = UIImage(systemName: Appearance.unpinActionImage)
+            favAction.image = UIImage(named: Appearance.unpinActionImage)?.resizeAndShift(newSize: Appearance.unpinActionSize, shiftLeft: Appearance.unpinActionLeftOffset, shiftTop: Appearance.unpinActionTopOffset)
         }
         
         let configuration = UISwipeActionsConfiguration(actions: [favAction])

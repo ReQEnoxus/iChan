@@ -64,3 +64,39 @@ extension UITableViewCell {
         }
     }
 }
+
+//MARK: - UIImage
+extension UIImage {
+    
+    func resizeAndShift(newSize: CGSize, shiftLeft: CGFloat, shiftTop: CGFloat) -> UIImage {
+        
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        let image = renderer.image { _ in
+            self.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
+        }
+
+        return shiftToCenter(shiftLeft: shiftLeft, shiftTop: shiftTop, image: image)
+    }
+    
+    private func shiftToCenter(shiftLeft: CGFloat, shiftTop: CGFloat, image: UIImage) -> UIImage {
+        
+        return imageWithInset(insets: UIEdgeInsets(top: shiftTop, left: shiftLeft
+            , bottom: 0, right: 0), image: image)
+    }
+    
+    private func imageWithInset(insets: UIEdgeInsets, image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(
+            CGSize(width: image.size.width + insets.left + insets.right,
+                   height: image.size.height + insets.top + insets.bottom), false, image.scale)
+        let origin = CGPoint(x: insets.left, y: insets.top)
+        
+        image.draw(at: origin)
+        
+        let imageWithInsets = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return imageWithInsets!
+    }
+    
+}
