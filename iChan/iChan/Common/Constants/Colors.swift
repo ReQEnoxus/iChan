@@ -23,6 +23,10 @@ extension UIColor {
         return UIColor(white: 23.0 / 255.0, alpha: 1)
     }
     
+    @nonobjc class var darkCellBgSelected: UIColor {
+        return UIColor(white: 18.0 / 255.0, alpha: 1)
+    }
+    
     @nonobjc class var headerTitleColor: UIColor {
       return UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 245.0 / 255.0, alpha: 0.6)
     }
