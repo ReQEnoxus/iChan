@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BoardSelectorViewOutput {
+protocol BoardSelectorViewOutput: AnyObject {
     
     func didSelectRow(at indexPath: IndexPath)
     func initialSetup()

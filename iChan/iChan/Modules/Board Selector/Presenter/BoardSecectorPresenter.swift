@@ -8,11 +8,11 @@
 
 import Foundation
 
-class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOutput {
-
+class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOutput, BoardsDataSourceOutput {
+    
     var interactor: BoardSelectorInteractorInput!
     var dataSource: BoardsDataSourceProtocol!
-    var view: BoardSelectorViewInput!
+    weak var view: BoardSelectorViewInput!
     var router: BoardSelectorRouter!
     
     //MARK: - View Output
@@ -34,13 +34,11 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
     func pinItem(at: IndexPath) {
         
         dataSource.pinItem(at: at)
-        view.refreshData()
     }
     
     func unpinItem(at: IndexPath) {
         
         dataSource.unpinItem(at: at)
-        view.refreshData()
     }
     
     //MARK: - Interactor Output
@@ -48,5 +46,20 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
         dataSource.boardCategories = boards
         view.refreshData()
+    }
+    
+    //MARK: - DataSourceOutput
+    func didFinishPinningItem(at index: IndexPath?, sectionCreated: Bool) {
+        
+        guard let index = index else { return }
+        
+        view.pinItem(at: index, sectionAdded: sectionCreated)
+    }
+    
+    func didFinishUnpinningItem(at index: IndexPath?, sectionDeleted: Bool) {
+        
+        guard let index = index else { return }
+        
+        view.unpinItem(at: index, sectionDeleted: sectionDeleted)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BoardSelectorInteractorOutput {
+protocol BoardSelectorInteractorOutput: AnyObject {
     
     func didFinishObtainingBoards(boards: BoardCategories)
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol BoardsDataSourceProtocol: UITableViewDataSource {
+protocol BoardsDataSourceProtocol: UITableViewDataSource, AnyObject {
     
     var boardCategories: BoardCategories? { get set }
     func titleForHeaderInSection(section: Int) -> String?

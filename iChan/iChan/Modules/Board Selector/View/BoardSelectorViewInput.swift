@@ -8,8 +8,10 @@
 
 import Foundation
 
-protocol BoardSelectorViewInput {
+protocol BoardSelectorViewInput: AnyObject {
     
     func connectDataSource(_ dataSource: BoardsDataSourceProtocol)
     func refreshData()
+    func pinItem(at index: IndexPath, sectionAdded: Bool)
+    func unpinItem(at index: IndexPath, sectionDeleted: Bool)
 }

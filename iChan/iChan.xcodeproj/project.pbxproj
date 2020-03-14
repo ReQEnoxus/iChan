@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1865836B4F85A8455F5CAB7D /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */; };
 		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
+		73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */; };
 		73828DAD2414EE1E0073623D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAC2414EE1E0073623D /* Colors.swift */; };
 		73828DAF24150FB90073623D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAE24150FB90073623D /* Extensions.swift */; };
 		73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */; };
@@ -43,6 +44,7 @@
 		1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		710141B1CB447EE83444A873 /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
 		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSourceOutput.swift; sourceTree = "<group>"; };
 		73828DAC2414EE1E0073623D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		73828DAE24150FB90073623D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; tabWidth = 4; };
 		73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewOutput.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				73828DB324153EE90073623D /* BoardsDataSourceProtocol.swift */,
 				73828DB82415482A0073623D /* BoardsDataSource.swift */,
+				73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				73C3FF782413D09C009D4A18 /* ApiClient.swift in Sources */,
 				73828DB92415482A0073623D /* BoardsDataSource.swift in Sources */,
 				73828DBD24154DFF0073623D /* BoardSelectorInteractorInput.swift in Sources */,
+				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 
 class BoardSelectorInteractor: BoardSelectorInteractorInput {
     
-    var presenter: BoardSelectorInteractorOutput!
+    weak var presenter: BoardSelectorInteractorOutput?
     let service: BoardsService = BoardsServiceImpl()
     
     // TODO: check for cached copy
@@ -23,7 +23,7 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
                 case .failure(let error):
                     print(error)
                 case .success(let boards):
-                    self?.presenter.didFinishObtainingBoards(boards: BoardCategories(from: boards))
+                    self?.presenter?.didFinishObtainingBoards(boards: BoardCategories(from: boards))
             }
         }
     }

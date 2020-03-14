@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BoardSelectorInteractorInput {
+protocol BoardSelectorInteractorInput: AnyObject {
     
     func obtainBoards()
 }

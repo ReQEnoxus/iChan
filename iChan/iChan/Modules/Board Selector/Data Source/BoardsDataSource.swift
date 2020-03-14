@@ -13,34 +13,11 @@ class BoardsDataSource: NSObject, BoardsDataSourceProtocol {
     
     var boardCategories: BoardCategories?
     
-    var favIsEmpty: Bool {
-        
-        if let boardCategories = boardCategories?.categories, !boardCategories.isEmpty {
-            
-            if boardCategories.first!.isEmpty {
-                
-                return true
-            }
-            
-            else {
-                
-                return false
-            }
-        }
-        else {
-            return true
-        }
-    }
+    weak var presenter: BoardsDataSourceOutput!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var sectionIndex = section
-        
-        if favIsEmpty {
-            sectionIndex = section + 1
-        }
-        
-        return boardCategories?.categories[sectionIndex].count ?? 0
+        return boardCategories?.categories[section].count ?? 0
     }
     
     
@@ -48,13 +25,7 @@ class BoardsDataSource: NSObject, BoardsDataSourceProtocol {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: BoardTableViewCell.nibName, for: indexPath) as! BoardTableViewCell
         
-        var sectionIndex = indexPath.section
-
-        if favIsEmpty {
-            sectionIndex = indexPath.section + 1
-        }
-        
-        guard let board = boardCategories?.categories[sectionIndex][indexPath.row] else {
+        guard let board = boardCategories?.categories[indexPath.section][indexPath.row] else {
             fatalError("indexpath out of range")
         }
         
@@ -67,53 +38,60 @@ class BoardsDataSource: NSObject, BoardsDataSourceProtocol {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        if let categories =  boardCategories?.categories, !categories.isEmpty  {
-            
-            if categories.first!.isEmpty {
-                return categories.count - 1
-            }
-            else {
-                return categories.count
-            }
-        }
-        else {
-            return 0
-        }
+        return boardCategories?.categories.count ?? 0
     }
     
     func titleForHeaderInSection(section: Int) -> String? {
         
-        if let categories = boardCategories?.categories, let categoryNames = boardCategories?.categoryNames, !categories.isEmpty  {
-            
-            if categories.first!.isEmpty {
-                return categoryNames[section + 1]
-            }
-            else {
-                return categoryNames[section]
-            }
-        }
-        else {
-            return nil
-        }
+        return boardCategories?.categoryNames[section]
     }
     
     func pinItem(at: IndexPath) {
         // TODO: update cached copy
-        var sectionIndex = at.section
         
-        if favIsEmpty {
-            sectionIndex = at.section + 1
-        }
-        
-        if let categories = boardCategories?.categories, !categories[0].contains(where: { $0.id == categories[sectionIndex][at.row].id }) {
-            boardCategories?.categories[0].append(categories[sectionIndex][at.row])
+        if let boardToPin = boardCategories?.categories[at.section][at.row] {
+            
+            let sectionsCountBefore = boardCategories!.categories.count
+            
+            let pinSuccessful = boardCategories!.pin(board: boardToPin)
+            
+            let sectionsCountAfter = boardCategories!.categories.count
+            
+            if pinSuccessful {
+                
+                let sectionAdded = sectionsCountAfter > sectionsCountBefore
+                
+                let index = IndexPath(row: boardCategories!.categories[0].count - 1, section: 0)
+                
+                presenter.didFinishPinningItem(at: index, sectionCreated: sectionAdded)
+            }
+                
+            else {
+                presenter.didFinishPinningItem(at: nil, sectionCreated: false)
+            }
         }
     }
     
     func unpinItem(at: IndexPath) {
         // TODO: update cached copy
-        if let categories = boardCategories?.categories {
-            boardCategories?.categories[0].removeAll(where: { $0.id == categories[at.section][at.row].id })
+        
+        if let boardToUnpin = boardCategories?.categories[at.section][at.row] {
+            
+            let sectionsCountBefore = boardCategories!.categories.count
+            
+            let unpinSuccessful = boardCategories!.unpin(board: boardToUnpin)
+            
+            let sectionsCountAfter = boardCategories!.categories.count
+            
+            if unpinSuccessful {
+                
+                let sectionDeleted = sectionsCountAfter < sectionsCountBefore
+                
+                presenter.didFinishUnpinningItem(at: at, sectionDeleted: sectionDeleted)
+            }
+            else {
+                presenter.didFinishUnpinningItem(at: nil, sectionDeleted: false)
+            }
         }
     }
 }

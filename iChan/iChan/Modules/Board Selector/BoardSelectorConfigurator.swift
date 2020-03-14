@@ -25,6 +25,8 @@ class BoardSelectorConfigurator {
         presenter.router = router
         presenter.dataSource = dataSource
         
+        dataSource.presenter = presenter
+        
         interactor.presenter = presenter
         
         return view

@@ -162,5 +162,31 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     func refreshData() {
         tableView.reloadData()
     }
+    
+    func pinItem(at index: IndexPath, sectionAdded: Bool) {
+        
+        tableView.beginUpdates()
+        
+        if sectionAdded {
+            tableView.insertSections(IndexSet([0]), with: .automatic)
+        }
+        
+        tableView.insertRows(at: [index], with: .automatic)
+        
+        tableView.endUpdates()
+    }
+    
+    func unpinItem(at index: IndexPath, sectionDeleted: Bool) {
+        
+        tableView.beginUpdates()
+        
+        if sectionDeleted {
+            tableView.deleteSections(IndexSet([0]), with: .automatic)
+        }
+        
+        tableView.deleteRows(at: [index], with: .automatic)
+        
+        tableView.endUpdates()
+    }
 }
 
