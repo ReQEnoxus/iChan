@@ -17,7 +17,7 @@ class MainTabBarController: UITabBarController {
         static let savedItemImage = "SF_square_stack_3d_up_slash_fill"
         static let settingsItemImage = "SF_line_horizontal_3_decrease_circle_fill"
         
-        static let barItemSize: CGSize = CGSize(width: 30, height: 30)
+        static let barItemSize: CGSize = CGSize(width: 25, height: 25)
         static let boardItemLeftOffset: CGFloat = 12
         static let boardItemTopOffset: CGFloat = 7
         static let historyItemLeftOffset: CGFloat = 0
