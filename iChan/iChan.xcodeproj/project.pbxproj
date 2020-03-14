@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1865836B4F85A8455F5CAB7D /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */; };
+		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
 		73828DAD2414EE1E0073623D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAC2414EE1E0073623D /* Colors.swift */; };
 		73828DAF24150FB90073623D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAE24150FB90073623D /* Extensions.swift */; };
 		73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */; };
@@ -22,7 +23,6 @@
 		73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC6241552430073623D /* BoardSelectorRouterProtocol.swift */; };
 		73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC8241554100073623D /* BoardSelectorConfigurator.swift */; };
 		73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DCA2415548A0073623D /* BoardSelectorRouter.swift */; };
-		73C3FF6B2413BF06009D4A18 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF6A2413BF06009D4A18 /* Endpoints.swift */; };
 		73C3FF712413C026009D4A18 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF702413C026009D4A18 /* Board.swift */; };
 		73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */; };
 		73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF752413CD07009D4A18 /* Endpoint.swift */; };
@@ -31,17 +31,18 @@
 		73C3FF7C2413E024009D4A18 /* BoardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7B2413E024009D4A18 /* BoardsService.swift */; };
 		73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */; };
 		73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C492413A28200A9554C /* AppDelegate.swift */; };
-		73D75C4C2413A28200A9554C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C4B2413A28200A9554C /* SceneDelegate.swift */; };
 		73D75C4E2413A28200A9554C /* BoardSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C4D2413A28200A9554C /* BoardSelectorViewController.swift */; };
 		73D75C532413A28300A9554C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C522413A28300A9554C /* Assets.xcassets */; };
 		73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C542413A28300A9554C /* LaunchScreen.storyboard */; };
 		73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3625F241622A3006029DA /* BoardTableViewCell.swift */; };
+		C36CDC655A8DBE89EC308A4C /* AssetsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		115AAA43A47CA0C51E3A5111 /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
 		1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		710141B1CB447EE83444A873 /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
+		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		73828DAC2414EE1E0073623D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		73828DAE24150FB90073623D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; tabWidth = 4; };
 		73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewOutput.swift; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		73828DC6241552430073623D /* BoardSelectorRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouterProtocol.swift; sourceTree = "<group>"; };
 		73828DC8241554100073623D /* BoardSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorConfigurator.swift; sourceTree = "<group>"; };
 		73828DCA2415548A0073623D /* BoardSelectorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouter.swift; sourceTree = "<group>"; };
-		73C3FF6A2413BF06009D4A18 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		73C3FF702413C026009D4A18 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesResponse.swift; sourceTree = "<group>"; };
 		73C3FF752413CD07009D4A18 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -66,12 +66,12 @@
 		73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsServiceImpl.swift; sourceTree = "<group>"; };
 		73D75C462413A28200A9554C /* iChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D75C492413A28200A9554C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73D75C4B2413A28200A9554C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		73D75C4D2413A28200A9554C /* BoardSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewController.swift; sourceTree = "<group>"; };
 		73D75C522413A28300A9554C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D75C552413A28300A9554C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D75C572413A28300A9554C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E3625F241622A3006029DA /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A3D21744CE66E00BDCB1BD /* HappyCodingSupport */ = {
+			isa = PBXGroup;
+			children = (
+				E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */,
+			);
+			path = HappyCodingSupport;
+			sourceTree = "<group>";
+		};
 		341C06CE119DCF665B480F7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +109,14 @@
 				1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		735E618A241CB9C4001053A6 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				735E618C241CB9FC001053A6 /* MainTabBarController.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		73828DB224153ED10073623D /* Data Source */ = {
@@ -126,7 +142,6 @@
 		73C3FF692413BEF5009D4A18 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				73C3FF6A2413BF06009D4A18 /* Endpoints.swift */,
 				73828DAC2414EE1E0073623D /* Colors.swift */,
 			);
 			path = Constants;
@@ -189,6 +204,7 @@
 		73D5DE9C2413E28000194F26 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				735E618A241CB9C4001053A6 /* Tab Bar */,
 				73D5DE9D2413E28900194F26 /* Board Selector */,
 			);
 			path = Modules;
@@ -269,10 +285,10 @@
 				73D5DE9C2413E28000194F26 /* Modules */,
 				73C3FF682413BEE9009D4A18 /* Common */,
 				73D75C492413A28200A9554C /* AppDelegate.swift */,
-				73D75C4B2413A28200A9554C /* SceneDelegate.swift */,
 				73D75C522413A28300A9554C /* Assets.xcassets */,
 				73D75C542413A28300A9554C /* LaunchScreen.storyboard */,
 				73D75C572413A28300A9554C /* Info.plist */,
+				01A3D21744CE66E00BDCB1BD /* HappyCodingSupport */,
 			);
 			path = iChan;
 			sourceTree = "<group>";
@@ -428,12 +444,12 @@
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
+				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
 				73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */,
-				73C3FF6B2413BF06009D4A18 /* Endpoints.swift in Sources */,
 				73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */,
-				73D75C4C2413A28200A9554C /* SceneDelegate.swift in Sources */,
 				73828DB6241544F50073623D /* BoardCategories.swift in Sources */,
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
+				C36CDC655A8DBE89EC308A4C /* AssetsUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 593ZV4B3B7;
 				INFOPLIST_FILE = iChan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -592,6 +609,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 593ZV4B3B7;
 				INFOPLIST_FILE = iChan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
