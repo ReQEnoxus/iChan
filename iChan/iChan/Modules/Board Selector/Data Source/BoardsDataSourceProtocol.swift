@@ -22,4 +22,5 @@ protocol BoardsDataSourceProtocol: UITableViewDataSource, AnyObject {
     /// tell the datasource to unpin item
     /// - Parameter at: index of the item to be unpinned
     func unpinItem(at: IndexPath)
+    func board(for indexPath: IndexPath) -> Board?
 }

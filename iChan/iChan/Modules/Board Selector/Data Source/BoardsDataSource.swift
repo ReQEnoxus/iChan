@@ -98,4 +98,8 @@ class BoardsDataSource: NSObject, BoardsDataSourceProtocol {
             }
         }
     }
+    
+    func board(for indexPath: IndexPath) -> Board? {
+        return boardCategories?.categories[indexPath.section][indexPath.row]
+    }
 }
