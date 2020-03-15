@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ApiClient {
+protocol ApiClient: AnyObject {
     
     /// http session instance
     var session: URLSession { get set }
@@ -16,6 +16,7 @@ protocol ApiClient {
     /// - Parameter endpoint: request endpoint
     /// - Parameter completion: completion that is called when the data is received
     func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T, ApiError>) -> Void)
+    var decoder: JSONDecoder { get set }
 }
 
 extension ApiClient {
@@ -29,11 +30,13 @@ extension ApiClient {
         components.queryItems = endpoint.parameters
         
         guard let url = components.url else { return }
-        
+                
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.method
         
-        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
+        let dataTask = session.dataTask(with: urlRequest) { [weak self] data, response, error in
+            
+            guard let self = self else { return }
             
             guard error == nil else {
                 
@@ -61,7 +64,7 @@ extension ApiClient {
             
             do {
 
-                let responseObject = try JSONDecoder().decode(T.self, from: data)
+                let responseObject = try self.decoder.decode(T.self, from: data)
                 
                 DispatchQueue.main.async {
                     completion(.success(responseObject))
