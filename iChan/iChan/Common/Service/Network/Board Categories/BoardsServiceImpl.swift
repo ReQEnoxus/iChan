@@ -8,21 +8,9 @@
 
 import Foundation
 
-class BoardsServiceImpl: BoardsService {
+class BoardsServiceImpl: AbstractApiClientService, BoardsService {
     
     func getBoards(complteion: @escaping (Result<BoardCategoriesResponse, ApiError>) -> Void) {
         request(endpoint: .boardCategories, completion: complteion)
-    }
-    
-    var session: URLSession
-    
-    init(session: URLSession) {
-        self.session = session
-    }
-    
-    convenience init() {
-        
-        let session = URLSession(configuration: .default)
-        self.init(session: session)
     }
 }
