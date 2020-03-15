@@ -16,11 +16,22 @@ enum Endpoint {
     private static let categoriesParameterName = "task"
     private static let categoriesParameterValue = "get_boards"
     
+    private static func boardPath(id: String, page: Int) -> String {
+        return "/\(id)/\(page == 0 ? "index" : String(page)).json"
+    }
+    
+    public static var baseUrl: String {
+        get {
+            return "\(httpsScheme)://\(base)"
+        }
+    }
+    
     enum Method: String {
         case GET = "GET"
     }
     
     case boardCategories
+    case board(id: String, page: Int)
     
     var scheme: String {
         
@@ -38,6 +49,9 @@ enum Endpoint {
             
             case .boardCategories:
                 return Endpoint.categoriesPath
+            case .board(let id, let page):
+                return Endpoint.boardPath(id: id, page: page)
+            
         }
     }
     
@@ -47,6 +61,8 @@ enum Endpoint {
             
             case .boardCategories:
                 return [URLQueryItem(name: Endpoint.categoriesParameterName, value: Endpoint.categoriesParameterValue)]
+            case .board:
+                return []
         }
     }
     
@@ -55,6 +71,8 @@ enum Endpoint {
         switch self {
             
             case .boardCategories:
+                return Method.GET.rawValue
+            case .board:
                 return Method.GET.rawValue
         }
     }
