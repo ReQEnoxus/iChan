@@ -75,7 +75,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     
     func setupTableView() {
         
-        tableView.backgroundColor = UIColor.blackBg
+        tableView.backgroundColor = .blackBg
         tableView.delegate = self
         
         view.addSubview(tableView)
