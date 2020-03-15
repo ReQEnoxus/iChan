@@ -34,4 +34,8 @@ extension UIColor {
     @nonobjc class var swipeActionPrimary: UIColor {
       return UIColor(white: 35.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var paleGrey60: UIColor {
+      return UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 245.0 / 255.0, alpha: 0.6)
+    }
 }
