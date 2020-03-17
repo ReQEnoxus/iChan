@@ -15,7 +15,7 @@ struct Post: Codable {
     let op: Int
     let num: String
     let date: String
-    let files: [File]
+    let files: [File]?
 }
 
 struct File: Codable {

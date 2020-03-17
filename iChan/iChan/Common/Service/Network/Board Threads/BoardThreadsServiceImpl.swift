@@ -13,7 +13,7 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
     private var page = 0
         
     func getMoreThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void) {
-        print("request started")
+        
         request(endpoint: .board(id: board, page: page)) { (result: Result<ThreadResponse, ApiError>) in
             
             switch result {
@@ -29,14 +29,25 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     
                     for thread in threadResponse.threads {
                         
+                        var thumbNail: String? = nil
+                        var file: String? = nil
+                        
+                        if let path = thread.posts[0].files?.first?.thumbnail {
+                            thumbNail = Endpoint.baseUrl + path
+                        }
+                        
+                        if let path = thread.posts[0].files?.first?.path {
+                            file = Endpoint.baseUrl + path
+                        }
+                        
                         let dto = ThreadDto(number: thread.posts[0].num,
-                        filesCount: thread.filesCount,
-                        postsCount: thread.postsCount,
-                        date: thread.posts[0].date,
-                        thumbnail: Endpoint.baseUrl + thread.posts[0].files[0].thumbnail,
-                        file: Endpoint.baseUrl + thread.posts[0].files[0].path,
-                        text: thread.posts[0].comment,
-                        posterName: thread.posts[0].name)
+                                            filesCount: thread.filesCount,
+                                            postsCount: thread.postsCount,
+                                            date: thread.posts[0].date,
+                                            thumbnail: thumbNail,
+                                            file: file,
+                                            text: thread.posts[0].comment,
+                                            posterName: thread.posts[0].name)
                         
                         dtoArray.append(dto)
                     }

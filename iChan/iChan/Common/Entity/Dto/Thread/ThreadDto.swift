@@ -14,8 +14,8 @@ struct ThreadDto {
     let filesCount: Int
     let postsCount: Int
     let date: String
-    let thumbnail: String
-    let file: String
+    let thumbnail: String?
+    let file: String?
     let text: String
     let posterName: String
 }
