@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class BoardSelectorConfigurator {
     
-    class func configureModule() -> BoardSelectorViewController {
+    class func configureModule() -> UIViewController {
         
         let view = BoardSelectorViewController()
         let presenter = BoardSelectorPresenter()
         let interactor = BoardSelectorInteractor()
         let router = BoardSelectorRouter()
         let dataSource = BoardsDataSource()
+        let service = BoardsServiceImpl()
         
         view.presenter = presenter
         
@@ -28,6 +30,9 @@ class BoardSelectorConfigurator {
         dataSource.presenter = presenter
         
         interactor.presenter = presenter
+        interactor.service = service
+        
+        router.view = view
         
         return view
     }

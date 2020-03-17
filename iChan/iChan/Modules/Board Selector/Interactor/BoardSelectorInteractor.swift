@@ -11,7 +11,7 @@ import Foundation
 class BoardSelectorInteractor: BoardSelectorInteractorInput {
     
     weak var presenter: BoardSelectorInteractorOutput?
-    let service: BoardsService = BoardsServiceImpl()
+    var service: BoardsService!
     
     // TODO: check for cached copy
     func obtainBoards() {
