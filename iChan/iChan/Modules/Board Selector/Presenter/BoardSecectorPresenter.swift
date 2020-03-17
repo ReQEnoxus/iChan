@@ -23,7 +23,11 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
     }
     
     func didSelectRow(at indexPath: IndexPath) {
-        // TODO: Navigate to BoardView
+        
+        if let board = dataSource.board(for: indexPath) {
+            
+            router.pushToThreadSelector(board: board)
+        }
     }
     
     func titleForHeaderInSection(section: Int) -> String? {

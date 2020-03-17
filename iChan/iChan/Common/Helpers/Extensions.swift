@@ -98,5 +98,22 @@ extension UIImage {
         
         return imageWithInsets!
     }
+}
+
+extension UILabel {
     
+    func setHTMLFromString(htmlText: String) {
+        
+        let classes = "<style> .unkfunc { color: #789922; }; \n a { color: orange !important; } </style>"
+        
+        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? 12)\">%@</span>", htmlText)
+
+        let attrStr = try! NSAttributedString(
+            
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+
+        self.attributedText = attrStr
+    }
 }

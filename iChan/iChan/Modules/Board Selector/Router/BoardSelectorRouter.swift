@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 class BoardSelectorRouter: BoardSelectorRouterProtocol {
     
+    weak var view: UIViewController!
+    
+    func pushToThreadSelector(board: Board) {
+        
+        view.navigationController?.pushViewController(ThreadSelectorConfigurator.configureModule(board: board), animated: true)
+    }
 }

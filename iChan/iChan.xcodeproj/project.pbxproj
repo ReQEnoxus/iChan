@@ -8,6 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		1865836B4F85A8455F5CAB7D /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */; };
+		731431AD241E5E1F0065E0DB /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431AC241E5E1F0065E0DB /* Thread.swift */; };
+		731431AF241E5E910065E0DB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431AE241E5E910065E0DB /* Post.swift */; };
+		731431B3241E68630065E0DB /* ThreadDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431B2241E68630065E0DB /* ThreadDto.swift */; };
+		731431B5241E6A160065E0DB /* BoardThreadsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431B4241E6A160065E0DB /* BoardThreadsServiceImpl.swift */; };
+		731431B7241E6A4D0065E0DB /* AbstractApiClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431B6241E6A4D0065E0DB /* AbstractApiClientService.swift */; };
+		731431BE241E70AC0065E0DB /* ThreadSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431BD241E70AC0065E0DB /* ThreadSelectorViewController.swift */; };
+		731431C0241E7C570065E0DB /* ThreadSelectorViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431BF241E7C570065E0DB /* ThreadSelectorViewInput.swift */; };
+		731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431C2241E7FB00065E0DB /* ThreadTableViewCell.swift */; };
+		731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431C5241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift */; };
+		731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431C7241E8B230065E0DB /* ThreadSelectorPresenter.swift */; };
+		731431CA241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431C9241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift */; };
+		731431CD241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431CC241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift */; };
+		731431CF241E8C270065E0DB /* ThreadSelectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431CE241E8C270065E0DB /* ThreadSelectorInteractor.swift */; };
+		731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */; };
+		731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */; };
+		731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */; };
 		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
 		73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */; };
 		73828DAD2414EE1E0073623D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAC2414EE1E0073623D /* Colors.swift */; };
@@ -31,6 +47,8 @@
 		73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF792413DBA8009D4A18 /* ApiError.swift */; };
 		73C3FF7C2413E024009D4A18 /* BoardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7B2413E024009D4A18 /* BoardsService.swift */; };
 		73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */; };
+		73D0A939241E5B2900FF2C04 /* BoardThreadsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D0A938241E5B2900FF2C04 /* BoardThreadsService.swift */; };
+		73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D0A93C241E5B6900FF2C04 /* ThreadResponse.swift */; };
 		73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C492413A28200A9554C /* AppDelegate.swift */; };
 		73D75C4E2413A28200A9554C /* BoardSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C4D2413A28200A9554C /* BoardSelectorViewController.swift */; };
 		73D75C532413A28300A9554C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C522413A28300A9554C /* Assets.xcassets */; };
@@ -43,6 +61,22 @@
 		115AAA43A47CA0C51E3A5111 /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
 		1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		710141B1CB447EE83444A873 /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
+		731431AC241E5E1F0065E0DB /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		731431AE241E5E910065E0DB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		731431B2241E68630065E0DB /* ThreadDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDto.swift; sourceTree = "<group>"; };
+		731431B4241E6A160065E0DB /* BoardThreadsServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardThreadsServiceImpl.swift; sourceTree = "<group>"; };
+		731431B6241E6A4D0065E0DB /* AbstractApiClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractApiClientService.swift; sourceTree = "<group>"; };
+		731431BD241E70AC0065E0DB /* ThreadSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorViewController.swift; sourceTree = "<group>"; };
+		731431BF241E7C570065E0DB /* ThreadSelectorViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorViewInput.swift; sourceTree = "<group>"; };
+		731431C2241E7FB00065E0DB /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
+		731431C5241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorViewOutput.swift; sourceTree = "<group>"; };
+		731431C7241E8B230065E0DB /* ThreadSelectorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorPresenter.swift; sourceTree = "<group>"; };
+		731431C9241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorInteractorInput.swift; sourceTree = "<group>"; };
+		731431CC241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorInteractorOutput.swift; sourceTree = "<group>"; };
+		731431CE241E8C270065E0DB /* ThreadSelectorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorInteractor.swift; sourceTree = "<group>"; };
+		731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSource.swift; sourceTree = "<group>"; };
+		731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSourceImpl.swift; sourceTree = "<group>"; };
+		731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorConfigurator.swift; sourceTree = "<group>"; };
 		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSourceOutput.swift; sourceTree = "<group>"; };
 		73828DAC2414EE1E0073623D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -66,6 +100,8 @@
 		73C3FF792413DBA8009D4A18 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		73C3FF7B2413E024009D4A18 /* BoardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsService.swift; sourceTree = "<group>"; };
 		73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsServiceImpl.swift; sourceTree = "<group>"; };
+		73D0A938241E5B2900FF2C04 /* BoardThreadsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardThreadsService.swift; sourceTree = "<group>"; };
+		73D0A93C241E5B6900FF2C04 /* ThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadResponse.swift; sourceTree = "<group>"; };
 		73D75C462413A28200A9554C /* iChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D75C492413A28200A9554C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D75C4D2413A28200A9554C /* BoardSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +147,88 @@
 				1A5F8DF616A15F420BE9FE0F /* Pods_iChan.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		731431B0241E683E0065E0DB /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				731431B1241E68460065E0DB /* Thread */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		731431B1241E68460065E0DB /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				731431B2241E68630065E0DB /* ThreadDto.swift */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		731431B8241E70520065E0DB /* Thread Selector */ = {
+			isa = PBXGroup;
+			children = (
+				731431D0241E8EF10065E0DB /* Data Source */,
+				731431BC241E70830065E0DB /* Router */,
+				731431BB241E707D0065E0DB /* Interactor */,
+				731431BA241E70780065E0DB /* Presenter */,
+				731431B9241E706E0065E0DB /* View */,
+				731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */,
+			);
+			path = "Thread Selector";
+			sourceTree = "<group>";
+		};
+		731431B9241E706E0065E0DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				731431C1241E7F900065E0DB /* Cell */,
+				731431BD241E70AC0065E0DB /* ThreadSelectorViewController.swift */,
+				731431BF241E7C570065E0DB /* ThreadSelectorViewInput.swift */,
+				731431C5241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		731431BA241E70780065E0DB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				731431C7241E8B230065E0DB /* ThreadSelectorPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		731431BB241E707D0065E0DB /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				731431C9241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift */,
+				731431CC241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift */,
+				731431CE241E8C270065E0DB /* ThreadSelectorInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		731431BC241E70830065E0DB /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		731431C1241E7F900065E0DB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				731431C2241E7FB00065E0DB /* ThreadTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		731431D0241E8EF10065E0DB /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */,
+				731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */,
+			);
+			path = "Data Source";
 			sourceTree = "<group>";
 		};
 		735E618A241CB9C4001053A6 /* Tab Bar */ = {
@@ -161,6 +279,7 @@
 		73C3FF6D2413BFCF009D4A18 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				731431B0241E683E0065E0DB /* Dto */,
 				73C3FF6E2413BFD8009D4A18 /* Network */,
 				73828DB5241544F50073623D /* BoardCategories.swift */,
 			);
@@ -170,8 +289,8 @@
 		73C3FF6E2413BFD8009D4A18 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				73C3FF702413C026009D4A18 /* Board.swift */,
-				73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */,
+				73D0A93B241E5B5700FF2C04 /* Thread */,
+				73D0A93A241E5B4E00FF2C04 /* Board */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -187,9 +306,10 @@
 		73C3FF742413CBF2009D4A18 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				73D0A937241E5B0100FF2C04 /* Board Threads */,
+				73D0A936241E5AEA00FF2C04 /* Board Categories */,
 				73C3FF7D2413E0B8009D4A18 /* Common */,
-				73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */,
-				73C3FF7B2413E024009D4A18 /* BoardsService.swift */,
+				731431B6241E6A4D0065E0DB /* AbstractApiClientService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -204,9 +324,47 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		73D0A936241E5AEA00FF2C04 /* Board Categories */ = {
+			isa = PBXGroup;
+			children = (
+				73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */,
+				73C3FF7B2413E024009D4A18 /* BoardsService.swift */,
+			);
+			path = "Board Categories";
+			sourceTree = "<group>";
+		};
+		73D0A937241E5B0100FF2C04 /* Board Threads */ = {
+			isa = PBXGroup;
+			children = (
+				73D0A938241E5B2900FF2C04 /* BoardThreadsService.swift */,
+				731431B4241E6A160065E0DB /* BoardThreadsServiceImpl.swift */,
+			);
+			path = "Board Threads";
+			sourceTree = "<group>";
+		};
+		73D0A93A241E5B4E00FF2C04 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				73C3FF702413C026009D4A18 /* Board.swift */,
+				73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		73D0A93B241E5B5700FF2C04 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				73D0A93C241E5B6900FF2C04 /* ThreadResponse.swift */,
+				731431AC241E5E1F0065E0DB /* Thread.swift */,
+				731431AE241E5E910065E0DB /* Post.swift */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
 		73D5DE9C2413E28000194F26 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				731431B8241E70520065E0DB /* Thread Selector */,
 				735E618A241CB9C4001053A6 /* Tab Bar */,
 				73D5DE9D2413E28900194F26 /* Board Selector */,
 			);
@@ -428,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73C3FF7C2413E024009D4A18 /* BoardsService.swift in Sources */,
+				731431AD241E5E1F0065E0DB /* Thread.swift in Sources */,
 				73828DBB24154D8F0073623D /* BoardSecectorPresenter.swift in Sources */,
 				73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */,
 				73828DAD2414EE1E0073623D /* Colors.swift in Sources */,
@@ -435,25 +594,42 @@
 				73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */,
 				73D75C4E2413A28200A9554C /* BoardSelectorViewController.swift in Sources */,
 				73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */,
+				731431B3241E68630065E0DB /* ThreadDto.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
 				73828DC524154F0D0073623D /* BoardSelectorInteractor.swift in Sources */,
 				73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */,
+				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
+				731431BE241E70AC0065E0DB /* ThreadSelectorViewController.swift in Sources */,
+				731431CD241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift in Sources */,
 				73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
+				731431CA241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift in Sources */,
 				73C3FF782413D09C009D4A18 /* ApiClient.swift in Sources */,
+				731431CF241E8C270065E0DB /* ThreadSelectorInteractor.swift in Sources */,
 				73828DB92415482A0073623D /* BoardsDataSource.swift in Sources */,
+				731431B5241E6A160065E0DB /* BoardThreadsServiceImpl.swift in Sources */,
+				73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */,
+				73D0A939241E5B2900FF2C04 /* BoardThreadsService.swift in Sources */,
 				73828DBD24154DFF0073623D /* BoardSelectorInteractorInput.swift in Sources */,
+				731431AF241E5E910065E0DB /* Post.swift in Sources */,
+				731431C0241E7C570065E0DB /* ThreadSelectorViewInput.swift in Sources */,
+				731431B7241E6A4D0065E0DB /* AbstractApiClientService.swift in Sources */,
 				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
+				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */,
+				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,
+				731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
+				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
 				73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */,
 				73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */,
 				73828DB6241544F50073623D /* BoardCategories.swift in Sources */,
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
 				C36CDC655A8DBE89EC308A4C /* AssetsUtils.swift in Sources */,
+				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

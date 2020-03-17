@@ -10,4 +10,5 @@ import Foundation
 
 protocol BoardSelectorRouterProtocol {
     
+    func pushToThreadSelector(board: Board)
 }
