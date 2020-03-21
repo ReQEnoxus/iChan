@@ -54,7 +54,6 @@
 		73D75C532413A28300A9554C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C522413A28300A9554C /* Assets.xcassets */; };
 		73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C542413A28300A9554C /* LaunchScreen.storyboard */; };
 		73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3625F241622A3006029DA /* BoardTableViewCell.swift */; };
-		C36CDC655A8DBE89EC308A4C /* AssetsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,7 +108,6 @@
 		73D75C552413A28300A9554C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D75C572413A28300A9554C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E3625F241622A3006029DA /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
-		E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,14 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01A3D21744CE66E00BDCB1BD /* HappyCodingSupport */ = {
-			isa = PBXGroup;
-			children = (
-				E0F6155B60BD3499D35BE325 /* AssetsUtils.swift */,
-			);
-			path = HappyCodingSupport;
-			sourceTree = "<group>";
-		};
 		341C06CE119DCF665B480F7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,7 +439,6 @@
 				73D75C522413A28300A9554C /* Assets.xcassets */,
 				73D75C542413A28300A9554C /* LaunchScreen.storyboard */,
 				73D75C572413A28300A9554C /* Info.plist */,
-				01A3D21744CE66E00BDCB1BD /* HappyCodingSupport */,
 			);
 			path = iChan;
 			sourceTree = "<group>";
@@ -628,7 +617,6 @@
 				73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */,
 				73828DB6241544F50073623D /* BoardCategories.swift in Sources */,
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
-				C36CDC655A8DBE89EC308A4C /* AssetsUtils.swift in Sources */,
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
