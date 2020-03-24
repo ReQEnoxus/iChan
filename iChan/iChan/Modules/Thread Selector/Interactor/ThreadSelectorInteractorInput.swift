@@ -11,4 +11,5 @@ import Foundation
 protocol ThreadSelectorInteractorInput: AnyObject {
     
     func loadMoreThreads(board: Board)
+    func refreshThreads(board: Board)
 }

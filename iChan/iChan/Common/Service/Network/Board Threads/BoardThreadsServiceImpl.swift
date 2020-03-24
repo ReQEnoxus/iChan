@@ -14,7 +14,9 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
         
     func getMoreThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void) {
         
-        request(endpoint: .board(id: board, page: page)) { (result: Result<ThreadResponse, ApiError>) in
+        request(endpoint: .board(id: board, page: page)) { [weak self] (result: Result<ThreadResponse, ApiError>) in
+            
+            guard let self = self else { return }
             
             switch result {
                 
@@ -55,9 +57,16 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     DispatchQueue.main.async {
                         completion(.success(dtoArray))
                     }
+                    
+                    self.page += 1
             }
         }
+    }
+    
+    func refreshThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void) {
         
-        page += 1
+        page = 0
+    
+        getMoreThreads(board: board, completion: completion)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThreadDto {
+class ThreadDto {
     
     let number: String
     let filesCount: Int
@@ -18,4 +18,16 @@ struct ThreadDto {
     let file: String?
     let text: String
     let posterName: String
+    var isCollapsed = false
+    
+    init(number: String, filesCount: Int, postsCount: Int, date: String, thumbnail: String?, file: String?, text: String, posterName: String) {
+        self.number = number
+        self.filesCount = filesCount
+        self.postsCount = postsCount
+        self.date = date
+        self.thumbnail = thumbnail
+        self.file = file
+        self.text = text
+        self.posterName = posterName
+    }
 }

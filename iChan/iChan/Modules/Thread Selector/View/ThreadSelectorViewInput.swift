@@ -13,4 +13,6 @@ protocol ThreadSelectorViewInput: AnyObject {
     func setBoardName(_ name: String)
     func refreshData()
     func connectDataSource(_ dataSource: ThreadSelectorDataSource)
+    func collapseCell(at indexPath: IndexPath)
+    func expandCell(at indexPath: IndexPath)
 }

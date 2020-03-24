@@ -16,7 +16,7 @@ class ThreadTableViewCell: UITableViewCell {
     class Appearance {
         
         static let stackViewLeftOffset = 16
-        static let stackViewRightOffset = -8
+        static let stackViewRightOffset = -16
         static let stackViewTopOffset = 8
         static let stackViewBottomOffset = -8
         
@@ -43,18 +43,37 @@ class ThreadTableViewCell: UITableViewCell {
         
         static let dateLabelLineNumber = 1
         static let numberLabelLineNumber = 1
-        static let commentLabelLineNumber = 0
+        static let commentLabelLineNumberExpanded = 8
+        static let commentLabelLineNumberCollapsed = 1
         static let postCountLabelLineNumber = 1
+        
+        static let collapseAnimationTime = 0.5
+        
     }
     
     let dateAndNameLabel = UILabel()
     let numberLabel = UILabel()
     let dateAndNumberView = UIView()
-    let thumbnailImageView = UIImageView()
+    
+    lazy var thumbnailImageView: UIImageView = {
+        
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        return imageView
+    }()
+    
     let commentLabel = UILabel()
     let postCountLabel = UILabel()
     let mainStackView = UIStackView()
-
+    
+    var isCollapsed: Bool {
+        return dto.isCollapsed
+    }
+    
+    var dto: ThreadDto!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -80,9 +99,9 @@ class ThreadTableViewCell: UITableViewCell {
         numberLabel.textColor = .paleGrey60
         numberLabel.font = numberLabel.font.withSize(Appearance.infoFontSize)
         
-        commentLabel.numberOfLines = Appearance.commentLabelLineNumber
+        commentLabel.numberOfLines = Appearance.commentLabelLineNumberExpanded
         
-        commentLabel.sizeToFit()
+//        commentLabel.sizeToFit()
         commentLabel.textColor = .white
         commentLabel.font = commentLabel.font?.withSize(Appearance.commentFontSize)
         
@@ -93,9 +112,6 @@ class ThreadTableViewCell: UITableViewCell {
         
         dateAndNumberView.addSubview(dateAndNameLabel)
         dateAndNumberView.addSubview(numberLabel)
-        
-        thumbnailImageView.contentMode = .scaleAspectFill
-        thumbnailImageView.clipsToBounds = true
         
         mainStackView.alignment = .leading
         mainStackView.spacing = Appearance.stackViewSpacing
@@ -139,8 +155,8 @@ class ThreadTableViewCell: UITableViewCell {
         
         thumbnailImageView.snp.makeConstraints { make in
             
-            make.height.equalTo(Appearance.thumbnailImageHeight)
-            make.width.equalTo(Appearance.thumbnailImageWidth)
+            make.height.equalTo(Appearance.thumbnailImageHeight).priority(.high)
+            make.width.equalTo(thumbnailImageView.snp.height)
         }
         
         mainStackView.snp.makeConstraints { make in
@@ -150,9 +166,17 @@ class ThreadTableViewCell: UITableViewCell {
             make.top.equalTo(contentView).offset(Appearance.stackViewTopOffset)
             make.bottom.equalTo(contentView).offset(Appearance.stackViewBottomOffset)
         }
+        
+        commentLabel.snp.makeConstraints { make in
+            
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        }
     }
     
     func configure(with dto: ThreadDto) {
+        
+        self.dto = dto
         
         dateAndNameLabel.text = "\(dto.posterName) \(dto.date)"
         numberLabel.text = "№\(dto.number)"
@@ -166,5 +190,53 @@ class ThreadTableViewCell: UITableViewCell {
         
         commentLabel.setHTMLFromString(htmlText: dto.text)
         postCountLabel.text = "\(dto.postsCount) постов, \(dto.filesCount) с картинками"
-    }    
+        
+        if dto.isCollapsed {
+            
+            self.postCountLabel.isHidden = true
+            self.thumbnailImageView.isHidden = true
+            self.commentLabel.numberOfLines = Appearance.commentLabelLineNumberCollapsed
+        }
+        else {
+            
+            self.postCountLabel.isHidden = false
+            self.thumbnailImageView.isHidden = false
+            self.commentLabel.numberOfLines = Appearance.commentLabelLineNumberExpanded
+        }
+    }
+    
+    func collapse() {
+        
+//        UIView.animate(withDuration: Appearance.collapseAnimationTime, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
+//
+//            guard let self = self else { return }
+            
+            self.postCountLabel.isHidden = true
+            self.thumbnailImageView.isHidden = true
+            self.commentLabel.numberOfLines = Appearance.commentLabelLineNumberCollapsed
+            
+//        }, completion: nil)
+        
+        dto.isCollapsed = true
+    }
+    
+    func expand() {
+        
+//        UIView.animate(withDuration: Appearance.collapseAnimationTime, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
+//
+//            guard let self = self else { return }
+            
+            self.postCountLabel.isHidden = false
+            self.thumbnailImageView.isHidden = false
+            self.commentLabel.numberOfLines = Appearance.commentLabelLineNumberExpanded
+            
+//        }, completion: nil)
+        
+        dto.isCollapsed = false
+    }
+    
+    override func prepareForReuse() {
+        
+        
+    }
 }

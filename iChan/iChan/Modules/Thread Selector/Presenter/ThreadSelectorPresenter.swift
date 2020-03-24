@@ -28,9 +28,30 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         view.connectDataSource(dataSource)
     }
     
+    func refreshRequested() {
+        interactor.refreshThreads(board: board)
+    }
+    
+    func didPressedCollapse(on indexPath: IndexPath) {
+        view.collapseCell(at: indexPath)
+    }
+    
+    func didSelectItem(at indexPath: IndexPath, collapsed: Bool) {
+        
+        if collapsed {
+            view.expandCell(at: indexPath)
+        }
+    }
+    
     //MARK: - ThreadSelectorInteractorOutput
     
     func didFinishLoadingMoreThreads(threads: [ThreadDto]) {
+        
+        dataSource.threads += threads
+        view.refreshData()
+    }
+    
+    func didFinishRefreshingThreads(threads: [ThreadDto]) {
         
         dataSource.threads = threads
         view.refreshData()

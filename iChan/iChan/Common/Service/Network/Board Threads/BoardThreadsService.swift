@@ -14,4 +14,9 @@ protocol BoardThreadsService: ApiClient {
     /// - Parameter completion: block that is called when the data is received
     /// - Parameter board: board that the threads are requested from
     func getMoreThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void)
+    
+    /// gets first portion of threads with dropping page index
+    /// - Parameter board: board that the threads are requested from
+    /// - Parameter completion: block that is called when data is received
+    func refreshThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void)
 }

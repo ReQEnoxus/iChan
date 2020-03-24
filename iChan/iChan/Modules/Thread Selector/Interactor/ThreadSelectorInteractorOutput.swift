@@ -11,4 +11,5 @@ import Foundation
 protocol ThreadSelectorInteractorOutput: AnyObject {
     
     func didFinishLoadingMoreThreads(threads: [ThreadDto])
+    func didFinishRefreshingThreads(threads: [ThreadDto])
 }

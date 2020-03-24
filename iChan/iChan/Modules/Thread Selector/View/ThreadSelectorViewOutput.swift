@@ -12,4 +12,7 @@ protocol ThreadSelectorViewOutput: AnyObject {
     
     func loadMoreThreads()
     func initialSetup()
+    func refreshRequested()
+    func didPressedCollapse(on indexPath: IndexPath)
+    func didSelectItem(at indexPath: IndexPath, collapsed: Bool)
 }

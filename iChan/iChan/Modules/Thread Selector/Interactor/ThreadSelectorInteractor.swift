@@ -25,4 +25,17 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput {
             }
         }
     }
+    
+    func refreshThreads(board: Board) {
+        
+        service.refreshThreads(board: board.id) { [weak self] result in
+            
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let threads):
+                self?.presenter.didFinishRefreshingThreads(threads: threads)
+            }
+        }
+    }
 }
