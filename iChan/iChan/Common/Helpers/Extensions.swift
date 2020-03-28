@@ -100,13 +100,13 @@ extension UIImage {
     }
 }
 
-extension UILabel {
+extension UITextView {
     
-    func setHTMLFromString(htmlText: String) {
+    func setHTMLFromString(htmlText: String, fontSize: CGFloat) {
         
-        let classes = "<style> .unkfunc { color: #789922; }; \n a { color: orange !important; } </style>"
+        let classes = "<style> .unkfunc { color: #789922; } </style>"
         
-        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? 12)\">%@</span>", htmlText)
+        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? fontSize)\">%@</span>", htmlText)
 
         let attrStr = try! NSAttributedString(
             
