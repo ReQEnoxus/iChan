@@ -28,7 +28,11 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         static let collapseImageName = "SF_eye_fill"
         static let saveImageName = "SF_square_and_arrow_down_on_square"
+        
+        static let defaultCellHeight: CGFloat = 44
     }
+    
+    private var cellHeightCache = [IndexPath: CGFloat]()
     
     let scrollDelta: CGFloat = 10
     var isLoading: Bool = false
@@ -62,6 +66,14 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         super.loadView()
         setupTableView()
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeightCache[indexPath] ?? Appearance.defaultCellHeight   
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       cellHeightCache[indexPath] = cell.bounds.height
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
