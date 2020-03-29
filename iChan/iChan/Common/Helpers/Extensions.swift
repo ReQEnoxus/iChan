@@ -104,7 +104,7 @@ extension UITextView {
     
     func setHTMLFromString(htmlText: String, fontSize: CGFloat) {
         
-        let classes = "<style> .unkfunc { color: #789922; } </style>"
+        let classes = "<style> .unkfunc { color: #789922; } .spoiler { color: #7d7d7d; } </style>"
         
         let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? fontSize)\">%@</span>", htmlText)
 
