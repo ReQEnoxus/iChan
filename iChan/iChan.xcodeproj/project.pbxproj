@@ -37,7 +37,7 @@
 		73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC024154E3A0073623D /* BoardSelectorInteractorOutput.swift */; };
 		73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC224154E650073623D /* BoardSelectorViewInput.swift */; };
 		73828DC524154F0D0073623D /* BoardSelectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC424154F0D0073623D /* BoardSelectorInteractor.swift */; };
-		73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC6241552430073623D /* BoardSelectorRouterProtocol.swift */; };
+		73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC6241552430073623D /* BoardSelectorRouterInput.swift */; };
 		73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC8241554100073623D /* BoardSelectorConfigurator.swift */; };
 		73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DCA2415548A0073623D /* BoardSelectorRouter.swift */; };
 		73C3FF712413C026009D4A18 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF702413C026009D4A18 /* Board.swift */; };
@@ -89,7 +89,7 @@
 		73828DC024154E3A0073623D /* BoardSelectorInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorInteractorOutput.swift; sourceTree = "<group>"; };
 		73828DC224154E650073623D /* BoardSelectorViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewInput.swift; sourceTree = "<group>"; };
 		73828DC424154F0D0073623D /* BoardSelectorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorInteractor.swift; sourceTree = "<group>"; };
-		73828DC6241552430073623D /* BoardSelectorRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouterProtocol.swift; sourceTree = "<group>"; };
+		73828DC6241552430073623D /* BoardSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouterInput.swift; sourceTree = "<group>"; };
 		73828DC8241554100073623D /* BoardSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorConfigurator.swift; sourceTree = "<group>"; };
 		73828DCA2415548A0073623D /* BoardSelectorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouter.swift; sourceTree = "<group>"; };
 		73C3FF702413C026009D4A18 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		73D5DE9E2413E29F00194F26 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				73828DC6241552430073623D /* BoardSelectorRouterProtocol.swift */,
+				73828DC6241552430073623D /* BoardSelectorRouterInput.swift */,
 				73828DCA2415548A0073623D /* BoardSelectorRouter.swift */,
 			);
 			path = Router;
@@ -607,7 +607,7 @@
 				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
 				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
-				73828DC7241552430073623D /* BoardSelectorRouterProtocol.swift in Sources */,
+				73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */,
 				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,
 				731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,

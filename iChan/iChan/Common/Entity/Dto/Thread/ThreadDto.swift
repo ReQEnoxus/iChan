@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Dto that used for configuring visual elements in thread selector module
 class ThreadDto {
     
     let number: String

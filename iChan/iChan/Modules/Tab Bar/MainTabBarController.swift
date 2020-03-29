@@ -10,6 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    //MARK: - UI Constants
     class Appearance {
         
         static let boardItemImage = "SF_bolt"
@@ -28,6 +29,7 @@ class MainTabBarController: UITabBarController {
         static let settingsItemTopOffset: CGFloat = 13
     }
     
+    //MARK: - Configuration
     func configure(with controllers: [UIViewController]) {
         
         tabBar.isTranslucent = false

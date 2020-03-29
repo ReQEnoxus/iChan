@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// thread model that is obtained from API
 struct Thread: Codable {
     
     let filesCount: Int

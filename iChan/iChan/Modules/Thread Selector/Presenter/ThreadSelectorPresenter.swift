@@ -56,6 +56,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     func didFinishLoadingMoreWith(error: ApiError) {
         
         switch error {
+            
         case .jsonParsingFailure:
             view.stopLoadingIndicator()
         default:

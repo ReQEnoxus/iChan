@@ -9,12 +9,11 @@
 import Foundation
 import UIKit
 
-class BoardSelectorRouter: BoardSelectorRouterProtocol {
+class BoardSelectorRouter: BoardSelectorRouterInput {
     
     weak var view: UIViewController!
     
     func pushToThreadSelector(board: Board) {
-        
         view.navigationController?.pushViewController(ThreadSelectorConfigurator.configureModule(board: board), animated: true)
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// structure that contains boards with categories and also manages favourites (should be cached)
 class BoardCategories {
     
     var categories: [[Board]] = []

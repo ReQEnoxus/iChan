@@ -22,12 +22,14 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource {
             var threadsClean = [ThreadDto]()
             
             for thread in threads {
+                
                 if !self.threads.contains(where: {$0.number == thread.number}) {
                     threadsClean.append(thread)
                 }
             }
             
             var idxToInsert = [IndexPath]()
+            
             for i in 0 ..< threadsClean.count {
                 idxToInsert.append(IndexPath(row: self.threads.count + i, section: 0))
             }

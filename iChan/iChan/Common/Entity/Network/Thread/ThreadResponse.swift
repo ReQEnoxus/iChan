@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// response that contains array of threads
 struct ThreadResponse: Codable {
     
     let threads: [Thread]

@@ -14,6 +14,7 @@ protocol BoardsDataSourceOutput: AnyObject {
     /// - Parameter index: index of pinned item
     /// - Parameter sectionCreated: was the section created
     func didFinishPinningItem(at index: IndexPath?, sectionCreated: Bool)
+    
     /// tells the presenter that the item was unpinned
     /// - Parameter index: index of removed item
     /// - Parameter sectionDeleted: was the section deleted

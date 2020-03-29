@@ -11,6 +11,7 @@ import SnapKit
 
 class BoardTableViewCell: UITableViewCell {
     
+    //MARK: - UI Constants
     class Appearance {
         
         static let labelLeftOffset = 16

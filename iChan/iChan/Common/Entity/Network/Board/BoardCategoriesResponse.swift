@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// response which contains info about boards and categories
 struct BoardCategoriesResponse: Codable {
     
     let adult: [Board]

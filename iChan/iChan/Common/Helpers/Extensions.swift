@@ -9,8 +9,15 @@
 import Foundation
 import UIKit
 
+//MARK: - UIViewController
 extension UIViewController {
     
+    /// configures navbar
+    /// - Parameter largeTitleColor: color of large titles
+    /// - Parameter backgroundColor: bgcolor
+    /// - Parameter tintColor: tint color
+    /// - Parameter title: title of the view
+    /// - Parameter preferredLargeTitle: should use large titles or now
     func configureNavigationBar(largeTitleColor: UIColor, backgroundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
         
         if #available(iOS 13.0, *) {
@@ -42,7 +49,6 @@ extension UIViewController {
 }
 
 //MARK: - UITableView
-
 extension UITableView {
     
     /// registers the given cell for the tableview
@@ -53,7 +59,6 @@ extension UITableView {
 }
 
 //MARK: - UITableViewCell
-
 extension UITableViewCell {
     
     /// returns the nib name for the cell
@@ -68,6 +73,10 @@ extension UITableViewCell {
 //MARK: - UIImage
 extension UIImage {
     
+    /// resizes and shifts given image
+    /// - Parameter newSize: new size
+    /// - Parameter shiftLeft: left shift amount
+    /// - Parameter shiftTop: top shift amount
     func resizeAndShift(newSize: CGSize, shiftLeft: CGFloat, shiftTop: CGFloat) -> UIImage {
         
         let renderer = UIGraphicsImageRenderer(size: newSize)
@@ -100,8 +109,12 @@ extension UIImage {
     }
 }
 
+//MARK: - UITextView
 extension UITextView {
     
+    /// sets html text to textview converting it to attributed string
+    /// - Parameter htmlText: text containing html parts
+    /// - Parameter fontSize: size of font
     func setHTMLFromString(htmlText: String, fontSize: CGFloat) {
         
         let classes = "<style> .unkfunc { color: #789922; } .spoiler { color: #7d7d7d; } </style>"

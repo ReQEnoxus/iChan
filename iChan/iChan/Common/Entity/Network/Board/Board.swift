@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// struct that represents particular board
 struct Board: Codable {
     
     let id: String

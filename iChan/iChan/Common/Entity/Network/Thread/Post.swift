@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// post model that is obtained from API
 struct Post: Codable {
     
     let comment: String
@@ -18,6 +19,7 @@ struct Post: Codable {
     let files: [File]?
 }
 
+/// convenience structure for parsing
 struct File: Codable {
     
     let path: String

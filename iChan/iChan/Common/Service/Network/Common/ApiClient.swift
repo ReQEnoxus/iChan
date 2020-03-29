@@ -12,10 +12,12 @@ protocol ApiClient: AnyObject {
     
     /// http session instance
     var session: URLSession { get set }
+    
     /// generic request method
     /// - Parameter endpoint: request endpoint
     /// - Parameter completion: completion that is called when the data is received
     func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T, ApiError>) -> Void)
+    
     /// decoder used for decoding the model
     var decoder: JSONDecoder { get set }
 }

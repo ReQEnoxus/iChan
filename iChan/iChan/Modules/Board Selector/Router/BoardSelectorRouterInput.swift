@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol BoardSelectorRouterProtocol {
+protocol BoardSelectorRouterInput {
     
+    /// tells router to perform navigation to thread selector module
+    /// - Parameter board: requested board
     func pushToThreadSelector(board: Board)
 }

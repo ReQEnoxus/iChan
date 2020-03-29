@@ -226,7 +226,6 @@ class ThreadTableViewCell: UITableViewCell {
             commentTextView.textContainer.maximumNumberOfLines = Appearance.commentTextViewLineNumberExpanded
             commentTextView.invalidateIntrinsicContentSize()
             commentTextView.isUserInteractionEnabled = true
-
         }
         
         if let url = dto.thumbnail {

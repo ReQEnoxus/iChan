@@ -11,6 +11,7 @@ import SnapKit
 
 class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardSelectorViewInput {
     
+    //MARK: - UI Constants
     private class Appearance {
         
         //MARK: - Constraints
