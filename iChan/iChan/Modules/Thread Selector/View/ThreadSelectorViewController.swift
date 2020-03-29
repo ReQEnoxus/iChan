@@ -19,7 +19,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let tableViewOffsetLeft = 0
         static let tableViewOffsetRight = 0
         
-        static let conatinerSpacing: CGFloat = 5
+        static let conatinerSpacing: CGFloat = 10
         
         static let saveLeftShift: CGFloat = 13
         static let saveTopShift: CGFloat = -3
@@ -34,7 +34,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         static let collapseImageName = "SF_eye_fill"
         static let saveImageName = "SF_square_and_arrow_down_on_square"
-        static let errorLogoImageName = "SF_wifi"
+        static let errorLogoImageName = "SF_exclamationmark_octagon-1"
         
         static let defaultCellHeight: CGFloat = 44
         
