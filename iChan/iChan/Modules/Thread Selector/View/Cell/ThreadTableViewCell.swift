@@ -13,6 +13,7 @@ import ActiveLabel
 
 class ThreadTableViewCell: UITableViewCell {
     
+    //MARK: - UI Constants
     class Appearance {
         
         static let stackViewLeftOffset = 16
@@ -36,6 +37,8 @@ class ThreadTableViewCell: UITableViewCell {
         static let thumbnailImageHeight = 150
         static let thumbnailImageWidth = 150
         
+        static let thumbnailCollapsedHeight = 0
+        
         static let stackViewSpacing: CGFloat = 5
         
         static let infoFontSize: CGFloat = 13
@@ -48,9 +51,9 @@ class ThreadTableViewCell: UITableViewCell {
         static let postCountLabelLineNumber = 1
         
         static let collapseAnimationTime = 0.5
-        
     }
     
+    //MARK: - UI Elements
     lazy var dateAndNameLabel: UILabel = {
         
         var dateAndNameLabel = UILabel()
@@ -129,17 +132,7 @@ class ThreadTableViewCell: UITableViewCell {
     
     var dto: ThreadDto!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+    //MARK: - Constraints
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -185,7 +178,7 @@ class ThreadTableViewCell: UITableViewCell {
         
         thumbnailImageView.snp.makeConstraints { make in
             
-            make.height.equalTo(Appearance.thumbnailImageHeight).priority(.high)
+            make.height.equalTo(Appearance.thumbnailImageHeight).priority(999)
             make.width.equalTo(thumbnailImageView.snp.height)
         }
         
@@ -204,19 +197,13 @@ class ThreadTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - Configuration
     func configure(with dto: ThreadDto) {
         
         self.dto = dto
         
         dateAndNameLabel.text = "\(dto.posterName) \(dto.date)"
         numberLabel.text = "№\(dto.number)"
-        
-        if let url = dto.thumbnail {
-            thumbnailImageView.sd_setImage(with: URL(string: url))
-        }
-        else {
-            thumbnailImageView.isHidden = true
-        }
         
         commentTextView.setHTMLFromString(htmlText: dto.text, fontSize: Appearance.commentFontSize)
         postCountLabel.text = "\(dto.postsCount) постов, \(dto.filesCount) с картинками"
@@ -241,8 +228,16 @@ class ThreadTableViewCell: UITableViewCell {
             commentTextView.isUserInteractionEnabled = true
 
         }
+        
+        if let url = dto.thumbnail {
+            thumbnailImageView.sd_setImage(with: URL(string: url))
+        }
+        else {
+            thumbnailImageView.isHidden = true
+        }
     }
     
+    //MARK: - Collapse & Expand
     func collapse() {
         
         postCountLabel.isHidden = true
@@ -258,7 +253,10 @@ class ThreadTableViewCell: UITableViewCell {
     func expand() {
         
         postCountLabel.isHidden = false
-        thumbnailImageView.isHidden = false
+        
+        if thumbnailImageView.image != nil {
+            thumbnailImageView.isHidden = false
+        }
         
         commentTextView.textContainer.maximumNumberOfLines = Appearance.commentTextViewLineNumberExpanded
         commentTextView.invalidateIntrinsicContentSize()
