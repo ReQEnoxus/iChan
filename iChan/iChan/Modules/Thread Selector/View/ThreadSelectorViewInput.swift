@@ -17,4 +17,6 @@ protocol ThreadSelectorViewInput: AnyObject {
     func collapseCell(at indexPath: IndexPath)
     func expandCell(at indexPath: IndexPath)
     func stopLoadingIndicator()
+    func displayTableView()
+    func displayErrorView()
 }

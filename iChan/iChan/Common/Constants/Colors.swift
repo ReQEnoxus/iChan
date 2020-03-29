@@ -43,6 +43,10 @@ extension UIColor {
         return UIColor(red: 255.0 / 255.0, green: 159.0 / 255.0, blue: 10.0 / 255.0, alpha: 1)
     }
     
+    @nonobjc class var orangeUiDarker: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 159.0 / 255.0, blue: 10.0 / 255.0, alpha: 0.7)
+    }
+    
     @nonobjc class var swipeActionSecondary: UIColor {
       return UIColor(white: 40.0 / 255.0, alpha: 1.0)
     }

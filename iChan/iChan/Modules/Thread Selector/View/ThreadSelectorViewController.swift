@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate {
-    
+    //MARK: - UI Constraints
     private class Appearance {
         
         //MARK: - Constraints
@@ -19,27 +19,48 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let tableViewOffsetLeft = 0
         static let tableViewOffsetRight = 0
         
+        static let conatinerSpacing: CGFloat = 5
+        
         static let saveLeftShift: CGFloat = 13
         static let saveTopShift: CGFloat = -3
         static let actionImageSize = CGSize(width: 40, height: 40)
+        static let errorLogoImageSize = CGSize(width: 150, height: 150)
+        static let errorLogoLeftShift: CGFloat = 30
         
         static let collapseActionTitle = "  Скрыть  "
         static let saveActionTitle = "Сохранить"
+        static let errorText = "Не удалось загрузить треды с этой доски"
+        static let retryButtonTitle = "Обновить"
         
         static let collapseImageName = "SF_eye_fill"
         static let saveImageName = "SF_square_and_arrow_down_on_square"
+        static let errorLogoImageName = "SF_wifi"
         
         static let defaultCellHeight: CGFloat = 44
+        
+        static let footerHeight: CGFloat = 60
+        static let collapsedFooterHeright: CGFloat = 10
     }
     
     private var cellHeightCache = [IndexPath: CGFloat]()
-    
-    let scrollDelta: CGFloat = 10
-    var isLoading: Bool = false
+        
+    var isLoading: Bool = false {
+        
+        didSet {
+            
+            if isLoading {
+                indicatorView.startAnimating()
+            }
+            else {
+                indicatorView.stopAnimating()
+            }
+        }
+    }
     
     var presenter: ThreadSelectorViewOutput!
     let tableView: UITableView = UITableView()
     
+    //MARK: - Views
     lazy var refreshControl: UIRefreshControl = {
         
         var refreshControl = UIRefreshControl()
@@ -49,12 +70,52 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         return refreshControl
     }()
     
+    lazy var indicatorView: UIActivityIndicatorView = {
+        
+        var view = UIActivityIndicatorView()
+        view.color = .orangeUi
+        view.startAnimating()
+        view.hidesWhenStopped = true
+        
+        return view
+    }()
+    
+    lazy var errorView: UIStackView = {
+        
+        let containter = UIStackView()
+        containter.alignment = .center
+        containter.axis = .vertical
+        containter.spacing = Appearance.conatinerSpacing
+        
+        let errorImage = UIImage(named: Appearance.errorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
+        let imageView = UIImageView(image: errorImage)
+        let textLabel = UILabel()
+        textLabel.text = Appearance.errorText
+        textLabel.textColor = .white
+        
+        let retryButton = UIButton(type: .system)
+        retryButton.setTitle(Appearance.retryButtonTitle, for: .normal)
+        retryButton.tintColor = .orangeUi
+        retryButton.setTitleColor(.orangeUi, for: .normal)
+        retryButton.setTitleColor(.orangeUiDarker, for: .selected)
+        retryButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        
+        containter.addArrangedSubview(imageView)
+        containter.addArrangedSubview(textLabel)
+        containter.addArrangedSubview(retryButton)
+        
+        return containter
+    }()
+    
+    lazy var footerFrame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: Appearance.footerHeight)
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         navigationItem.backBarButtonItem?.tintColor = .orangeUi
+        tableView.indicatorStyle = .white
         presenter.initialSetup()
-        presenter.loadMoreThreads()
+        presenter.refreshRequested()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -68,12 +129,28 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         setupTableView()
     }
     
+    //MARK: - TableViewDelegate
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeightCache[indexPath] ?? Appearance.defaultCellHeight   
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       cellHeightCache[indexPath] = cell.bounds.height
+        
+        cellHeightCache[indexPath] = cell.bounds.height
+        
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex, !isLoading {
+            
+            indicatorView.startAnimating()
+            indicatorView.frame = footerFrame
+            
+            tableView.tableFooterView = indicatorView
+            tableView.tableFooterView?.isHidden = false
+            
+            presenter.loadMoreThreads()
+            isLoading = true
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -111,6 +188,14 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! ThreadTableViewCell
+        
+        presenter.didSelectItem(at: indexPath, collapsed: cell.isCollapsed)
+    }
+    
+    //MARK: - Setup methods
     func setupTableView() {
         
         tableView.backgroundColor = .blackBg
@@ -130,34 +215,43 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        
-        if maximumOffset - currentOffset <= scrollDelta, !isLoading {
-            
-            isLoading = true
-            presenter.loadMoreThreads()
-        }
-    }
-    
     @objc func refresh() {
         presenter.refreshRequested()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let cell = tableView.cellForRow(at: indexPath) as! ThreadTableViewCell
-        
-        presenter.didSelectItem(at: indexPath, collapsed: cell.isCollapsed)
-    }
-    
-    
     //MARK: - ThreadSelectorViewInput
-    
     func setBoardName(_ name: String) {
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: name, preferredLargeTitle: true)
+    }
+    
+    func displayTableView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            
+            make.top.equalTo(view).offset(Appearance.tableViewOffsetTop)
+            make.bottom.equalTo(view).offset(Appearance.tableViewOffsetBottom)
+            make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
+            make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
+        }
+    }
+    
+    func displayErrorView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(errorView)
+        view.backgroundColor = .blackBg
+        
+        errorView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    func stopLoadingIndicator() {
+        
+        indicatorView.stopAnimating()
     }
     
     func refreshData() {
@@ -168,22 +262,31 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         isLoading = false
     }
     
+    func refreshData(indicesToRefresh: [IndexPath]) {
+        
+        refreshControl.endRefreshing()
+        tableView.insertRows(at: indicesToRefresh, with: .automatic)
+        
+        isLoading = false
+    }
+    
     func connectDataSource(_ dataSource: ThreadSelectorDataSource) {
+        
         tableView.dataSource = dataSource
     }
     
-    func collapseCell(at indexpath: IndexPath) {
+    func collapseCell(at indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexpath) as! ThreadTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! ThreadTableViewCell
         tableView.beginUpdates()
         cell.collapse()
         tableView.layoutIfNeeded()
         tableView.endUpdates()
     }
     
-    func expandCell(at indexpath: IndexPath) {
+    func expandCell(at indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexpath) as! ThreadTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! ThreadTableViewCell
         tableView.beginUpdates()
         cell.expand()
         tableView.layoutIfNeeded()

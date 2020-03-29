@@ -13,4 +13,5 @@ protocol ThreadSelectorInteractorOutput: AnyObject {
     func didFinishLoadingMoreThreads(threads: [ThreadDto])
     func didFinishRefreshingThreads(threads: [ThreadDto])
     func didFinishLoadingMoreWith(error: ApiError)
+    func didFinishRefreshingWith(error: ApiError)
 }

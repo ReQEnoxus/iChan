@@ -63,8 +63,13 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         }
     }
     
+    func didFinishRefreshingWith(error: ApiError) {
+        view.displayErrorView()
+    }
+    
     func didFinishRefreshingThreads(threads: [ThreadDto]) {
         
+        view.displayTableView()
         dataSource.threads = threads
         view.refreshData()
     }
