@@ -12,4 +12,6 @@ import UIKit
 protocol ThreadSelectorDataSource: AnyObject, UITableViewDataSource {
     
     var threads: [ThreadDto] { get set }
+    
+    func appendThreads(_ threads: [ThreadDto], completion: @escaping ([IndexPath]) -> Void)
 }

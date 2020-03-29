@@ -47,8 +47,20 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func didFinishLoadingMoreThreads(threads: [ThreadDto]) {
         
-        dataSource.threads += threads
-        view.refreshData()
+        dataSource.appendThreads(threads) { [weak self] insertedIndices in
+            
+            self?.view.refreshData(indicesToRefresh: insertedIndices)
+        }
+    }
+    
+    func didFinishLoadingMoreWith(error: ApiError) {
+        
+        switch error {
+        case .jsonParsingFailure:
+            view.stopLoadingIndicator()
+        default:
+            print(error.localizedDescription)
+        }
     }
     
     func didFinishRefreshingThreads(threads: [ThreadDto]) {

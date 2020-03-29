@@ -13,6 +13,33 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource {
     
     var threads: [ThreadDto] = []
     
+    func appendThreads(_ threads: [ThreadDto], completion: @escaping ([IndexPath]) -> Void) {
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            
+            guard let self = self else { return }
+            
+            var threadsClean = [ThreadDto]()
+            
+            for thread in threads {
+                if !self.threads.contains(where: {$0.number == thread.number}) {
+                    threadsClean.append(thread)
+                }
+            }
+            
+            var idxToInsert = [IndexPath]()
+            for i in 0 ..< threadsClean.count {
+                idxToInsert.append(IndexPath(row: self.threads.count + i, section: 0))
+            }
+            
+            self.threads += threadsClean
+            
+            DispatchQueue.main.async {
+                completion(idxToInsert)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return threads.count
     }

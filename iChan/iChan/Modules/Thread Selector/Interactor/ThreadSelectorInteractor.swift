@@ -19,7 +19,7 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput {
             
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.presenter.didFinishLoadingMoreWith(error: error)
             case .success(let threads):
                 self?.presenter.didFinishLoadingMoreThreads(threads: threads)
             }
