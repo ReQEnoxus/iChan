@@ -57,6 +57,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
         tableView.register(BoardTableViewCell.self, forCellReuseIdentifier: BoardTableViewCell.nibName)
         tableView.indicatorStyle = .white
+        extendedLayoutIncludesOpaqueBars = true
         
         tableView.estimatedRowHeight = Appearance.cellHeight
         

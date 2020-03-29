@@ -114,6 +114,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         super.viewDidLoad()
         navigationItem.backBarButtonItem?.tintColor = .orangeUi
         tableView.indicatorStyle = .white
+        extendedLayoutIncludesOpaqueBars = true
         presenter.initialSetup()
         presenter.refreshRequested()
     }
