@@ -33,6 +33,7 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                         
                         var thumbNail: String? = nil
                         var file: String? = nil
+                        var fileName: String? = nil
                         
                         if let path = thread.posts[0].files?.first?.thumbnail {
                             thumbNail = Endpoint.baseUrl + path
@@ -42,6 +43,10 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                             file = Endpoint.baseUrl + path
                         }
                         
+                        if let name = thread.posts[0].files?.first?.displayname {
+                            fileName = name
+                        }
+                        
                         let dto = ThreadDto(number: thread.posts[0].num,
                                             filesCount: thread.filesCount,
                                             postsCount: thread.postsCount,
@@ -49,7 +54,8 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                                             thumbnail: thumbNail,
                                             file: file,
                                             text: thread.posts[0].comment,
-                                            posterName: thread.posts[0].name)
+                                            posterName: thread.posts[0].name,
+                                            fileName: fileName)
                         
                         dtoArray.append(dto)
                     }

@@ -8,12 +8,13 @@
 
 import Foundation
 
-class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput {
+class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput {
     
     weak var view: ThreadSelectorViewInput!
     
     var interactor: ThreadSelectorInteractorInput!
     var dataSource: ThreadSelectorDataSource!
+    var router: ThreadSelectorRouterInput!
     var board: Board!
     
     //MARK: - ThreadSelectorViewOutput
@@ -73,5 +74,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         view.displayTableView()
         dataSource.threads = threads
         view.refreshData()
+    }
+    
+    //MARK: - ThreadSelectorDataSourceOutput
+    func didTapImage(with attachment: AttachmentDto) {
+        router.presentImage(with: attachment)
     }
 }

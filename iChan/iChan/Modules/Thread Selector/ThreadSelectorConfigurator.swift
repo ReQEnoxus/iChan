@@ -18,6 +18,7 @@ class ThreadSelectorConfigurator {
         let interactor = ThreadSelectorInteractor()
         let dataSource = ThreadSelectorDataSourceImpl()
         let service = BoardThreadsServiceImpl()
+        let router = ThreadSelectorRouter()
         
         view.presenter = presenter
         
@@ -25,9 +26,14 @@ class ThreadSelectorConfigurator {
         presenter.interactor = interactor
         presenter.dataSource = dataSource
         presenter.board = board
+        presenter.router = router
+        
+        dataSource.presenter = presenter
         
         interactor.presenter = presenter
         interactor.service = service
+        
+        router.view = view
         
         return view
     }

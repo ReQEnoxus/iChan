@@ -24,4 +24,5 @@ struct File: Codable {
     
     let path: String
     let thumbnail: String
+    let displayname: String
 }

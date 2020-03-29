@@ -53,6 +53,8 @@ class ThreadTableViewCell: UITableViewCell {
         static let collapseAnimationTime = 0.5
     }
     
+    weak var delegate: ThreadTableViewCellDelegate?
+    
     //MARK: - UI Elements
     lazy var dateAndNameLabel: UILabel = {
         
@@ -83,6 +85,10 @@ class ThreadTableViewCell: UITableViewCell {
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
         
         return imageView
     }()
@@ -198,9 +204,10 @@ class ThreadTableViewCell: UITableViewCell {
     }
     
     //MARK: - Configuration
-    func configure(with dto: ThreadDto) {
+    func configure(with dto: ThreadDto, delegate: ThreadTableViewCellDelegate?) {
         
         self.dto = dto
+        self.delegate = delegate
         
         dateAndNameLabel.text = "\(dto.posterName) \(dto.date)"
         numberLabel.text = "№\(dto.number)"
@@ -270,5 +277,12 @@ class ThreadTableViewCell: UITableViewCell {
         
         thumbnailImageView.sd_cancelCurrentImageLoad()
         thumbnailImageView.image = nil
+    }
+    
+    @objc func didTapImage() {
+        
+        if let fileUrl = dto.file, let displayName = dto.fileName {
+            delegate?.didTapImage(with: AttachmentDto(url: fileUrl, displayName: displayName))
+        }
     }
 }

@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource {
+class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTableViewCellDelegate {
     
     var threads: [ThreadDto] = []
+    weak var presenter: ThreadSelectorDataSourceOutput!
     
     func appendThreads(_ threads: [ThreadDto], completion: @escaping ([IndexPath]) -> Void) {
         
@@ -56,8 +57,13 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource {
         backgroundView.backgroundColor = .darkCellBgSelected
         cell.selectedBackgroundView = backgroundView
         
-        cell.configure(with: threads[indexPath.row])
+        cell.configure(with: threads[indexPath.row], delegate: self)
         
         return cell
+    }
+    
+    //MARK: - Thread Cell Delegate
+    func didTapImage(with attachment: AttachmentDto) {
+        presenter.didTapImage(with: attachment)
     }
 }

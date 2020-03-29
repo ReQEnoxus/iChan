@@ -19,9 +19,10 @@ class ThreadDto {
     let file: String?
     let text: String
     let posterName: String
+    let fileName: String?
     var isCollapsed = false
     
-    init(number: String, filesCount: Int, postsCount: Int, date: String, thumbnail: String?, file: String?, text: String, posterName: String) {
+    init(number: String, filesCount: Int, postsCount: Int, date: String, thumbnail: String?, file: String?, text: String, posterName: String, fileName: String?) {
         self.number = number
         self.filesCount = filesCount
         self.postsCount = postsCount
@@ -30,5 +31,6 @@ class ThreadDto {
         self.file = file
         self.text = text
         self.posterName = posterName
+        self.fileName = fileName
     }
 }

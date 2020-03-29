@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Lightbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    let closeButtonTitle = "Закрыть"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        LightboxConfig.CloseButton.text = closeButtonTitle
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
