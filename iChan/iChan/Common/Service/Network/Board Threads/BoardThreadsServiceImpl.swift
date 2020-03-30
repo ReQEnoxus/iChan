@@ -48,8 +48,8 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                         }
                         
                         let dto = ThreadDto(number: thread.posts[0].num,
-                                            filesCount: thread.filesCount,
-                                            postsCount: thread.postsCount,
+                                            filesCount: thread.filesCount ?? 0,
+                                            postsCount: thread.postsCount ?? 0,
                                             date: thread.posts[0].date,
                                             thumbnail: thumbNail,
                                             file: file,
@@ -65,6 +65,41 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     }
                     
                     self.page += 1
+            }
+        }
+    }
+    
+    func loadThread(board: String, num: String, completion: @escaping (Result<Thread, ApiError>) -> Void) {
+        
+        request(endpoint: .thread(board: board, num: num)) { (result: Result<ThreadResponse, ApiError>) in
+                        
+            switch result {
+                
+                case .failure(let error):
+                    
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
+                case .success(let threadResponse):
+                    
+                    let thread = threadResponse.threads[0]
+                    
+                    for i in 0 ..< thread.posts.count {
+                        
+                        if thread.posts[i].files != nil {
+                            
+                            for j in 0 ..< thread.posts[i].files!.count {
+                                
+                                thread.posts[i].files![j].path = Endpoint.baseUrl + thread.posts[i].files![j].path
+                                thread.posts[i].files![j].thumbnail = Endpoint.baseUrl + thread.posts[i].files![j].thumbnail
+                            }
+                        }
+                    }
+                    
+                    
+                    DispatchQueue.main.async {
+                        completion(.success(thread))
+                    }
             }
         }
     }

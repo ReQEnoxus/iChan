@@ -70,6 +70,28 @@ extension UITableViewCell {
     }
 }
 
+//MARK: - UITableView
+extension UICollectionView {
+    
+    /// registers the given cell for the tableview
+    /// - Parameter cellClass: cell to register
+    func register(cellClass: UICollectionViewCell.Type) {
+        self.register(cellClass, forCellWithReuseIdentifier: cellClass.nibName)
+    }
+}
+
+//MARK: - UITableViewCell
+extension UICollectionViewCell {
+    
+    /// returns the nib name for the cell
+    static var nibName: String {
+        
+        get {
+            return String(describing: self)
+        }
+    }
+}
+
 //MARK: - UIImage
 extension UIImage {
     

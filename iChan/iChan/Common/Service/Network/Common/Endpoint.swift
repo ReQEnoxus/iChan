@@ -20,6 +20,10 @@ enum Endpoint {
         return "/\(id)/\(page == 0 ? "index" : String(page)).json"
     }
     
+    private static func threadPath(board: String, num: String) -> String {
+        return "/\(board)/res/\(num).json"
+    }
+    
     public static var baseUrl: String {
         get {
             return "\(httpsScheme)://\(base)"
@@ -32,6 +36,7 @@ enum Endpoint {
     
     case boardCategories
     case board(id: String, page: Int)
+    case thread(board: String, num: String)
     
     var scheme: String {
         
@@ -51,8 +56,9 @@ enum Endpoint {
                 return Endpoint.categoriesPath
             case .board(let id, let page):
                 return Endpoint.boardPath(id: id, page: page)
-            
-        }
+            case.thread(let board, let num):
+                return Endpoint.threadPath(board: board, num: num)
+            }
     }
     
     var parameters: [URLQueryItem] {
@@ -62,6 +68,8 @@ enum Endpoint {
             case .boardCategories:
                 return [URLQueryItem(name: Endpoint.categoriesParameterName, value: Endpoint.categoriesParameterValue)]
             case .board:
+                return []
+            case .thread:
                 return []
         }
     }
@@ -73,6 +81,8 @@ enum Endpoint {
             case .boardCategories:
                 return Method.GET.rawValue
             case .board:
+                return Method.GET.rawValue
+            case .thread:
                 return Method.GET.rawValue
         }
     }

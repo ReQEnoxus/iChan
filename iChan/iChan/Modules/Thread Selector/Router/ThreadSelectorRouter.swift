@@ -25,4 +25,8 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
         
         view.present(controller, animated: true)
     }
+    
+    func pushThreadController(board: String, num: String) {
+        view.navigationController?.pushViewController(ThreadAssembly.configureModule(board: board, num: num), animated: true)
+    }
 }

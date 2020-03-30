@@ -19,4 +19,6 @@ protocol BoardThreadsService: ApiClient {
     /// - Parameter board: board that the threads are requested from
     /// - Parameter completion: block that is called when data is received
     func refreshThreads(board: String, completion: @escaping (Result<[ThreadDto], ApiError>) -> Void)
+    
+    func loadThread(board: String, num: String, completion: @escaping (Result<Thread, ApiError>) -> Void)
 }

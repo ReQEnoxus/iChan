@@ -42,6 +42,13 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         if collapsed {
             view.expandCell(at: indexPath)
         }
+        else {
+            
+            let board = self.board.id
+            let num = dataSource.threads[indexPath.row].number
+            
+            router.pushThreadController(board: board, num: num)
+        }
     }
     
     //MARK: - ThreadSelectorInteractorOutput

@@ -9,20 +9,63 @@
 import Foundation
 
 /// post model that is obtained from API
-struct Post: Codable {
+class Post: Codable {
     
-    let comment: String
-    let name: String
-    let op: Int
-    let num: String
-    let date: String
-    let files: [File]?
+    var comment: String
+    var name: String
+    var op: Int
+    var num: String
+    var date: String
+    var files: [File]?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case comment = "comment"
+        case name = "name"
+        case op = "op"
+        case num = "num"
+        case date = "date"
+        case files = "files"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.comment = try container.decode(String.self, forKey: .comment)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.op = try container.decode(Int.self, forKey: .op)
+        self.date = try container.decode(String.self, forKey: .date)
+        self.files = try container.decode([File]?.self, forKey: .files)
+        
+        if let numInt = try? container.decode(Int.self, forKey: .num) {
+            self.num = String(numInt)
+        }
+        else {
+            self.num = try container.decode(String.self, forKey: .num)
+        }
+    }
+    
+    init(comment: String, name: String, op: Int, num: String, date: String, files: [File]?) {
+        self.comment = comment
+        self.name = name
+        self.op = op
+        self.num = num
+        self.date = date
+        self.files = files
+    }
 }
 
 /// convenience structure for parsing
-struct File: Codable {
+class File: Codable {
     
-    let path: String
-    let thumbnail: String
-    let displayname: String
+    var path: String
+    var thumbnail: String
+    var displayname: String
+    
+    init(path: String, thumbnail: String, displayname: String) {
+        self.path = path
+        self.thumbnail = thumbnail
+        self.displayname = displayname
+    }
 }

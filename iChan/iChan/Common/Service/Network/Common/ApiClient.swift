@@ -33,7 +33,7 @@ extension ApiClient {
         components.queryItems = endpoint.parameters
         
         guard let url = components.url else { return }
-                
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.method
         

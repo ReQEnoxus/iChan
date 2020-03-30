@@ -45,6 +45,22 @@
 		73C2A17E2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */; };
 		73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17F2430D9F100BFDAAE /* ThreadSelectorRouter.swift */; };
 		73C2A1832430DFA000BFDAAE /* AttachmentDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1822430DFA000BFDAAE /* AttachmentDto.swift */; };
+		73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1892431EA0900BFDAAE /* ThreadViewInput.swift */; };
+		73C2A18C2431EA2100BFDAAE /* ThreadViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A18B2431EA2100BFDAAE /* ThreadViewOutput.swift */; };
+		73C2A18E2431EA5C00BFDAAE /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A18D2431EA5C00BFDAAE /* ThreadViewController.swift */; };
+		73C2A1912431EE0E00BFDAAE /* ThreadDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1902431EE0E00BFDAAE /* ThreadDataSource.swift */; };
+		73C2A1942431F08900BFDAAE /* ThreadPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1932431F08900BFDAAE /* ThreadPostCell.swift */; };
+		73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1952431F7C900BFDAAE /* AttachmentCell.swift */; };
+		73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1972431FDA400BFDAAE /* ThreadPostCellDelegate.swift */; };
+		73C2A19A2431FFAD00BFDAAE /* ThreadPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1992431FFAD00BFDAAE /* ThreadPresenter.swift */; };
+		73C2A19C2432000300BFDAAE /* ThreadInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A19B2432000300BFDAAE /* ThreadInteractorInput.swift */; };
+		73C2A19E2432002200BFDAAE /* ThreadRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A19D2432002200BFDAAE /* ThreadRouterInput.swift */; };
+		73C2A1A0243208A500BFDAAE /* ThreadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A19F243208A500BFDAAE /* ThreadInteractor.swift */; };
+		73C2A1A2243208F200BFDAAE /* ThreadInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1A1243208F200BFDAAE /* ThreadInteractorOutput.swift */; };
+		73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1A324322EAF00BFDAAE /* ThreadDataSourceImpl.swift */; };
+		73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1A524322F5E00BFDAAE /* ThreadDataSourceOutput.swift */; };
+		73C2A1A824322FD200BFDAAE /* ThreadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1A724322FD200BFDAAE /* ThreadRouter.swift */; };
+		73C2A1AA2432317D00BFDAAE /* ThreadAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1A92432317D00BFDAAE /* ThreadAssembly.swift */; };
 		73C3FF712413C026009D4A18 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF702413C026009D4A18 /* Board.swift */; };
 		73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */; };
 		73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF752413CD07009D4A18 /* Endpoint.swift */; };
@@ -102,6 +118,22 @@
 		73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorRouterInput.swift; sourceTree = "<group>"; };
 		73C2A17F2430D9F100BFDAAE /* ThreadSelectorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorRouter.swift; sourceTree = "<group>"; };
 		73C2A1822430DFA000BFDAAE /* AttachmentDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentDto.swift; sourceTree = "<group>"; };
+		73C2A1892431EA0900BFDAAE /* ThreadViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewInput.swift; sourceTree = "<group>"; };
+		73C2A18B2431EA2100BFDAAE /* ThreadViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewOutput.swift; sourceTree = "<group>"; };
+		73C2A18D2431EA5C00BFDAAE /* ThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
+		73C2A1902431EE0E00BFDAAE /* ThreadDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDataSource.swift; sourceTree = "<group>"; };
+		73C2A1932431F08900BFDAAE /* ThreadPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadPostCell.swift; sourceTree = "<group>"; };
+		73C2A1952431F7C900BFDAAE /* AttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCell.swift; sourceTree = "<group>"; };
+		73C2A1972431FDA400BFDAAE /* ThreadPostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadPostCellDelegate.swift; sourceTree = "<group>"; };
+		73C2A1992431FFAD00BFDAAE /* ThreadPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadPresenter.swift; sourceTree = "<group>"; };
+		73C2A19B2432000300BFDAAE /* ThreadInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadInteractorInput.swift; sourceTree = "<group>"; };
+		73C2A19D2432002200BFDAAE /* ThreadRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRouterInput.swift; sourceTree = "<group>"; };
+		73C2A19F243208A500BFDAAE /* ThreadInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadInteractor.swift; sourceTree = "<group>"; };
+		73C2A1A1243208F200BFDAAE /* ThreadInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadInteractorOutput.swift; sourceTree = "<group>"; };
+		73C2A1A324322EAF00BFDAAE /* ThreadDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDataSourceImpl.swift; sourceTree = "<group>"; };
+		73C2A1A524322F5E00BFDAAE /* ThreadDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDataSourceOutput.swift; sourceTree = "<group>"; };
+		73C2A1A724322FD200BFDAAE /* ThreadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRouter.swift; sourceTree = "<group>"; };
+		73C2A1A92432317D00BFDAAE /* ThreadAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadAssembly.swift; sourceTree = "<group>"; };
 		73C3FF702413C026009D4A18 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		73C3FF722413C09F009D4A18 /* BoardCategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesResponse.swift; sourceTree = "<group>"; };
 		73C3FF752413CD07009D4A18 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -262,6 +294,77 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		73C2A1842431E9C700BFDAAE /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A18F2431EDFA00BFDAAE /* Data Source */,
+				73C2A1882431E9EC00BFDAAE /* Router */,
+				73C2A1862431E9D400BFDAAE /* Interactor */,
+				73C2A1872431E9DB00BFDAAE /* Presenter */,
+				73C2A1852431E9CF00BFDAAE /* View */,
+				73C2A1A92432317D00BFDAAE /* ThreadAssembly.swift */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		73C2A1852431E9CF00BFDAAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A1922431EF8000BFDAAE /* Cell */,
+				73C2A1892431EA0900BFDAAE /* ThreadViewInput.swift */,
+				73C2A18B2431EA2100BFDAAE /* ThreadViewOutput.swift */,
+				73C2A18D2431EA5C00BFDAAE /* ThreadViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73C2A1862431E9D400BFDAAE /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A19B2432000300BFDAAE /* ThreadInteractorInput.swift */,
+				73C2A19F243208A500BFDAAE /* ThreadInteractor.swift */,
+				73C2A1A1243208F200BFDAAE /* ThreadInteractorOutput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		73C2A1872431E9DB00BFDAAE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A1992431FFAD00BFDAAE /* ThreadPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		73C2A1882431E9EC00BFDAAE /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A19D2432002200BFDAAE /* ThreadRouterInput.swift */,
+				73C2A1A724322FD200BFDAAE /* ThreadRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		73C2A18F2431EDFA00BFDAAE /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A1902431EE0E00BFDAAE /* ThreadDataSource.swift */,
+				73C2A1A324322EAF00BFDAAE /* ThreadDataSourceImpl.swift */,
+				73C2A1A524322F5E00BFDAAE /* ThreadDataSourceOutput.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		73C2A1922431EF8000BFDAAE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				73C2A1932431F08900BFDAAE /* ThreadPostCell.swift */,
+				73C2A1952431F7C900BFDAAE /* AttachmentCell.swift */,
+				73C2A1972431FDA400BFDAAE /* ThreadPostCellDelegate.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		73C3FF682413BEE9009D4A18 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +480,7 @@
 		73D5DE9C2413E28000194F26 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				73C2A1842431E9C700BFDAAE /* Thread */,
 				731431B8241E70520065E0DB /* Thread Selector */,
 				735E618A241CB9C4001053A6 /* Tab Bar */,
 				73D5DE9D2413E28900194F26 /* Board Selector */,
@@ -609,40 +713,55 @@
 				73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */,
 				73828DAD2414EE1E0073623D /* Colors.swift in Sources */,
 				73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */,
+				73C2A1AA2432317D00BFDAAE /* ThreadAssembly.swift in Sources */,
+				73C2A1A824322FD200BFDAAE /* ThreadRouter.swift in Sources */,
 				73C2A17C2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift in Sources */,
 				73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */,
 				73D75C4E2413A28200A9554C /* BoardSelectorViewController.swift in Sources */,
 				73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */,
+				73C2A19A2431FFAD00BFDAAE /* ThreadPresenter.swift in Sources */,
 				73C2A1832430DFA000BFDAAE /* AttachmentDto.swift in Sources */,
 				731431B3241E68630065E0DB /* ThreadDto.swift in Sources */,
+				73C2A18E2431EA5C00BFDAAE /* ThreadViewController.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
 				73828DC524154F0D0073623D /* BoardSelectorInteractor.swift in Sources */,
 				73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */,
 				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
+				73C2A1942431F08900BFDAAE /* ThreadPostCell.swift in Sources */,
 				731431BE241E70AC0065E0DB /* ThreadSelectorViewController.swift in Sources */,
 				73C2A17E2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift in Sources */,
 				731431CD241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift in Sources */,
+				73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */,
+				73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */,
 				73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */,
+				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
+				73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */,
+				73C2A1A0243208A500BFDAAE /* ThreadInteractor.swift in Sources */,
 				731431CA241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift in Sources */,
 				73C3FF782413D09C009D4A18 /* ApiClient.swift in Sources */,
+				73C2A1A2243208F200BFDAAE /* ThreadInteractorOutput.swift in Sources */,
 				731431CF241E8C270065E0DB /* ThreadSelectorInteractor.swift in Sources */,
 				73828DB92415482A0073623D /* BoardsDataSource.swift in Sources */,
+				73C2A19C2432000300BFDAAE /* ThreadInteractorInput.swift in Sources */,
 				731431B5241E6A160065E0DB /* BoardThreadsServiceImpl.swift in Sources */,
 				73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */,
 				73D0A939241E5B2900FF2C04 /* BoardThreadsService.swift in Sources */,
+				73C2A18C2431EA2100BFDAAE /* ThreadViewOutput.swift in Sources */,
 				73828DBD24154DFF0073623D /* BoardSelectorInteractorInput.swift in Sources */,
 				731431AF241E5E910065E0DB /* Post.swift in Sources */,
 				731431C0241E7C570065E0DB /* ThreadSelectorViewInput.swift in Sources */,
 				731431B7241E6A4D0065E0DB /* AbstractApiClientService.swift in Sources */,
 				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
+				73C2A19E2432002200BFDAAE /* ThreadRouterInput.swift in Sources */,
 				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */,
 				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,
 				731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */,
+				73C2A1912431EE0E00BFDAAE /* ThreadDataSource.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
 				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
@@ -652,6 +771,7 @@
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 				73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */,
+				73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
