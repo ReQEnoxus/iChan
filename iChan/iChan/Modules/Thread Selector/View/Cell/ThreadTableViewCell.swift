@@ -36,6 +36,7 @@ class ThreadTableViewCell: UITableViewCell {
         
         static let thumbnailImageHeight = 150
         static let thumbnailImageWidth = 150
+        static let imageCornerRadius: CGFloat = 10
         
         static let thumbnailCollapsedHeight = 0
         
@@ -85,6 +86,7 @@ class ThreadTableViewCell: UITableViewCell {
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = Appearance.imageCornerRadius
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
         imageView.isUserInteractionEnabled = true
