@@ -32,7 +32,14 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     }
     
     var presenter: ThreadViewOutput!
-    let tableView: UITableView = UITableView()
+    
+    lazy var tableView: UITableView = {
+        
+        var tableView = UITableView()
+        tableView.allowsSelection = false
+        
+        return tableView
+    }()
     
     override func viewDidLoad() {
         
@@ -40,7 +47,8 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         setupTableView()
         presenter.initialSetup()
         presenter.loadThread()
-        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: false)
+        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     lazy var errorView: UIStackView = {
