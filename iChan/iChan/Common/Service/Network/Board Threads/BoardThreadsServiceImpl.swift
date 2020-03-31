@@ -110,4 +110,30 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
     
         getMoreThreads(board: board, completion: completion)
     }
+    
+    func loadPostsFromThread(board: String, num: String, offset: Int, completion: @escaping (Result<[Post], ApiError>) -> Void) {
+        
+        request(endpoint: .posts(board: board, num: num, post: offset)) { (result: Result<[Post], ApiError>) in
+            
+            switch result {
+                
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let posts):
+                    
+                    for i in 0 ..< posts.count {
+                        
+                        if posts[i].files != nil {
+                            
+                            for j in 0 ..< posts[i].files!.count {
+                                
+                                posts[i].files![j].path = Endpoint.baseUrl + posts[i].files![j].path
+                                posts[i].files![j].thumbnail = Endpoint.baseUrl + posts[i].files![j].thumbnail
+                            }
+                        }
+                    }
+                    completion(.success(posts))
+                }
+        }
+    }
 }
