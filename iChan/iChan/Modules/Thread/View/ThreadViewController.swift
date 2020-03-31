@@ -48,6 +48,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         var tableView = UITableView()
         tableView.allowsSelection = false
         tableView.refreshControl = refreshControl
+        tableView.indicatorStyle = .white
         
         return tableView
     }()
