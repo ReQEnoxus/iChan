@@ -13,4 +13,7 @@ protocol ThreadSelectorDataSourceOutput: AnyObject {
     /// tells presenter that particular image was tapped by user
     /// - Parameter attachment: attachment to be displayed fullscrren
     func didTapImage(with attachment: AttachmentDto)
+    
+    /// tells presenter that textview is tapped
+    func didTapTextView(at indexPath: IndexPath)
 }

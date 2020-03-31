@@ -13,4 +13,7 @@ protocol ThreadTableViewCellDelegate: AnyObject {
     /// tells delegate that particular image was tapped by user
     /// - Parameter attachment: attachment to be displayed fullscrren
     func didTapImage(with attachment: AttachmentDto)
+    
+    /// tells delegate that textview is tapped
+    func didTapTextView(threadNum: String)
 }

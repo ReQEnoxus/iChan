@@ -87,4 +87,12 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     func didTapImage(with attachment: AttachmentDto) {
         router.presentImage(with: attachment)
     }
+    
+    func didTapTextView(at indexPath: IndexPath) {
+        
+        let board = self.board.id
+        let num = dataSource.threads[indexPath.row].number
+        
+        router.pushThreadController(board: board, num: num)
+    }
 }

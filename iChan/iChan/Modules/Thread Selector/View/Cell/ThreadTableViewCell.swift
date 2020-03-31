@@ -11,7 +11,7 @@ import SnapKit
 import SDWebImage
 import ActiveLabel
 
-class ThreadTableViewCell: UITableViewCell {
+class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
     
     //MARK: - UI Constants
     class Appearance {
@@ -47,7 +47,7 @@ class ThreadTableViewCell: UITableViewCell {
         
         static let dateLabelLineNumber = 1
         static let numberLabelLineNumber = 1
-        static let commentTextViewLineNumberExpanded = 0
+        static let commentTextViewLineNumberExpanded = 12
         static let commentTextViewLineNumberCollapsed = 1
         static let postCountLabelLineNumber = 1
         
@@ -107,7 +107,11 @@ class ThreadTableViewCell: UITableViewCell {
         textView.textColor = .white
         textView.tintColor = .orangeUi
         textView.isScrollEnabled = false
+        textView.textContainer.lineBreakMode = .byTruncatingTail
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
+        textView.addGestureRecognizer(tapGesture)
+            
         return textView
     }()
     
@@ -277,6 +281,7 @@ class ThreadTableViewCell: UITableViewCell {
         
         super.prepareForReuse()
         
+        commentTextView.isUserInteractionEnabled = false
         thumbnailImageView.sd_cancelCurrentImageLoad()
         thumbnailImageView.image = nil
     }
@@ -286,5 +291,9 @@ class ThreadTableViewCell: UITableViewCell {
         if let fileUrl = dto.file, let displayName = dto.fileName {
             delegate?.didTapImage(with: AttachmentDto(url: fileUrl, displayName: displayName))
         }
+    }
+    
+    @objc func didTapTextView() {
+        delegate?.didTapTextView(threadNum: dto.number)
     }
 }

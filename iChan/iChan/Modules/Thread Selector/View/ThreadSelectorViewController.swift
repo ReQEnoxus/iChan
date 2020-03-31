@@ -56,9 +56,11 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
             }
         }
     }
+    var isInitialRefresh = true
     
     var presenter: ThreadSelectorViewOutput!
     let tableView: UITableView = UITableView()
+    var boardName: String!
     
     //MARK: - Views
     lazy var refreshControl: UIRefreshControl = {
@@ -114,9 +116,9 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         super.viewDidLoad()
         navigationItem.backBarButtonItem?.tintColor = .orangeUi
         tableView.indicatorStyle = .white
-        extendedLayoutIncludesOpaqueBars = true
         presenter.initialSetup()
         presenter.refreshRequested()
+        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: boardName, preferredLargeTitle: true)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -204,12 +206,13 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         tableView.register(cell: ThreadTableViewCell.self)
         tableView.refreshControl = refreshControl
+        tableView.contentInsetAdjustmentBehavior = .always
         
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
             
-            make.top.equalTo(view).offset(Appearance.tableViewOffsetTop)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Appearance.tableViewOffsetTop)
             make.bottom.equalTo(view).offset(Appearance.tableViewOffsetBottom)
             make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
             make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
@@ -222,7 +225,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     //MARK: - ThreadSelectorViewInput
     func setBoardName(_ name: String) {
-        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: name, preferredLargeTitle: true)
+        boardName = name
     }
     
     func displayTableView() {
@@ -258,9 +261,22 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     func refreshData() {
         
         refreshControl.endRefreshing()
+        
+        if !isInitialRefresh {
+            fixLargeTitlePositioning()
+        }
+        
         tableView.reloadData()
         
         isLoading = false
+        isInitialRefresh = false
+    }
+    
+    private func fixLargeTitlePositioning() {
+        
+        let top = tableView.adjustedContentInset.top
+        let y = refreshControl.frame.maxY + top
+        tableView.setContentOffset(CGPoint(x: .zero, y: -y), animated:true)
     }
     
     func refreshData(indicesToRefresh: [IndexPath]) {

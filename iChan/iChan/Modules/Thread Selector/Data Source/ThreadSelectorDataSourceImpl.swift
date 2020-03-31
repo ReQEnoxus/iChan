@@ -66,4 +66,16 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
     func didTapImage(with attachment: AttachmentDto) {
         presenter.didTapImage(with: attachment)
     }
+    
+    func didTapTextView(threadNum: String) {
+        
+        let row = threads.firstIndex(where: { $0.number == threadNum })
+        
+        if let rowUnwrapped = row {
+            
+            let indexPath = IndexPath(row: rowUnwrapped, section: 0)
+            
+            presenter.didTapTextView(at: indexPath)
+        }
+    }
 }
