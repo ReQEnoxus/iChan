@@ -37,6 +37,7 @@ extension UIViewController {
             navigationController?.navigationBar.tintColor = tintColor
             
             navigationItem.title = title
+            extendedLayoutIncludesOpaqueBars = true
             
         } else {
             // Fallback on earlier versions
