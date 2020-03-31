@@ -43,6 +43,7 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
         }
     }
     
+    //MARK: - ThreadSelectorDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return threads.count
     }

@@ -10,5 +10,8 @@ import Foundation
 
 protocol ThreadPostCellDelegate: AnyObject {
     
+    /// tells delegate that particular image in collectionview was tapped
+    /// - Parameter index: index of tapped image
+    /// - Parameter files: array of collectionview content
     func didTapImage(index: Int, files: [File])
 }

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 protocol ThreadDataSource: UITableViewDataSource {
-   
+    
+    /// array that contains all of the posts in current thread
     var posts: [Post] { get set }
     
     /// method that appends new portion of posts  to array

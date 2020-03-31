@@ -10,5 +10,8 @@ import Foundation
 
 protocol ThreadDataSourceOutput: AnyObject {
     
+    /// tells presenter that user has tapped the image
+    /// - Parameter index: index of the tapped image in collectionview
+    /// - Parameter files: all of the attachments in the post
     func didTapImage(index: Int, files: [File])
 }

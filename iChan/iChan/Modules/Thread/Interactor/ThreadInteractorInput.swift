@@ -10,6 +10,14 @@ import Foundation
 
 protocol ThreadInteractorInput: AnyObject {
     
+    /// tells interactor to load a thread
+    /// - Parameter board: board where thread is located
+    /// - Parameter num: number of OP-post
     func loadThread(board: String, num: String)
+    
+    /// tells interactor to load new posts for a given thread
+    /// - Parameter board: board where thread is located
+    /// - Parameter num: number of OP-post
+    /// - Parameter offset: number of the first post to be fetched
     func loadNewPosts(board: String, num: String, offset: Int)
 }

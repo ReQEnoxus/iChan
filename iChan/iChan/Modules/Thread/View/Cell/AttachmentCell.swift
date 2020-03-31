@@ -11,11 +11,13 @@ import SnapKit
 
 class AttachmentCell: UICollectionViewCell {
     
+    //MARK: - UI Constants
     private class Appearance {
         
         static let imageSize = 150
     }
     
+    //MARK: - Views
     lazy var imageView: UIImageView = {
         
         var imageView = UIImageView()
@@ -25,7 +27,7 @@ class AttachmentCell: UICollectionViewCell {
         return imageView
     }()
     
-    
+    //MARK: - Setup Methods
     override init(frame: CGRect) {
         
         super.init(frame: frame)

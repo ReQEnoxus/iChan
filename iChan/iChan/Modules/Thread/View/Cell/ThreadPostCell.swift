@@ -55,6 +55,7 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
     var post: Post!
     weak var delegate: ThreadPostCellDelegate?
     
+    //MARK: - Setup Methods
     func configure(with post: Post, delegate: ThreadPostCellDelegate) {
         
         self.post = post

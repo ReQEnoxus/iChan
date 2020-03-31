@@ -14,6 +14,7 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
     var posts: [Post] = []
     weak var presenter: ThreadDataSourceOutput!
     
+    //MARK: - ThreadDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -26,10 +27,6 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
         cell.backgroundColor = .darkCellBg
         
         return cell
-    }
-    
-    func didTapImage(index: Int, files: [File]) {
-        presenter.didTapImage(index: index, files: files)
     }
     
     func appendPosts(_ posts: [Post], completion: @escaping ([IndexPath]) -> Void) {
@@ -45,5 +42,10 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
         DispatchQueue.main.async {
             completion(idxToInsert)
         }
+    }
+    
+    //MARK: - ThreadPostCellDelegate
+    func didTapImage(index: Int, files: [File]) {
+        presenter.didTapImage(index: index, files: files)
     }
 }

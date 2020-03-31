@@ -43,6 +43,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     private var cellHeightCache = [IndexPath: CGFloat]()
     
+    //MARK: - Views
     lazy var tableView: UITableView = {
         
         var tableView = UITableView()

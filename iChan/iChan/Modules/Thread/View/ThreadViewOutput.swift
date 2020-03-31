@@ -13,7 +13,9 @@ protocol ThreadViewOutput {
     /// tells presenter to perform initial setup
     func initialSetup()
     
+    /// tells presenter to load thread from scratch
     func loadThread()
     
+    /// tells presenter to update thread with new posts
     func update()
 }

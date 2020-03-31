@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// dto that is used to pass url and displayname of the attachment from view to router
 struct AttachmentDto {
     
     let url: String
