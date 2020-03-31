@@ -1,5 +1,4 @@
 PODS:
-  - ActiveLabel (1.1.0)
   - Cache (5.2.0)
   - Imaginary (4.2.0):
     - Cache (~> 5.0)
@@ -11,14 +10,12 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - ActiveLabel
   - Lightbox
   - SDWebImage (~> 5.6)
   - SnapKit (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - ActiveLabel
     - Cache
     - Imaginary
     - Lightbox
@@ -26,13 +23,12 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 50c7bbd8bd055c9e2510363a5ba97eea0d411705
+PODFILE CHECKSUM: 5af969afa5b12a9d5a64044af6c2fb101301aca6
 
 COCOAPODS: 1.6.1
