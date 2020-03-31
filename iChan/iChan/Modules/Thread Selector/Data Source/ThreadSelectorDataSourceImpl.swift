@@ -54,7 +54,7 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
         cell.backgroundColor = .darkCellBg
         
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .darkCellBgSelected
+        backgroundView.backgroundColor = .darkCellBg
         cell.selectedBackgroundView = backgroundView
         
         cell.configure(with: threads[indexPath.row], delegate: self)
