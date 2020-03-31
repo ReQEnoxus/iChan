@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardSelectorViewInput {
     
@@ -42,11 +43,24 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         static let pinActionImage = "SF_pin_slash_fill"
         static let unpinActionImage = "SF_pin_slash"
         static let numberOfLinesInLabel = 0
+        
+        static let loadingAnimationName = "loading"
+        static let loadingAnimationWidth = 200
+        static let loadingAnimationHeight = 200
     }
     
     var presenter: BoardSelectorViewOutput!
         
     let tableView: UITableView = UITableView()
+    
+    lazy var loadingView: AnimationView = {
+        
+        var loadingView = AnimationView()
+        loadingView.animation = Animation.named(Appearance.loadingAnimationName)
+        loadingView.loopMode = .loop
+        
+        return loadingView
+    }()
     
     let favouriteHeaderTitle = "Избранное"
         
@@ -67,6 +81,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     override func loadView() {
         
         super.loadView()
+        view.backgroundColor = .blackBg
         setupTableView()
     }
     
@@ -190,6 +205,35 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         tableView.deleteRows(at: [index], with: .automatic)
         
         tableView.endUpdates()
+    }
+    
+    func displayTableView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            
+            make.top.equalTo(view).offset(Appearance.tableViewOffsetTop)
+            make.bottom.equalTo(view).offset(Appearance.tableViewOffsetBottom)
+            make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
+            make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
+        }
+    }
+    
+    func displayLoadingView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(loadingView)
+        
+        loadingView.play()
+        
+        loadingView.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.width.equalTo(Appearance.loadingAnimationWidth)
+            make.height.equalTo(Appearance.loadingAnimationHeight)
+        }
     }
 }
 

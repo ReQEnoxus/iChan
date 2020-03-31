@@ -25,6 +25,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func initialSetup() {
         
+        view.displayLoadingView()
         view.setBoardName("/\(board.id)/ - \(board.name)")
         view.connectDataSource(dataSource)
     }

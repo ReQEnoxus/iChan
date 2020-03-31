@@ -8,16 +8,32 @@
 
 import UIKit
 import Lightbox
+import Lottie
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
     let closeButtonTitle = "Закрыть"
+    let loadingAnimationName = "loading"
+    let loadingViewWidth: CGFloat = 150
+    let loadingViewHeight: CGFloat = 150
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         LightboxConfig.CloseButton.text = closeButtonTitle
+        
+        LightboxConfig.makeLoadingIndicator = {
+            
+            let loadingView = AnimationView()
+            loadingView.frame = CGRect(x: .zero, y: .zero, width: self.loadingViewWidth, height: self.loadingViewHeight)
+            loadingView.animation = Animation.named(self.loadingAnimationName)
+            loadingView.loopMode = .loop
+            loadingView.play()
+            
+            return loadingView
+        }
         
         window = UIWindow(frame: UIScreen.main.bounds)
         

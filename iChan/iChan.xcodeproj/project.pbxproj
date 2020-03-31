@@ -74,6 +74,7 @@
 		73D75C532413A28300A9554C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C522413A28300A9554C /* Assets.xcassets */; };
 		73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C542413A28300A9554C /* LaunchScreen.storyboard */; };
 		73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3625F241622A3006029DA /* BoardTableViewCell.swift */; };
+		73F38FB224339377007F7242 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 73F38FB124339376007F7242 /* loading.json */; };
 		F0124976914CD4EC6538A416 /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +150,7 @@
 		73D75C552413A28300A9554C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D75C572413A28300A9554C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E3625F241622A3006029DA /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		73F38FB124339376007F7242 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -560,6 +562,7 @@
 		73D75C482413A28200A9554C /* iChan */ = {
 			isa = PBXGroup;
 			children = (
+				73F38FB32433937B007F7242 /* Animation */,
 				73D5DE9C2413E28000194F26 /* Modules */,
 				73C3FF682413BEE9009D4A18 /* Common */,
 				73D75C492413A28200A9554C /* AppDelegate.swift */,
@@ -576,6 +579,22 @@
 				73E3625F241622A3006029DA /* BoardTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		73F38FB32433937B007F7242 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				73F38FB424339387007F7242 /* Loading */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		73F38FB424339387007F7242 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				73F38FB124339376007F7242 /* loading.json */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,6 +659,7 @@
 			files = (
 				73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */,
 				73D75C532413A28300A9554C /* Assets.xcassets in Resources */,
+				73F38FB224339377007F7242 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +702,7 @@
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -692,6 +713,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

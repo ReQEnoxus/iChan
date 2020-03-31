@@ -41,4 +41,7 @@ protocol ThreadSelectorViewInput: AnyObject {
     
     /// tells view to display error view
     func displayErrorView()
+    
+    /// tells view to display loading view
+    func displayLoadingView()
 }

@@ -26,4 +26,8 @@ protocol BoardSelectorViewInput: AnyObject {
     /// - Parameter index: index of the row to be deleted
     /// - Parameter sectionDeleted: tells the view if the section needs to be deleted
     func unpinItem(at index: IndexPath, sectionDeleted: Bool)
+    
+    func displayTableView()
+    
+    func displayLoadingView()
 }

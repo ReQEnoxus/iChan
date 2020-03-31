@@ -8,9 +8,9 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelegate {
-    
     
     //MARK: - UI Constraints
     private class Appearance {
@@ -33,6 +33,10 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         static let retryButtonTitle = "Обновить"
         
         static let errorLogoImageName = "SF_exclamationmark_octagon-1"
+        
+        static let loadingAnimationName = "loading"
+        static let loadingAnimationWidth = 200
+        static let loadingAnimationHeight = 200
     }
     
     var presenter: ThreadViewOutput!
@@ -46,6 +50,15 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         tableView.refreshControl = refreshControl
         
         return tableView
+    }()
+    
+    lazy var loadingView: AnimationView = {
+        
+        var loadingView = AnimationView()
+        loadingView.animation = Animation.named(Appearance.loadingAnimationName)
+        loadingView.loopMode = .loop
+        
+        return loadingView
     }()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -101,11 +114,12 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        view.backgroundColor = .blackBg
         setupTableView()
         presenter.initialSetup()
-        presenter.loadThread()
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
         navigationItem.largeTitleDisplayMode = .never
+        presenter.loadThread()
     }
     
     //MARK: - TableViewDelegate
@@ -217,6 +231,21 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         
         errorView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+    }
+    
+    func displayLoadingView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(loadingView)
+        
+        loadingView.play()
+        
+        loadingView.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.width.equalTo(Appearance.loadingAnimationWidth)
+            make.height.equalTo(Appearance.loadingAnimationHeight)
         }
     }
 }

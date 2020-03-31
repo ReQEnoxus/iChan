@@ -21,6 +21,7 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     //MARK: - View Output
     func initialSetup() {
         
+        view.displayLoadingView()
         view.connectDataSource(dataSource)
     }
     

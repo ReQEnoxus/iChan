@@ -20,6 +20,7 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
         view.connectDataSource(dataSource)
         interactor.obtainBoards()
+        view.displayLoadingView()
     }
     
     func didSelectRow(at indexPath: IndexPath) {
@@ -50,6 +51,8 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
         dataSource.boardCategories = boards
         view.refreshData()
+        view.displayTableView()
+        
     }
     
     //MARK: - DataSourceOutput

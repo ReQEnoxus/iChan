@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate {
     
@@ -41,6 +42,10 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         static let footerHeight: CGFloat = 60
         static let collapsedFooterHeright: CGFloat = 10
+        
+        static let loadingAnimationName = "loading"
+        static let loadingAnimationWidth = 200
+        static let loadingAnimationHeight = 200
     }
     
     private var cellHeightCache = [IndexPath: CGFloat]()
@@ -71,6 +76,15 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         refreshControl.tintColor = .orangeUi
         
         return refreshControl
+    }()
+    
+    lazy var loadingView: AnimationView = {
+        
+        var loadingView = AnimationView()
+        loadingView.animation = Animation.named(Appearance.loadingAnimationName)
+        loadingView.loopMode = .loop
+        
+        return loadingView
     }()
     
     lazy var indicatorView: UIActivityIndicatorView = {
@@ -115,11 +129,12 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        view.backgroundColor = .blackBg
         navigationItem.backBarButtonItem?.tintColor = .orangeUi
         tableView.indicatorStyle = .white
         presenter.initialSetup()
-        presenter.refreshRequested()
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: boardName, preferredLargeTitle: true)
+        presenter.refreshRequested()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -251,6 +266,21 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         errorView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+    }
+    
+    func displayLoadingView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(loadingView)
+        
+        loadingView.play()
+        
+        loadingView.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.width.equalTo(Appearance.loadingAnimationWidth)
+            make.height.equalTo(Appearance.loadingAnimationHeight)
         }
     }
     
