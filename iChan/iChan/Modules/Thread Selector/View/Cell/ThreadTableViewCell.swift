@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import SDWebImage
-import ActiveLabel
 
 class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
     
