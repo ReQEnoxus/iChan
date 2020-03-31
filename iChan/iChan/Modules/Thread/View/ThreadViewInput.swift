@@ -13,6 +13,8 @@ protocol ThreadViewInput: AnyObject {
     /// tells tableview to completely refresh its data
     func refreshData()
     
+    func refreshData(indicesToRefresh: [IndexPath])
+    
     /// connects datasource to tableview
     /// - Parameter dataSource: datasource to be connected
     func connectDataSource(_ dataSource: ThreadDataSource)

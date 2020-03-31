@@ -11,4 +11,5 @@ import Foundation
 protocol ThreadInteractorInput: AnyObject {
     
     func loadThread(board: String, num: String)
+    func loadNewPosts(board: String, num: String, offset: Int)
 }

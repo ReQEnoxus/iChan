@@ -14,4 +14,6 @@ protocol ThreadViewOutput {
     func initialSetup()
     
     func loadThread()
+    
+    func update()
 }

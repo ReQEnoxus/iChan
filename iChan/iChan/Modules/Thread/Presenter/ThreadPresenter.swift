@@ -28,6 +28,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         interactor.loadThread(board: board, num: num)
     }
     
+    func update() {
+        interactor.loadNewPosts(board: board, num: num, offset: dataSource.posts.count + 1)
+    }
+    
     //MARK: - Interactor Output
     func didFinishLoadingThread(thread: Thread) {
         
@@ -37,8 +41,20 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     func didFinishLoadingThread(with error: ApiError) {
+        
         print(error.localizedDescription)
         view.displayErrorView()
+    }
+    
+    func didFinishLoadingMorePosts(posts: [Post]) {
+        
+        dataSource.appendPosts(posts) { [weak self] idx in
+            self?.view.refreshData(indicesToRefresh: idx)
+        }
+    }
+    
+    func didFinishLoadingMorePosts(with error: ApiError) {
+        view.refreshData(indicesToRefresh: [])
     }
     
     //MARK: - DataSourceOutput

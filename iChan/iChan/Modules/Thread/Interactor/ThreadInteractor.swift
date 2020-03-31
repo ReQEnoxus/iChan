@@ -26,4 +26,18 @@ class ThreadInteractor: ThreadInteractorInput {
             }
         }
     }
+    
+    func loadNewPosts(board: String, num: String, offset: Int) {
+        
+        service.loadPostsFromThread(board: board, num: num, offset: offset) { [weak self] result in
+            
+            switch result {
+                
+                case .failure(let error):
+                    self?.presenter.didFinishLoadingMorePosts(with: error)
+                case .success(let posts):
+                    self?.presenter.didFinishLoadingMorePosts(posts: posts)
+            }
+        }
+    }
 }

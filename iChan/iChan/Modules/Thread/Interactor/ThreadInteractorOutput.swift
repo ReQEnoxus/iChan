@@ -13,4 +13,8 @@ protocol ThreadInteractorOutput: AnyObject {
     func didFinishLoadingThread(thread: Thread)
     
     func didFinishLoadingThread(with error: ApiError)
+    
+    func didFinishLoadingMorePosts(posts: [Post])
+    
+    func didFinishLoadingMorePosts(with error: ApiError)
 }

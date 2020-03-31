@@ -31,4 +31,19 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
     func didTapImage(index: Int, files: [File]) {
         presenter.didTapImage(index: index, files: files)
     }
+    
+    func appendPosts(_ posts: [Post], completion: @escaping ([IndexPath]) -> Void) {
+        
+        var idxToInsert = [IndexPath]()
+        
+        for i in 0 ..< posts.count {
+            idxToInsert.append(IndexPath(row: self.posts.count + i, section: 0))
+        }
+        
+        self.posts += posts
+        
+        DispatchQueue.main.async {
+            completion(idxToInsert)
+        }
+    }
 }

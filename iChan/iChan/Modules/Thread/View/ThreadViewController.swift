@@ -11,14 +11,18 @@ import SnapKit
 
 class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelegate {
     
+    
     //MARK: - UI Constraints
     private class Appearance {
         
         //MARK: - Constraints
         static let tableViewOffsetTop = 0
-        static let tableViewOffsetBottom = 0
+        static let tableViewOffsetBottom = -80
         static let tableViewOffsetLeft = 0
         static let tableViewOffsetRight = 0
+        
+        static let footerHeight: CGFloat = 60
+        static let defaultCellHeight: CGFloat = 44
         
         static let conatinerSpacing: CGFloat = 10
         
@@ -33,23 +37,37 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     var presenter: ThreadViewOutput!
     
+    private var cellHeightCache = [IndexPath: CGFloat]()
+    
     lazy var tableView: UITableView = {
         
         var tableView = UITableView()
         tableView.allowsSelection = false
+        tableView.refreshControl = refreshControl
         
         return tableView
     }()
     
-    override func viewDidLoad() {
+    lazy var refreshControl: UIRefreshControl = {
         
-        super.viewDidLoad()
-        setupTableView()
-        presenter.initialSetup()
-        presenter.loadThread()
-        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
-        navigationItem.largeTitleDisplayMode = .never
-    }
+        var refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = .orangeUi
+        
+        return refreshControl
+    }()
+    
+    lazy var indicatorView: UIActivityIndicatorView = {
+        
+        var view = UIActivityIndicatorView()
+        view.color = .orangeUi
+        view.startAnimating()
+        view.hidesWhenStopped = true
+        
+        return view
+    }()
+    
+    lazy var footerFrame = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: Appearance.footerHeight)
     
     lazy var errorView: UIStackView = {
         
@@ -69,7 +87,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         retryButton.tintColor = .orangeUi
         retryButton.setTitleColor(.orangeUi, for: .normal)
         retryButton.setTitleColor(.orangeUiDarker, for: .selected)
-//        retryButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        retryButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         
         containter.addArrangedSubview(imageView)
         containter.addArrangedSubview(textLabel)
@@ -77,6 +95,69 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         
         return containter
     }()
+    
+    var previousScrollViewBottomInset: CGFloat = .zero
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        setupTableView()
+        presenter.initialSetup()
+        presenter.loadThread()
+        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
+        navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    //MARK: - TableViewDelegate
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeightCache[indexPath] ?? Appearance.defaultCellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeightCache[indexPath] = cell.bounds.height
+    }
+    
+    //MARK: - PullUpToRefresh
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+        let contentSize = scrollView.contentSize.height
+        let tableSize = scrollView.frame.size.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+        let canLoadFromBottom = contentSize > tableSize
+
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let difference = maximumOffset - currentOffset
+
+        if canLoadFromBottom, difference <= -Appearance.footerHeight {
+            
+            indicatorView.startAnimating()
+            indicatorView.frame = footerFrame
+            tableView.tableFooterView = indicatorView
+            tableView.tableFooterView?.isHidden = false
+            
+            previousScrollViewBottomInset = scrollView.contentInset.bottom
+
+            scrollView.contentInset.bottom = previousScrollViewBottomInset + Appearance.footerHeight
+
+            presenter.update()
+        }
+    }
+    
+    private func stopLoading() {
+        
+        indicatorView.stopAnimating()
+        tableView.tableFooterView?.isHidden = true
+        tableView.tableFooterView = nil
+        tableView.contentInset.bottom = previousScrollViewBottomInset
+        
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    @objc func refresh() {
+        presenter.update()
+    }
     
     //MARK: - Setup methods
     func setupTableView() {
@@ -100,6 +181,14 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     //MARK: - Thread View Input
     func refreshData() {
         tableView.reloadData()
+    }
+    
+    func refreshData(indicesToRefresh: [IndexPath]) {
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: indicesToRefresh, with: .automatic)
+        tableView.endUpdates()
+        stopLoading()
     }
     
     func connectDataSource(_ dataSource: ThreadDataSource) {
