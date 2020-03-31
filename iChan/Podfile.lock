@@ -4,6 +4,7 @@ PODS:
     - Cache (~> 5.0)
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
+  - lottie-ios (3.1.6)
   - SDWebImage (5.6.0):
     - SDWebImage/Core (= 5.6.0)
   - SDWebImage/Core (5.6.0)
@@ -11,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Lightbox
+  - lottie-ios
   - SDWebImage (~> 5.6)
   - SnapKit (~> 5.0)
 
@@ -19,6 +21,7 @@ SPEC REPOS:
     - Cache
     - Imaginary
     - Lightbox
+    - lottie-ios
     - SDWebImage
     - SnapKit
 
@@ -26,9 +29,10 @@ SPEC CHECKSUMS:
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 5af969afa5b12a9d5a64044af6c2fb101301aca6
+PODFILE CHECKSUM: 3bddcede7fbffe2878dd19dc6cd4fbf051a1e483
 
 COCOAPODS: 1.6.1
