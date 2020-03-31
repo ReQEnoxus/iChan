@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate {
+    
     //MARK: - UI Constraints
     private class Appearance {
         
