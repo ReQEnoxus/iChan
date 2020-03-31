@@ -19,6 +19,8 @@ class AttachmentCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         
         var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         return imageView
     }()
