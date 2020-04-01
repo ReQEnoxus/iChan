@@ -42,14 +42,15 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         
         static let infoFontSize: CGFloat = 13
         static let commentFontSize: CGFloat = 14
+        static let repliesFontSize: CGFloat = 13
         
-        static let dateLabelLineNumber = 1
+        static let dateLabelLineNumber = 0
         static let numberLabelLineNumber = 1
         static let commentTextViewLineNumberExpanded = 0
         static let commentTextViewLineNumberCollapsed = 1
         static let postCountLabelLineNumber = 1
         
-        static let collapseAnimationTime = 0.5
+        static let nameLabelRatio = 0.75
     }
     
     var post: Post!
@@ -61,10 +62,19 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         self.post = post
         self.delegate = delegate
         
-        dateAndNameLabel.text = "\(post.name) \(post.date)"
+        dateAndNameLabel.setHTMLFromString(htmlText: "\(post.name) \(post.date)", fontSize: Appearance.infoFontSize)
         numberButton.setTitle(post.num, for: .normal)
         
         commentTextView.setHTMLFromString(htmlText: post.comment, fontSize: Appearance.commentFontSize)
+        
+        if !post.repliesStr.isEmpty {
+            
+            repliesTextView.isHidden = false
+            repliesTextView.setHTMLFromString(htmlText: post.repliesStr, fontSize: Appearance.repliesFontSize)
+        }
+        else {
+            repliesTextView.isHidden = true
+        }
         
         if post.files != nil, !post.files!.isEmpty {
             attachmentCollectionView.isHidden = false
@@ -86,6 +96,7 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         mainStackView.addArrangedSubview(dateAndNumberView)
         mainStackView.addArrangedSubview(attachmentCollectionView)
         mainStackView.addArrangedSubview(commentTextView)
+        mainStackView.addArrangedSubview(repliesTextView)
         
         contentView.addSubview(mainStackView)
         
@@ -98,17 +109,21 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
     
     func setupConstraints() {
         
-        dateAndNumberView.snp.makeConstraints { make in
+        mainStackView.snp.makeConstraints { make in
             
-            make.left.equalTo(mainStackView).offset(Appearance.numberAndDateViewLeftOffset)
-            make.left.equalTo(mainStackView).offset(Appearance.numberAndDateViewRightOffset)
+            make.left.equalTo(contentView).offset(Appearance.stackViewLeftOffset)
+            make.right.equalTo(contentView).offset(Appearance.stackViewRightOffset)
+            make.top.equalTo(contentView).offset(Appearance.stackViewTopOffset)
+            make.bottom.equalTo(contentView).offset(Appearance.stackViewBottomOffset)
+        
         }
         
         dateAndNameLabel.snp.makeConstraints { make in
-            
+                    
             make.left.equalTo(dateAndNumberView).offset(Appearance.dateLabelLeftOffset)
             make.top.equalTo(dateAndNumberView).offset(Appearance.dateLabelTopOffset)
             make.bottom.equalTo(dateAndNumberView).offset(Appearance.dateLabelBottomOffset)
+            make.width.equalTo(mainStackView).multipliedBy(Appearance.nameLabelRatio)
         }
         
         numberButton.snp.makeConstraints { make in
@@ -117,22 +132,20 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
             make.top.equalTo(dateAndNumberView).offset(Appearance.numberLabelTopOffset)
             make.bottom.equalTo(dateAndNumberView).offset(Appearance.numberLabelBottomOffset)
         }
-        
+                
         attachmentCollectionView.snp.makeConstraints { make in
             
             make.height.equalTo(Appearance.thumbnailImageHeight).priority(999)
             make.width.equalToSuperview()
         }
         
-        mainStackView.snp.makeConstraints { make in
+        commentTextView.snp.makeConstraints { make in
             
-            make.left.equalTo(contentView).offset(Appearance.stackViewLeftOffset)
-            make.right.equalTo(contentView).offset(Appearance.stackViewRightOffset)
-            make.top.equalTo(contentView).offset(Appearance.stackViewTopOffset)
-            make.bottom.equalTo(contentView).offset(Appearance.stackViewBottomOffset)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
         
-        commentTextView.snp.makeConstraints { make in
+        repliesTextView.snp.makeConstraints { make in
             
             make.left.equalToSuperview()
             make.right.equalToSuperview()
@@ -148,6 +161,8 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         dateAndNameLabel.sizeToFit()
         dateAndNameLabel.textColor = .paleGrey60
         dateAndNameLabel.font = dateAndNameLabel.font.withSize(Appearance.infoFontSize)
+        dateAndNameLabel.lineBreakMode = .byWordWrapping
+        dateAndNameLabel.numberOfLines = Appearance.dateLabelLineNumber
         
         return dateAndNameLabel
     }()
@@ -163,6 +178,21 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
     let dateAndNumberView = UIView()
     
     lazy var commentTextView: UITextView = {
+        
+        var textView = UITextView()
+        
+        textView.backgroundColor = .darkCellBg
+        textView.allowsEditingTextAttributes = false
+        textView.isEditable = false
+        textView.textColor = .white
+        textView.tintColor = .orangeUi
+        textView.isScrollEnabled = false
+        textView.delegate = self
+        
+        return textView
+    }()
+    
+    lazy var repliesTextView: UITextView = {
         
         var textView = UITextView()
         
@@ -205,6 +235,12 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         
         return collectionView
     }()
+    
+    override func prepareForReuse() {
+        
+        super.prepareForReuse()
+        repliesTextView.isHidden = false
+    }
     
     //MARK: - CollectionView DataSource & Delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

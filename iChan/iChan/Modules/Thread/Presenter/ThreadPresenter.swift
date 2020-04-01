@@ -36,9 +36,11 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     //MARK: - Interactor Output
     func didFinishLoadingThread(thread: Thread) {
         
-        dataSource.posts = thread.posts
-        view.displayTableView()
-        view.refreshData()
+        dataSource.appendPosts(thread.posts) { [weak self] idxToInsert, _ in
+            
+            self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: [], animated: false)
+            self?.view.displayTableView()
+        }
     }
     
     func didFinishLoadingThread(with error: ApiError) {
@@ -48,14 +50,14 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     func didFinishLoadingMorePosts(posts: [Post]) {
-        
-        dataSource.appendPosts(posts) { [weak self] idx in
-            self?.view.refreshData(indicesToRefresh: idx)
+
+        dataSource.appendPosts(posts) { [weak self] idxToInsert, idxToUpdate in
+            self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: true)
         }
     }
     
     func didFinishLoadingMorePosts(with error: ApiError) {
-        view.refreshData(indicesToRefresh: [])
+        view.refreshData(indicesToInsert: [], indicesToUpdate: [], animated: true)
     }
     
     func didFinishCheckingUrl(with type: UrlType) {

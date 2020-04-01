@@ -17,7 +17,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         
         //MARK: - Constraints
         static let tableViewOffsetTop = 0
-        static let tableViewOffsetBottom = -80
+        static let tableViewOffsetBottom = 0
         static let tableViewOffsetLeft = 0
         static let tableViewOffsetRight = 0
         
@@ -188,10 +188,12 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         tableView.snp.makeConstraints { make in
             
             make.top.equalTo(view).offset(Appearance.tableViewOffsetTop)
-            make.bottom.equalTo(view).offset(Appearance.tableViewOffsetBottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(Appearance.tableViewOffsetBottom)
             make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
             make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
         }
+        
+        tableView.contentInset.bottom = tabBarController?.tabBar.frame.height ?? .zero
     }
     
     //MARK: - Thread View Input
@@ -199,12 +201,27 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         tableView.reloadData()
     }
     
-    func refreshData(indicesToRefresh: [IndexPath]) {
+    func refreshData(indicesToInsert: [IndexPath], indicesToUpdate: [IndexPath], animated: Bool) {
         
-        tableView.beginUpdates()
-        tableView.insertRows(at: indicesToRefresh, with: .automatic)
-        tableView.endUpdates()
-        stopLoading()
+        if !animated {
+            
+            UIView.performWithoutAnimation {
+                
+                tableView.beginUpdates()
+                tableView.insertRows(at: indicesToInsert, with: .automatic)
+                tableView.reloadRows(at: indicesToUpdate, with: .automatic)
+                tableView.endUpdates()
+                stopLoading()
+            }
+        }
+        else {
+            
+            tableView.beginUpdates()
+            tableView.insertRows(at: indicesToInsert, with: .automatic)
+            tableView.reloadRows(at: indicesToUpdate, with: .automatic)
+            tableView.endUpdates()
+            stopLoading()
+        }
     }
     
     func connectDataSource(_ dataSource: ThreadDataSource) {

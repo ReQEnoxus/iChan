@@ -36,9 +36,7 @@ extension UIViewController {
             navigationController?.navigationBar.isTranslucent = false
             navigationController?.navigationBar.tintColor = tintColor
             
-            navigationItem.title = title
-            extendedLayoutIncludesOpaqueBars = true
-            
+            navigationItem.title = title            
         } else {
             // Fallback on earlier versions
             navigationController?.navigationBar.barTintColor = backgroundColor
@@ -151,5 +149,57 @@ extension UITextView {
             documentAttributes: nil)
 
         self.attributedText = attrStr
+    }
+}
+
+//MARK: - UILabel
+extension UILabel {
+    
+    /// sets html text to textview converting it to attributed string
+    /// - Parameter htmlText: text containing html parts
+    /// - Parameter fontSize: size of font
+    func setHTMLFromString(htmlText: String, fontSize: CGFloat) {
+        
+        let classes = "<style> .unkfunc { color: #789922; } .spoiler { color: #7d7d7d; } </style>"
+        
+        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? fontSize)\">%@</span>", htmlText)
+
+        let attrStr = try! NSAttributedString(
+            
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+
+        self.attributedText = attrStr
+    }
+}
+
+//MARK: - String
+extension String {
+    
+    func matches(for regex: String) -> [String] {
+
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: self,
+                                        range: NSRange(self.startIndex..., in: self))
+            return results.map {
+                String(self[Range($0.range, in: self)!])
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
+}
+
+//MARK: - Post
+extension Post {
+   
+    func generateRepliesString() {
+        
+        let base = "<a href=\"applewebdata://reply/"
+        let ending = "\">>>"
+        self.repliesStr = "Ответы: \(replies.map({ base + $0 + ending + $0 }).joined(separator: " "))"
     }
 }

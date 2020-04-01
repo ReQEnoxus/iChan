@@ -17,7 +17,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         //MARK: - Constraints
         static let tableViewOffsetTop = 0
-        static let tableViewOffsetBottom = -80
+        static let tableViewOffsetBottom = 0
         static let tableViewOffsetLeft = 0
         static let tableViewOffsetRight = 0
         
@@ -134,6 +134,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         tableView.indicatorStyle = .white
         presenter.initialSetup()
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: boardName, preferredLargeTitle: true)
+        extendedLayoutIncludesOpaqueBars = true
         presenter.refreshRequested()
     }
     

@@ -75,6 +75,9 @@
 		73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D75C542413A28300A9554C /* LaunchScreen.storyboard */; };
 		73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3625F241622A3006029DA /* BoardTableViewCell.swift */; };
 		73F38FB224339377007F7242 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 73F38FB124339376007F7242 /* loading.json */; };
+		73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB7243486EE007F7242 /* UrlCheckerService.swift */; };
+		73F38FBA24348753007F7242 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB924348753007F7242 /* UrlType.swift */; };
+		73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */; };
 		F0124976914CD4EC6538A416 /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +154,9 @@
 		73D75C572413A28300A9554C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E3625F241622A3006029DA /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		73F38FB124339376007F7242 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		73F38FB7243486EE007F7242 /* UrlCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerService.swift; sourceTree = "<group>"; };
+		73F38FB924348753007F7242 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
+		73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerServiceImpl.swift; sourceTree = "<group>"; };
 		AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -315,6 +321,7 @@
 				73C2A1922431EF8000BFDAAE /* Cell */,
 				73C2A1892431EA0900BFDAAE /* ThreadViewInput.swift */,
 				73C2A18B2431EA2100BFDAAE /* ThreadViewOutput.swift */,
+				73C2A1972431FDA400BFDAAE /* ThreadPostCellDelegate.swift */,
 				73C2A18D2431EA5C00BFDAAE /* ThreadViewController.swift */,
 			);
 			path = View;
@@ -362,7 +369,6 @@
 			children = (
 				73C2A1932431F08900BFDAAE /* ThreadPostCell.swift */,
 				73C2A1952431F7C900BFDAAE /* AttachmentCell.swift */,
-				73C2A1972431FDA400BFDAAE /* ThreadPostCellDelegate.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 		73C3FF742413CBF2009D4A18 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				73F38FB5243486BE007F7242 /* URL Checker */,
 				73D0A937241E5B0100FF2C04 /* Board Threads */,
 				73D0A936241E5AEA00FF2C04 /* Board Categories */,
 				73C3FF7D2413E0B8009D4A18 /* Common */,
@@ -597,6 +604,16 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
+		73F38FB5243486BE007F7242 /* URL Checker */ = {
+			isa = PBXGroup;
+			children = (
+				73F38FB7243486EE007F7242 /* UrlCheckerService.swift */,
+				73F38FB924348753007F7242 /* UrlType.swift */,
+				73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */,
+			);
+			path = "URL Checker";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -748,6 +765,7 @@
 				73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */,
 				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
+				73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
 				73C2A1942431F08900BFDAAE /* ThreadPostCell.swift in Sources */,
 				731431BE241E70AC0065E0DB /* ThreadSelectorViewController.swift in Sources */,
@@ -756,6 +774,7 @@
 				73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */,
 				73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */,
 				73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */,
+				73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */,
 				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
 				73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */,
@@ -785,6 +804,7 @@
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
 				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
+				73F38FBA24348753007F7242 /* UrlType.swift in Sources */,
 				73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */,
 				73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */,
 				73828DB6241544F50073623D /* BoardCategories.swift in Sources */,

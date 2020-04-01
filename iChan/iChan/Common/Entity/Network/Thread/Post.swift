@@ -17,6 +17,8 @@ class Post: Codable {
     var num: String
     var date: String
     var files: [File]?
+    var replies: [String] = []
+    var repliesStr = String()
     
     enum CodingKeys: String, CodingKey {
         

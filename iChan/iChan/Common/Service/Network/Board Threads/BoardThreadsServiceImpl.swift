@@ -86,6 +86,24 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     
                     for i in 0 ..< thread.posts.count {
                         
+//                        //gathering replies
+//                        if thread.posts[i].comment.contains("class=\"post-reply-link\"") {
+//                            
+//                            let matches = thread.posts[i].comment.matches(for: ">>[0-9]+")
+//                            
+//                            for match in matches {
+//                                
+//                                let matchNum = match.replacingOccurrences(of: ">>", with: String())
+//                                
+//                                for j in 0 ..< thread.posts.count {
+//                                    
+//                                    if thread.posts[j].num == matchNum {
+//                                        thread.posts[j].replies.append(thread.posts[i].num)
+//                                    }
+//                                }
+//                            }
+//                        }
+                        
                         if thread.posts[i].files != nil {
                             
                             for j in 0 ..< thread.posts[i].files!.count {

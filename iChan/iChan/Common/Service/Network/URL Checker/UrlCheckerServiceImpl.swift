@@ -15,6 +15,7 @@ class UrlCheckerServiceImpl: UrlCheckerService {
     
     func typeOf(url: URL) -> UrlType {
         
+        print(url)
         if url.scheme == innerScheme || url.host == innerHost {
             
             let components = url.pathComponents
