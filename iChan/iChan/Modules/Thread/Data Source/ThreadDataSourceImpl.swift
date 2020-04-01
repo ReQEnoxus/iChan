@@ -48,4 +48,8 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
     func didTapImage(index: Int, files: [File]) {
         presenter.didTapImage(index: index, files: files)
     }
+    
+    func didTapUrl(url: URL) {
+        presenter.didTapUrl(url: url)
+    }
 }

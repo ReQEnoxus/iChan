@@ -14,4 +14,6 @@ protocol ThreadPostCellDelegate: AnyObject {
     /// - Parameter index: index of tapped image
     /// - Parameter files: array of collectionview content
     func didTapImage(index: Int, files: [File])
+    
+    func didTapUrl(url: URL)
 }

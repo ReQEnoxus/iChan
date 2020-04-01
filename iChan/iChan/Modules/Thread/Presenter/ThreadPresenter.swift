@@ -58,8 +58,23 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         view.refreshData(indicesToRefresh: [])
     }
     
+    func didFinishCheckingUrl(with type: UrlType) {
+        
+        switch type {
+            
+            case .inner(let board, let num):
+                print("inner")
+            case .outer(let url):
+                router.open(url: url)
+        }
+    }
+    
     //MARK: - DataSourceOutput
     func didTapImage(index: Int, files: [File]) {
         router.presentImage(index: index, files: files)
+    }
+    
+    func didTapUrl(url: URL) {
+        interactor.didTapUrl(url: url)
     }
 }

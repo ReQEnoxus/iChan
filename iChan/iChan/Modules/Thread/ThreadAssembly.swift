@@ -19,6 +19,7 @@ class ThreadAssembly {
         let dataSource = ThreadDataSourceImpl()
         let router = ThreadRouter()
         let threadService = BoardThreadsServiceImpl()
+        let urlService = UrlCheckerServiceImpl()
         
         view.presenter = presenter
         
@@ -31,6 +32,7 @@ class ThreadAssembly {
         
         interactor.presenter = presenter
         interactor.service = threadService
+        interactor.urlService = urlService
         
         dataSource.presenter = presenter
         

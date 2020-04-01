@@ -12,6 +12,7 @@ class ThreadInteractor: ThreadInteractorInput {
     
     weak var presenter: ThreadInteractorOutput!
     var service: BoardThreadsService!
+    var urlService: UrlCheckerService!
     
     func loadThread(board: String, num: String) {
         
@@ -39,5 +40,9 @@ class ThreadInteractor: ThreadInteractorInput {
                     self?.presenter.didFinishLoadingMorePosts(posts: posts)
             }
         }
+    }
+    
+    func didTapUrl(url: URL) {
+        presenter.didFinishCheckingUrl(with: urlService.typeOf(url: url))
     }
 }

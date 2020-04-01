@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
 
     //MARK: - UI Constants
     class Appearance {
@@ -172,6 +172,7 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         textView.textColor = .white
         textView.tintColor = .orangeUi
         textView.isScrollEnabled = false
+        textView.delegate = self
         
         return textView
     }()
@@ -223,5 +224,12 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         if let files = post.files {
             delegate?.didTapImage(index: indexPath.row, files: files)
         }
+    }
+    
+    //MARK: - TextView Delegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        delegate?.didTapUrl(url: URL)
+        return true
     }
 }

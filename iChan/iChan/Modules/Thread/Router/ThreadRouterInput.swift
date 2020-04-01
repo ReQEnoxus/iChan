@@ -14,4 +14,6 @@ protocol ThreadRouterInput: AnyObject {
     /// - Parameter index: index of image in collectionview
     /// - Parameter files: attachments of the post
     func presentImage(index: Int, files: [File])
+    
+    func open(url: URL)
 }

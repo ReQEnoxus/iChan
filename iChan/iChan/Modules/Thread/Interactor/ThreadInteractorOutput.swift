@@ -25,4 +25,6 @@ protocol ThreadInteractorOutput: AnyObject {
     /// tells presenter that loading more posts has finished with error
     /// - Parameter error: error that occured during fetch
     func didFinishLoadingMorePosts(with error: ApiError)
+    
+    func didFinishCheckingUrl(with type: UrlType)
 }

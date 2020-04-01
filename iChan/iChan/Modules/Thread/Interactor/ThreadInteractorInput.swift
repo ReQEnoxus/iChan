@@ -20,4 +20,6 @@ protocol ThreadInteractorInput: AnyObject {
     /// - Parameter num: number of OP-post
     /// - Parameter offset: number of the first post to be fetched
     func loadNewPosts(board: String, num: String, offset: Int)
+    
+    func didTapUrl(url: URL)
 }
