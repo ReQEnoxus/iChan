@@ -16,4 +16,6 @@ protocol ThreadSelectorDataSourceOutput: AnyObject {
     
     /// tells presenter that textview is tapped
     func didTapTextView(at indexPath: IndexPath)
+    
+    func didTapUrl(url: URL)
 }

@@ -79,4 +79,8 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
             presenter.didTapTextView(at: indexPath)
         }
     }
+    
+    func didTapUrl(url: URL) {
+        presenter.didTapUrl(url: url)
+    }
 }

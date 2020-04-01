@@ -25,4 +25,6 @@ protocol ThreadSelectorInteractorOutput: AnyObject {
     /// tells presenter that loading initial portion of threads finished with error
     /// - Parameter error: error that occured during loading threads
     func didFinishRefreshingWith(error: ApiError)
+    
+    func didFinishCheckingUrl(with type: UrlType)
 }

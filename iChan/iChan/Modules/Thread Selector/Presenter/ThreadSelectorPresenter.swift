@@ -84,6 +84,17 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         view.refreshData()
     }
     
+    func didFinishCheckingUrl(with type: UrlType) {
+        
+        switch type {
+            
+            case .inner(let board, let num):
+                router.pushThreadController(board: board, num: num)
+            case .outer(let url):
+                router.open(url: url)
+        }
+    }
+    
     //MARK: - ThreadSelectorDataSourceOutput
     func didTapImage(with attachment: AttachmentDto) {
         router.presentImage(with: attachment)
@@ -95,5 +106,9 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         let num = dataSource.threads[indexPath.row].number
         
         router.pushThreadController(board: board, num: num)
+    }
+    
+    func didTapUrl(url: URL) {
+        interactor.didTapUrl(url: url)
     }
 }

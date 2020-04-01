@@ -17,4 +17,6 @@ protocol ThreadSelectorInteractorInput: AnyObject {
     /// tells interactor to refresh threads from current board
     /// - Parameter board: board from which threads should be retreived
     func refreshThreads(board: Board)
+    
+    func didTapUrl(url: URL)
 }

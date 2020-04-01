@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Lightbox
+import SafariServices
 
 class ThreadSelectorRouter: ThreadSelectorRouterInput {
     
@@ -28,5 +29,12 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
     
     func pushThreadController(board: String, num: String) {
         view.navigationController?.pushViewController(ThreadAssembly.configureModule(board: board, num: num), animated: true)
+    }
+    
+    func open(url: URL) {
+        
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.preferredBarTintColor = .blackBg
+        view.present(safariViewController, animated: true)
     }
 }

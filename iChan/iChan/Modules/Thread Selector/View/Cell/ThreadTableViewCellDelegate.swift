@@ -16,4 +16,6 @@ protocol ThreadTableViewCellDelegate: AnyObject {
     
     /// tells delegate that textview is tapped
     func didTapTextView(threadNum: String)
+    
+    func didTapUrl(url: URL)
 }

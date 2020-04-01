@@ -107,6 +107,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         textView.tintColor = .orangeUi
         textView.isScrollEnabled = false
         textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.delegate = self
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
         textView.addGestureRecognizer(tapGesture)
@@ -294,5 +295,14 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
     
     @objc func didTapTextView() {
         delegate?.didTapTextView(threadNum: dto.number)
+    }
+    
+    //MARK: - TextViewDelegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        textView.gestureRecognizers?.forEach({ $0.isEnabled = false })
+        delegate?.didTapUrl(url: URL)
+        textView.gestureRecognizers?.forEach({ $0.isEnabled = true })
+        return true
     }
 }
