@@ -158,18 +158,20 @@ extension UILabel {
     /// sets html text to textview converting it to attributed string
     /// - Parameter htmlText: text containing html parts
     /// - Parameter fontSize: size of font
-    func setHTMLFromString(htmlText: String, fontSize: CGFloat) {
+    /// - Parameter hexColor: hex representation of text color
+    func setHTMLFromString(htmlText: String, fontSize: CGFloat, hexColor: String) {
         
         let classes = "<style> .unkfunc { color: #789922; } .spoiler { color: #7d7d7d; } </style>"
         
-        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: #FFFFFF; font-size: \(self.font?.pointSize ?? fontSize)\">%@</span>", htmlText)
-
+        let modifiedFont = String(format:" \(classes) <span style=\"font-family: '-apple-system', 'HelveticaNeue'; color: \(hexColor) !important; font-size: \(self.font?.pointSize ?? fontSize)\">%@</span>", htmlText)
+        
         let attrStr = try! NSAttributedString(
             
             data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
             options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue],
             documentAttributes: nil)
-
+        
+        
         self.attributedText = attrStr
     }
 }
@@ -200,6 +202,6 @@ extension Post {
         
         let base = "<a href=\"applewebdata://reply/"
         let ending = "\">>>"
-        self.repliesStr = "Ответы: \(replies.map({ base + $0 + ending + $0 }).joined(separator: " "))"
+        self.repliesStr = "<i> Ответы: </i>\(replies.map({ base + $0 + ending + $0 }).joined(separator: " "))"
     }
 }

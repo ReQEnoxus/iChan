@@ -51,6 +51,8 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         static let postCountLabelLineNumber = 1
         
         static let nameLabelRatio = 0.75
+        
+        static let infoHexColor = "#909090"
     }
     
     var post: Post!
@@ -62,7 +64,7 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         self.post = post
         self.delegate = delegate
         
-        dateAndNameLabel.setHTMLFromString(htmlText: "\(post.name) \(post.date)", fontSize: Appearance.infoFontSize)
+        dateAndNameLabel.setHTMLFromString(htmlText: "\(post.name) \(post.date)", fontSize: Appearance.infoFontSize, hexColor: Appearance.infoHexColor)
         numberButton.setTitle(post.num, for: .normal)
         
         commentTextView.setHTMLFromString(htmlText: post.comment, fontSize: Appearance.commentFontSize)

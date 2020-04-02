@@ -44,13 +44,15 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         static let infoFontSize: CGFloat = 13
         static let commentFontSize: CGFloat = 14
         
-        static let dateLabelLineNumber = 1
+        static let dateLabelLineNumber = 0
         static let numberLabelLineNumber = 1
         static let commentTextViewLineNumberExpanded = 12
         static let commentTextViewLineNumberCollapsed = 1
         static let postCountLabelLineNumber = 1
         
         static let collapseAnimationTime = 0.5
+        static let infoHexColor = "#909090"
+        static let nameLabelRatio = 0.75
     }
     
     weak var delegate: ThreadTableViewCellDelegate?
@@ -168,10 +170,16 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func setupConstraints() {
         
-        dateAndNumberView.snp.makeConstraints { make in
+        mainStackView.snp.makeConstraints { make in
             
-            make.left.equalTo(mainStackView).offset(Appearance.numberAndDateViewLeftOffset)
-            make.left.equalTo(mainStackView).offset(Appearance.numberAndDateViewRightOffset)
+            make.left.equalTo(contentView).offset(Appearance.stackViewLeftOffset)
+            make.right.equalTo(contentView).offset(Appearance.stackViewRightOffset)
+            make.top.equalTo(contentView).offset(Appearance.stackViewTopOffset)
+            make.bottom.equalTo(contentView).offset(Appearance.stackViewBottomOffset)
+        }
+        
+        dateAndNumberView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
         
         dateAndNameLabel.snp.makeConstraints { make in
@@ -179,11 +187,12 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
             make.left.equalTo(dateAndNumberView).offset(Appearance.dateLabelLeftOffset)
             make.top.equalTo(dateAndNumberView).offset(Appearance.dateLabelTopOffset)
             make.bottom.equalTo(dateAndNumberView).offset(Appearance.dateLabelBottomOffset)
+            make.width.equalToSuperview().multipliedBy(Appearance.nameLabelRatio)
         }
         
         numberLabel.snp.makeConstraints { make in
         
-            make.right.equalTo(dateAndNumberView).offset(Appearance.numberLabelRightOffset)
+            make.right.equalTo(dateAndNumberView.snp.right)
             make.top.equalTo(dateAndNumberView).offset(Appearance.numberLabelTopOffset)
             make.bottom.equalTo(dateAndNumberView).offset(Appearance.numberLabelBottomOffset)
         }
@@ -192,14 +201,6 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
             
             make.height.equalTo(Appearance.thumbnailImageHeight).priority(999)
             make.width.equalTo(thumbnailImageView.snp.height)
-        }
-        
-        mainStackView.snp.makeConstraints { make in
-            
-            make.left.equalTo(contentView).offset(Appearance.stackViewLeftOffset)
-            make.right.equalTo(contentView).offset(Appearance.stackViewRightOffset)
-            make.top.equalTo(contentView).offset(Appearance.stackViewTopOffset)
-            make.bottom.equalTo(contentView).offset(Appearance.stackViewBottomOffset)
         }
         
         commentTextView.snp.makeConstraints { make in
@@ -215,7 +216,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         self.dto = dto
         self.delegate = delegate
         
-        dateAndNameLabel.text = "\(dto.posterName) \(dto.date)"
+        dateAndNameLabel.setHTMLFromString(htmlText: "\(dto.posterName) \(dto.date)", fontSize: Appearance.infoFontSize, hexColor: Appearance.infoHexColor)
         numberLabel.text = "№\(dto.number)"
         
         commentTextView.setHTMLFromString(htmlText: dto.text, fontSize: Appearance.commentFontSize)
