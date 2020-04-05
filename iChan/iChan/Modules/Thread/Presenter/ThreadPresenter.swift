@@ -62,10 +62,21 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     
     func didFinishCheckingUrl(with type: UrlType) {
         
+        print(type)
         switch type {
             
-            case .inner(let board, let num):
-                print("inner")
+            case .innerReply(_, _, let parent):
+                
+                if dataSource.isInThisThread(num: parent) {
+                    router.presentPostController(posts: dataSource.posts, postNum: parent)
+                }
+                
+            case .inner(_, let num):
+                
+                if dataSource.isInThisThread(num: num) {
+                    router.presentPostController(posts: dataSource.posts, postNum: num)
+                }
+                
             case .outer(let url):
                 router.open(url: url)
         }

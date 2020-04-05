@@ -16,4 +16,6 @@ protocol ThreadRouterInput: AnyObject {
     func presentImage(index: Int, files: [File])
     
     func open(url: URL)
+    
+    func presentPostController(posts: [Post], postNum: String)
 }

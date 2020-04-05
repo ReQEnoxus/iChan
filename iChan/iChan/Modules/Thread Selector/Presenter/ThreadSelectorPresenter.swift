@@ -88,7 +88,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         
         switch type {
             
-            case .inner(let board, let num):
+            case .inner(let board, let num), .innerReply(let board, let num, _):
                 router.pushThreadController(board: board, num: num)
             case .outer(let url):
                 router.open(url: url)

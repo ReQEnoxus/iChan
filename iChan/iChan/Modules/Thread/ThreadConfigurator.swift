@@ -1,5 +1,5 @@
 //
-//  ThreadAssembly.swift
+//  ThreadConfigurator.swift
 //  iChan
 //
 //  Created by Enoxus on 30/03/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ThreadAssembly {
+class ThreadConfigurator {
     
     class func configureModule(board: String, num: String) -> UIViewController {
         

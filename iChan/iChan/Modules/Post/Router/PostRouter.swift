@@ -1,8 +1,8 @@
 //
-//  ThreadRouter.swift
+//  PostRouter.swift
 //  iChan
 //
-//  Created by Enoxus on 30/03/2020.
+//  Created by Enoxus on 02/04/2020.
 //  Copyright © 2020 Enoxus. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 import Lightbox
 import SafariServices
 
-class ThreadRouter: ThreadRouterInput {
+class PostRouter: PostRouterInput {
     
     weak var view: UIViewController!
     
@@ -34,19 +34,14 @@ class ThreadRouter: ThreadRouterInput {
         view.present(controller, animated: true)
     }
     
+    func dismissPostModule() {
+        view.dismiss(animated: true, completion: nil)
+    }
+    
     func open(url: URL) {
         
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.preferredBarTintColor = .blackBg
         view.present(safariViewController, animated: true)
-    }
-    
-    func presentPostController(posts: [Post], postNum: String) {
-        
-        let vc = PostConfigurator.configureModule(posts: posts, num: postNum)
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-
-        view.present(vc, animated: true)
     }
 }

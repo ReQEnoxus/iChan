@@ -15,12 +15,18 @@ class UrlCheckerServiceImpl: UrlCheckerService {
     
     func typeOf(url: URL) -> UrlType {
         
-        print(url)
         if url.scheme == innerScheme || url.host == innerHost {
             
             let components = url.pathComponents
             let board = components[1]
             let num = components.last!.components(separatedBy: ".")[0]
+            
+            if url.absoluteString.contains("#") {
+                
+                let parent = url.absoluteString.components(separatedBy: "#").last!
+                                
+                return .innerReply(board: board, num: num, parent: parent)
+            }
             
             return .inner(board: board, num: num)
         }

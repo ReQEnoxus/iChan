@@ -121,6 +121,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         presenter.initialSetup()
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
         navigationItem.largeTitleDisplayMode = .never
+        definesPresentationContext = true
         presenter.loadThread()
     }
     

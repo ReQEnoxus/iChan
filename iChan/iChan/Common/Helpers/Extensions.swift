@@ -150,6 +150,14 @@ extension UITextView {
 
         self.attributedText = attrStr
     }
+    
+    var textHeight: CGFloat {
+        
+        let sizeThatFitsTextView = self.sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat(MAXFLOAT)))
+        let heightOfText = sizeThatFitsTextView.height
+        
+        return heightOfText
+    }
 }
 
 //MARK: - UILabel
@@ -202,6 +210,6 @@ extension Post {
         
         let base = "<a href=\"applewebdata://reply/"
         let ending = "\">>>"
-        self.repliesStr = "<i> Ответы: </i>\(replies.map({ base + $0 + ending + $0 }).joined(separator: " "))"
+        self.repliesStr = "<i style=\"color: #909090;\"> Ответы: </i>\(replies.map({ base + $0 + ending + $0 }).joined(separator: " "))"
     }
 }

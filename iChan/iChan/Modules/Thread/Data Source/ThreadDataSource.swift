@@ -18,4 +18,6 @@ protocol ThreadDataSource: UITableViewDataSource {
     /// - Parameter posts: posts  to append
     /// - Parameter completion: async block that ensures no duplicates are inserted into array, returns indexes of inserted and updated rows
     func appendPosts(_ posts: [Post], completion: @escaping ([IndexPath], [IndexPath]) -> Void)
+    
+    func isInThisThread(num: String) -> Bool
 }
