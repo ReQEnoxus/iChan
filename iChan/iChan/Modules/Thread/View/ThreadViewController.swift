@@ -102,7 +102,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         retryButton.tintColor = .orangeUi
         retryButton.setTitleColor(.orangeUi, for: .normal)
         retryButton.setTitleColor(.orangeUiDarker, for: .selected)
-        retryButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        retryButton.addTarget(self, action: #selector(refreshInErrorState), for: .touchUpInside)
         
         containter.addArrangedSubview(imageView)
         containter.addArrangedSubview(textLabel)
@@ -174,6 +174,10 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     @objc func refresh() {
         presenter.update()
+    }
+    
+    @objc func refreshInErrorState() {
+        presenter.refreshInErrorState()
     }
     
     //MARK: - Setup methods

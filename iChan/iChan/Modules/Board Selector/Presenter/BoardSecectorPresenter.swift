@@ -23,6 +23,12 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         view.displayLoadingView()
     }
     
+    func refreshInErrorState() {
+        
+        view.displayLoadingView()
+        interactor.obtainBoards()
+    }
+    
     func didSelectRow(at indexPath: IndexPath) {
         
         if let board = dataSource.board(for: indexPath) {
@@ -53,6 +59,10 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         view.refreshData()
         view.displayTableView()
         
+    }
+    
+    func didFinishObtainingBoards(with error: ApiError) {
+        view.displayErrorView()
     }
     
     //MARK: - DataSourceOutput

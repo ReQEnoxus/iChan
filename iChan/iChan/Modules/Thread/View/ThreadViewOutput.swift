@@ -16,6 +16,8 @@ protocol ThreadViewOutput {
     /// tells presenter to load thread from scratch
     func loadThread()
     
+    func refreshInErrorState()
+    
     /// tells presenter to update thread with new posts
     func update()
 }

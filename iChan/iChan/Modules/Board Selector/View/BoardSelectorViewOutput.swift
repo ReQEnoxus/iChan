@@ -28,4 +28,6 @@ protocol BoardSelectorViewOutput: AnyObject {
     /// tells presenter that user wants to unpin an item
     /// - Parameter at: index of the item to unpin
     func unpinItem(at: IndexPath)
+    
+    func refreshInErrorState()
 }

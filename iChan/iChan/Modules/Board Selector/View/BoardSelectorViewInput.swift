@@ -30,4 +30,6 @@ protocol BoardSelectorViewInput: AnyObject {
     func displayTableView()
     
     func displayLoadingView()
+    
+    func displayErrorView()
 }

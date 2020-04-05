@@ -34,6 +34,12 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         interactor.loadNewPosts(board: board, num: num, offset: dataSource.posts.count + 1)
     }
     
+    func refreshInErrorState() {
+        
+        view.displayLoadingView()
+        interactor.loadThread(board: board, num: num)
+    }
+    
     //MARK: - Interactor Output
     func didFinishLoadingThread(thread: Thread) {
         

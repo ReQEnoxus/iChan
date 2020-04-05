@@ -47,6 +47,14 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         static let loadingAnimationName = "loading"
         static let loadingAnimationWidth = 200
         static let loadingAnimationHeight = 200
+        
+        static let conatinerSpacing: CGFloat = 10
+        static let errorLogoImageSize = CGSize(width: 150, height: 150)
+        static let errorLogoLeftShift: CGFloat = 30
+        static let errorLogoImageName = "SF_exclamationmark_octagon-1"
+        
+        static let errorText = "Не удалось загрузить доски"
+        static let retryButtonTitle = "Обновить"
     }
     
     var presenter: BoardSelectorViewOutput!
@@ -60,6 +68,33 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         loadingView.loopMode = .loop
         
         return loadingView
+    }()
+    
+    lazy var errorView: UIStackView = {
+        
+        let containter = UIStackView()
+        containter.alignment = .center
+        containter.axis = .vertical
+        containter.spacing = Appearance.conatinerSpacing
+        
+        let errorImage = UIImage(named: Appearance.errorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
+        let imageView = UIImageView(image: errorImage)
+        let textLabel = UILabel()
+        textLabel.text = Appearance.errorText
+        textLabel.textColor = .white
+        
+        let retryButton = UIButton(type: .system)
+        retryButton.setTitle(Appearance.retryButtonTitle, for: .normal)
+        retryButton.tintColor = .orangeUi
+        retryButton.setTitleColor(.orangeUi, for: .normal)
+        retryButton.setTitleColor(.orangeUiDarker, for: .selected)
+        retryButton.addTarget(self, action: #selector(refreshInErrorState), for: .touchUpInside)
+        
+        containter.addArrangedSubview(imageView)
+        containter.addArrangedSubview(textLabel)
+        containter.addArrangedSubview(retryButton)
+        
+        return containter
     }()
     
     let favouriteHeaderTitle = "Избранное"
@@ -90,6 +125,9 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         return .lightContent
     }
     
+    @objc func refreshInErrorState() {
+        presenter.refreshInErrorState()
+    }
     
     func setupTableView() {
         
@@ -220,6 +258,17 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
             make.bottom.equalTo(view).offset(Appearance.tableViewOffsetBottom)
             make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
             make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
+        }
+    }
+    
+    func displayErrorView() {
+        
+        view.subviews.forEach({ $0.removeFromSuperview() })
+        view.addSubview(errorView)
+        view.backgroundColor = .blackBg
+        
+        errorView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     

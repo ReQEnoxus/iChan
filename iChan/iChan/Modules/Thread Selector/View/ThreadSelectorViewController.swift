@@ -115,7 +115,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         retryButton.tintColor = .orangeUi
         retryButton.setTitleColor(.orangeUi, for: .normal)
         retryButton.setTitleColor(.orangeUiDarker, for: .selected)
-        retryButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        retryButton.addTarget(self, action: #selector(refreshInErrorState), for: .touchUpInside)
         
         containter.addArrangedSubview(imageView)
         containter.addArrangedSubview(textLabel)
@@ -238,6 +238,10 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     @objc func refresh() {
         presenter.refreshRequested()
+    }
+    
+    @objc func refreshInErrorState() {
+        presenter.refreshInErrorState()
     }
     
     //MARK: - ThreadSelectorViewInput

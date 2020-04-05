@@ -19,6 +19,8 @@ protocol ThreadSelectorViewOutput: AnyObject {
     /// tells presenter that refresh is requested (by pull-to-refresh or initial load)
     func refreshRequested()
     
+    func refreshInErrorState()
+    
     /// tells presenter that user collapsed the cell
     /// - Parameter indexPath: index of target cell
     func didPressedCollapse(on indexPath: IndexPath)

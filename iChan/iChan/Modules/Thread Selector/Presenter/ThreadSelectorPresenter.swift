@@ -34,6 +34,12 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         interactor.refreshThreads(board: board)
     }
     
+    func refreshInErrorState() {
+        
+        view.displayLoadingView()
+        interactor.refreshThreads(board: board)
+    }
+    
     func didPressedCollapse(on indexPath: IndexPath) {
         view.collapseCell(at: indexPath)
     }

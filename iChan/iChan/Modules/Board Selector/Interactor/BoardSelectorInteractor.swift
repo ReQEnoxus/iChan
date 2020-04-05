@@ -21,7 +21,7 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
             switch response {
                 
                 case .failure(let error):
-                    print(error)
+                    self?.presenter?.didFinishObtainingBoards(with: error)
                 case .success(let boards):
                     self?.presenter?.didFinishObtainingBoards(boards: BoardCategories(from: boards))
             }
