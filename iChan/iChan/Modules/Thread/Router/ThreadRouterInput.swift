@@ -18,4 +18,6 @@ protocol ThreadRouterInput: AnyObject {
     func open(url: URL)
     
     func presentPostController(posts: [Post], postNum: String)
+    
+    func pushAnotherThread(board: String, opNum: String, postNum: String?)
 }

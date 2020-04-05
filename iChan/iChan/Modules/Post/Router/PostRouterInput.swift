@@ -14,5 +14,7 @@ protocol PostRouterInput: AnyObject {
         
     func dismissPostModule()
     
+    func dismissPostModuleAndPushThread(board: String, opNum: String, postNum: String?)
+    
     func open(url: URL)
 }

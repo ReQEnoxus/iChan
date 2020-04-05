@@ -48,7 +48,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
             let board = self.board.id
             let num = dataSource.threads[indexPath.row].number
             
-            router.pushThreadController(board: board, num: num)
+            router.pushThreadController(board: board, num: num, postNum: nil)
         }
     }
     
@@ -88,10 +88,13 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         
         switch type {
             
-            case .inner(let board, let num), .innerReply(let board, let num, _):
-                router.pushThreadController(board: board, num: num)
+            case .inner(let board, let opNum, postNum: let postNum):
+                router.pushThreadController(board: board, num: opNum, postNum: postNum)
             case .outer(let url):
                 router.open(url: url)
+            case .innerReply:
+                // impossible case
+                break
         }
     }
     
@@ -105,7 +108,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         let board = self.board.id
         let num = dataSource.threads[indexPath.row].number
         
-        router.pushThreadController(board: board, num: num)
+        router.pushThreadController(board: board, num: num, postNum: nil)
     }
     
     func didTapUrl(url: URL) {

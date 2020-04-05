@@ -11,7 +11,7 @@ import UIKit
 
 class ThreadConfigurator {
     
-    class func configureModule(board: String, num: String) -> UIViewController {
+    class func configureModule(board: String, num: String, postNum: String?) -> UIViewController {
         
         let view = ThreadViewController()
         let presenter = ThreadPresenter()
@@ -29,6 +29,7 @@ class ThreadConfigurator {
         presenter.router = router
         presenter.board = board
         presenter.num = num
+        presenter.postNum = postNum
         
         interactor.presenter = presenter
         interactor.service = threadService

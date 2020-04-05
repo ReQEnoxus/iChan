@@ -17,6 +17,7 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     
     var board: String!
     var num: String!
+    var postNum: String?
     
     //MARK: - View Output
     func initialSetup() {
@@ -40,6 +41,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
             
             self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: [], animated: false)
             self?.view.displayTableView()
+            
+            if let requestedPostNum = self?.postNum {
+                self?.router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
+            }
         }
     }
     
@@ -62,19 +67,18 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     
     func didFinishCheckingUrl(with type: UrlType) {
         
-        print(type)
         switch type {
             
-            case .innerReply(_, _, let parent):
-                
-                if dataSource.isInThisThread(num: parent) {
-                    router.presentPostController(posts: dataSource.posts, postNum: parent)
+            case .innerReply(let num):
+                router.presentPostController(posts: dataSource.posts, postNum: num)
+            
+            case .inner(let board, let opNum, let postNum):
+            
+                if opNum == num {
+                    router.presentPostController(posts: dataSource.posts, postNum: postNum ?? opNum)
                 }
-                
-            case .inner(_, let num):
-                
-                if dataSource.isInThisThread(num: num) {
-                    router.presentPostController(posts: dataSource.posts, postNum: num)
+                else {
+                    router.pushAnotherThread(board: board, opNum: opNum, postNum: postNum)
                 }
                 
             case .outer(let url):

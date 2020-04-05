@@ -14,7 +14,7 @@ protocol ThreadSelectorRouterInput: AnyObject {
     /// - Parameter attachment: attachment to be displayed fullscrren
     func presentImage(with attachment: AttachmentDto)
     
-    func pushThreadController(board: String, num: String)
+    func pushThreadController(board: String, num: String, postNum: String?)
     
     func open(url: URL)
 }

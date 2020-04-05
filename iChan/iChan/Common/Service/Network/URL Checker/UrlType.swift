@@ -10,7 +10,7 @@ import Foundation
 
 enum UrlType {
     
-    case innerReply(board: String, num: String, parent: String)
-    case inner(board: String, num: String)
+    case innerReply(num: String)
+    case inner(board: String, opNum: String, postNum: String?)
     case outer(url: URL)
 }

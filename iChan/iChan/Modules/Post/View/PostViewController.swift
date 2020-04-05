@@ -57,6 +57,8 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         outsideTapGestureRecognizer.delegate = self
         view.addGestureRecognizer(outsideTapGestureRecognizer)
         
+        scrollView.layer.cornerRadius = Appearance.cornerRadius
+        
         postView.attachmentCollectionView.dataSource = self
         postView.attachmentCollectionView.delegate = self
         postView.commentTextView.delegate = self
@@ -161,7 +163,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
             if post.files != nil, !post.files!.isEmpty {
                 
                 postView.attachmentCollectionView.isHidden = false
-                postView.attachmentCollectionView.collectionViewLayout.invalidateLayout()
+                postView.attachmentCollectionView.refreshLayout()
                 postView.attachmentCollectionView.reloadData()
             }
             else {

@@ -11,7 +11,7 @@ import UIKit
 
 class PostConfigurator {
     
-    class func configureModule(posts: [Post], num: String) -> UIViewController {
+    class func configureModule(posts: [Post], num: String, parent: UIViewController) -> UIViewController {
         
         let view = PostViewController()
         let presenter = PostPresenter()
@@ -33,6 +33,7 @@ class PostConfigurator {
         interactor.urlService = urlService
         
         router.view = view
+        router.parentView = parent
         
         return view
     }

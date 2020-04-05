@@ -44,22 +44,35 @@ class PostPresenter: PostViewOutput, PostInteractorOutput {
         
         switch type {
             
-            case .innerReply(_, _, let parent):
+            case .inner(let board, let opNum, let postNum):
                 
-                let postCandidate = posts.first(where: { $0.num == parent })
-                
-                if let post = postCandidate {
-                    view.configure(with: post)
+                if opNum == posts[0].num {
+                    // working with post in this thread
+                    
+                    if let requestedPostNum = postNum {
+                        
+                        if let requestedPost = posts.first(where: { $0.num == requestedPostNum }) {
+                            
+                            view.configure(with: requestedPost)
+                        }
+                    }
+                else {
+                    
+                    view.configure(with: posts[0])
                 }
+            }
+            else {
+                router.dismissPostModuleAndPushThread(board: board, opNum: opNum, postNum: postNum)
+            }
             
-            case .inner(_, let num):
-                
+            case .innerReply(let num):
+            
                 let postCandidate = posts.first(where: { $0.num == num })
                 
                 if let post = postCandidate {
                     view.configure(with: post)
                 }
-                
+            
             case .outer(let url):
                 router.open(url: url)
         }

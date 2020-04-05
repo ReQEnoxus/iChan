@@ -14,6 +14,7 @@ import SafariServices
 class PostRouter: PostRouterInput {
     
     weak var view: UIViewController!
+    weak var parentView: UIViewController!
     
     func presentImage(index: Int, files: [File]) {
         
@@ -36,6 +37,14 @@ class PostRouter: PostRouterInput {
     
     func dismissPostModule() {
         view.dismiss(animated: true, completion: nil)
+    }
+    
+    func dismissPostModuleAndPushThread(board: String, opNum: String, postNum: String?) {
+        
+        view.dismiss(animated: true) { [weak self] in
+            
+            self?.parentView?.navigationController?.pushViewController(ThreadConfigurator.configureModule(board: board, num: opNum, postNum: postNum), animated: true)
+        }
     }
     
     func open(url: URL) {
