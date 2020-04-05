@@ -89,12 +89,12 @@
 		73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB7243486EE007F7242 /* UrlCheckerService.swift */; };
 		73F38FBA24348753007F7242 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB924348753007F7242 /* UrlType.swift */; };
 		73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */; };
-		F0124976914CD4EC6538A416 /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */; };
+		99E04C5437B385EA3F79346A /* Pods_iChan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D1E6D111D4E9256A3DF56F /* Pods_iChan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18D6C9D39FBEE297571B0AAE /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
-		6A58805978269E6AACA3110D /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
+		05D1E6D111D4E9256A3DF56F /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5B5674A098CFA69125F925 /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
 		7306CEBB2435DF6300B301D1 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		7306CEBE2435E50F00B301D1 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		7306CEC02435F1CF00B301D1 /* PostViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewInput.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		73F38FB7243486EE007F7242 /* UrlCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerService.swift; sourceTree = "<group>"; };
 		73F38FB924348753007F7242 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
 		73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerServiceImpl.swift; sourceTree = "<group>"; };
-		AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		802A2BA1270C9C6E6AEA76CA /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0124976914CD4EC6538A416 /* Pods_iChan.framework in Frameworks */,
+				99E04C5437B385EA3F79346A /* Pods_iChan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,18 +197,10 @@
 		341C06CE119DCF665B480F7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				18D6C9D39FBEE297571B0AAE /* Pods-iChan.debug.xcconfig */,
-				6A58805978269E6AACA3110D /* Pods-iChan.release.xcconfig */,
+				4B5B5674A098CFA69125F925 /* Pods-iChan.debug.xcconfig */,
+				802A2BA1270C9C6E6AEA76CA /* Pods-iChan.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		356A08378CDE9BE58BA195A9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AFDFFE2BCAB1824575DDA04B /* Pods_iChan.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7306CEB62435DE6700B301D1 /* Post */ = {
@@ -635,7 +627,7 @@
 				73D75C482413A28200A9554C /* iChan */,
 				73D75C472413A28200A9554C /* Products */,
 				341C06CE119DCF665B480F7A /* Pods */,
-				356A08378CDE9BE58BA195A9 /* Frameworks */,
+				D74A718DECC252B6C64A5BFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -695,6 +687,14 @@
 			path = "URL Checker";
 			sourceTree = "<group>";
 		};
+		D74A718DECC252B6C64A5BFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05D1E6D111D4E9256A3DF56F /* Pods_iChan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -702,11 +702,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73D75C5A2413A28300A9554C /* Build configuration list for PBXNativeTarget "iChan" */;
 			buildPhases = (
-				06FFDCDFB25E5A338A59486D /* [CP] Check Pods Manifest.lock */,
+				F8B5FC9FD0FA01FB5410E0D8 /* [CP] Check Pods Manifest.lock */,
 				73D75C422413A28200A9554C /* Sources */,
 				73D75C432413A28200A9554C /* Frameworks */,
 				73D75C442413A28200A9554C /* Resources */,
-				4F38243AE884889ACE62AEB0 /* [CP] Embed Pods Frameworks */,
+				CF1D56CF151E67E3CE7E3DE2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -764,7 +764,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06FFDCDFB25E5A338A59486D /* [CP] Check Pods Manifest.lock */ = {
+		CF1D56CF151E67E3CE7E3DE2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8B5FC9FD0FA01FB5410E0D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -784,40 +816,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4F38243AE884889ACE62AEB0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
-				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
-				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
-				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1039,7 +1037,7 @@
 		};
 		73D75C5B2413A28300A9554C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18D6C9D39FBEE297571B0AAE /* Pods-iChan.debug.xcconfig */;
+			baseConfigurationReference = 4B5B5674A098CFA69125F925 /* Pods-iChan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1059,7 +1057,7 @@
 		};
 		73D75C5C2413A28300A9554C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A58805978269E6AACA3110D /* Pods-iChan.release.xcconfig */;
+			baseConfigurationReference = 802A2BA1270C9C6E6AEA76CA /* Pods-iChan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
