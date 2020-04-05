@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 protocol PostViewInput: AnyObject {
-        
+    
+    /// configures the module with post
+    /// - Parameter post: post that needs to be displayed
     func configure(with post: Post)
 }

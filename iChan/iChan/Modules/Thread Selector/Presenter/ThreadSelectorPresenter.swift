@@ -18,7 +18,6 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     var board: Board!
     
     //MARK: - ThreadSelectorViewOutput
-    
     func loadMoreThreads() {
         interactor.loadMoreThreads(board: board)
     }
@@ -59,7 +58,6 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     }
     
     //MARK: - ThreadSelectorInteractorOutput
-    
     func didFinishLoadingMoreThreads(threads: [ThreadDto]) {
         
         dataSource.appendThreads(threads) { [weak self] insertedIndices in

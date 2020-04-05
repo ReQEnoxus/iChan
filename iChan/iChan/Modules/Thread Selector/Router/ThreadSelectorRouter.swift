@@ -15,6 +15,7 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
     
     weak var view: UIViewController!
     
+    //MARK: - Router Input
     func presentImage(with attachment: AttachmentDto) {
         
         guard let imageUrl = URL(string: attachment.url) else { return }

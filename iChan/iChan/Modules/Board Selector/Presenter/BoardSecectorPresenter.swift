@@ -11,7 +11,7 @@ import Foundation
 class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOutput, BoardsDataSourceOutput {
     
     var interactor: BoardSelectorInteractorInput!
-    var dataSource: BoardsDataSourceProtocol!
+    var dataSource: BoardsDataSource!
     weak var view: BoardSelectorViewInput!
     var router: BoardSelectorRouter!
     

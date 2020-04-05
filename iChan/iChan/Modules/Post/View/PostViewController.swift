@@ -112,6 +112,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         }
     }
     
+    //MARK: - CollectionView Delegate & Datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return post.files?.count ?? 0
     }
@@ -192,6 +193,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
     }
 }
 
+//MARK: - Extensions
 extension PostViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

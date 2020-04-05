@@ -26,5 +26,7 @@ protocol ThreadInteractorOutput: AnyObject {
     /// - Parameter error: error that occured during fetch
     func didFinishLoadingMorePosts(with error: ApiError)
     
+    /// tells presenter that url was checked and has certain type
+    /// - Parameter type: type of the url
     func didFinishCheckingUrl(with type: UrlType)
 }

@@ -14,6 +14,7 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
     var threads: [ThreadDto] = []
     weak var presenter: ThreadSelectorDataSourceOutput!
     
+    //MARK: - ThreadSelectorDataSource
     func appendThreads(_ threads: [ThreadDto], completion: @escaping ([IndexPath]) -> Void) {
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -43,7 +44,6 @@ class ThreadSelectorDataSourceImpl: NSObject, ThreadSelectorDataSource, ThreadTa
         }
     }
     
-    //MARK: - ThreadSelectorDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return threads.count
     }

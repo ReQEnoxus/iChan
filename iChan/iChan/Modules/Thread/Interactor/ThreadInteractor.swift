@@ -14,6 +14,7 @@ class ThreadInteractor: ThreadInteractorInput {
     var service: BoardThreadsService!
     var urlService: UrlCheckerService!
     
+    //MARK: - ThreadInteractorInput
     func loadThread(board: String, num: String) {
         
         service.loadThread(board: board, num: num) { [weak self] result in

@@ -17,7 +17,7 @@ class BoardSelectorConfigurator {
         let presenter = BoardSelectorPresenter()
         let interactor = BoardSelectorInteractor()
         let router = BoardSelectorRouter()
-        let dataSource = BoardsDataSource()
+        let dataSource = BoardsDataSourceImpl()
         let service = BoardsServiceImpl()
         
         view.presenter = presenter

@@ -19,6 +19,7 @@ protocol ThreadSelectorViewOutput: AnyObject {
     /// tells presenter that refresh is requested (by pull-to-refresh or initial load)
     func refreshRequested()
     
+    /// tells presenter that user requested the refresh while being in error state
     func refreshInErrorState()
     
     /// tells presenter that user collapsed the cell

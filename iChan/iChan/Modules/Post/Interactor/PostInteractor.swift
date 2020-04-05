@@ -13,6 +13,7 @@ class PostInteractor: PostInteractorInput {
     weak var presenter: PostInteractorOutput!
     var urlService: UrlCheckerService!
     
+    //MARK: - Interactor Input
     func didTapUrl(url: URL) {
         presenter.didFinishCheckingUrl(type: urlService.typeOf(url: url))
     }

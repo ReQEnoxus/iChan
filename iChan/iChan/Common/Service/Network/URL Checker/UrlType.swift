@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// types of urls that may be present in application
 enum UrlType {
     
     case innerReply(num: String)

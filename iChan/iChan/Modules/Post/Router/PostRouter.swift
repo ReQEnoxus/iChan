@@ -16,6 +16,7 @@ class PostRouter: PostRouterInput {
     weak var view: UIViewController!
     weak var parentView: UIViewController!
     
+    //MARK: - RouterInput
     func presentImage(index: Int, files: [File]) {
         
         var images = [LightboxImage]()

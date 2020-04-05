@@ -29,10 +29,6 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
         return cell
     }
     
-    func isInThisThread(num: String) -> Bool {
-        return posts.first(where: { $0.num == num }) != nil
-    }
-    
     func appendPosts(_ posts: [Post], completion: @escaping ([IndexPath], [IndexPath]) -> Void) {
         
         var idxToUpdate = Set<IndexPath>()

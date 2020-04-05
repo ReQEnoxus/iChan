@@ -26,5 +26,7 @@ protocol ThreadSelectorInteractorOutput: AnyObject {
     /// - Parameter error: error that occured during loading threads
     func didFinishRefreshingWith(error: ApiError)
     
+    /// tells presenter that given url was checked and has a cetain type
+    /// - Parameter type: type of the url
     func didFinishCheckingUrl(with type: UrlType)
 }

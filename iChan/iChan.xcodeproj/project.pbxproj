@@ -39,9 +39,9 @@
 		73828DAD2414EE1E0073623D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAC2414EE1E0073623D /* Colors.swift */; };
 		73828DAF24150FB90073623D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DAE24150FB90073623D /* Extensions.swift */; };
 		73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */; };
-		73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB324153EE90073623D /* BoardsDataSourceProtocol.swift */; };
+		73828DB424153EE90073623D /* BoardsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB324153EE90073623D /* BoardsDataSource.swift */; };
 		73828DB6241544F50073623D /* BoardCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB5241544F50073623D /* BoardCategories.swift */; };
-		73828DB92415482A0073623D /* BoardsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB82415482A0073623D /* BoardsDataSource.swift */; };
+		73828DB92415482A0073623D /* BoardsDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DB82415482A0073623D /* BoardsDataSourceImpl.swift */; };
 		73828DBB24154D8F0073623D /* BoardSecectorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DBA24154D8F0073623D /* BoardSecectorPresenter.swift */; };
 		73828DBD24154DFF0073623D /* BoardSelectorInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DBC24154DFF0073623D /* BoardSelectorInteractorInput.swift */; };
 		73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC024154E3A0073623D /* BoardSelectorInteractorOutput.swift */; };
@@ -127,9 +127,9 @@
 		73828DAC2414EE1E0073623D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		73828DAE24150FB90073623D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; tabWidth = 4; };
 		73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorViewOutput.swift; sourceTree = "<group>"; };
-		73828DB324153EE90073623D /* BoardsDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSourceProtocol.swift; sourceTree = "<group>"; };
+		73828DB324153EE90073623D /* BoardsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSource.swift; sourceTree = "<group>"; };
 		73828DB5241544F50073623D /* BoardCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategories.swift; sourceTree = "<group>"; };
-		73828DB82415482A0073623D /* BoardsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSource.swift; sourceTree = "<group>"; };
+		73828DB82415482A0073623D /* BoardsDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsDataSourceImpl.swift; sourceTree = "<group>"; };
 		73828DBA24154D8F0073623D /* BoardSecectorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSecectorPresenter.swift; sourceTree = "<group>"; };
 		73828DBC24154DFF0073623D /* BoardSelectorInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorInteractorInput.swift; sourceTree = "<group>"; };
 		73828DC024154E3A0073623D /* BoardSelectorInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorInteractorOutput.swift; sourceTree = "<group>"; };
@@ -358,8 +358,8 @@
 		73828DB224153ED10073623D /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
-				73828DB324153EE90073623D /* BoardsDataSourceProtocol.swift */,
-				73828DB82415482A0073623D /* BoardsDataSource.swift */,
+				73828DB324153EE90073623D /* BoardsDataSource.swift */,
+				73828DB82415482A0073623D /* BoardsDataSourceImpl.swift */,
 				73744C8E241D1145005BE264 /* BoardsDataSourceOutput.swift */,
 			);
 			path = "Data Source";
@@ -872,7 +872,7 @@
 				73C3FF782413D09C009D4A18 /* ApiClient.swift in Sources */,
 				73C2A1A2243208F200BFDAAE /* ThreadInteractorOutput.swift in Sources */,
 				731431CF241E8C270065E0DB /* ThreadSelectorInteractor.swift in Sources */,
-				73828DB92415482A0073623D /* BoardsDataSource.swift in Sources */,
+				73828DB92415482A0073623D /* BoardsDataSourceImpl.swift in Sources */,
 				73C2A19C2432000300BFDAAE /* ThreadInteractorInput.swift in Sources */,
 				731431B5241E6A160065E0DB /* BoardThreadsServiceImpl.swift in Sources */,
 				73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */,
@@ -898,7 +898,7 @@
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
 				73F38FBA24348753007F7242 /* UrlType.swift in Sources */,
 				73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */,
-				73828DB424153EE90073623D /* BoardsDataSourceProtocol.swift in Sources */,
+				73828DB424153EE90073623D /* BoardsDataSource.swift in Sources */,
 				73828DB6241544F50073623D /* BoardCategories.swift in Sources */,
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,

@@ -10,5 +10,7 @@ import Foundation
 
 protocol PostInteractorInput: AnyObject {
     
+    /// tells interactor that user has tapped on url in textview
+    /// - Parameter url: url that was tapped on
     func didTapUrl(url: URL)
 }

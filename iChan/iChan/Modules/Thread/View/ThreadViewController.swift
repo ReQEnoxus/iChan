@@ -172,6 +172,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         }
     }
     
+    //MARK: - objc refresh methods
     @objc func refresh() {
         presenter.update()
     }

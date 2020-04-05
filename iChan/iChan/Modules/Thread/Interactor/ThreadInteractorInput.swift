@@ -21,5 +21,7 @@ protocol ThreadInteractorInput: AnyObject {
     /// - Parameter offset: number of the first post to be fetched
     func loadNewPosts(board: String, num: String, offset: Int)
     
+    /// tells interactor that user did tapped url
+    /// - Parameter url: tapped url
     func didTapUrl(url: URL)
 }

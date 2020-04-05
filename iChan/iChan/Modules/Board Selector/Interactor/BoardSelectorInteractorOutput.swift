@@ -14,5 +14,7 @@ protocol BoardSelectorInteractorOutput: AnyObject {
     /// - Parameter boards: obtained boards
     func didFinishObtainingBoards(boards: BoardCategories)
     
+    /// tells presenter that some error has occured during obtaining
+    /// - Parameter error: error that has occured
     func didFinishObtainingBoards(with error: ApiError)
 }

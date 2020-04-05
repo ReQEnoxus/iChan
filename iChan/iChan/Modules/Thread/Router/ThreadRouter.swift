@@ -15,6 +15,7 @@ class ThreadRouter: ThreadRouterInput {
     
     weak var view: UIViewController!
     
+    //MARK: - Thread Router Input
     func presentImage(index: Int, files: [File]) {
         
         var images = [LightboxImage]()

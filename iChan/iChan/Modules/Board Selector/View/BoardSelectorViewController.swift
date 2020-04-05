@@ -213,7 +213,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     }
     
     //MARK: - BoardSelectorViewInput
-    func connectDataSource(_ dataSource: BoardsDataSourceProtocol) {
+    func connectDataSource(_ dataSource: BoardsDataSource) {
         tableView.dataSource = dataSource
     }
     

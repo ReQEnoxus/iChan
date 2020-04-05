@@ -10,5 +10,7 @@ import Foundation
 
 protocol UrlCheckerService {
     
+    /// checks for the type of given url
+    /// - Parameter url: url to check the type of
     func typeOf(url: URL) -> UrlType
 }

@@ -13,6 +13,7 @@ class BoardSelectorRouter: BoardSelectorRouterInput {
     
     weak var view: UIViewController!
     
+    //MARK: - BoardSelectorRouterInput
     func pushToThreadSelector(board: Board) {
         view.navigationController?.pushViewController(ThreadSelectorConfigurator.configureModule(board: board), animated: true)
     }

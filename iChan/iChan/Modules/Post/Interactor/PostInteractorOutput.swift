@@ -10,5 +10,7 @@ import Foundation
 
 protocol PostInteractorOutput: AnyObject {
     
+    /// tells presenter that url is checked and has certain type
+    /// - Parameter type: type of url
     func didFinishCheckingUrl(type: UrlType)
 }

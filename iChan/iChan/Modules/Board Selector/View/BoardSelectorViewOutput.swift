@@ -29,5 +29,6 @@ protocol BoardSelectorViewOutput: AnyObject {
     /// - Parameter at: index of the item to unpin
     func unpinItem(at: IndexPath)
     
+    /// tells presenter that user has requested the refresh while module is in error state
     func refreshInErrorState()
 }

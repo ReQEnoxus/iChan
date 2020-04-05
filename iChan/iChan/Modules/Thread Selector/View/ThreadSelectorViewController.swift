@@ -308,13 +308,6 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         isInitialRefresh = false
     }
     
-    private func fixLargeTitlePositioning() {
-        
-        let top = tableView.adjustedContentInset.top
-        let y = refreshControl.frame.maxY + top
-        tableView.setContentOffset(CGPoint(x: .zero, y: -y), animated:true)
-    }
-    
     func refreshData(indicesToRefresh: [IndexPath]) {
         
         refreshControl.endRefreshing()
@@ -344,5 +337,13 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         cell.expand()
         tableView.layoutIfNeeded()
         tableView.endUpdates()
+    }
+    
+    //MARK: - Utils
+    private func fixLargeTitlePositioning() {
+        
+        let top = tableView.adjustedContentInset.top
+        let y = refreshControl.frame.maxY + top
+        tableView.setContentOffset(CGPoint(x: .zero, y: -y), animated:true)
     }
 }

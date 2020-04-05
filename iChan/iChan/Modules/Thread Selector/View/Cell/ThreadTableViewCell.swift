@@ -287,6 +287,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         thumbnailImageView.image = nil
     }
     
+    //MARK: - objc methods for selectors
     @objc func didTapImage() {
         
         if let fileUrl = dto.file, let displayName = dto.fileName {

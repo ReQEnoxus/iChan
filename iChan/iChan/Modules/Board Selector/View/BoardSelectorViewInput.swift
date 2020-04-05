@@ -12,7 +12,7 @@ protocol BoardSelectorViewInput: AnyObject {
     
     /// connects datasource to the tableview
     /// - Parameter dataSource: datasource to be connected
-    func connectDataSource(_ dataSource: BoardsDataSourceProtocol)
+    func connectDataSource(_ dataSource: BoardsDataSource)
     
     /// tells the view to refresh data in tableview
     func refreshData()
@@ -27,9 +27,12 @@ protocol BoardSelectorViewInput: AnyObject {
     /// - Parameter sectionDeleted: tells the view if the section needs to be deleted
     func unpinItem(at index: IndexPath, sectionDeleted: Bool)
     
+    /// tells view to display tableview and remove all other views
     func displayTableView()
     
+    /// tells view to display loading animation and remove all other views
     func displayLoadingView()
     
+    /// tells view to display error view and remove all other views
     func displayErrorView()
 }
