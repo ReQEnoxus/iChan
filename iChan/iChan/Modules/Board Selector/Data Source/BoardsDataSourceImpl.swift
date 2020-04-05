@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BoardsDataSourceImpl: NSObject, BoardsDataSourceProtocol {
+class BoardsDataSourceImpl: NSObject, BoardsDataSource {
     
     var boardCategories: BoardCategories?
     
