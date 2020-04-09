@@ -50,6 +50,13 @@
 		73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC6241552430073623D /* BoardSelectorRouterInput.swift */; };
 		73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC8241554100073623D /* BoardSelectorConfigurator.swift */; };
 		73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DCA2415548A0073623D /* BoardSelectorRouter.swift */; };
+		7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED59243F0104006C7FB0 /* BoardCategoriesModel.swift */; };
+		7391ED5C243F0199006C7FB0 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED5B243F0199006C7FB0 /* BoardModel.swift */; };
+		7391ED5F243F02BE006C7FB0 /* CrudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED5E243F02BE006C7FB0 /* CrudService.swift */; };
+		7391ED61243F0445006C7FB0 /* RealmCrudServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */; };
+		7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED62243F058A006C7FB0 /* RealmConvertible.swift */; };
+		7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */; };
+		7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */; };
 		73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1792430D89700BFDAAE /* ThreadTableViewCellDelegate.swift */; };
 		73C2A17C2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17B2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift */; };
 		73C2A17E2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */; };
@@ -138,6 +145,13 @@
 		73828DC6241552430073623D /* BoardSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouterInput.swift; sourceTree = "<group>"; };
 		73828DC8241554100073623D /* BoardSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorConfigurator.swift; sourceTree = "<group>"; };
 		73828DCA2415548A0073623D /* BoardSelectorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouter.swift; sourceTree = "<group>"; };
+		7391ED59243F0104006C7FB0 /* BoardCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesModel.swift; sourceTree = "<group>"; };
+		7391ED5B243F0199006C7FB0 /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		7391ED5E243F02BE006C7FB0 /* CrudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrudService.swift; sourceTree = "<group>"; };
+		7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCrudServiceImpl.swift; sourceTree = "<group>"; };
+		7391ED62243F058A006C7FB0 /* RealmConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConvertible.swift; sourceTree = "<group>"; };
+		7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheService.swift; sourceTree = "<group>"; };
+		7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheServiceImpl.swift; sourceTree = "<group>"; };
 		73C2A1792430D89700BFDAAE /* ThreadTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		73C2A17B2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSourceOutput.swift; sourceTree = "<group>"; };
 		73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorRouterInput.swift; sourceTree = "<group>"; };
@@ -365,6 +379,35 @@
 			path = "Data Source";
 			sourceTree = "<group>";
 		};
+		7391ED58243F00F0006C7FB0 /* Realm Models */ = {
+			isa = PBXGroup;
+			children = (
+				7391ED59243F0104006C7FB0 /* BoardCategoriesModel.swift */,
+				7391ED5B243F0199006C7FB0 /* BoardModel.swift */,
+				7391ED62243F058A006C7FB0 /* RealmConvertible.swift */,
+			);
+			path = "Realm Models";
+			sourceTree = "<group>";
+		};
+		7391ED5D243F029C006C7FB0 /* Data Base */ = {
+			isa = PBXGroup;
+			children = (
+				7391ED5E243F02BE006C7FB0 /* CrudService.swift */,
+				7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */,
+				7391ED69243F5953006C7FB0 /* BoardCategories */,
+			);
+			path = "Data Base";
+			sourceTree = "<group>";
+		};
+		7391ED69243F5953006C7FB0 /* BoardCategories */ = {
+			isa = PBXGroup;
+			children = (
+				7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */,
+				7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */,
+			);
+			path = BoardCategories;
+			sourceTree = "<group>";
+		};
 		73C2A1812430DF8500BFDAAE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +518,7 @@
 		73C3FF6D2413BFCF009D4A18 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				7391ED58243F00F0006C7FB0 /* Realm Models */,
 				731431B0241E683E0065E0DB /* Dto */,
 				73C3FF6E2413BFD8009D4A18 /* Network */,
 				73828DB5241544F50073623D /* BoardCategories.swift */,
@@ -494,6 +538,7 @@
 		73C3FF6F2413BFDE009D4A18 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7391ED5D243F029C006C7FB0 /* Data Base */,
 				73C3FF742413CBF2009D4A18 /* Network */,
 			);
 			path = Service;
@@ -776,6 +821,8 @@
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -787,6 +834,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -845,14 +894,18 @@
 				731431B3241E68630065E0DB /* ThreadDto.swift in Sources */,
 				73C2A18E2431EA5C00BFDAAE /* ThreadViewController.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
+				7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */,
+				7391ED5F243F02BE006C7FB0 /* CrudService.swift in Sources */,
 				73828DC524154F0D0073623D /* BoardSelectorInteractor.swift in Sources */,
 				73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */,
 				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
 				736595F62435FCF600DE04D9 /* PostInteractorOutput.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
 				73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */,
+				7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */,
 				736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
+				7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */,
 				736595FC243611F900DE04D9 /* PostConfigurator.swift in Sources */,
 				73C2A1942431F08900BFDAAE /* ThreadPostCell.swift in Sources */,
 				731431BE241E70AC0065E0DB /* ThreadSelectorViewController.swift in Sources */,
@@ -884,6 +937,8 @@
 				731431B7241E6A4D0065E0DB /* AbstractApiClientService.swift in Sources */,
 				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
+				7391ED61243F0445006C7FB0 /* RealmCrudServiceImpl.swift in Sources */,
+				7391ED5C243F0199006C7FB0 /* BoardModel.swift in Sources */,
 				736595FA2436106D00DE04D9 /* PostRouter.swift in Sources */,
 				73C2A19E2432002200BFDAAE /* ThreadRouterInput.swift in Sources */,
 				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
@@ -904,6 +959,7 @@
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 				73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */,
 				73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */,
+				7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

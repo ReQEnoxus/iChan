@@ -10,5 +10,6 @@ target 'iChan' do
   pod 'SnapKit', '~> 5.0'
   pod 'Lightbox'
   pod 'lottie-ios'
+  pod 'RealmSwift'
 
 end
