@@ -19,6 +19,7 @@ class BoardSelectorConfigurator {
         let router = BoardSelectorRouter()
         let dataSource = BoardsDataSourceImpl()
         let service = BoardsServiceImpl()
+        let cacheService = BoardCategoriesCacheServiceImpl()
         
         view.presenter = presenter
         
@@ -31,6 +32,7 @@ class BoardSelectorConfigurator {
         
         interactor.presenter = presenter
         interactor.service = service
+        interactor.boardCacheService = cacheService
         
         router.view = view
         

@@ -17,4 +17,8 @@ protocol BoardSelectorInteractorOutput: AnyObject {
     /// tells presenter that some error has occured during obtaining
     /// - Parameter error: error that has occured
     func didFinishObtainingBoards(with error: ApiError)
+    
+    /// tells presenter that boards are successfully refreshed
+    /// - Parameter boards: refreshed boards
+    func didFinishRefreshingBoards(boards: BoardCategories)
 }

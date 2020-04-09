@@ -7,10 +7,28 @@
 //
 
 import Foundation
+import RealmSwift
 
-/// struct that represents particular board
-struct Board: Codable {
+/// class that represents particular board
+class Board: Codable {
     
     let id: String
     let name: String
+    
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+}
+
+extension Board: RealmConvertible {
+    
+    func toRealmModel() -> Object {
+        
+        let model = BoardModel()
+        model.id = id
+        model.name = name
+        
+        return model
+    }
 }

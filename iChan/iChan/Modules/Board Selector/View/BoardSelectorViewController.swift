@@ -59,7 +59,12 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     
     var presenter: BoardSelectorViewOutput!
         
-    let tableView: UITableView = UITableView()
+    lazy var tableView: UITableView = {
+        
+        var tableView = UITableView()
+        
+        return tableView
+    }()
     
     lazy var loadingView: AnimationView = {
         
@@ -68,6 +73,15 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         loadingView.loopMode = .loop
         
         return loadingView
+    }()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        
+        var refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = .orangeUi
+        
+        return refreshControl
     }()
     
     lazy var errorView: UIStackView = {
@@ -98,25 +112,31 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     }()
     
     let favouriteHeaderTitle = "Избранное"
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //dunno why it works but it fixes the problem with refreshcontrol
+        super.viewDidAppear(animated)
+        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
+        fixLargeTitlePositioning()
+    }
         
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
-        tableView.register(BoardTableViewCell.self, forCellReuseIdentifier: BoardTableViewCell.nibName)
-        tableView.indicatorStyle = .white
-        extendedLayoutIncludesOpaqueBars = true
+        view.backgroundColor = .blackBg
         
         tableView.estimatedRowHeight = Appearance.cellHeight
         
         presenter.initialSetup()
+        
+        
+        extendedLayoutIncludesOpaqueBars = true
+        edgesForExtendedLayout = UIRectEdge.top
     }
     
     override func loadView() {
         
         super.loadView()
-        view.backgroundColor = .blackBg
         setupTableView()
     }
     
@@ -133,6 +153,9 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         
         tableView.backgroundColor = .blackBg
         tableView.delegate = self
+        tableView.register(cell: BoardTableViewCell.self)
+        tableView.indicatorStyle = .white
+        tableView.contentInsetAdjustmentBehavior = .always
         
         view.addSubview(tableView)
         
@@ -143,6 +166,13 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
             make.left.equalTo(view).offset(Appearance.tableViewOffsetLeft)
             make.right.equalTo(view).offset(Appearance.tableViewOffsetRight)
         }
+        
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refresh() {
+        
+        presenter.refreshRequested()
     }
     
     //MARK: - TableViewDelegate
@@ -218,6 +248,8 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     }
     
     func refreshData() {
+        
+        refreshControl.endRefreshing()
         tableView.reloadData()
     }
     
@@ -263,6 +295,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     
     func displayErrorView() {
         
+        refreshControl.endRefreshing()
         view.subviews.forEach({ $0.removeFromSuperview() })
         view.addSubview(errorView)
         view.backgroundColor = .blackBg
@@ -285,6 +318,14 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
             make.width.equalTo(Appearance.loadingAnimationWidth)
             make.height.equalTo(Appearance.loadingAnimationHeight)
         }
+    }
+    
+    //MARK: - Utils
+    private func fixLargeTitlePositioning() {
+        
+        let top = tableView.adjustedContentInset.top
+        let y = refreshControl.frame.maxY + top
+        tableView.setContentOffset(CGPoint(x: .zero, y: -y), animated: true)
     }
 }
 

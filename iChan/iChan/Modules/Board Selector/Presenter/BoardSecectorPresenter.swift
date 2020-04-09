@@ -19,14 +19,18 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
     func initialSetup() {
         
         view.connectDataSource(dataSource)
-        interactor.obtainBoards()
         view.displayLoadingView()
+        interactor.obtainBoards()
     }
     
     func refreshInErrorState() {
         
         view.displayLoadingView()
         interactor.obtainBoards()
+    }
+    
+    func refreshRequested() {
+        interactor.manualRefresh()
     }
     
     func didSelectRow(at indexPath: IndexPath) {
@@ -61,6 +65,12 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
     }
     
+    func didFinishRefreshingBoards(boards: BoardCategories) {
+        
+        dataSource.boardCategories = boards
+        view.refreshData()
+    }
+    
     func didFinishObtainingBoards(with error: ApiError) {
         view.displayErrorView()
     }
@@ -70,6 +80,7 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
         guard let index = index else { return }
         
+        interactor.updateCachedCopy(with: dataSource.boardCategories)
         view.pinItem(at: index, sectionAdded: sectionCreated)
     }
     
@@ -77,6 +88,7 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         
         guard let index = index else { return }
         
+        interactor.updateCachedCopy(with: dataSource.boardCategories)
         view.unpinItem(at: index, sectionDeleted: sectionDeleted)
     }
 }

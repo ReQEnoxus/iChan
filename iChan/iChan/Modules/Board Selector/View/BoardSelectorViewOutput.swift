@@ -31,4 +31,7 @@ protocol BoardSelectorViewOutput: AnyObject {
     
     /// tells presenter that user has requested the refresh while module is in error state
     func refreshInErrorState()
+    
+    /// tells presenter that user has requested the refresh by pull-to-refresh
+    func refreshRequested()
 }

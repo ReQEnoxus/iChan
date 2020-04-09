@@ -12,4 +12,11 @@ protocol BoardSelectorInteractorInput: AnyObject {
     
     /// tell interactor to get boards
     func obtainBoards()
+    
+    /// tells interactor to update cached copy of board categories
+    /// - Parameter object: object to save
+    func updateCachedCopy(with object: BoardCategories?)
+    
+    /// tells interactor that manual refresh is requested
+    func manualRefresh()
 }

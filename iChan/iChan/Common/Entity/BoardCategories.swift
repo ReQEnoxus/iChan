@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// structure that contains boards with categories and also manages favourites (should be cached)
 class BoardCategories {
@@ -19,6 +20,9 @@ class BoardCategories {
         
         categories.append(response.other)
         categoryNames.append("Разное")
+        
+        categories.append(response.tech)
+        categoryNames.append("Техника и софт")
         
         categories.append(response.adult)
         categoryNames.append("Взрослым")
@@ -38,11 +42,12 @@ class BoardCategories {
         categories.append(response.thematics)
         categoryNames.append("Тематика")
         
-        categories.append(response.tech)
-        categoryNames.append("Техника и софт")
-        
         categories.append(response.japanese)
         categoryNames.append("Японская культура")
+    }
+    
+    init() {
+        
     }
     
     func pin(board: Board) -> Bool {
@@ -86,5 +91,43 @@ class BoardCategories {
         }
         
         return false
+    }
+}
+
+extension BoardCategories: RealmConvertible {
+    
+    func toRealmModel() -> Object {
+        
+        let model = BoardCategoriesModel()
+        
+        if hasPinndedBoards {
+            
+            categories[0].forEach({ model.favourites.append($0.toRealmModel() as! BoardModel) })
+            categories[1].forEach({ model.other.append($0.toRealmModel() as! BoardModel) })
+            categories[2].forEach({ model.tech.append($0.toRealmModel() as! BoardModel) })
+            categories[3].forEach({ model.adult.append($0.toRealmModel() as! BoardModel) })
+            categories[4].forEach({ model.games.append($0.toRealmModel() as! BoardModel) })
+            categories[5].forEach({ model.politics.append($0.toRealmModel() as! BoardModel) })
+            categories[6].forEach({ model.userBoards.append($0.toRealmModel() as! BoardModel) })
+            categories[7].forEach({ model.art.append($0.toRealmModel() as! BoardModel) })
+            categories[8].forEach({ model.thematics.append($0.toRealmModel() as! BoardModel) })
+            categories[9].forEach({ model.japanese.append($0.toRealmModel() as! BoardModel) })
+        }
+        else {
+            
+            categories[0].forEach({ model.other.append($0.toRealmModel() as! BoardModel) })
+            categories[1].forEach({ model.tech.append($0.toRealmModel() as! BoardModel) })
+            categories[2].forEach({ model.adult.append($0.toRealmModel() as! BoardModel) })
+            categories[3].forEach({ model.games.append($0.toRealmModel() as! BoardModel) })
+            categories[4].forEach({ model.politics.append($0.toRealmModel() as! BoardModel) })
+            categories[5].forEach({ model.userBoards.append($0.toRealmModel() as! BoardModel) })
+            categories[6].forEach({ model.art.append($0.toRealmModel() as! BoardModel) })
+            categories[7].forEach({ model.thematics.append($0.toRealmModel() as! BoardModel) })
+            categories[8].forEach({ model.japanese.append($0.toRealmModel() as! BoardModel) })
+        }
+        
+        model.categoryNames.append(objectsIn: categoryNames)
+        
+        return model
     }
 }
