@@ -56,4 +56,47 @@ class Thread: Codable {
         
         self.posts = try container.decode([Post].self, forKey: .posts)
     }
+    
+    func toDto() -> ThreadDto {
+        
+        var thumbNail: String? = nil
+        var file: String? = nil
+        var fileName: String? = nil
+        
+        if let path = posts[0].files?.first?.thumbnail, !path.starts(with: Endpoint.baseUrl) {
+            thumbNail = Endpoint.baseUrl + path
+        }
+        else if let path = posts[0].files?.first?.thumbnail {
+            thumbNail = path
+        }
+        
+        if let path = posts[0].files?.first?.path, !path.starts(with: Endpoint.baseUrl) {
+            file = Endpoint.baseUrl + path
+        }
+        else if let path = posts[0].files?.first?.path {
+            file = path
+        }
+        
+        if let name = posts[0].files?.first?.displayname {
+            fileName = name
+        }
+        
+        var calculatedFileCount = 0
+        
+        if filesCount == nil || filesCount == 0 {
+            calculatedFileCount = posts.filter({ $0.files != nil && !$0.files!.isEmpty }).count
+        }
+        
+        let dto = ThreadDto(number: posts[0].num,
+                            filesCount: filesCount == 0 || filesCount == nil ? calculatedFileCount : filesCount!,
+                            postsCount: postsCount == 0 || postsCount == nil ? posts.count : postsCount!,
+                            date: posts[0].date,
+                            thumbnail: thumbNail,
+                            file: file,
+                            text: posts[0].comment,
+                            posterName: posts[0].name,
+                            fileName: fileName)
+        
+        return dto
+    }
 }
