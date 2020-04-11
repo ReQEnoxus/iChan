@@ -31,31 +31,7 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     
                     for thread in threadResponse.threads {
                         
-                        var thumbNail: String? = nil
-                        var file: String? = nil
-                        var fileName: String? = nil
-                        
-                        if let path = thread.posts[0].files?.first?.thumbnail {
-                            thumbNail = Endpoint.baseUrl + path
-                        }
-                        
-                        if let path = thread.posts[0].files?.first?.path {
-                            file = Endpoint.baseUrl + path
-                        }
-                        
-                        if let name = thread.posts[0].files?.first?.displayname {
-                            fileName = name
-                        }
-                        
-                        let dto = ThreadDto(number: thread.posts[0].num,
-                                            filesCount: thread.filesCount ?? 0,
-                                            postsCount: thread.postsCount ?? 0,
-                                            date: thread.posts[0].date,
-                                            thumbnail: thumbNail,
-                                            file: file,
-                                            text: thread.posts[0].comment,
-                                            posterName: thread.posts[0].name,
-                                            fileName: fileName)
+                        let dto = thread.toDto()
                         
                         dtoArray.append(dto)
                     }
@@ -85,24 +61,6 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     let thread = threadResponse.threads[0]
                     
                     for i in 0 ..< thread.posts.count {
-                        
-//                        //gathering replies
-//                        if thread.posts[i].comment.contains("class=\"post-reply-link\"") {
-//                            
-//                            let matches = thread.posts[i].comment.matches(for: ">>[0-9]+")
-//                            
-//                            for match in matches {
-//                                
-//                                let matchNum = match.replacingOccurrences(of: ">>", with: String())
-//                                
-//                                for j in 0 ..< thread.posts.count {
-//                                    
-//                                    if thread.posts[j].num == matchNum {
-//                                        thread.posts[j].replies.append(thread.posts[i].num)
-//                                    }
-//                                }
-//                            }
-//                        }
                         
                         if thread.posts[i].files != nil {
                             
