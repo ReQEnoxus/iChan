@@ -111,13 +111,20 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         return containter
     }()
     
+    var initialLoad = true
+    
     let favouriteHeaderTitle = "Избранное"
     
     override func viewDidAppear(_ animated: Bool) {
         //dunno why it works but it fixes the problem with refreshcontrol
         super.viewDidAppear(animated)
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
-        fixLargeTitlePositioning()
+        
+        if initialLoad {
+            
+            fixLargeTitlePositioning()
+            initialLoad = false
+        }
     }
         
     override func viewDidLoad() {
