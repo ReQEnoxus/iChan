@@ -41,16 +41,25 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     //MARK: - Interactor Output
-    func didFinishLoadingThread(thread: Thread) {
+    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool) {
         
-        dataSource.appendPosts(thread.posts) { [weak self] idxToInsert, _ in
+        if replyLoadNeeded {
             
-            self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: [], animated: false)
-            self?.view.displayTableView()
-            
-            if let requestedPostNum = self?.postNum {
-                self?.router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
+            dataSource.appendPosts(thread.posts) { [weak self] idxToInsert, _ in
+                
+                self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: [], animated: false)
+                self?.view.displayTableView()
+                
+                if let requestedPostNum = self?.postNum {
+                    self?.router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
+                }
             }
+        }
+        else {
+            
+            dataSource.posts = thread.posts
+            view.refreshData()
+            view.displayTableView()
         }
     }
     

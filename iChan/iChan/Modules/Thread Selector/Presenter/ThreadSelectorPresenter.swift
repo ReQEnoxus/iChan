@@ -8,35 +8,44 @@
 
 import Foundation
 
-class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput {
+class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput, CacheSubscriber {
     
     weak var view: ThreadSelectorViewInput!
     
     var interactor: ThreadSelectorInteractorInput!
     var dataSource: ThreadSelectorDataSource!
     var router: ThreadSelectorRouterInput!
-    var board: Board!
+    var board: Board?
+    var title: String?
+    var mode: ThreadSelectorMode?
     
     //MARK: - ThreadSelectorViewOutput
     func loadMoreThreads() {
-        interactor.loadMoreThreads(board: board)
+        interactor.loadMoreThreads(board: board, mode: mode)
     }
     
     func initialSetup() {
         
         view.displayLoadingView()
-        view.setBoardName("/\(board.id)/ - \(board.name)")
+        if let title = title, mode != nil {
+            
+            view.setBoardName(title)
+            view.disablePullToRefresh()
+        }
+        else if let board = board {
+            view.setBoardName("/\(board.id)/ - \(board.name)")
+        }
         view.connectDataSource(dataSource)
     }
     
     func refreshRequested() {
-        interactor.refreshThreads(board: board)
+        interactor.refreshThreads(board: board, mode: mode)
     }
     
     func refreshInErrorState() {
         
         view.displayLoadingView()
-        interactor.refreshThreads(board: board)
+        interactor.refreshThreads(board: board, mode: mode)
     }
     
     func didPressedCollapse(on indexPath: IndexPath) {
@@ -50,10 +59,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         }
         else {
             
-            let board = self.board.id
+            let board = self.board?.id
             let num = dataSource.threads[indexPath.row].number
             
-            router.pushThreadController(board: board, num: num, postNum: nil)
+            router.pushThreadController(board: board ?? String(), num: num, postNum: nil)
         }
     }
     
@@ -78,14 +87,44 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     }
     
     func didFinishRefreshingWith(error: ApiError) {
-        view.displayErrorView()
+        
+        if let mode = mode {
+            
+            if mode == .cached {
+                view.displayErrorView(style: .cache)
+            }
+            else if mode == .realm {
+                view.displayErrorView(style: .history)
+            }
+        }
+        else {
+            view.displayErrorView(style: .network)
+        }
     }
     
     func didFinishRefreshingThreads(threads: [ThreadDto]) {
         
-        view.displayTableView()
-        dataSource.threads = threads
-        view.refreshData()
+        if threads.isEmpty {
+            
+            if let mode = mode {
+                
+                if mode == .cached {
+                    view.displayErrorView(style: .cache)
+                }
+                else if mode == .realm {
+                    view.displayErrorView(style: .history)
+                }
+            }
+            else {
+                view.displayErrorView(style: .network)
+            }
+        }
+        else {
+            
+            view.displayTableView()
+            dataSource.threads = threads
+            view.refreshData()
+        }
     }
     
     func didFinishCheckingUrl(with type: UrlType) {
@@ -102,6 +141,11 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         }
     }
     
+    //MARK: - Cache Subscriber
+    func cacheDidUpdate() {
+        interactor.refreshThreads(board: nil, mode: .cached)
+    }
+    
     //MARK: - ThreadSelectorDataSourceOutput
     func didTapImage(with attachment: AttachmentDto) {
         router.presentImage(with: attachment)
@@ -109,10 +153,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func didTapTextView(at indexPath: IndexPath) {
         
-        let board = self.board.id
+        let board = self.board?.id
         let num = dataSource.threads[indexPath.row].number
         
-        router.pushThreadController(board: board, num: num, postNum: nil)
+        router.pushThreadController(board: board ?? String(), num: num, postNum: nil)
     }
     
     func didTapUrl(url: URL) {

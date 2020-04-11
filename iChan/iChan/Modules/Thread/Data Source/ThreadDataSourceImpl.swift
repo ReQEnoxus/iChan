@@ -54,8 +54,11 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
                             
                             if backingArray[j].num == matchNum {
                                 
-                                backingArray[j].replies.append(posts[i].num)
-                                idxToUpdate.insert(IndexPath(row: j, section: 0))
+                                if !backingArray[j].replies.contains(posts[i].num) {
+                                    
+                                    backingArray[j].replies.append(posts[i].num)
+                                    idxToUpdate.insert(IndexPath(row: j, section: 0))
+                                }
                             }
                         }
                     }

@@ -40,8 +40,12 @@ protocol ThreadSelectorViewInput: AnyObject {
     func displayTableView()
     
     /// tells view to display error view
-    func displayErrorView()
+    /// - Parameter style: style of error message
+    func displayErrorView(style: ErrorMessageStyle)
     
     /// tells view to display loading view
     func displayLoadingView()
+    
+    /// tells view that pull-to-refresh functionality should not be accessible
+    func disablePullToRefresh()
 }

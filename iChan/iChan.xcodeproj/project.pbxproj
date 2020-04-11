@@ -57,6 +57,10 @@
 		7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED62243F058A006C7FB0 /* RealmConvertible.swift */; };
 		7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */; };
 		7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */; };
+		73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEB2441BF7000B8CDB3 /* Cache.swift */; };
+		73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */; };
+		73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */; };
+		73B8DEF224421CAA00B8CDB3 /* CacheSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEF124421CAA00B8CDB3 /* CacheSubscriber.swift */; };
 		73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A1792430D89700BFDAAE /* ThreadTableViewCellDelegate.swift */; };
 		73C2A17C2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17B2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift */; };
 		73C2A17E2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */; };
@@ -152,6 +156,10 @@
 		7391ED62243F058A006C7FB0 /* RealmConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConvertible.swift; sourceTree = "<group>"; };
 		7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheService.swift; sourceTree = "<group>"; };
 		7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheServiceImpl.swift; sourceTree = "<group>"; };
+		73B8DEEB2441BF7000B8CDB3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorMode.swift; sourceTree = "<group>"; };
+		73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageStyle.swift; sourceTree = "<group>"; };
+		73B8DEF124421CAA00B8CDB3 /* CacheSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSubscriber.swift; sourceTree = "<group>"; };
 		73C2A1792430D89700BFDAAE /* ThreadTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		73C2A17B2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSourceOutput.swift; sourceTree = "<group>"; };
 		73C2A17D2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorRouterInput.swift; sourceTree = "<group>"; };
@@ -300,6 +308,7 @@
 				731431BA241E70780065E0DB /* Presenter */,
 				731431B9241E706E0065E0DB /* View */,
 				731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */,
+				73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */,
 			);
 			path = "Thread Selector";
 			sourceTree = "<group>";
@@ -311,6 +320,7 @@
 				731431BD241E70AC0065E0DB /* ThreadSelectorViewController.swift */,
 				731431BF241E7C570065E0DB /* ThreadSelectorViewInput.swift */,
 				731431C5241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift */,
+				73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -408,6 +418,15 @@
 			path = BoardCategories;
 			sourceTree = "<group>";
 		};
+		73B8DEEA2441BF6100B8CDB3 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				73B8DEEB2441BF7000B8CDB3 /* Cache.swift */,
+				73B8DEF124421CAA00B8CDB3 /* CacheSubscriber.swift */,
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
 		73C2A1812430DF8500BFDAAE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +509,7 @@
 		73C3FF682413BEE9009D4A18 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				73B8DEEA2441BF6100B8CDB3 /* Caching */,
 				7306CEBD2435E4F300B301D1 /* Views */,
 				73C3FF6F2413BFDE009D4A18 /* Service */,
 				73C3FF6D2413BFCF009D4A18 /* Entity */,
@@ -902,6 +922,8 @@
 				736595F62435FCF600DE04D9 /* PostInteractorOutput.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
 				73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */,
+				73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */,
+				73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */,
 				7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */,
 				736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
@@ -914,6 +936,7 @@
 				73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */,
 				7306CEBF2435E50F00B301D1 /* PostView.swift in Sources */,
 				73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */,
+				73B8DEF224421CAA00B8CDB3 /* CacheSubscriber.swift in Sources */,
 				73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */,
 				736595F824360EC700DE04D9 /* PostInteractor.swift in Sources */,
 				73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */,
@@ -922,6 +945,7 @@
 				73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */,
 				73C2A1A0243208A500BFDAAE /* ThreadInteractor.swift in Sources */,
 				731431CA241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift in Sources */,
+				73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */,
 				73C3FF782413D09C009D4A18 /* ApiClient.swift in Sources */,
 				73C2A1A2243208F200BFDAAE /* ThreadInteractorOutput.swift in Sources */,
 				731431CF241E8C270065E0DB /* ThreadSelectorInteractor.swift in Sources */,

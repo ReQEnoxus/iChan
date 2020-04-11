@@ -12,7 +12,8 @@ protocol ThreadInteractorOutput: AnyObject {
     
     /// tells presenter that thread is loaded
     /// - Parameter thread: thread that has been loaded
-    func didFinishLoadingThread(thread: Thread)
+    /// - Parameter replyLoadNeeded: decides if datasource should recalculate replies
+    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool)
     
     /// tells presenter that loading the thread has finished with error
     /// - Parameter error: error that occured during fetch

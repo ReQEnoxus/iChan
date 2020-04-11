@@ -13,18 +13,26 @@ class ThreadInteractor: ThreadInteractorInput {
     weak var presenter: ThreadInteractorOutput!
     var service: BoardThreadsService!
     var urlService: UrlCheckerService!
+    var cache: Cache<String, Thread>!
     
     //MARK: - ThreadInteractorInput
     func loadThread(board: String, num: String) {
         
-        service.loadThread(board: board, num: num) { [weak self] result in
+        if let cached = cache[num] {
+            presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false)
+        }
+        else {
             
-            switch result {
+            service.loadThread(board: board, num: num) { [weak self] result in
                 
-                case .failure(let error):
-                    self?.presenter.didFinishLoadingThread(with: error)
-                case .success(let thread):
-                    self?.presenter.didFinishLoadingThread(thread: thread)
+                switch result {
+                    
+                    case .failure(let error):
+                        self?.presenter.didFinishLoadingThread(with: error)
+                    case .success(let thread):
+                        self?.cache.insert(thread, forKey: thread.posts[0].num)
+                        self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true)
+                }
             }
         }
     }
@@ -38,6 +46,12 @@ class ThreadInteractor: ThreadInteractorInput {
                 case .failure(let error):
                     self?.presenter.didFinishLoadingMorePosts(with: error)
                 case .success(let posts):
+                    
+                    if let cached = self?.cache[num] {
+                        cached.posts += posts
+                        self?.cache.insert(cached, forKey: num)
+                    }
+                    
                     self?.presenter.didFinishLoadingMorePosts(posts: posts)
             }
         }

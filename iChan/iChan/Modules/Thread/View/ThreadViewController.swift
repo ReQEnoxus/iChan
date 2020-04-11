@@ -122,6 +122,11 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
         navigationItem.largeTitleDisplayMode = .never
         definesPresentationContext = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
         presenter.loadThread()
     }
     
@@ -136,7 +141,7 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     //MARK: - PullUpToRefresh
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
+        
         let contentSize = scrollView.contentSize.height
         let tableSize = scrollView.frame.size.height - scrollView.contentInset.top - scrollView.contentInset.bottom
         let canLoadFromBottom = contentSize > tableSize
@@ -158,6 +163,8 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
 
             presenter.update()
         }
+        
+        scrollView.contentInset.bottom = previousScrollViewBottomInset
     }
     
     private func stopLoading() {

@@ -12,11 +12,12 @@ protocol ThreadSelectorInteractorInput: AnyObject {
     
     /// tells interactor to load more threads from given board
     /// - Parameter board: board from which threads should be loaded
-    func loadMoreThreads(board: Board)
+    func loadMoreThreads(board: Board?, mode: ThreadSelectorMode?)
     
     /// tells interactor to refresh threads from current board
     /// - Parameter board: board from which threads should be retreived
-    func refreshThreads(board: Board)
+    /// - Parameter mode: if specified, uses different mechanism for loading threads
+    func refreshThreads(board: Board?, mode: ThreadSelectorMode?)
     
     /// tells interactor that some url was tapped
     /// - Parameter url: tapped url

@@ -20,6 +20,7 @@ class ThreadConfigurator {
         let router = ThreadRouter()
         let threadService = BoardThreadsServiceImpl()
         let urlService = UrlCheckerServiceImpl()
+        let cache = (UIApplication.shared.delegate as! AppDelegate).threadCache
         
         view.presenter = presenter
         
@@ -34,6 +35,7 @@ class ThreadConfigurator {
         interactor.presenter = presenter
         interactor.service = threadService
         interactor.urlService = urlService
+        interactor.cache = cache
         
         dataSource.presenter = presenter
         

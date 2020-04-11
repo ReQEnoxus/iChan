@@ -28,15 +28,21 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let actionImageSize = CGSize(width: 40, height: 40)
         static let errorLogoImageSize = CGSize(width: 150, height: 150)
         static let errorLogoLeftShift: CGFloat = 30
+        static let errorViewWidthMultiplier = 0.75
+        static let errorLabelLineNumber = 0
         
         static let collapseActionTitle = "  Скрыть  "
         static let saveActionTitle = "Сохранить"
-        static let errorText = "Не удалось загрузить треды с этой доски"
+        static let networkErrorText = "Не удалось загрузить треды с этой доски"
+        static let cacheErrorText = "Здесь будут отображаться просмотренные треды"
+        static let historyErrorText = "Здесь будут отображаться сохраненные треды"
         static let retryButtonTitle = "Обновить"
         
         static let collapseImageName = "SF_eye_fill"
         static let saveImageName = "SF_square_and_arrow_down_on_square"
-        static let errorLogoImageName = "SF_exclamationmark_octagon-1"
+        static let networkErrorLogoImageName = "SF_exclamationmark_octagon-1"
+        static let cacheErrorLogoImageName = "SF_clock_fill-1"
+        static let historyErrorLogoImageName = "SF_square_and_arrow_down_on_square-1"
         
         static let defaultCellHeight: CGFloat = 44
         
@@ -97,6 +103,33 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         return view
     }()
     
+    lazy var errorLabel: UILabel = {
+        
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = Appearance.errorLabelLineNumber
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var retryButton: UIButton = {
+        
+        let retryButton = UIButton(type: .system)
+        
+        retryButton.setTitle(Appearance.retryButtonTitle, for: .normal)
+        retryButton.tintColor = .orangeUi
+        retryButton.setTitleColor(.orangeUi, for: .normal)
+        retryButton.setTitleColor(.orangeUiDarker, for: .selected)
+        retryButton.addTarget(self, action: #selector(refreshInErrorState), for: .touchUpInside)
+        
+        return retryButton
+    }()
+    
+    lazy var errorImageView: UIImageView = {
+        return UIImageView()
+    }()
+    
     lazy var errorView: UIStackView = {
         
         let containter = UIStackView()
@@ -104,21 +137,8 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         containter.axis = .vertical
         containter.spacing = Appearance.conatinerSpacing
         
-        let errorImage = UIImage(named: Appearance.errorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
-        let imageView = UIImageView(image: errorImage)
-        let textLabel = UILabel()
-        textLabel.text = Appearance.errorText
-        textLabel.textColor = .white
-        
-        let retryButton = UIButton(type: .system)
-        retryButton.setTitle(Appearance.retryButtonTitle, for: .normal)
-        retryButton.tintColor = .orangeUi
-        retryButton.setTitleColor(.orangeUi, for: .normal)
-        retryButton.setTitleColor(.orangeUiDarker, for: .selected)
-        retryButton.addTarget(self, action: #selector(refreshInErrorState), for: .touchUpInside)
-        
-        containter.addArrangedSubview(imageView)
-        containter.addArrangedSubview(textLabel)
+        containter.addArrangedSubview(errorImageView)
+        containter.addArrangedSubview(errorLabel)
         containter.addArrangedSubview(retryButton)
         
         return containter
@@ -263,14 +283,38 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         }
     }
     
-    func displayErrorView() {
+    func displayErrorView(style: ErrorMessageStyle) {
         
         view.subviews.forEach({ $0.removeFromSuperview() })
+        
+        switch style {
+            
+        case .network:
+            
+            errorLabel.text = Appearance.networkErrorText
+            errorImageView.image = UIImage(named: Appearance.networkErrorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: Appearance.errorLogoLeftShift, shiftTop: .zero)
+            retryButton.isHidden = false
+            
+        case .cache:
+            
+            errorLabel.text = Appearance.cacheErrorText
+            errorImageView.image = UIImage(named: Appearance.cacheErrorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
+            retryButton.isHidden = true
+            
+        case .history:
+            
+            errorLabel.text = Appearance.historyErrorText
+            errorImageView.image = UIImage(named: Appearance.historyErrorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
+            retryButton.isHidden = true
+        }
+        
         view.addSubview(errorView)
         view.backgroundColor = .blackBg
         
         errorView.snp.makeConstraints { make in
+            
             make.center.equalToSuperview()
+            make.width.lessThanOrEqualToSuperview().multipliedBy(Appearance.errorViewWidthMultiplier)
         }
     }
     
@@ -292,6 +336,10 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     func stopLoadingIndicator() {
         
         indicatorView.stopAnimating()
+    }
+    
+    func disablePullToRefresh() {
+        tableView.refreshControl = nil
     }
     
     func refreshData() {

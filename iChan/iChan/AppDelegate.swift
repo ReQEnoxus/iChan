@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loadingAnimationName = "loading"
     let loadingViewWidth: CGFloat = 150
     let loadingViewHeight: CGFloat = 150
+    let historyModuleName = "История"
+    
+    let threadCache = Cache<String, Thread>()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -40,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = MainTabBarController()
         
         let boardController = UINavigationController(rootViewController: BoardSelectorConfigurator.configureModule())
-        let historyController = UINavigationController(rootViewController: UIViewController())
+        let historyController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .cached, title: historyModuleName))
         let savedController = UINavigationController(rootViewController: UIViewController())
         let settingsController = UINavigationController(rootViewController: UIViewController())
         
