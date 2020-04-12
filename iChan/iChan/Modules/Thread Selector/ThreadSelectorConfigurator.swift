@@ -61,7 +61,7 @@ class ThreadSelectorConfigurator {
         presenter.title = title
         
         if mode == .cached {
-            cache.subscribe(presenter)
+            cache.subscribe(interactor)
         }
         
         dataSource.presenter = presenter

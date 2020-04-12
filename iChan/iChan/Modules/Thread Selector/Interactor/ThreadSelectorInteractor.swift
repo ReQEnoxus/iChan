@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ThreadSelectorInteractor: ThreadSelectorInteractorInput {
+class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
     
     weak var presenter: ThreadSelectorInteractorOutput!
     var service: BoardThreadsService!
@@ -90,5 +90,10 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput {
     
     func didTapUrl(url: URL) {
         presenter.didFinishCheckingUrl(with: urlService.typeOf(url: url))
+    }
+    
+    //MARK: - Cache Subscriber
+    func cacheDidUpdate() {
+        refreshThreads(board: nil, mode: .cached)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput, CacheSubscriber {
+class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput {
     
     weak var view: ThreadSelectorViewInput!
     
@@ -139,11 +139,6 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
                 // impossible case
                 break
         }
-    }
-    
-    //MARK: - Cache Subscriber
-    func cacheDidUpdate() {
-        interactor.refreshThreads(board: nil, mode: .cached)
     }
     
     //MARK: - ThreadSelectorDataSourceOutput
