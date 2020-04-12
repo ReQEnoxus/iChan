@@ -31,7 +31,7 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     func update() {
-        interactor.loadNewPosts(board: board, num: num, offset: dataSource.posts.count + 1)
+        interactor.loadNewPosts(initial: dataSource.posts, board: board, num: num, offset: dataSource.posts.count + 1)
     }
     
     func refreshInErrorState() {
@@ -41,18 +41,15 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     //MARK: - Interactor Output
-    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool) {
+    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool, idxToInsert: [IndexPath], idxToUpdate: [IndexPath]) {
         
         if replyLoadNeeded {
             
-            dataSource.appendPosts(thread.posts) { [weak self] idxToInsert, _ in
-                
-                self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: [], animated: false)
-                self?.view.displayTableView()
-                
-                if let requestedPostNum = self?.postNum {
-                    self?.router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
-                }
+            dataSource.posts = thread.posts
+            view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: false)
+            view.displayTableView()
+            if let requestedPostNum = postNum {
+                router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
             }
         }
         else {
@@ -69,11 +66,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         view.displayErrorView()
     }
     
-    func didFinishLoadingMorePosts(posts: [Post]) {
-
-        dataSource.appendPosts(posts) { [weak self] idxToInsert, idxToUpdate in
-            self?.view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: true)
-        }
+    func didFinishLoadingMorePosts(posts: [Post], idxToInsert: [IndexPath], idxToUpdate: [IndexPath]) {
+        
+        dataSource.posts = posts
+        view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: true)
     }
     
     func didFinishLoadingMorePosts(with error: ApiError) {

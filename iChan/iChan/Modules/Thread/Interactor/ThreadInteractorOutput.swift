@@ -13,7 +13,7 @@ protocol ThreadInteractorOutput: AnyObject {
     /// tells presenter that thread is loaded
     /// - Parameter thread: thread that has been loaded
     /// - Parameter replyLoadNeeded: decides if datasource should recalculate replies
-    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool)
+    func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool, idxToInsert: [IndexPath], idxToUpdate: [IndexPath])
     
     /// tells presenter that loading the thread has finished with error
     /// - Parameter error: error that occured during fetch
@@ -21,7 +21,7 @@ protocol ThreadInteractorOutput: AnyObject {
     
     /// tells presenter that updated posts are loaded
     /// - Parameter posts: fetched posts
-    func didFinishLoadingMorePosts(posts: [Post])
+    func didFinishLoadingMorePosts(posts: [Post], idxToInsert: [IndexPath], idxToUpdate: [IndexPath])
     
     /// tells presenter that loading more posts has finished with error
     /// - Parameter error: error that occured during fetch

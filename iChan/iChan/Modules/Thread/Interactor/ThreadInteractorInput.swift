@@ -19,7 +19,7 @@ protocol ThreadInteractorInput: AnyObject {
     /// - Parameter board: board where thread is located
     /// - Parameter num: number of OP-post
     /// - Parameter offset: number of the first post to be fetched
-    func loadNewPosts(board: String, num: String, offset: Int)
+    func loadNewPosts(initial: [Post], board: String, num: String, offset: Int)
     
     /// tells interactor that user did tapped url
     /// - Parameter url: tapped url
