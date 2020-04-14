@@ -23,7 +23,13 @@ protocol ThreadSelectorInteractorInput: AnyObject {
     /// - Parameter url: tapped url
     func didTapUrl(url: URL)
     
+    /// tells interactor to save thread into persistent storage
+    /// - Parameter board: board
+    /// - Parameter num: OP-number
     func saveThread(board: String, num: String)
     
+    /// tells interactor to delete thread from persistent storage
+    /// - Parameter board: board
+    /// - Parameter num: OP-number
     func deleteThread(board: String, num: String)
 }

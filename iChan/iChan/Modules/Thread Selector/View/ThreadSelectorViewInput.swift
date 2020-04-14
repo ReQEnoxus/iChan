@@ -51,11 +51,15 @@ protocol ThreadSelectorViewInput: AnyObject {
     /// tells view that pull-to-refresh functionality should not be accessible
     func disablePullToRefresh()
     
+    /// sets the boolean flag that is deciding which set of contextual items will be used in the thread selector view
     func configureHistoryContextualActions()
     
+    /// displays loading indicator
     func displayLoadingHud()
     
+    /// hides loading indicator
     func hideLoadingHud()
     
+    /// tells if the view is present in the view hierarchy
     var isVisible: Bool { get }
 }
