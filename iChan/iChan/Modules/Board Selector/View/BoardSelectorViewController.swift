@@ -118,10 +118,10 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     override func viewDidAppear(_ animated: Bool) {
         //dunno why it works but it fixes the problem with refreshcontrol
         super.viewDidAppear(animated)
-        configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
         
         if initialLoad {
             
+            configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: Appearance.title, preferredLargeTitle: true)
             fixLargeTitlePositioning()
             initialLoad = false
         }
