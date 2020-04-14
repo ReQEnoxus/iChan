@@ -15,7 +15,7 @@ protocol BoardCategoriesCacheService: AnyObject {
     func update(_ new: BoardCategories)
     
     /// returns current cached copy if it exists, otherwise returns nil
-    func current() -> BoardCategories?
+    func current(completion: @escaping (BoardCategories?) -> Void)
     
     /// deletes current cached copy
     func delete()

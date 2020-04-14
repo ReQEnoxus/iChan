@@ -20,33 +20,39 @@ class ThreadInteractor: ThreadInteractorInput {
     //MARK: - ThreadInteractorInput
     func loadThread(board: String, num: String) {
         
-        if let stored = threadStorageService.get(board: board, num: num) {
+        threadStorageService.get(board: board, num: num) { [weak self] stored in
             
-            cache.insert(stored, forKey: stored.posts[0].num)
-            presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
-        }
-        else if let cached = cache[num] {
-            presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
-        }
-        else {
-            
-            service.loadThread(board: board, num: num) { [weak self] result in
+            guard let stored = stored else {
                 
-                switch result {
-                    
-                    case .failure(let error):
-                        print("error loading from net")
-                        self?.presenter.didFinishLoadingThread(with: error)
-                    case .success(let thread):
-                        
-                        self?.replyService.generateRepliesWithIndices(for: thread.posts) { posts, idxToInsert, idxToUpdate in
-                            
-                            thread.posts = posts
-                            self?.cache.insert(thread, forKey: thread.posts[0].num)
-                            self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
-                        }
+                if let cached = self?.cache[num] {
+                    self?.presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
                 }
+                else {
+                    
+                    self?.service.loadThread(board: board, num: num) { [weak self] result in
+                        
+                        switch result {
+                            
+                            case .failure(let error):
+                                print("error loading from net")
+                                self?.presenter.didFinishLoadingThread(with: error)
+                            case .success(let thread):
+                                
+                                self?.replyService.generateRepliesWithIndices(for: thread.posts) { posts, idxToInsert, idxToUpdate in
+                                    
+                                    thread.posts = posts
+                                    self?.cache.insert(thread, forKey: thread.posts[0].num)
+                                    self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
+                                }
+                        }
+                    }
+                }
+                
+                return
             }
+            
+            self?.cache.insert(stored, forKey: stored.posts[0].num)
+            self?.presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
         }
     }
     

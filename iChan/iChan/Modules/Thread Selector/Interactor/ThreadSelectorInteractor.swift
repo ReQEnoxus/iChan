@@ -22,7 +22,7 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
         
         threadStorageService.observe { [weak self] deletions, insertions, modifications in
             
-            if let threads = self?.threadStorageService.getAll() {
+            self?.threadStorageService.getAll() { threads in
                 
                 self?.presenter.didReceiveUpdateNotification(new: threads.map({ $0.toDto() }),
                                                             deletions: deletions.map({ IndexPath(row: $0, section: 0) }),
@@ -66,12 +66,15 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
                 
                 if !self.cachedThreadsLoaded {
                     
-                    let dtoArray = self.threadStorageService.getAll().map({ $0.toDto() })
-                    
-                    DispatchQueue.main.async {
+                    self.threadStorageService.getAll() { threads in
                         
-                        self.cachedThreadsLoaded = true
-                        self.presenter.didFinishLoadingMoreThreads(threads: dtoArray)
+                        let mapped = threads.map( { $0.toDto() })
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.cachedThreadsLoaded = true
+                            self.presenter.didFinishLoadingMoreThreads(threads: mapped)
+                        }
                     }
                 }
                 else {
@@ -118,11 +121,13 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
         }
         else if let mode = mode, mode == .realm {
             
-            let dtoArray = self.threadStorageService.getAll().map({ $0.toDto() })
-            
-            self.cachedThreadsLoaded = true
-            self.presenter.didFinishRefreshingThreads(threads: dtoArray)
-            
+            threadStorageService.getAll() { threads in
+                
+                let dtoArray = threads.map({ $0.toDto() })
+                
+                self.cachedThreadsLoaded = true
+                self.presenter.didFinishRefreshingThreads(threads: dtoArray)
+            }
         }
         else if let board = board {
             

@@ -22,12 +22,12 @@ protocol CrudService: AnyObject {
     /// gets all the objects from the realm matching the predicate
     /// - Parameter type: type of the objects
     /// - Parameter predicate: optional predicate
-    func get<T: Object>(type: T.Type, by predicate: NSPredicate?) -> [T]
+    func get<T: Object>(type: T.Type, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void)
     
     /// gets specific object by primary key
     /// - Parameter type: type of the object
     /// - Parameter primaryKey: primary key
-    func get<T: Object>(type: T.Type, by primaryKey: String) -> T?
+    func get<T: Object>(type: T.Type, by primaryKey: String, completion: @escaping (T?) -> Void)
     
     /// delete object from the realm
     /// - Parameter object: object to delete
@@ -36,6 +36,11 @@ protocol CrudService: AnyObject {
     /// delete object from the realm
     /// - Parameter object: object to delete
     func delete<T: Object>(object: T)
+    
+    /// deletes object from the realm
+    /// - Parameter type: type of deleted object
+    /// - Parameter predicate: predicate to filter objects
+    func delete<T: Object>(type: T.Type, predicate: NSPredicate)
     
     /// delete all objects of given type from realm
     /// - Parameter type: type of the objects

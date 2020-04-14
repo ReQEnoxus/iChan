@@ -10,9 +10,9 @@ import Foundation
 
 protocol ThreadStorageService: AnyObject {
     
-    func getAll() -> [Thread]
+    func getAll(completion: @escaping ([Thread]) -> Void)
     
-    func get(board: String, num: String) -> Thread?
+    func get(board: String, num: String, completion: @escaping (Thread?) -> Void)
     
     func save(_ thread: Thread)
     
