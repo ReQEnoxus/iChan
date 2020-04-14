@@ -75,6 +75,15 @@ class ThreadInteractor: ThreadInteractorInput {
                         }
                         
                         self?.presenter.didFinishLoadingMorePosts(posts: updatedPosts, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
+                        
+                        self?.threadStorageService.get(board: board, num: num, completion: { thread in
+                            
+                            if let thread = thread {
+                                
+                                thread.posts = updatedPosts
+                                self?.threadStorageService.update(thread: thread)
+                            }
+                        })
                     }
             }
         }
