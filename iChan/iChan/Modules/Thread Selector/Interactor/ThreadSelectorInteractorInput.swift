@@ -22,4 +22,8 @@ protocol ThreadSelectorInteractorInput: AnyObject {
     /// tells interactor that some url was tapped
     /// - Parameter url: tapped url
     func didTapUrl(url: URL)
+    
+    func saveThread(board: String, num: String)
+    
+    func deleteThread(board: String, num: String)
 }

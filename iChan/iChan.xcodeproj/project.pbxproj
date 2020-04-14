@@ -28,6 +28,9 @@
 		731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */; };
 		731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */; };
 		731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */; };
+		731D6C8724433BC800546BCD /* ThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8624433BC800546BCD /* ThreadModel.swift */; };
+		731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8924434A9E00546BCD /* ThreadStorageService.swift */; };
+		731D6C8C24434B1E00546BCD /* ThreadStorageServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */; };
 		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
 		736595F12435F45300DE04D9 /* PostInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F02435F45300DE04D9 /* PostInteractorInput.swift */; };
 		736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F32435F4C200DE04D9 /* PostRouterInput.swift */; };
@@ -53,6 +56,7 @@
 		738EC27A24430B090067A9FC /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27924430B090067A9FC /* PostModel.swift */; };
 		738EC27D24430D4D0067A9FC /* ReplyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27C24430D4D0067A9FC /* ReplyService.swift */; };
 		738EC27F24430F9C0067A9FC /* ReplyServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27E24430F9C0067A9FC /* ReplyServiceImpl.swift */; };
+		738EC2812443394F0067A9FC /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC2802443394F0067A9FC /* FileModel.swift */; };
 		7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED59243F0104006C7FB0 /* BoardCategoriesModel.swift */; };
 		7391ED5C243F0199006C7FB0 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED5B243F0199006C7FB0 /* BoardModel.swift */; };
 		7391ED5F243F02BE006C7FB0 /* CrudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED5E243F02BE006C7FB0 /* CrudService.swift */; };
@@ -60,6 +64,7 @@
 		7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED62243F058A006C7FB0 /* RealmConvertible.swift */; };
 		7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */; };
 		7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */; };
+		73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7781B244461B100950BD0 /* HudAnimationView.swift */; };
 		73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEB2441BF7000B8CDB3 /* Cache.swift */; };
 		73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */; };
 		73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */; };
@@ -130,6 +135,9 @@
 		731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSource.swift; sourceTree = "<group>"; };
 		731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSourceImpl.swift; sourceTree = "<group>"; };
 		731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorConfigurator.swift; sourceTree = "<group>"; };
+		731D6C8624433BC800546BCD /* ThreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadModel.swift; sourceTree = "<group>"; };
+		731D6C8924434A9E00546BCD /* ThreadStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageService.swift; sourceTree = "<group>"; };
+		731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageServiceImpl.swift; sourceTree = "<group>"; };
 		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		736595F02435F45300DE04D9 /* PostInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInteractorInput.swift; sourceTree = "<group>"; };
 		736595F32435F4C200DE04D9 /* PostRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouterInput.swift; sourceTree = "<group>"; };
@@ -155,6 +163,7 @@
 		738EC27924430B090067A9FC /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		738EC27C24430D4D0067A9FC /* ReplyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyService.swift; sourceTree = "<group>"; };
 		738EC27E24430F9C0067A9FC /* ReplyServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyServiceImpl.swift; sourceTree = "<group>"; };
+		738EC2802443394F0067A9FC /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
 		7391ED59243F0104006C7FB0 /* BoardCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesModel.swift; sourceTree = "<group>"; };
 		7391ED5B243F0199006C7FB0 /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
 		7391ED5E243F02BE006C7FB0 /* CrudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrudService.swift; sourceTree = "<group>"; };
@@ -162,6 +171,7 @@
 		7391ED62243F058A006C7FB0 /* RealmConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConvertible.swift; sourceTree = "<group>"; };
 		7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheService.swift; sourceTree = "<group>"; };
 		7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheServiceImpl.swift; sourceTree = "<group>"; };
+		73B7781B244461B100950BD0 /* HudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudAnimationView.swift; sourceTree = "<group>"; };
 		73B8DEEB2441BF7000B8CDB3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorMode.swift; sourceTree = "<group>"; };
 		73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageStyle.swift; sourceTree = "<group>"; };
@@ -284,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				7306CEBE2435E50F00B301D1 /* PostView.swift */,
+				73B7781B244461B100950BD0 /* HudAnimationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +388,15 @@
 			path = "Data Source";
 			sourceTree = "<group>";
 		};
+		731D6C8824434A7900546BCD /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				731D6C8924434A9E00546BCD /* ThreadStorageService.swift */,
+				731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */,
+			);
+			path = Threads;
+			sourceTree = "<group>";
+		};
 		735E618A241CB9C4001053A6 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +431,8 @@
 				7391ED5B243F0199006C7FB0 /* BoardModel.swift */,
 				7391ED62243F058A006C7FB0 /* RealmConvertible.swift */,
 				738EC27924430B090067A9FC /* PostModel.swift */,
+				738EC2802443394F0067A9FC /* FileModel.swift */,
+				731D6C8624433BC800546BCD /* ThreadModel.swift */,
 			);
 			path = "Realm Models";
 			sourceTree = "<group>";
@@ -418,6 +440,7 @@
 		7391ED5D243F029C006C7FB0 /* Data Base */ = {
 			isa = PBXGroup;
 			children = (
+				731D6C8824434A7900546BCD /* Threads */,
 				7391ED5E243F02BE006C7FB0 /* CrudService.swift */,
 				7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */,
 				7391ED69243F5953006C7FB0 /* BoardCategories */,
@@ -857,6 +880,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -870,6 +894,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -919,6 +944,7 @@
 				7306CEC12435F1CF00B301D1 /* PostViewInput.swift in Sources */,
 				73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */,
 				73C2A1AA2432317D00BFDAAE /* ThreadConfigurator.swift in Sources */,
+				731D6C8C24434B1E00546BCD /* ThreadStorageServiceImpl.swift in Sources */,
 				73C2A1A824322FD200BFDAAE /* ThreadRouter.swift in Sources */,
 				7306CEC32435F2D000B301D1 /* PostViewOutput.swift in Sources */,
 				73C2A17C2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift in Sources */,
@@ -930,9 +956,11 @@
 				73C2A1832430DFA000BFDAAE /* AttachmentDto.swift in Sources */,
 				731431B3241E68630065E0DB /* ThreadDto.swift in Sources */,
 				73C2A18E2431EA5C00BFDAAE /* ThreadViewController.swift in Sources */,
+				731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
 				7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */,
 				7391ED5F243F02BE006C7FB0 /* CrudService.swift in Sources */,
+				731D6C8724433BC800546BCD /* ThreadModel.swift in Sources */,
 				73828DC524154F0D0073623D /* BoardSelectorInteractor.swift in Sources */,
 				73828DC324154E650073623D /* BoardSelectorViewInput.swift in Sources */,
 				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
@@ -959,6 +987,7 @@
 				73828DC124154E3A0073623D /* BoardSelectorInteractorOutput.swift in Sources */,
 				736595F824360EC700DE04D9 /* PostInteractor.swift in Sources */,
 				73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */,
+				73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */,
 				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
 				73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */,
@@ -986,6 +1015,7 @@
 				73C2A19E2432002200BFDAAE /* ThreadRouterInput.swift in Sources */,
 				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */,
+				738EC2812443394F0067A9FC /* FileModel.swift in Sources */,
 				7306CEBC2435DF6300B301D1 /* PostViewController.swift in Sources */,
 				736595F12435F45300DE04D9 /* PostInteractorInput.swift in Sources */,
 				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,

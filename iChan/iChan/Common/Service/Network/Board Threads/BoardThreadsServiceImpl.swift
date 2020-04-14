@@ -31,6 +31,7 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     
                     for thread in threadResponse.threads {
                         
+                        thread.board = board
                         let dto = thread.toDto()
                         
                         dtoArray.append(dto)
@@ -59,6 +60,8 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                 case .success(let threadResponse):
                     
                     let thread = threadResponse.threads[0]
+                    
+                    thread.board = board
                     
                     for i in 0 ..< thread.posts.count {
                         

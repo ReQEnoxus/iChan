@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// post model that is obtained from API
-class Post: Codable {
+class Post: Codable, RealmConvertible {
     
     var comment: String
     var name: String
@@ -56,10 +57,28 @@ class Post: Codable {
         self.date = date
         self.files = files
     }
+    
+    func toRealmModel() -> Object {
+        
+        let model = PostModel()
+        
+        model.comment = comment
+        model.name = name
+        model.op = op
+        model.num = num
+        model.date = date
+        model.repliesStr = repliesStr
+        
+        if let files = files {
+            model.files.append(objectsIn: files.map({ $0.toRealmModel() as! FileModel }))
+        }
+        
+        return model
+    }
 }
 
 /// convenience structure for parsing
-class File: Codable {
+class File: Codable, RealmConvertible {
     
     var path: String
     var thumbnail: String
@@ -69,5 +88,16 @@ class File: Codable {
         self.path = path
         self.thumbnail = thumbnail
         self.displayname = displayname
+    }
+    
+    func toRealmModel() -> Object {
+        
+        let model = FileModel()
+        
+        model.path = path
+        model.thumbnail = thumbnail
+        model.displayName = displayname
+        
+        return model
     }
 }

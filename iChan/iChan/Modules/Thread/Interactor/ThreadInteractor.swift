@@ -15,11 +15,17 @@ class ThreadInteractor: ThreadInteractorInput {
     var urlService: UrlCheckerService!
     var cache: Cache<String, Thread>!
     var replyService: ReplyService!
+    var threadStorageService: ThreadStorageService!
     
     //MARK: - ThreadInteractorInput
     func loadThread(board: String, num: String) {
         
-        if let cached = cache[num] {
+        if let stored = threadStorageService.get(board: board, num: num) {
+            
+            cache.insert(stored, forKey: stored.posts[0].num)
+            presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
+        }
+        else if let cached = cache[num] {
             presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
         }
         else {
@@ -29,6 +35,7 @@ class ThreadInteractor: ThreadInteractorInput {
                 switch result {
                     
                     case .failure(let error):
+                        print("error loading from net")
                         self?.presenter.didFinishLoadingThread(with: error)
                     case .success(let thread):
                         

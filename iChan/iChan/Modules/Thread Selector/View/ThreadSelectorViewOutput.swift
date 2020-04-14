@@ -30,4 +30,8 @@ protocol ThreadSelectorViewOutput: AnyObject {
     /// - Parameter indexPath: index of target cell
     /// - Parameter collapsed: flag indicates whether the requested cell was collapsed
     func didSelectItem(at indexPath: IndexPath, collapsed: Bool)
+    
+    func didPressedSave(on indexPath: IndexPath)
+    
+    func didPressedDelete(on indexPath: IndexPath)
 }

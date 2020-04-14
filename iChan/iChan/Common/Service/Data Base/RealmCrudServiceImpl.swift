@@ -12,12 +12,39 @@ import RealmSwift
 class RealmCrudServiceImpl: CrudService {
     
     var mainRealm: Realm? = try? Realm(configuration: .defaultConfiguration)
+    var observerTokens = [NotificationToken]()
+    
+    func registerObserver<T: Object>(on type: T.Type, onUpdate: @escaping ([Int], [Int], [Int]) -> Void) {
+        
+        guard let token = mainRealm?.objects(type).observe({ block in
+            
+            switch block {
+                
+                case .update(_, let deletions, let insertions, let modifications):
+                    onUpdate(deletions, insertions, modifications)
+                    
+                default: break
+            }
+        }) else {
+            return
+        }
+        
+        observerTokens.append(token)
+    }
     
     func delete<T>(object: T) where T : RealmConvertible {
         
         try? mainRealm?.write {
             
             mainRealm?.delete(object.toRealmModel())
+        }
+    }
+    
+    func delete<T>(object: T) where T : Object {
+        
+        try? mainRealm?.write {
+            
+            mainRealm?.delete(object)
         }
     }
     
@@ -55,5 +82,12 @@ class RealmCrudServiceImpl: CrudService {
         else {
             return Array(realm.objects(T.self))
         }
+    }
+    
+    func get<T>(type: T.Type, by primaryKey: String) -> T? where T : Object {
+        
+        guard let realm = mainRealm else { return nil }
+        
+        return realm.object(ofType: T.self, forPrimaryKey: primaryKey)
     }
 }

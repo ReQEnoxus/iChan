@@ -9,8 +9,9 @@
 import UIKit
 import SnapKit
 import Lottie
+import JGProgressHUD
 
-class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate {
+class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate, JGProgressHUDDelegate {
     
     //MARK: - UI Constraints
     private class Appearance {
@@ -43,6 +44,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let networkErrorLogoImageName = "SF_exclamationmark_octagon-1"
         static let cacheErrorLogoImageName = "SF_clock_fill-1"
         static let historyErrorLogoImageName = "SF_square_and_arrow_down_on_square-1"
+        static let historyDeleteActionImageName = "SF_xmark_octagon"
         
         static let defaultCellHeight: CGFloat = 44
         
@@ -68,13 +70,32 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
             }
         }
     }
+    
+    var isVisible: Bool {
+        
+        return self.viewIfLoaded?.window != nil
+    }
+    
     var isInitialRefresh = true
+    
+    var historyContextualSetup = false
     
     var presenter: ThreadSelectorViewOutput!
     let tableView: UITableView = UITableView()
     var boardName: String!
     
     //MARK: - Views
+    
+    lazy var hud: JGProgressHUD = {
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.interactionType = .blockAllTouches
+        hud.indicatorView = HudAnimationView()
+        hud.delegate = self
+        
+        return hud
+    }()
+    
     lazy var refreshControl: UIRefreshControl = {
         
         var refreshControl = UIRefreshControl()
@@ -197,34 +218,55 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         
         let cell = tableView.cellForRow(at: indexPath) as! ThreadTableViewCell
         
-        if !cell.isCollapsed {
-            
-            let collapseAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completion in
+        if !historyContextualSetup {
+        
+            if !cell.isCollapsed {
                 
-                self?.presenter.didPressedCollapse(on: indexPath)
+                let collapseAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completion in
+                    
+                    self?.presenter.didPressedCollapse(on: indexPath)
+                    
+                    completion(true)
+                }
                 
-                completion(true)
+                collapseAction.backgroundColor = .swipeActionPrimary
+                collapseAction.image = UIImage(named: Appearance.collapseImageName)?.resizeAndShift(newSize: Appearance.actionImageSize, shiftLeft: .zero, shiftTop: .zero)
+                
+                let saveAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completion in
+                    
+                    self?.presenter.didPressedSave(on: indexPath)
+                    completion(true)
+                }
+                
+                saveAction.backgroundColor = .swipeActionSecondary
+                saveAction.image = UIImage(named: Appearance.saveImageName)?.resizeAndShift(newSize: Appearance.actionImageSize, shiftLeft: Appearance.saveLeftShift, shiftTop: Appearance.saveTopShift)
+                
+                let configuration = UISwipeActionsConfiguration(actions: [saveAction, collapseAction])
+                
+                configuration.performsFirstActionWithFullSwipe = false
+                
+                return configuration
             }
-            
-            collapseAction.backgroundColor = .swipeActionPrimary
-            collapseAction.image = UIImage(named: Appearance.collapseImageName)?.resizeAndShift(newSize: Appearance.actionImageSize, shiftLeft: .zero, shiftTop: .zero)
-            
-            let saveAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completion in
-                // todo: implement save action
-                completion(true)
+            else {
+                return nil
             }
-            
-            saveAction.backgroundColor = .swipeActionSecondary
-            saveAction.image = UIImage(named: Appearance.saveImageName)?.resizeAndShift(newSize: Appearance.actionImageSize, shiftLeft: Appearance.saveLeftShift, shiftTop: Appearance.saveTopShift)
-            
-            let configuration = UISwipeActionsConfiguration(actions: [saveAction, collapseAction])
-            
-            configuration.performsFirstActionWithFullSwipe = false
-            
-            return configuration
         }
         else {
-            return nil
+            
+            let deleteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completion in
+                
+                self?.presenter.didPressedDelete(on: indexPath)
+                completion(true)
+            }
+            
+            deleteAction.backgroundColor = .swipeActionPrimary
+            deleteAction.image = UIImage(named: Appearance.historyDeleteActionImageName)?.resizeAndShift(newSize: Appearance.actionImageSize, shiftLeft: .zero, shiftTop: .zero)
+            
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            
+            configuration.performsFirstActionWithFullSwipe = true
+            
+            return configuration
         }
     }
     
@@ -267,6 +309,10 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     //MARK: - ThreadSelectorViewInput
     func setBoardName(_ name: String) {
         boardName = name
+    }
+    
+    func configureHistoryContextualActions() {
+        historyContextualSetup = true
     }
     
     func displayTableView() {
@@ -318,6 +364,18 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         }
     }
     
+    func displayLoadingHud() {
+        
+        loadingView.play()
+        hud.show(in: view, animated: true)
+    }
+    
+    func hideLoadingHud() {
+        
+        loadingView.stop()
+        hud.dismiss(animated: true)
+    }
+    
     func displayLoadingView() {
         
         view.subviews.forEach({ $0.removeFromSuperview() })
@@ -364,6 +422,17 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         isLoading = false
     }
     
+    func refreshData(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath]) {
+        
+        tableView.beginUpdates()
+        
+        tableView.deleteRows(at: deletions, with: .automatic)
+        tableView.insertRows(at: insertions, with: .automatic)
+        tableView.reloadRows(at: modifications, with: .automatic)
+        
+        tableView.endUpdates()
+    }
+    
     func connectDataSource(_ dataSource: ThreadSelectorDataSource) {
         
         tableView.dataSource = dataSource
@@ -385,6 +454,23 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         cell.expand()
         tableView.layoutIfNeeded()
         tableView.endUpdates()
+    }
+    
+    //MARK: - JGProgressHUDDelegate
+    func progressHUD(_ progressHUD: JGProgressHUD, willPresentIn view: UIView) {
+        
+        if let indicatorView = progressHUD.indicatorView as? HudAnimationView {
+            
+            indicatorView.playAnimation()
+        }
+    }
+    
+    func progressHUD(_ progressHUD: JGProgressHUD, didDismissFrom view: UIView) {
+        
+        if let indicatorView = progressHUD.indicatorView as? HudAnimationView {
+            
+            indicatorView.stopAnimation()
+        }
     }
     
     //MARK: - Utils

@@ -113,9 +113,12 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     var previousScrollViewBottomInset: CGFloat = .zero
     
+    var initialLoad = true
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         view.backgroundColor = .blackBg
         setupTableView()
         presenter.initialSetup()
@@ -127,7 +130,12 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        presenter.loadThread()
+        
+        if initialLoad {
+            
+            presenter.loadThread()
+            initialLoad = false
+        }
     }
     
     //MARK: - TableViewDelegate

@@ -29,4 +29,8 @@ protocol ThreadSelectorInteractorOutput: AnyObject {
     /// tells presenter that given url was checked and has a cetain type
     /// - Parameter type: type of the url
     func didFinishCheckingUrl(with type: UrlType)
+    
+    func didFinishSavingThread()
+    
+    func didReceiveUpdateNotification(new: [ThreadDto], deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
 }

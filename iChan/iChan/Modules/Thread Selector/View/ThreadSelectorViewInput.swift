@@ -21,6 +21,8 @@ protocol ThreadSelectorViewInput: AnyObject {
     /// - Parameter indicesToRefresh: indices of rows that should be inserted
     func refreshData(indicesToRefresh: [IndexPath])
     
+    func refreshData(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
+    
     /// connects datasource to tableview
     /// - Parameter dataSource: datasource to be connected
     func connectDataSource(_ dataSource: ThreadSelectorDataSource)
@@ -48,4 +50,12 @@ protocol ThreadSelectorViewInput: AnyObject {
     
     /// tells view that pull-to-refresh functionality should not be accessible
     func disablePullToRefresh()
+    
+    func configureHistoryContextualActions()
+    
+    func displayLoadingHud()
+    
+    func hideLoadingHud()
+    
+    var isVisible: Bool { get }
 }

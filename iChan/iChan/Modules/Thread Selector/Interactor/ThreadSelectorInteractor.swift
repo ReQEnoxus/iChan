@@ -14,7 +14,23 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
     var service: BoardThreadsService!
     var urlService: UrlCheckerService!
     var cache: Cache<String, Thread>!
+    var threadStorageService: ThreadStorageService!
+    var replyService: ReplyService!
     var cachedThreadsLoaded = false
+    
+    func observeThreadStorage() {
+        
+        threadStorageService.observe { [weak self] deletions, insertions, modifications in
+            
+            if let threads = self?.threadStorageService.getAll() {
+                
+                self?.presenter.didReceiveUpdateNotification(new: threads.map({ $0.toDto() }),
+                                                            deletions: deletions.map({ IndexPath(row: $0, section: 0) }),
+                                                            insertions: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                                            modifications: modifications.map({ IndexPath(row: $0, section: 0) }))
+            }
+        }
+    }
     
     //MARK: - ThreadSelectorInteractorInput
     func loadMoreThreads(board: Board?, mode: ThreadSelectorMode?) {
@@ -28,6 +44,29 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
                 if !self.cachedThreadsLoaded {
                     
                     let dtoArray = self.cache.allEntries().map({ $0.toDto() })
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.cachedThreadsLoaded = true
+                        self.presenter.didFinishLoadingMoreThreads(threads: dtoArray)
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.presenter.didFinishLoadingMoreWith(error: .jsonParsingFailure)
+                    }
+                }
+            }
+        }
+        else if let mode = mode, mode == .realm {
+            
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                
+                guard let self = self else { return }
+                
+                if !self.cachedThreadsLoaded {
+                    
+                    let dtoArray = self.threadStorageService.getAll().map({ $0.toDto() })
                     
                     DispatchQueue.main.async {
                         
@@ -57,6 +96,10 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
         }
     }
     
+    func deleteThread(board: String, num: String) {
+        threadStorageService.delete(board: board, num: num)
+    }
+    
     func refreshThreads(board: Board?, mode: ThreadSelectorMode?) {
         
         if let mode = mode, mode == .cached {
@@ -73,6 +116,14 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
                 }
             }
         }
+        else if let mode = mode, mode == .realm {
+            
+            let dtoArray = self.threadStorageService.getAll().map({ $0.toDto() })
+            
+            self.cachedThreadsLoaded = true
+            self.presenter.didFinishRefreshingThreads(threads: dtoArray)
+            
+        }
         else if let board = board {
             
             service.refreshThreads(board: board.id) { [weak self] result in
@@ -84,6 +135,28 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
                 case .success(let threads):
                     self?.presenter.didFinishRefreshingThreads(threads: threads)
                 }
+            }
+        }
+    }
+    
+    func saveThread(board: String, num: String) {
+            
+        service.loadThread(board: board, num: num) { [weak self] result in
+            
+            switch result {
+                
+            case .success(let thread):
+                
+                self?.replyService.generateReplies(for: thread.posts) { posts in
+                    
+                    thread.posts = posts
+                    self?.threadStorageService.update(thread: thread)
+                    self?.presenter.didFinishSavingThread()
+                }
+            case .failure(let error):
+                
+                print(error)
+                self?.presenter.didFinishSavingThread()
             }
         }
     }

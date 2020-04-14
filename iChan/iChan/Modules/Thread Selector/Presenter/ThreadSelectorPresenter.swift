@@ -31,6 +31,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
             
             view.setBoardName(title)
             view.disablePullToRefresh()
+            
+            if mode! == .realm {
+                view.configureHistoryContextualActions()
+            }
         }
         else if let board = board {
             view.setBoardName("/\(board.id)/ - \(board.name)")
@@ -52,17 +56,34 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         view.collapseCell(at: indexPath)
     }
     
+    func didPressedSave(on indexPath: IndexPath) {
+        
+        let board = dataSource.threads[indexPath.row].board
+        let num = dataSource.threads[indexPath.row].number
+        
+        view.displayLoadingHud()
+        interactor.saveThread(board: board, num: num)
+    }
+    
+    func didPressedDelete(on indexPath: IndexPath) {
+        
+        let board = dataSource.threads[indexPath.row].board
+        let num = dataSource.threads[indexPath.row].number
+        
+        interactor.deleteThread(board: board, num: num)
+    }
+    
+    
     func didSelectItem(at indexPath: IndexPath, collapsed: Bool) {
         
         if collapsed {
             view.expandCell(at: indexPath)
         }
         else {
-            
-            let board = self.board?.id
+            let board = dataSource.threads[indexPath.row].board
             let num = dataSource.threads[indexPath.row].number
             
-            router.pushThreadController(board: board ?? String(), num: num, postNum: nil)
+            router.pushThreadController(board: board, num: num, postNum: nil)
         }
     }
     
@@ -72,6 +93,28 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         dataSource.appendThreads(threads) { [weak self] insertedIndices in
             
             self?.view.refreshData(indicesToRefresh: insertedIndices)
+        }
+    }
+    
+    func didReceiveUpdateNotification(new: [ThreadDto], deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath]) {
+        
+        dataSource.threads = new
+        
+        if !dataSource.threads.isEmpty {
+            view.displayTableView()
+        }
+        
+        if view.isVisible {
+            
+            view.refreshData(deletions: deletions, insertions: insertions, modifications: modifications)
+        }
+        else {
+        
+            view.refreshData()
+        }
+        
+        if dataSource.threads.isEmpty {
+            view.displayErrorView(style: .history)
         }
     }
     
@@ -127,6 +170,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         }
     }
     
+    func didFinishSavingThread() {
+        view.hideLoadingHud()
+    }
+    
     func didFinishCheckingUrl(with type: UrlType) {
         
         switch type {
@@ -148,10 +195,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func didTapTextView(at indexPath: IndexPath) {
         
-        let board = self.board?.id
+        let board = dataSource.threads[indexPath.row].board
         let num = dataSource.threads[indexPath.row].number
         
-        router.pushThreadController(board: board ?? String(), num: num, postNum: nil)
+        router.pushThreadController(board: board, num: num, postNum: nil)
     }
     
     func didTapUrl(url: URL) {
