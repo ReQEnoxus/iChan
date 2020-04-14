@@ -17,6 +17,10 @@ class Thread: Codable, RealmConvertible {
     var posts: [Post]
     var postsCount: Int?
     
+    var id: String {
+        return "\(board)-\(posts[0].num)"
+    }
+    
     init(filesCount: Int?, posts: [Post], postsCount: Int?) {
         self.filesCount = filesCount
         self.posts = posts
