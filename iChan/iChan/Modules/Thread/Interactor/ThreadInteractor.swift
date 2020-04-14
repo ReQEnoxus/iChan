@@ -41,7 +41,7 @@ class ThreadInteractor: ThreadInteractorInput {
                                 self?.replyService.generateRepliesWithIndices(for: thread.posts) { posts, idxToInsert, idxToUpdate in
                                     
                                     thread.posts = posts
-                                    self?.cache.insert(thread, forKey: thread.posts[0].num)
+                                    self?.cache.insert(thread, forKey: thread.id)
                                     self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
                                 }
                         }
@@ -51,7 +51,7 @@ class ThreadInteractor: ThreadInteractorInput {
                 return
             }
             
-            self?.cache.insert(stored, forKey: stored.posts[0].num)
+            self?.cache.insert(stored, forKey: stored.id)
             self?.presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
         }
     }
@@ -71,7 +71,7 @@ class ThreadInteractor: ThreadInteractorInput {
                         if let cached = self?.cache[num] {
                             
                             cached.posts = updatedPosts
-                            self?.cache.insert(cached, forKey: num)
+                            self?.cache.insert(cached, forKey: cached.id)
                         }
                         
                         self?.presenter.didFinishLoadingMorePosts(posts: updatedPosts, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
