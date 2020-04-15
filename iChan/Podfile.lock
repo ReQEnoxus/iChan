@@ -6,14 +6,14 @@ PODS:
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - lottie-ios (3.1.6)
-  - Realm (4.3.2):
-    - Realm/Headers (= 4.3.2)
-  - Realm/Headers (4.3.2)
-  - RealmSwift (4.3.2):
-    - Realm (= 4.3.2)
-  - SDWebImage (5.6.0):
-    - SDWebImage/Core (= 5.6.0)
-  - SDWebImage/Core (5.6.0)
+  - Realm (4.4.0):
+    - Realm/Headers (= 4.4.0)
+  - Realm/Headers (4.4.0)
+  - RealmSwift (4.4.0):
+    - Realm (= 4.4.0)
+  - SDWebImage (5.7.2):
+    - SDWebImage/Core (= 5.7.2)
+  - SDWebImage/Core (5.7.2)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
@@ -25,7 +25,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Cache
     - Imaginary
     - JGProgressHUD
@@ -42,11 +42,11 @@ SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
-  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
-  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
-  SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
+  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
+  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
+  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: d5ae19506fa0a8db0e912144aba9e915aae491ad
+PODFILE CHECKSUM: ad8f6a3eb4214d734bfe6448cc85740493680263
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.1
