@@ -24,7 +24,9 @@ class ThreadInteractor: ThreadInteractorInput {
             
             guard let stored = stored else {
                 
-                if let cached = self?.cache[num] {
+                let id = "\(board)-\(num)"
+                
+                if let cached = self?.cache[id] {
                     self?.presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
                 }
                 else {
@@ -60,6 +62,8 @@ class ThreadInteractor: ThreadInteractorInput {
         
         service.loadPostsFromThread(board: board, num: num, offset: offset) { [weak self] result in
             
+            let id = "\(board)-\(num)"
+            
             switch result {
                 
                 case .failure(let error):
@@ -68,7 +72,7 @@ class ThreadInteractor: ThreadInteractorInput {
                     
                     self?.replyService.updateRepliesWithIndices(initial: initial, appended: posts) { updatedPosts, idxToInsert, idxToUpdate in
                         
-                        if let cached = self?.cache[num] {
+                        if let cached = self?.cache[id] {
                             
                             cached.posts = updatedPosts
                             self?.cache.insert(cached, forKey: cached.id)
