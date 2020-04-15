@@ -11,5 +11,6 @@ target 'iChan' do
   pod 'Lightbox'
   pod 'lottie-ios'
   pod 'RealmSwift'
+  pod 'JGProgressHUD'
 
 end

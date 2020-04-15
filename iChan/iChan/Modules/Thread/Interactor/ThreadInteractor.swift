@@ -15,31 +15,44 @@ class ThreadInteractor: ThreadInteractorInput {
     var urlService: UrlCheckerService!
     var cache: Cache<String, Thread>!
     var replyService: ReplyService!
+    var threadStorageService: ThreadStorageService!
     
     //MARK: - ThreadInteractorInput
     func loadThread(board: String, num: String) {
         
-        if let cached = cache[num] {
-            presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
-        }
-        else {
+        threadStorageService.get(board: board, num: num) { [weak self] stored in
             
-            service.loadThread(board: board, num: num) { [weak self] result in
+            guard let stored = stored else {
                 
-                switch result {
-                    
-                    case .failure(let error):
-                        self?.presenter.didFinishLoadingThread(with: error)
-                    case .success(let thread):
-                        
-                        self?.replyService.generateRepliesWithIndices(for: thread.posts) { posts, idxToInsert, idxToUpdate in
-                            
-                            thread.posts = posts
-                            self?.cache.insert(thread, forKey: thread.posts[0].num)
-                            self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
-                        }
+                if let cached = self?.cache[num] {
+                    self?.presenter.didFinishLoadingThread(thread: cached, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
                 }
+                else {
+                    
+                    self?.service.loadThread(board: board, num: num) { [weak self] result in
+                        
+                        switch result {
+                            
+                            case .failure(let error):
+                                print("error loading from net")
+                                self?.presenter.didFinishLoadingThread(with: error)
+                            case .success(let thread):
+                                
+                                self?.replyService.generateRepliesWithIndices(for: thread.posts) { posts, idxToInsert, idxToUpdate in
+                                    
+                                    thread.posts = posts
+                                    self?.cache.insert(thread, forKey: thread.id)
+                                    self?.presenter.didFinishLoadingThread(thread: thread, replyLoadNeeded: true, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
+                                }
+                        }
+                    }
+                }
+                
+                return
             }
+            
+            self?.cache.insert(stored, forKey: stored.id)
+            self?.presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
         }
     }
     
@@ -58,10 +71,19 @@ class ThreadInteractor: ThreadInteractorInput {
                         if let cached = self?.cache[num] {
                             
                             cached.posts = updatedPosts
-                            self?.cache.insert(cached, forKey: num)
+                            self?.cache.insert(cached, forKey: cached.id)
                         }
                         
                         self?.presenter.didFinishLoadingMorePosts(posts: updatedPosts, idxToInsert: idxToInsert, idxToUpdate: idxToUpdate)
+                        
+                        self?.threadStorageService.get(board: board, num: num, completion: { thread in
+                            
+                            if let thread = thread {
+                                
+                                thread.posts = updatedPosts
+                                self?.threadStorageService.update(thread: thread)
+                            }
+                        })
                     }
             }
         }

@@ -7,13 +7,19 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// thread model that is obtained from API
-class Thread: Codable {
+class Thread: Codable, RealmConvertible {
     
+    var board: String = String()
     var filesCount: Int?
     var posts: [Post]
     var postsCount: Int?
+    
+    var id: String {
+        return "\(board)-\(posts[0].num)"
+    }
     
     init(filesCount: Int?, posts: [Post], postsCount: Int?) {
         self.filesCount = filesCount
@@ -57,6 +63,26 @@ class Thread: Codable {
         self.posts = try container.decode([Post].self, forKey: .posts)
     }
     
+    func toRealmModel() -> Object {
+        
+        let model = ThreadModel()
+        
+        model.pkey = "\(board)-\(posts[0].num)"
+                
+        var calculatedFileCount = 0
+        
+        if filesCount == nil || filesCount == 0 {
+            calculatedFileCount = posts.filter({ $0.files != nil && !$0.files!.isEmpty }).count
+        }
+        
+        model.filesCount = calculatedFileCount
+        model.postsCount = posts.count
+        
+        model.posts.append(objectsIn: posts.map({ $0.toRealmModel() as! PostModel }))
+        
+        return model
+    }
+    
     func toDto() -> ThreadDto {
         
         var thumbNail: String? = nil
@@ -95,7 +121,8 @@ class Thread: Codable {
                             file: file,
                             text: posts[0].comment,
                             posterName: posts[0].name,
-                            fileName: fileName)
+                            fileName: fileName,
+                            board: board)
         
         return dto
     }

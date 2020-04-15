@@ -33,7 +33,14 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
                 
                 let categories = BoardCategories(from: boards)
                 
-                if let cachedCategories = self?.boardCacheService.current() {
+                self?.boardCacheService.current() { cachedCategories in
+                    
+                    guard let cachedCategories = cachedCategories else {
+                        
+                        self?.boardCacheService.save(categories)
+                        self?.presenter?.didFinishRefreshingBoards(boards: categories)
+                        return
+                    }
                     
                     if cachedCategories.hasPinndedBoards {
                         for board in cachedCategories.categories[0] {
@@ -43,35 +50,34 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
                     self?.boardCacheService.update(categories)
                     self?.presenter?.didFinishRefreshingBoards(boards: categories)
                 }
-                else {
-                    
-                    self?.boardCacheService.save(categories)
-                    self?.presenter?.didFinishRefreshingBoards(boards: categories)
-                }
             }
         }
     }
     
     func obtainBoards() {
         
-        if let cachedBoards = boardCacheService.current() {
-            presenter?.didFinishObtainingBoards(boards: cachedBoards)
-        }
-        else {
+        boardCacheService.current() { [weak self] cachedBoards in
             
-            service.getBoards { [weak self] response in
+            guard let cachedBoards = cachedBoards else {
                 
-                switch response {
+                self?.service.getBoards { [weak self] response in
                     
-                case .failure(let error):
-                    self?.presenter?.didFinishObtainingBoards(with: error)
-                case .success(let boards):
-                    
-                    let categories = BoardCategories(from: boards)
-                    self?.presenter?.didFinishObtainingBoards(boards: categories)
-                    self?.boardCacheService.save(categories)
+                    switch response {
+                        
+                    case .failure(let error):
+                        self?.presenter?.didFinishObtainingBoards(with: error)
+                    case .success(let boards):
+                        
+                        let categories = BoardCategories(from: boards)
+                        self?.presenter?.didFinishObtainingBoards(boards: categories)
+                        self?.boardCacheService.save(categories)
+                    }
                 }
+                
+                return
             }
+            
+            self?.presenter?.didFinishObtainingBoards(boards: cachedBoards)
         }
     }
 }

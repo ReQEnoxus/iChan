@@ -20,6 +20,8 @@ class ThreadSelectorConfigurator {
         let service = BoardThreadsServiceImpl()
         let urlService = UrlCheckerServiceImpl()
         let router = ThreadSelectorRouter()
+        let threadStorageService = ThreadStorageServiceImpl()
+        let replyService = ReplyServiceImpl()
         
         view.presenter = presenter
         
@@ -34,6 +36,8 @@ class ThreadSelectorConfigurator {
         interactor.presenter = presenter
         interactor.service = service
         interactor.urlService = urlService
+        interactor.threadStorageService = threadStorageService
+        interactor.replyService = replyService
         
         router.view = view
         
@@ -49,6 +53,8 @@ class ThreadSelectorConfigurator {
         let service = BoardThreadsServiceImpl()
         let urlService = UrlCheckerServiceImpl()
         let router = ThreadSelectorRouter()
+        let threadStorageService = ThreadStorageServiceImpl()
+        let replyService = ReplyServiceImpl()
         let cache = (UIApplication.shared.delegate as! AppDelegate).threadCache
 
         view.presenter = presenter
@@ -70,6 +76,12 @@ class ThreadSelectorConfigurator {
         interactor.service = service
         interactor.urlService = urlService
         interactor.cache = cache
+        interactor.threadStorageService = threadStorageService
+        interactor.replyService = replyService
+        
+        if mode == .realm {
+            interactor.observeThreadStorage()
+        }
         
         router.view = view
         

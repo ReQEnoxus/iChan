@@ -11,49 +11,132 @@ import RealmSwift
 
 class RealmCrudServiceImpl: CrudService {
     
-    var mainRealm: Realm? = try? Realm(configuration: .defaultConfiguration)
+    var observerTokens = [NotificationToken]()
+    
+    func registerObserver<T: Object>(on type: T.Type, onUpdate: @escaping ([Int], [Int], [Int]) -> Void) {
+        
+//        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            
+            let realm = try! Realm()
+            
+            let token = realm.objects(type).observe({ block in
+                
+                switch block {
+                    
+                    case .update(_, let deletions, let insertions, let modifications):
+                        onUpdate(deletions, insertions, modifications)
+                        
+                    default: break
+                }
+            })
+            
+            observerTokens.append(token)
+//        }
+    }
     
     func delete<T>(object: T) where T : RealmConvertible {
         
-        try? mainRealm?.write {
+        DispatchQueue.global(qos: .userInteractive).async {
             
-            mainRealm?.delete(object.toRealmModel())
+            let realm = try! Realm()
+            
+            try? realm.write {
+                
+                realm.delete(object.toRealmModel())
+            }
+        }
+    }
+    
+    func delete<T>(object: T) where T : Object {
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let realm = try! Realm()
+            
+            try? realm.write {
+                
+                realm.delete(object)
+            }
+        }
+    }
+    
+    func delete<T: Object>(type: T.Type, predicate: NSPredicate) {
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let realm = try! Realm()
+            
+            let objectsToDelete = realm.objects(type).filter(predicate)
+            
+            try? realm.write {
+                
+                realm.delete(objectsToDelete)
+            }
         }
     }
     
     func deleteAll<T: Object>(type: T.Type) {
         
-        try? mainRealm?.write {
+        DispatchQueue.global(qos: .userInteractive).async {
             
-            mainRealm?.delete(mainRealm!.objects(type))
+            let realm = try! Realm()
+            
+            try? realm.write {
+                
+                realm.delete(realm.objects(type))
+            }
         }
     }
     
     func save<T>(_ object: T) where T : RealmConvertible {
         
-        try? mainRealm?.write {
+        DispatchQueue.global(qos: .userInteractive).async {
             
-            mainRealm?.add(object.toRealmModel())
+            let realm = try! Realm()
+            
+            try? realm.write {
+                
+                realm.add(object.toRealmModel())
+            }
         }
     }
     
     func update<T>(object: T) where T : RealmConvertible {
         
-        try? mainRealm?.write {
+        DispatchQueue.global(qos: .userInteractive).async {
             
-            mainRealm?.add(object.toRealmModel(), update: .modified)
+            let realm = try! Realm()
+            
+            try? realm.write {
+                
+                realm.add(object.toRealmModel(), update: .modified)
+            }
         }
     }
     
-    func get<T>(type: T.Type, by predicate: NSPredicate?) -> [T] where T : Object {
+    func get<T>(type: T.Type, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void) where T : Object {
         
-        guard let realm = mainRealm else { return [] }
-        
-        if let predicate = predicate {
-            return Array(realm.objects(T.self).filter(predicate))
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let realm = try! Realm()
+            
+            if let predicate = predicate {
+                completion(Array(realm.objects(T.self).filter(predicate)))
+            }
+            else {
+                completion(Array(realm.objects(T.self)))
+            }
+            
         }
-        else {
-            return Array(realm.objects(T.self))
+    }
+    
+    func get<T>(type: T.Type, by primaryKey: String, completion: @escaping (T?) -> Void) where T : Object {
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let realm = try! Realm()
+            
+            completion(realm.object(ofType: type, forPrimaryKey: primaryKey))
         }
     }
 }

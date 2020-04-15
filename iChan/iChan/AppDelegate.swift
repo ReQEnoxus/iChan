@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loadingViewWidth: CGFloat = 150
     let loadingViewHeight: CGFloat = 150
     let historyModuleName = "История"
+    let savedModuleName = "Сохраненные треды"
     
     let threadCache = Cache<String, Thread>()
 
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let boardController = UINavigationController(rootViewController: BoardSelectorConfigurator.configureModule())
         let historyController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .cached, title: historyModuleName))
-        let savedController = UINavigationController(rootViewController: UIViewController())
+        let savedController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .realm, title: savedModuleName))
         let settingsController = UINavigationController(rootViewController: UIViewController())
         
         tabBarController.configure(with: [boardController, historyController, savedController, settingsController])
