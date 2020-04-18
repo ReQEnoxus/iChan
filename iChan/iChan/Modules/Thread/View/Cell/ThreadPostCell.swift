@@ -45,13 +45,16 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         }
         
         if post.files != nil, !post.files!.isEmpty {
+            
+            UIView.performWithoutAnimation {
+                postView.attachmentCollectionView.reloadSections(IndexSet([0]))
+            }
+            postView.attachmentCollectionView.refreshLayout()
             postView.attachmentCollectionView.isHidden = false
         }
         else {
             postView.attachmentCollectionView.isHidden = true
         }
-        
-        postView.attachmentCollectionView.reloadData()
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -90,6 +93,9 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AttachmentCell.nibName, for: indexPath) as! AttachmentCell
         
         cell.configureImage(with: post.files?[indexPath.row].thumbnail ?? String())
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = UIScreen.main.scale
         
         return cell
     }
