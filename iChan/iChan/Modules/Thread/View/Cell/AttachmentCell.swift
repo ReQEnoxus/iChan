@@ -15,6 +15,9 @@ class AttachmentCell: UICollectionViewCell {
     private class Appearance {
         
         static let imageSize = 150
+        static let imageCornerRadius: CGFloat = 10
+        
+        static let placeHolderImageName = "placeholder"
     }
     
     //MARK: - Views
@@ -23,6 +26,7 @@ class AttachmentCell: UICollectionViewCell {
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isOpaque = true
         
         return imageView
     }()
@@ -33,6 +37,8 @@ class AttachmentCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         
+        imageView.layer.cornerRadius = Appearance.imageCornerRadius
+        
         imageView.snp.makeConstraints { make in
             
             make.height.equalTo(Appearance.imageSize)
@@ -41,11 +47,18 @@ class AttachmentCell: UICollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        
+        super.prepareForReuse()
+        imageView.sd_cancelCurrentImageLoad()
+        imageView.image = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func configureImage(with url: String) {
-        imageView.sd_setImage(with: URL(string: url))
+        imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: Appearance.placeHolderImageName))
     }
 }
