@@ -201,6 +201,10 @@ extension String {
             return []
         }
     }
+    
+    var isHttpScheme: Bool {
+        return self == "http" || self == "https"
+    }
 }
 
 //MARK: - Post

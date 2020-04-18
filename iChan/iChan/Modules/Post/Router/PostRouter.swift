@@ -50,8 +50,11 @@ class PostRouter: PostRouterInput {
     
     func open(url: URL) {
         
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.preferredBarTintColor = .blackBg
-        view.present(safariViewController, animated: true)
+        if let scheme = url.scheme, scheme.isHttpScheme {
+            
+            let safariViewController = SFSafariViewController(url: url)
+            safariViewController.preferredBarTintColor = .blackBg
+            view.present(safariViewController, animated: true)
+        }
     }
 }
