@@ -176,6 +176,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         presenter.initialSetup()
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: boardName, preferredLargeTitle: true)
         extendedLayoutIncludesOpaqueBars = true
+        edgesForExtendedLayout = UIRectEdge.top
         presenter.refreshRequested()
     }
     
