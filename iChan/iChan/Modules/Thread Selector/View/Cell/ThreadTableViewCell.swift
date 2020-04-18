@@ -53,6 +53,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         static let collapseAnimationTime = 0.5
         static let infoHexColor = "#909090"
         static let nameLabelRatio = 0.75
+        static let placeHolderImageName = "placeholder"
     }
     
     weak var delegate: ThreadTableViewCellDelegate?
@@ -243,7 +244,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         }
         
         if let url = dto.thumbnail {
-            thumbnailImageView.sd_setImage(with: URL(string: url))
+            thumbnailImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: Appearance.placeHolderImageName))
         }
         else {
             thumbnailImageView.isHidden = true
