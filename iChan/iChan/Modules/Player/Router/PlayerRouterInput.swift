@@ -10,5 +10,6 @@ import Foundation
 
 protocol PlayerRouterInput {
     
+    /// tells router to dismiss player module
     func dismissPlayer()
 }
