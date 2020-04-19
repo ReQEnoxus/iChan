@@ -23,6 +23,8 @@ class PlayerPresenter: PlayerViewOutput, PlayerInteractorOutput {
     }
     
     func exitButtonPressed() {
+        
+        interactor.stopPlayer()
         router.dismissPlayer()
     }
     

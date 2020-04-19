@@ -15,6 +15,7 @@ class PlayerInteractor: NSObject, PlayerInteractorInput, VLCMediaPlayerDelegate 
     
     private var initialNotify = true
     
+    //MARK: - Interactor Input
     func togglePlayPause() {
         
         if player.isPlaying {
@@ -32,6 +33,10 @@ class PlayerInteractor: NSObject, PlayerInteractorInput, VLCMediaPlayerDelegate 
     
     func setDrawableForPlayer(_ drawable: UIView) {
         player.drawable = drawable
+    }
+    
+    func stopPlayer() {
+        player.stop()
     }
     
     //MARK: - PlayerDelegate

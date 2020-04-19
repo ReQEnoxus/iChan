@@ -20,4 +20,7 @@ protocol PlayerInteractorInput: AnyObject {
     /// tells interactor to assign a view to be player's drawable
     /// - Parameter drawable: view to be assigned as drawable
     func setDrawableForPlayer(_ drawable: UIView)
+    
+    /// tells interactor to stop player
+    func stopPlayer()
 }
