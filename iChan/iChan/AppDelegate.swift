@@ -9,6 +9,8 @@
 import UIKit
 import Lightbox
 import Lottie
+import AVFoundation
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let historyModuleName = "История"
     let savedModuleName = "Сохраненные треды"
     
+    let vlcPlayer = VLCMediaPlayer()
+    
     let threadCache = Cache<String, Thread>()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -29,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LightboxConfig.CloseButton.text = closeButtonTitle
         
         LightboxConfig.makeLoadingIndicator = {
-            
+
             let loadingView = AnimationView()
             loadingView.frame = CGRect(x: .zero, y: .zero, width: self.loadingViewWidth, height: self.loadingViewHeight)
             loadingView.animation = Animation.named(self.loadingAnimationName)
@@ -39,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return loadingView
         }
         
+        LightboxConfig.handleVideo = { controller, url in
+            
+            controller.present(PlayerConfigurator.configureModule(media: url), animated: false)
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let tabBarController = MainTabBarController()
@@ -46,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let boardController = UINavigationController(rootViewController: BoardSelectorConfigurator.configureModule())
         let historyController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .cached, title: historyModuleName))
         let savedController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .realm, title: savedModuleName))
-        let settingsController = UINavigationController(rootViewController: UIViewController())
+        let settingsController = PlayerViewController()
         
         tabBarController.configure(with: [boardController, historyController, savedController, settingsController])
         

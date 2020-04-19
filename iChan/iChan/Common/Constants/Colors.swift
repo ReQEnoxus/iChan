@@ -23,6 +23,10 @@ extension UIColor {
         return UIColor(white: 23.0 / 255.0, alpha: 1)
     }
     
+    @nonobjc class var darkPlayerUiBg: UIColor {
+        return UIColor(white: 23.0 / 255.0, alpha: 0.4)
+    }
+    
     @nonobjc class var darkCellBgSelected: UIColor {
         return UIColor(white: 18.0 / 255.0, alpha: 1)
     }

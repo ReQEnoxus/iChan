@@ -28,6 +28,16 @@
 		731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */; };
 		731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */; };
 		731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */; };
+		7316BB74244C42C2008943BC /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB73244C42C2008943BC /* PlayerViewController.swift */; };
+		7316BB76244C546A008943BC /* PlayerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB75244C546A008943BC /* PlayerViewOutput.swift */; };
+		7316BB79244C55C7008943BC /* PlayerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB78244C55C7008943BC /* PlayerViewInput.swift */; };
+		7316BB7B244C57CF008943BC /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB7A244C57CF008943BC /* PlayerPresenter.swift */; };
+		7316BB7D244C58DD008943BC /* PlayerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB7C244C58DD008943BC /* PlayerInteractorInput.swift */; };
+		7316BB7F244C594B008943BC /* PlayerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB7E244C594B008943BC /* PlayerInteractor.swift */; };
+		7316BB83244C5D0C008943BC /* PlayerRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB82244C5D0C008943BC /* PlayerRouterInput.swift */; };
+		7316BB85244C5D2C008943BC /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB84244C5D2C008943BC /* PlayerRouter.swift */; };
+		7316BB87244C5D8B008943BC /* PlayerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB86244C5D8A008943BC /* PlayerConfigurator.swift */; };
+		7316BB8A244C68C8008943BC /* PlayerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB89244C68C8008943BC /* PlayerInteractorOutput.swift */; };
 		731D6C8724433BC800546BCD /* ThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8624433BC800546BCD /* ThreadModel.swift */; };
 		731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8924434A9E00546BCD /* ThreadStorageService.swift */; };
 		731D6C8C24434B1E00546BCD /* ThreadStorageServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */; };
@@ -53,6 +63,23 @@
 		73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC6241552430073623D /* BoardSelectorRouterInput.swift */; };
 		73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DC8241554100073623D /* BoardSelectorConfigurator.swift */; };
 		73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73828DCA2415548A0073623D /* BoardSelectorRouter.swift */; };
+		7388A652244B45A80080D8BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A651244B45A80080D8BD /* AudioToolbox.framework */; };
+		7388A654244B45B10080D8BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A653244B45B10080D8BD /* AVFoundation.framework */; };
+		7388A656244B45C00080D8BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A655244B45C00080D8BD /* CFNetwork.framework */; };
+		7388A658244B45C90080D8BD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A657244B45C90080D8BD /* CoreFoundation.framework */; };
+		7388A65A244B45D40080D8BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A659244B45D40080D8BD /* CoreGraphics.framework */; };
+		7388A65C244B45DD0080D8BD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A65B244B45DD0080D8BD /* CoreMedia.framework */; };
+		7388A65E244B45E50080D8BD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A65D244B45E50080D8BD /* CoreText.framework */; };
+		7388A660244B45EC0080D8BD /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A65F244B45EC0080D8BD /* CoreVideo.framework */; };
+		7388A662244B45F80080D8BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A661244B45F80080D8BD /* Foundation.framework */; };
+		7388A664244B46050080D8BD /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A663244B46050080D8BD /* libbz2.tbd */; };
+		7388A666244B460F0080D8BD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A665244B460F0080D8BD /* libiconv.tbd */; };
+		7388A668244B46160080D8BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A667244B46150080D8BD /* OpenGLES.framework */; };
+		7388A66A244B461C0080D8BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A669244B461C0080D8BD /* QuartzCore.framework */; };
+		7388A66C244B46240080D8BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A66B244B46240080D8BD /* Security.framework */; };
+		7388A66E244B46310080D8BD /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A66D244B46310080D8BD /* VideoToolbox.framework */; };
+		7388A670244B463D0080D8BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7388A66F244B463D0080D8BD /* UIKit.framework */; };
+		7388A673244B47030080D8BD /* header.m in Sources */ = {isa = PBXBuildFile; fileRef = 7388A672244B47030080D8BD /* header.m */; };
 		738EC27A24430B090067A9FC /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27924430B090067A9FC /* PostModel.swift */; };
 		738EC27D24430D4D0067A9FC /* ReplyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27C24430D4D0067A9FC /* ReplyService.swift */; };
 		738EC27F24430F9C0067A9FC /* ReplyServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738EC27E24430F9C0067A9FC /* ReplyServiceImpl.swift */; };
@@ -134,6 +161,16 @@
 		731431D1241E8F110065E0DB /* ThreadSelectorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSource.swift; sourceTree = "<group>"; };
 		731431D3241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorDataSourceImpl.swift; sourceTree = "<group>"; };
 		731431D5241E90F70065E0DB /* ThreadSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorConfigurator.swift; sourceTree = "<group>"; };
+		7316BB73244C42C2008943BC /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		7316BB75244C546A008943BC /* PlayerViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewOutput.swift; sourceTree = "<group>"; };
+		7316BB78244C55C7008943BC /* PlayerViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewInput.swift; sourceTree = "<group>"; };
+		7316BB7A244C57CF008943BC /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
+		7316BB7C244C58DD008943BC /* PlayerInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractorInput.swift; sourceTree = "<group>"; };
+		7316BB7E244C594B008943BC /* PlayerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractor.swift; sourceTree = "<group>"; };
+		7316BB82244C5D0C008943BC /* PlayerRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouterInput.swift; sourceTree = "<group>"; };
+		7316BB84244C5D2C008943BC /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		7316BB86244C5D8A008943BC /* PlayerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerConfigurator.swift; sourceTree = "<group>"; };
+		7316BB89244C68C8008943BC /* PlayerInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractorOutput.swift; sourceTree = "<group>"; };
 		731D6C8624433BC800546BCD /* ThreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadModel.swift; sourceTree = "<group>"; };
 		731D6C8924434A9E00546BCD /* ThreadStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageService.swift; sourceTree = "<group>"; };
 		731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageServiceImpl.swift; sourceTree = "<group>"; };
@@ -159,6 +196,24 @@
 		73828DC6241552430073623D /* BoardSelectorRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouterInput.swift; sourceTree = "<group>"; };
 		73828DC8241554100073623D /* BoardSelectorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorConfigurator.swift; sourceTree = "<group>"; };
 		73828DCA2415548A0073623D /* BoardSelectorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSelectorRouter.swift; sourceTree = "<group>"; };
+		7388A651244B45A80080D8BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7388A653244B45B10080D8BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7388A655244B45C00080D8BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7388A657244B45C90080D8BD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7388A659244B45D40080D8BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7388A65B244B45DD0080D8BD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7388A65D244B45E50080D8BD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		7388A65F244B45EC0080D8BD /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7388A661244B45F80080D8BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7388A663244B46050080D8BD /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		7388A665244B460F0080D8BD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		7388A667244B46150080D8BD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7388A669244B461C0080D8BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7388A66B244B46240080D8BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7388A66D244B46310080D8BD /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		7388A66F244B463D0080D8BD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7388A671244B47030080D8BD /* iChan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iChan-Bridging-Header.h"; sourceTree = "<group>"; };
+		7388A672244B47030080D8BD /* header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = header.m; sourceTree = "<group>"; };
 		738EC27924430B090067A9FC /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		738EC27C24430D4D0067A9FC /* ReplyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyService.swift; sourceTree = "<group>"; };
 		738EC27E24430F9C0067A9FC /* ReplyServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyServiceImpl.swift; sourceTree = "<group>"; };
@@ -225,6 +280,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7388A670244B463D0080D8BD /* UIKit.framework in Frameworks */,
+				7388A66E244B46310080D8BD /* VideoToolbox.framework in Frameworks */,
+				7388A66C244B46240080D8BD /* Security.framework in Frameworks */,
+				7388A66A244B461C0080D8BD /* QuartzCore.framework in Frameworks */,
+				7388A668244B46160080D8BD /* OpenGLES.framework in Frameworks */,
+				7388A666244B460F0080D8BD /* libiconv.tbd in Frameworks */,
+				7388A664244B46050080D8BD /* libbz2.tbd in Frameworks */,
+				7388A662244B45F80080D8BD /* Foundation.framework in Frameworks */,
+				7388A660244B45EC0080D8BD /* CoreVideo.framework in Frameworks */,
+				7388A65E244B45E50080D8BD /* CoreText.framework in Frameworks */,
+				7388A65C244B45DD0080D8BD /* CoreMedia.framework in Frameworks */,
+				7388A65A244B45D40080D8BD /* CoreGraphics.framework in Frameworks */,
+				7388A658244B45C90080D8BD /* CoreFoundation.framework in Frameworks */,
+				7388A656244B45C00080D8BD /* CFNetwork.framework in Frameworks */,
+				7388A654244B45B10080D8BD /* AVFoundation.framework in Frameworks */,
+				7388A652244B45A80080D8BD /* AudioToolbox.framework in Frameworks */,
 				EDFB4350FB136553CC2ED969 /* libPods-iChan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +457,55 @@
 				73C2A17B2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift */,
 			);
 			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		7316BB6E244C4265008943BC /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				7316BB72244C42AA008943BC /* Router */,
+				7316BB71244C42A5008943BC /* Interactor */,
+				7316BB70244C429D008943BC /* Presenter */,
+				7316BB6F244C4299008943BC /* View */,
+				7316BB86244C5D8A008943BC /* PlayerConfigurator.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		7316BB6F244C4299008943BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7316BB73244C42C2008943BC /* PlayerViewController.swift */,
+				7316BB75244C546A008943BC /* PlayerViewOutput.swift */,
+				7316BB78244C55C7008943BC /* PlayerViewInput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7316BB70244C429D008943BC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7316BB7A244C57CF008943BC /* PlayerPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7316BB71244C42A5008943BC /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				7316BB7C244C58DD008943BC /* PlayerInteractorInput.swift */,
+				7316BB7E244C594B008943BC /* PlayerInteractor.swift */,
+				7316BB89244C68C8008943BC /* PlayerInteractorOutput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		7316BB72244C42AA008943BC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				7316BB82244C5D0C008943BC /* PlayerRouterInput.swift */,
+				7316BB84244C5D2C008943BC /* PlayerRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		731D6C8824434A7900546BCD /* Threads */ = {
@@ -666,6 +786,7 @@
 		73D5DE9C2413E28000194F26 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7316BB6E244C4265008943BC /* Player */,
 				7306CEB62435DE6700B301D1 /* Post */,
 				73C2A1842431E9C700BFDAAE /* Thread */,
 				731431B8241E70520065E0DB /* Thread Selector */,
@@ -754,6 +875,8 @@
 				73D75C522413A28300A9554C /* Assets.xcassets */,
 				73D75C542413A28300A9554C /* LaunchScreen.storyboard */,
 				73D75C572413A28300A9554C /* Info.plist */,
+				7388A672244B47030080D8BD /* header.m */,
+				7388A671244B47030080D8BD /* iChan-Bridging-Header.h */,
 			);
 			path = iChan;
 			sourceTree = "<group>";
@@ -795,6 +918,22 @@
 		C7D8BD7ACACCA15CE82EABB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7388A66F244B463D0080D8BD /* UIKit.framework */,
+				7388A66D244B46310080D8BD /* VideoToolbox.framework */,
+				7388A66B244B46240080D8BD /* Security.framework */,
+				7388A669244B461C0080D8BD /* QuartzCore.framework */,
+				7388A667244B46150080D8BD /* OpenGLES.framework */,
+				7388A665244B460F0080D8BD /* libiconv.tbd */,
+				7388A663244B46050080D8BD /* libbz2.tbd */,
+				7388A661244B45F80080D8BD /* Foundation.framework */,
+				7388A65F244B45EC0080D8BD /* CoreVideo.framework */,
+				7388A65D244B45E50080D8BD /* CoreText.framework */,
+				7388A65B244B45DD0080D8BD /* CoreMedia.framework */,
+				7388A659244B45D40080D8BD /* CoreGraphics.framework */,
+				7388A657244B45C90080D8BD /* CoreFoundation.framework */,
+				7388A655244B45C00080D8BD /* CFNetwork.framework */,
+				7388A653244B45B10080D8BD /* AVFoundation.framework */,
+				7388A651244B45A80080D8BD /* AudioToolbox.framework */,
 				4C46F4CFAFACCE4E1305F3EF /* libPods-iChan.a */,
 			);
 			name = Frameworks;
@@ -834,6 +973,7 @@
 				TargetAttributes = {
 					73D75C452413A28200A9554C = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -920,6 +1060,7 @@
 				73828DBB24154D8F0073623D /* BoardSecectorPresenter.swift in Sources */,
 				73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */,
 				73828DAD2414EE1E0073623D /* Colors.swift in Sources */,
+				7316BB7B244C57CF008943BC /* PlayerPresenter.swift in Sources */,
 				7306CEC12435F1CF00B301D1 /* PostViewInput.swift in Sources */,
 				73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */,
 				73C2A1AA2432317D00BFDAAE /* ThreadConfigurator.swift in Sources */,
@@ -929,12 +1070,14 @@
 				73C2A17C2430D94E00BFDAAE /* ThreadSelectorDataSourceOutput.swift in Sources */,
 				73828DB12415383D0073623D /* BoardSelectorViewOutput.swift in Sources */,
 				73D75C4E2413A28200A9554C /* BoardSelectorViewController.swift in Sources */,
+				7316BB87244C5D8B008943BC /* PlayerConfigurator.swift in Sources */,
 				73828DC9241554100073623D /* BoardSelectorConfigurator.swift in Sources */,
 				73C2A19A2431FFAD00BFDAAE /* ThreadPresenter.swift in Sources */,
 				7306CEC62435F3AC00B301D1 /* PostPresenter.swift in Sources */,
 				73C2A1832430DFA000BFDAAE /* AttachmentDto.swift in Sources */,
 				731431B3241E68630065E0DB /* ThreadDto.swift in Sources */,
 				73C2A18E2431EA5C00BFDAAE /* ThreadViewController.swift in Sources */,
+				7316BB85244C5D2C008943BC /* PlayerRouter.swift in Sources */,
 				731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
 				7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */,
@@ -950,6 +1093,7 @@
 				73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */,
 				7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */,
 				738EC27A24430B090067A9FC /* PostModel.swift in Sources */,
+				7316BB83244C5D0C008943BC /* PlayerRouterInput.swift in Sources */,
 				736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
 				7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */,
@@ -969,7 +1113,9 @@
 				73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */,
 				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
+				7388A673244B47030080D8BD /* header.m in Sources */,
 				73C2A1A424322EAF00BFDAAE /* ThreadDataSourceImpl.swift in Sources */,
+				7316BB79244C55C7008943BC /* PlayerViewInput.swift in Sources */,
 				73C2A1A0243208A500BFDAAE /* ThreadInteractor.swift in Sources */,
 				731431CA241E8BB10065E0DB /* ThreadSelectorInteractorInput.swift in Sources */,
 				73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */,
@@ -994,15 +1140,19 @@
 				73C2A19E2432002200BFDAAE /* ThreadRouterInput.swift in Sources */,
 				731431C3241E7FB00065E0DB /* ThreadTableViewCell.swift in Sources */,
 				73828DC7241552430073623D /* BoardSelectorRouterInput.swift in Sources */,
+				7316BB76244C546A008943BC /* PlayerViewOutput.swift in Sources */,
 				738EC2812443394F0067A9FC /* FileModel.swift in Sources */,
 				7306CEBC2435DF6300B301D1 /* PostViewController.swift in Sources */,
 				736595F12435F45300DE04D9 /* PostInteractorInput.swift in Sources */,
 				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,
 				731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */,
+				7316BB8A244C68C8008943BC /* PlayerInteractorOutput.swift in Sources */,
 				73C2A1912431EE0E00BFDAAE /* ThreadDataSource.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
 				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,
+				7316BB7F244C594B008943BC /* PlayerInteractor.swift in Sources */,
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,
+				7316BB74244C42C2008943BC /* PlayerViewController.swift in Sources */,
 				73F38FBA24348753007F7242 /* UrlType.swift in Sources */,
 				73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */,
 				73828DB424153EE90073623D /* BoardsDataSource.swift in Sources */,
@@ -1012,6 +1162,7 @@
 				73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */,
 				73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */,
 				738EC27D24430D4D0067A9FC /* ReplyService.swift in Sources */,
+				7316BB7D244C58DD008943BC /* PlayerInteractorInput.swift in Sources */,
 				7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1149,8 +1300,10 @@
 			baseConfigurationReference = FF5A0A8FBED7429EAC4B1C43 /* Pods-iChan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 593ZV4B3B7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iChan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1159,6 +1312,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.enoxus.iChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iChan/iChan-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1169,8 +1324,10 @@
 			baseConfigurationReference = 75CF7AC12B80E6375A5E9369 /* Pods-iChan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 593ZV4B3B7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iChan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1179,6 +1336,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.enoxus.iChan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iChan/iChan-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
