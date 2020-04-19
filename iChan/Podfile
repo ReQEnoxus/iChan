@@ -13,5 +13,6 @@ target 'iChan' do
   pod 'lottie-ios'
   pod 'RealmSwift'
   pod 'JGProgressHUD'
+  pod 'MobileVLCKit'
 
 end
