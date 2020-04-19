@@ -205,6 +205,25 @@ extension String {
     var isHttpScheme: Bool {
         return self == "http" || self == "https"
     }
+    
+    var fileExtension: String? {
+        
+        if self.contains(".") {
+            return self.components(separatedBy: ".").last
+        }
+        else {
+            return .none
+        }
+    }
+    
+    var isValidVideoUrl: Bool {
+        
+        if let ext = self.fileExtension {
+            
+            return ext == "mp4" || ext == "webm"
+        }
+        return false
+    }
 }
 
 //MARK: - Post

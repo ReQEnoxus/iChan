@@ -20,7 +20,15 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
         
         guard let imageUrl = URL(string: attachment.url) else { return }
         
-        let image = LightboxImage(imageURL: imageUrl, text: attachment.displayName)
+        let image: LightboxImage!
+        
+        if imageUrl.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: attachment.thumbnail) {
+            image = LightboxImage(imageURL: thumbnailUrl, text: attachment.displayName, videoURL: imageUrl)
+        }
+        else {
+            image = LightboxImage(imageURL: imageUrl, text: attachment.displayName, videoURL: .none)
+        }
+        
         let controller = LightboxController(images: [image], startIndex: 0)
         controller.modalPresentationStyle = .fullScreen
         controller.dynamicBackground = true

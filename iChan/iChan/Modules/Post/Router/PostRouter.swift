@@ -24,7 +24,13 @@ class PostRouter: PostRouterInput {
         for file in files {
             
             if let url = URL(string: file.path) {
-                images.append(LightboxImage(imageURL: url, text: file.displayname))
+                
+                if url.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: file.thumbnail) {
+                    images.append(LightboxImage(imageURL: thumbnailUrl, text: file.displayname, videoURL: url))
+                }
+                else {
+                    images.append(LightboxImage(imageURL: url, text: file.displayname, videoURL: .none))
+                }
             }
         }
         
