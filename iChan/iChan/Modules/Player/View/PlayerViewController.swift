@@ -179,6 +179,7 @@ class PlayerViewController: UIViewController, PlayerViewInput {
         exitButton.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
+            make.size.equalToSuperview()
         }
     }
     
