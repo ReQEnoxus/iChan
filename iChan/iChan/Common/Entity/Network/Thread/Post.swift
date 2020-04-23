@@ -84,6 +84,28 @@ class File: Codable, RealmConvertible {
     var thumbnail: String
     var displayname: String
     
+    enum CodingKeys: String, CodingKey {
+        
+        case path = "path"
+        case thumbnail = "thumbnail"
+        case displayname = "displayname"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        path = try container.decode(String.self, forKey: .path)
+        thumbnail = try container.decode(String.self, forKey: .thumbnail)
+        
+        do {
+            displayname = try container.decode(String.self, forKey: .displayname)
+        }
+        catch {
+            displayname = UUID().uuidString
+        }
+    }
+    
     init(path: String, thumbnail: String, displayname: String) {
         self.path = path
         self.thumbnail = thumbnail
