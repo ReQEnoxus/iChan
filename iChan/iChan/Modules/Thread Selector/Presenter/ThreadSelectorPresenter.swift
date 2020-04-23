@@ -146,7 +146,7 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     }
     
     func didFinishRefreshingThreads(threads: [ThreadDto]) {
-        
+
         if threads.isEmpty {
             
             if let mode = mode {

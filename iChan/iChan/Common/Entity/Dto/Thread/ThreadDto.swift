@@ -17,7 +17,7 @@ class ThreadDto {
     let date: String
     let thumbnail: String?
     let file: String?
-    let text: String
+    var text: String
     let posterName: String
     let fileName: String?
     let board: String

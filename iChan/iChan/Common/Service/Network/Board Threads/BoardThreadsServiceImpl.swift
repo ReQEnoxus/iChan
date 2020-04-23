@@ -34,8 +34,17 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                         thread.board = board
                         let dto = thread.toDto()
                         
+                            
+                        let matches = dto.text.matches(for: "<table.+?>|<\\/table>")
+                        
+                        for match in matches {
+                            dto.text = dto.text.replacingOccurrences(of: match, with: String())
+                        }
+                        
+                        
                         dtoArray.append(dto)
                     }
+                    
                     
                     DispatchQueue.main.async {
                         completion(.success(dtoArray))
@@ -63,6 +72,15 @@ class BoardThreadsServiceImpl: AbstractApiClientService, BoardThreadsService {
                     
                     thread.board = board
                     
+                        
+                    let matches = thread.posts[0].comment.matches(for: "<table.+?>|<\\/table>")
+                    
+                    for match in matches {
+                        
+                        thread.posts[0].comment = thread.posts[0].comment.replacingOccurrences(of: match, with: String())
+                    }
+                    
+
                     for i in 0 ..< thread.posts.count {
                         
                         if thread.posts[i].files != nil {
