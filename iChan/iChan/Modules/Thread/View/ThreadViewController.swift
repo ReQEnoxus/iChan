@@ -230,6 +230,9 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
                 
                 tableView.beginUpdates()
                 tableView.insertRows(at: indicesToInsert, with: .automatic)
+                tableView.endUpdates()
+                
+                tableView.beginUpdates()
                 tableView.reloadRows(at: indicesToUpdate, with: .automatic)
                 tableView.endUpdates()
                 stopLoading()
@@ -239,6 +242,9 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
             
             tableView.beginUpdates()
             tableView.insertRows(at: indicesToInsert, with: .automatic)
+            tableView.endUpdates()
+            
+            tableView.beginUpdates()
             tableView.reloadRows(at: indicesToUpdate, with: .automatic)
             tableView.endUpdates()
             stopLoading()
