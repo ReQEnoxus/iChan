@@ -15,6 +15,7 @@ class ThreadModel: Object {
     dynamic var pkey = String()
     dynamic var filesCount = 0
     dynamic var postsCount = 0
+    dynamic var createdAt = Date()
     let posts = List<PostModel>()
     
     override class func primaryKey() -> String? {

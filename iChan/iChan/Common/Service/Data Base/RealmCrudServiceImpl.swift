@@ -13,25 +13,24 @@ class RealmCrudServiceImpl: CrudService {
     
     var observerTokens = [NotificationToken]()
     
-    func registerObserver<T: Object>(on type: T.Type, onUpdate: @escaping ([Int], [Int], [Int]) -> Void) {
-        
-//        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            
-            let realm = try! Realm()
-            
-            let token = realm.objects(type).observe({ block in
-                
-                switch block {
+    func registerObserver<T: Object>(on type: T.Type, order: Order?, onUpdate: @escaping ([Int], [Int], [Int]) -> Void) {
                     
-                    case .update(_, let deletions, let insertions, let modifications):
-                        onUpdate(deletions, insertions, modifications)
-                        
-                    default: break
-                }
-            })
+        let realm = try! Realm()
+        
+        let objects = order != nil ? realm.objects(type).sorted(byKeyPath: order!.keyPath, ascending: order!.ascending) : realm.objects(type)
+        
+        let token = objects.observe({ block in
             
-            observerTokens.append(token)
-//        }
+            switch block {
+                
+                case .update(_, let deletions, let insertions, let modifications):
+                    onUpdate(deletions, insertions, modifications)
+                    
+                default: break
+            }
+        })
+        
+        observerTokens.append(token)
     }
     
     func delete<T>(object: T) where T : RealmConvertible {
@@ -114,17 +113,27 @@ class RealmCrudServiceImpl: CrudService {
         }
     }
     
-    func get<T>(type: T.Type, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void) where T : Object {
+    func get<T>(type: T.Type, order: Order?, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void) where T : Object {
         
         DispatchQueue.global(qos: .userInteractive).async {
             
             let realm = try! Realm()
             
             if let predicate = predicate {
-                completion(Array(realm.objects(T.self).filter(predicate)))
+                if let collectionOrder = order {
+                    completion(Array(realm.objects(T.self).filter(predicate).sorted(byKeyPath: collectionOrder.keyPath, ascending: collectionOrder.ascending)))
+                }
+                else {
+                     completion(Array(realm.objects(T.self).filter(predicate)))
+                }
             }
             else {
-                completion(Array(realm.objects(T.self)))
+                if let collectionOrder = order {
+                    completion(Array(realm.objects(T.self).sorted(byKeyPath: collectionOrder.keyPath, ascending: collectionOrder.ascending)))
+                }
+                else {
+                    completion(Array(realm.objects(T.self)))
+                }
             }
             
         }

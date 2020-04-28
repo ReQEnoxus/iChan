@@ -22,7 +22,9 @@ protocol CrudService: AnyObject {
     /// gets all the objects from the realm matching the predicate
     /// - Parameter type: type of the objects
     /// - Parameter predicate: optional predicate
-    func get<T: Object>(type: T.Type, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void)
+    /// - Parameter order: order of the collection
+    /// - Parameter completion: block that is called when data is ready
+    func get<T: Object>(type: T.Type, order: Order?, by predicate: NSPredicate?, completion: @escaping ([T]) -> Void)
     
     /// gets specific object by primary key
     /// - Parameter type: type of the object
@@ -49,5 +51,6 @@ protocol CrudService: AnyObject {
     /// registers observer that gets notified everytime the collection of given types get mutated
     /// - Parameter type: type to receive notifications about
     /// - Parameter onUpdate: action to perform when notification received, accepts deletions, insertions and modifications indices as params
-    func registerObserver<T: Object>(on type: T.Type, onUpdate: @escaping ([Int], [Int], [Int]) -> Void)
+    /// - Parameter order: order of the collection
+    func registerObserver<T: Object>(on type: T.Type, order: Order?, onUpdate: @escaping ([Int], [Int], [Int]) -> Void)
 }

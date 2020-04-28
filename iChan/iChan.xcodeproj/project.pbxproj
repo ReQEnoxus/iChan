@@ -91,6 +91,7 @@
 		7391ED63243F058A006C7FB0 /* RealmConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED62243F058A006C7FB0 /* RealmConvertible.swift */; };
 		7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */; };
 		7391ED67243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */; };
+		739964F32458319E0097201B /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739964F22458319E0097201B /* Order.swift */; };
 		73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7781B244461B100950BD0 /* HudAnimationView.swift */; };
 		73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEB2441BF7000B8CDB3 /* Cache.swift */; };
 		73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */; };
@@ -225,6 +226,7 @@
 		7391ED62243F058A006C7FB0 /* RealmConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConvertible.swift; sourceTree = "<group>"; };
 		7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheService.swift; sourceTree = "<group>"; };
 		7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCategoriesCacheServiceImpl.swift; sourceTree = "<group>"; };
+		739964F22458319E0097201B /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		73B7781B244461B100950BD0 /* HudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudAnimationView.swift; sourceTree = "<group>"; };
 		73B8DEEB2441BF7000B8CDB3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorMode.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				7391ED5E243F02BE006C7FB0 /* CrudService.swift */,
 				7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */,
 				7391ED69243F5953006C7FB0 /* BoardCategories */,
+				739964F22458319E0097201B /* Order.swift */,
 			);
 			path = "Data Base";
 			sourceTree = "<group>";
@@ -1147,6 +1150,7 @@
 				731431D2241E8F110065E0DB /* ThreadSelectorDataSource.swift in Sources */,
 				731431C6241E8AEA0065E0DB /* ThreadSelectorViewOutput.swift in Sources */,
 				7316BB8A244C68C8008943BC /* PlayerInteractorOutput.swift in Sources */,
+				739964F32458319E0097201B /* Order.swift in Sources */,
 				73C2A1912431EE0E00BFDAAE /* ThreadDataSource.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
 				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,

@@ -18,7 +18,7 @@ class BoardCategoriesCacheServiceImpl: BoardCategoriesCacheService {
     
     func current(completion: @escaping (BoardCategories?) -> Void) {
         
-        crudService.get(type: BoardCategoriesModel.self, by: nil) { categories in
+        crudService.get(type: BoardCategoriesModel.self, order: nil, by: nil) { categories in
             
             guard let modelUnwrapped = categories.first else {
                 

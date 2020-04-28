@@ -14,7 +14,7 @@ class ThreadStorageServiceImpl: ThreadStorageService {
     
     func getAll(completion: @escaping ([Thread]) -> Void) {
         
-        return crudService.get(type: ThreadModel.self, by: nil) { threads in
+        return crudService.get(type: ThreadModel.self, order: Order(keyPath: #keyPath(ThreadModel.createdAt), ascending: false), by: nil) { threads in
             
             let threadsMapped = threads.map {
                 
@@ -85,6 +85,6 @@ class ThreadStorageServiceImpl: ThreadStorageService {
     }
     
     func observe(onUpdate: @escaping ([Int], [Int], [Int]) -> Void) {
-        crudService.registerObserver(on: ThreadModel.self, onUpdate: onUpdate)
+        crudService.registerObserver(on: ThreadModel.self, order: Order(keyPath: #keyPath(ThreadModel.createdAt), ascending: false), onUpdate: onUpdate)
     }
 }
