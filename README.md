@@ -1,0 +1,2 @@
+# iChan
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6f5c379adb8949afaf560c9fa894695f)](https://app.codacy.com/manual/ReQEnoxus/iChan?utm_source=github.com&utm_medium=referral&utm_content=ReQEnoxus/iChan&utm_campaign=Badge_Grade_Dashboard)
