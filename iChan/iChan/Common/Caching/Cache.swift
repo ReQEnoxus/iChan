@@ -8,13 +8,24 @@
 
 import Foundation
 
-final class Cache<Key: Hashable, Value> {
+protocol UniquelyIdentifiable {
+    
+    var id: String { get }
+}
+
+final class Cache<Key: Hashable, Value: UniquelyIdentifiable>: NSObject, NSCacheDelegate {
     
     private let wrapped = NSCache<WrappedKey, Entry>()
     
     private var keys = [Key]()
     
     private var subscribers = [CacheSubscriber]()
+    
+    override init() {
+        
+        super.init()
+        wrapped.delegate = self
+    }
     
     func insert(_ value: Value, forKey key: Key) {
         
@@ -75,6 +86,14 @@ final class Cache<Key: Hashable, Value> {
             }
 
             insert(value, forKey: key)
+        }
+    }
+    
+    func cache(_ cache: NSCache<AnyObject, AnyObject>, willEvictObject obj: Any) {
+        
+        if let entry = obj as? Entry {
+            
+            keys.removeAll(where: { $0.hashValue == entry.value.id.hashValue })
         }
     }
 }

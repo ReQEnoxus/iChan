@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 /// thread model that is obtained from API
-class Thread: Codable, RealmConvertible {
+class Thread: Codable, RealmConvertible, UniquelyIdentifiable {
     
     var board: String = String()
     var filesCount: Int?
