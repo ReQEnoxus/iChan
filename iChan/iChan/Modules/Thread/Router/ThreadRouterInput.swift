@@ -31,5 +31,10 @@ protocol ThreadRouterInput: AnyObject {
     /// - Parameter postNum: optional number of the post that needs to be displayed immediately
     func pushAnotherThread(board: String, opNum: String, postNum: String?)
     
+    /// tells router to present reply controller
+    /// - Parameters:
+    ///   - board: board where new post should appear
+    ///   - threadNum: OP-post of the thread where post should appear
+    ///   - replyingTo: number of post which new post is replying to
     func presentReplyController(board: String, threadNum: String, replyingTo: String?)
 }

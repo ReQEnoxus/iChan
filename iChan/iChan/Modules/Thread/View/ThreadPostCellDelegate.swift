@@ -19,5 +19,7 @@ protocol ThreadPostCellDelegate: AnyObject {
     /// - Parameter url: tapped url
     func didTapUrl(url: URL)
     
+    /// tells delegate that user has tapped on some post's number
+    /// - Parameter replyingTo: number of the tapped post
     func postNumberButtonPressed(replyingTo: String)
 }

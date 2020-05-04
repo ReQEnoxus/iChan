@@ -19,5 +19,7 @@ protocol ThreadDataSourceOutput: AnyObject {
     /// - Parameter url: tapped url
     func didTapUrl(url: URL)
     
+    /// tells presenter that user has tapped some post's number
+    /// - Parameter replyingTo: number that user has tapped on
     func postNumberButtonPressed(replyingTo: String)
 }

@@ -10,5 +10,6 @@ import Foundation
 
 protocol PostViewDelegate: AnyObject {
     
+    /// tells delegate that user has tapped on the number of post
     func postNumberButtonPressed()
 }

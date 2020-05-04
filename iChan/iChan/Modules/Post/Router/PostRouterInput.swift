@@ -28,5 +28,10 @@ protocol PostRouterInput: AnyObject {
     /// - Parameter url: url to be opened
     func open(url: URL)
     
+    /// tells router to present reply controller
+    /// - Parameters:
+    ///   - board: board where new post should appear
+    ///   - threadNum: OP-post of the thread where post should appear
+    ///   - replyingTo: number of post which new post is replying to
     func presentReplyController(board: String, threadNum: String, replyingTo: String?)
 }

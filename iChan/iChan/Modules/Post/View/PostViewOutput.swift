@@ -25,5 +25,7 @@ protocol PostViewOutput: AnyObject {
     /// tells presenter that user has requested dismissal for this module
     func dismissRequested()
     
+    /// tells presenter that user pressed on the number of particular post
+    /// - Parameter replyingTo: number of post which user has pressed
     func postNumberButtonPressed(replyingTo: String)
 }
