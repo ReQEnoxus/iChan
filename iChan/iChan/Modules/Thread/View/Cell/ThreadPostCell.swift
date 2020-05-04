@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate {
+class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate, PostViewDelegate {
     
     private class Appearance {
         
@@ -61,7 +61,7 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        postView = PostView()
+        postView = PostView(delegate: self)
         
         postView.attachmentCollectionView.delegate = self
         postView.attachmentCollectionView.dataSource = self
@@ -111,5 +111,10 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         
         delegate?.didTapUrl(url: URL)
         return false
+    }
+    
+    //MARK: - PostView Delegate
+    func postNumberButtonPressed() {
+        delegate?.postNumberButtonPressed(replyingTo: post.num)
     }
 }

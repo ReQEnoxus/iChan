@@ -63,4 +63,10 @@ class PostRouter: PostRouterInput {
             view.present(safariViewController, animated: true)
         }
     }
+    
+    func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
+        
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo)
+        view.present(vc, animated: true)
+    }
 }

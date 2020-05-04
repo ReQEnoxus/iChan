@@ -18,4 +18,6 @@ protocol ThreadDataSourceOutput: AnyObject {
     /// tells presenter that user has tapped the url inside of the post cell
     /// - Parameter url: tapped url
     func didTapUrl(url: URL)
+    
+    func postNumberButtonPressed(replyingTo: String)
 }

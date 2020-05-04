@@ -27,4 +27,6 @@ protocol PostRouterInput: AnyObject {
     /// tells router to open an external link in safari controller
     /// - Parameter url: url to be opened
     func open(url: URL)
+    
+    func presentReplyController(board: String, threadNum: String, replyingTo: String?)
 }

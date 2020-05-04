@@ -51,9 +51,9 @@ class ThreadRouter: ThreadRouterInput {
         }
     }
     
-    func presentPostController(posts: [Post], postNum: String) {
+    func presentPostController(posts: [Post], board: String, postNum: String) {
         
-        let vc = PostConfigurator.configureModule(posts: posts, num: postNum, parent: view)
+        let vc = PostConfigurator.configureModule(posts: posts, board: board, num: postNum, parent: view)
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
 
@@ -64,5 +64,11 @@ class ThreadRouter: ThreadRouterInput {
         
         let vc = ThreadConfigurator.configureModule(board: board, num: opNum, postNum: postNum)
         view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
+        
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo)
+        view.present(vc, animated: true)
     }
 }

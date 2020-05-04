@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class PostViewController: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, PostViewInput {
+class PostViewController: UIViewController, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, PostViewInput, PostViewDelegate {
     
     //MARK: - UI Constants
     private class Appearance {
@@ -190,6 +190,11 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
             
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    //MARK: - PostView Delegate
+    func postNumberButtonPressed() {
+        presenter.postNumberButtonPressed(replyingTo: post.num)
     }
 }
 

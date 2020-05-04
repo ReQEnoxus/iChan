@@ -37,4 +37,8 @@ class ThreadDataSourceImpl: NSObject, ThreadDataSource, ThreadPostCellDelegate {
     func didTapUrl(url: URL) {
         presenter.didTapUrl(url: url)
     }
+    
+    func postNumberButtonPressed(replyingTo: String) {
+        presenter.postNumberButtonPressed(replyingTo: replyingTo)
+    }
 }

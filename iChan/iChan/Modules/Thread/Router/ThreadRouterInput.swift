@@ -22,11 +22,14 @@ protocol ThreadRouterInput: AnyObject {
     /// tells router to present post module
     /// - Parameter posts: all posts in this thread
     /// - Parameter postNum: requested post
-    func presentPostController(posts: [Post], postNum: String)
+    /// - Parameter board: board on which post is being opened
+    func presentPostController(posts: [Post], board: String, postNum: String)
     
     /// tells router to push another thread
     /// - Parameter board: board where target thread is located
     /// - Parameter opNum: number of the OP-post of the target thread
     /// - Parameter postNum: optional number of the post that needs to be displayed immediately
     func pushAnotherThread(board: String, opNum: String, postNum: String?)
+    
+    func presentReplyController(board: String, threadNum: String, replyingTo: String?)
 }

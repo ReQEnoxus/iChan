@@ -16,6 +16,7 @@ class PostPresenter: PostViewOutput, PostInteractorOutput {
     
     var posts: [Post]!
     var initialNum: String!
+    var board: String!
     
     //MARK: - View Output
     func didTapImage(index: Int, files: [File]) {
@@ -37,6 +38,10 @@ class PostPresenter: PostViewOutput, PostInteractorOutput {
     
     func dismissRequested() {
         router.dismissPostModule()
+    }
+    
+    func postNumberButtonPressed(replyingTo: String) {
+        router.presentReplyController(board: board, threadNum: posts[.zero].num, replyingTo: replyingTo)
     }
     
     //MARK: - Interactor Output

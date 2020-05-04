@@ -54,6 +54,8 @@ class PostView: UIView {
         static let infoHexColor = "#909090"
     }
     
+    weak var delegate: PostViewDelegate?
+    
     //MARK: - UI Elements
     lazy var dateAndNameLabel: UILabel = {
         
@@ -73,6 +75,7 @@ class PostView: UIView {
         
         var numberButton = UIButton(type: .system)
         numberButton.setTitleColor(.orangeUi, for: .normal)
+        numberButton.addTarget(self, action: #selector(numberButtonPressed), for: .touchUpInside)
         
         return numberButton
     }()
@@ -204,7 +207,18 @@ class PostView: UIView {
         addSubview(mainStackView)
     }
     
+    convenience init(delegate: PostViewDelegate) {
+        
+        self.init()
+        self.delegate = delegate
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func numberButtonPressed() {
+        delegate?.postNumberButtonPressed()
     }
 }

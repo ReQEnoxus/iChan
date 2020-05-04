@@ -11,14 +11,14 @@ import UIKit
 
 class PostConfigurator {
     
-    class func configureModule(posts: [Post], num: String, parent: UIViewController) -> UIViewController {
+    class func configureModule(posts: [Post], board: String, num: String, parent: UIViewController) -> UIViewController {
         
         let view = PostViewController()
         let presenter = PostPresenter()
         let interactor = PostInteractor()
         let router = PostRouter()
         let urlService = UrlCheckerServiceImpl()
-        let postView = PostView()
+        let postView = PostView(delegate: view)
         
         view.presenter = presenter
         view.postView = postView
@@ -28,6 +28,7 @@ class PostConfigurator {
         presenter.router = router
         presenter.posts = posts
         presenter.initialNum = num
+        presenter.board = board
         
         interactor.presenter = presenter
         interactor.urlService = urlService

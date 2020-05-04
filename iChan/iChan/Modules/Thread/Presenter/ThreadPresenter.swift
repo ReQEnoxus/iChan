@@ -49,7 +49,7 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
             view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: false)
             view.displayTableView()
             if let requestedPostNum = postNum {
-                router.presentPostController(posts: thread.posts, postNum: requestedPostNum)
+                router.presentPostController(posts: thread.posts, board: thread.board, postNum: requestedPostNum)
             }
         }
         else {
@@ -81,12 +81,12 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         switch type {
             
             case .innerReply(let num):
-                router.presentPostController(posts: dataSource.posts, postNum: num)
+                router.presentPostController(posts: dataSource.posts, board: board, postNum: num)
             
             case .inner(let board, let opNum, let postNum):
             
                 if opNum == num {
-                    router.presentPostController(posts: dataSource.posts, postNum: postNum ?? opNum)
+                    router.presentPostController(posts: dataSource.posts, board: board, postNum: postNum ?? opNum)
                 }
                 else {
                     router.pushAnotherThread(board: board, opNum: opNum, postNum: postNum)
@@ -104,5 +104,9 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     
     func didTapUrl(url: URL) {
         interactor.didTapUrl(url: url)
+    }
+    
+    func postNumberButtonPressed(replyingTo: String) {
+        router.presentReplyController(board: board, threadNum: num, replyingTo: replyingTo)
     }
 }
