@@ -21,4 +21,7 @@ protocol ThreadViewOutput {
     
     /// tells presenter to update thread with new posts
     func update()
+    
+    /// tells preenter that user has tapped reply button
+    func didPressReplyButton()
 }

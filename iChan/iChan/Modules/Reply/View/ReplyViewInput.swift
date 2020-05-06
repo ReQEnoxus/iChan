@@ -13,4 +13,18 @@ protocol ReplyViewInput: AnyObject {
     /// tells view to set initial text in the message text view
     /// - Parameter text: text to set
     func setInitialMessageText(_ text: String)
+    
+    /// tells view that given id should be validated
+    /// - Parameter id: recaptcha public id
+    func validationRequested(on id: String)
+    
+    /// tells view to display loading indicator
+    func displayLoadingIndicator()
+    
+    /// tells view to turn loading indicator into an error indicator with given message
+    /// - Parameter message: error message
+    func displayErrorMessage(_ message: String)
+    
+    /// tells view to dismiss loading view
+    func dismissLoadingView()
 }

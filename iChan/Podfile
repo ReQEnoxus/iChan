@@ -14,5 +14,6 @@ target 'iChan' do
   pod 'RealmSwift'
   pod 'JGProgressHUD'
   pod 'MobileVLCKit'
+  pod "ReCaptcha"
 
 end

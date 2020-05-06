@@ -26,16 +26,34 @@ extension ApiClient {
     
     func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T, ApiError>) -> Void) {
         
-        var components = URLComponents()
-        components.scheme = endpoint.scheme
-        components.host = endpoint.host
-        components.path = endpoint.path
-        components.queryItems = endpoint.parameters
+        var urlRequest: URLRequest
         
-        guard let url = components.url else { return }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = endpoint.method
+        switch endpoint {
+            
+            case .createPost:
+            
+                var components = URLComponents()
+                components.scheme = endpoint.scheme
+                components.host = endpoint.host
+                components.path = endpoint.path
+                
+                guard let url = components.url else { return }
+                
+                urlRequest = MultipartFormDataRequestBuilder.build(from: endpoint.parameters, targetUrl: url)
+                
+            default:
+                
+                var components = URLComponents()
+                components.scheme = endpoint.scheme
+                components.host = endpoint.host
+                components.path = endpoint.path
+                components.queryItems = endpoint.parameters
+                
+                guard let url = components.url else { return }
+                
+                urlRequest = URLRequest(url: url)
+                urlRequest.httpMethod = endpoint.method
+        }
         
         let dataTask = session.dataTask(with: urlRequest) { [weak self] data, response, error in
             

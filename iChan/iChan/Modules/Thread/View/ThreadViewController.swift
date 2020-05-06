@@ -34,6 +34,8 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         
         static let errorLogoImageName = "SF_exclamationmark_octagon-1"
         
+        static let replyButtonTitle = "Ответить"
+        
         static let loadingAnimationName = "loading"
         static let loadingAnimationWidth = 200
         static let loadingAnimationHeight = 200
@@ -125,6 +127,8 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: String(), preferredLargeTitle: true)
         navigationItem.largeTitleDisplayMode = .never
         definesPresentationContext = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Appearance.replyButtonTitle, style: .plain, target: self, action: #selector(replyButtonTapped))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -194,6 +198,10 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
     
     @objc func refreshInErrorState() {
         presenter.refreshInErrorState()
+    }
+    
+    @objc func replyButtonTapped() {
+        presenter.didPressReplyButton()
     }
     
     //MARK: - Setup methods

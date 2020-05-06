@@ -15,14 +15,20 @@ class ReplyConfigurator {
         let view = ReplyViewController()
         let presenter = ReplyPresenter()
         let router = ReplyRouter()
+        let interactor = ReplyInteractor()
+        let postingService = PostingServiceImpl()
         
         view.presenter = presenter
         
         presenter.view = view
         presenter.router = router
+        presenter.interactor = interactor
         presenter.board = board
         presenter.threadNum = threadNum
         presenter.replyingTo = replyingTo
+        
+        interactor.postingService = postingService
+        interactor.presenter = presenter
         
         router.view = view
         

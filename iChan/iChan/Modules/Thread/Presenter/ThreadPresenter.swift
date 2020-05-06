@@ -40,6 +40,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         interactor.loadThread(board: board, num: num)
     }
     
+    func didPressReplyButton() {
+        router.presentReplyController(board: board, threadNum: num, replyingTo: .none)
+    }
+    
     //MARK: - Interactor Output
     func didFinishLoadingThread(thread: Thread, replyLoadNeeded: Bool, idxToInsert: [IndexPath], idxToUpdate: [IndexPath]) {
         

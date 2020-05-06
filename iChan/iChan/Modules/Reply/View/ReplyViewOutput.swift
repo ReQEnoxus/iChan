@@ -17,6 +17,19 @@ protocol ReplyViewOutput: AnyObject {
     func cancelButtonPressed()
     
     /// tells presenter that send button was pressed
-    /// - Parameter message: data in input fields
-    func sendButtonPressed(message: Message)
+    /// - Parameters:
+    ///   - options: options textfield content
+    ///   - comment: message textview content
+    func sendButtonPressed(options: String, comment: String)
+    
+    /// tells presenter that captcha was successfully validated
+    /// - Parameter response: g-recaptcha-response
+    func recaptchaValidated(with response: String)
+    
+    /// tells presenter that captcha validation has failed for some reason (this gets called if google captcha services are down)
+    /// - Parameter error: error that occured during validation
+    func recaptchaHasFailedToValidate(with error: Error)
+    
+    /// tells presenter that user has requested loading view dismissal
+    func manualDismissOfLoadingViewRequested()
 }
