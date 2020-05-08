@@ -502,6 +502,8 @@ class ReplyViewController: UIViewController, ReplyViewInput {
                 if let loadingView = self?.loadingView {
                     
                     self?.loadingContainerView.addSubview(loadingView)
+                    self?.loadingView.alpha = Appearance.endAlpha
+                    self?.loadingView.play()
                 }
                 
                 self?.loadingContainerView.snp.updateConstraints { update in
