@@ -344,6 +344,8 @@ class ReplyViewController: UIViewController, ReplyViewInput {
     }
     
     @objc func sendButtonPressed() {
+        
+        view.endEditing(true)
         presenter.sendButtonPressed(options: topicTextField.text ?? String(), comment: messageTextView.text)
     }
     
