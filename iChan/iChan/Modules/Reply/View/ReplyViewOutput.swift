@@ -33,7 +33,10 @@ protocol ReplyViewOutput: AnyObject {
     /// tells presenter that user has requested loading view dismissal
     func manualDismissOfLoadingViewRequested()
     
+    /// tells presenter that new attachments was loaded from memory
+    /// - Parameter attachment: attachment that was loaded
     func didLoadNewAttachment(_ attachment: PostAttachment)
     
+    /// tells presenter that user has pressed add attachments button
     func didPressAddAttachmentButton()
 }

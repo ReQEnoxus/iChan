@@ -10,5 +10,6 @@ import Foundation
 
 protocol ReplyDataSource: UITableViewDataSource {
     
+    /// array of attachments that is used to populate tableview
     var attachments: [PostAttachment] { get set }
 }

@@ -28,9 +28,16 @@ protocol ReplyViewInput: AnyObject {
     /// tells view to dismiss loading view
     func dismissLoadingView()
     
+    /// tells view to assign given datasource to attachments table view
+    /// - Parameter dataSource: datasource to be assigned
     func registerDataSourceForAttachmentsTable(_ dataSource: ReplyDataSource)
     
+    /// tells view to completely reload attachments table view data
     func reloadAttachmentsData()
     
+    /// tells view to partly reload attachments table view data
+    /// - Parameters:
+    ///   - deletions: indices of deleted elements
+    ///   - insertions: indices of inserted elements
     func reloadAttachmentsData(deletions: [IndexPath], insertions: [IndexPath])
 }
