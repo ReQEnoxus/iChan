@@ -16,7 +16,7 @@ protocol ReplyIneractorInput: AnyObject {
     ///   - thread: target thread
     ///   - options: options like email or sage
     ///   - comment: text of the message
-    func createNewPost(board: String, thread: String, options: String, comment: String)
+    func createNewPost(board: String, thread: String, options: String, comment: String, images: [Data])
     
     /// tells interactor to send prepared post using given captcha code
     /// - Parameter captchaResponse: basically g-recaptcha-response

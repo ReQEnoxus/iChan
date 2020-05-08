@@ -49,6 +49,12 @@
 		734ACB82246005BD00356775 /* ReplyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734ACB81246005BD00356775 /* ReplyRouter.swift */; };
 		734ACB84246006F300356775 /* ReplyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734ACB83246006F300356775 /* ReplyConfigurator.swift */; };
 		734ACB8A24600D5200356775 /* PostViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734ACB8924600D5200356775 /* PostViewDelegate.swift */; };
+		735A976124656ADA00F181BA /* PostAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A976024656ADA00F181BA /* PostAttachmentCell.swift */; };
+		735A9763246571AB00F181BA /* AttachmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A9762246571AB00F181BA /* AttachmentCellDelegate.swift */; };
+		735A9765246574CB00F181BA /* PostAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A9764246574CB00F181BA /* PostAttachment.swift */; };
+		735A97682465869900F181BA /* ReplyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A97672465869900F181BA /* ReplyDataSource.swift */; };
+		735A976A246586F600F181BA /* ReplyDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A9769246586F600F181BA /* ReplyDataSourceImpl.swift */; };
+		735A976C246588C100F181BA /* ReplyDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A976B246588C100F181BA /* ReplyDataSourceOutput.swift */; };
 		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
 		736595F12435F45300DE04D9 /* PostInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F02435F45300DE04D9 /* PostInteractorInput.swift */; };
 		736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F32435F4C200DE04D9 /* PostRouterInput.swift */; };
@@ -203,6 +209,12 @@
 		734ACB81246005BD00356775 /* ReplyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRouter.swift; sourceTree = "<group>"; };
 		734ACB83246006F300356775 /* ReplyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyConfigurator.swift; sourceTree = "<group>"; };
 		734ACB8924600D5200356775 /* PostViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewDelegate.swift; sourceTree = "<group>"; };
+		735A976024656ADA00F181BA /* PostAttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAttachmentCell.swift; sourceTree = "<group>"; };
+		735A9762246571AB00F181BA /* AttachmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCellDelegate.swift; sourceTree = "<group>"; };
+		735A9764246574CB00F181BA /* PostAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAttachment.swift; sourceTree = "<group>"; };
+		735A97672465869900F181BA /* ReplyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataSource.swift; sourceTree = "<group>"; };
+		735A9769246586F600F181BA /* ReplyDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataSourceImpl.swift; sourceTree = "<group>"; };
+		735A976B246588C100F181BA /* ReplyDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataSourceOutput.swift; sourceTree = "<group>"; };
 		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		736595F02435F45300DE04D9 /* PostInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInteractorInput.swift; sourceTree = "<group>"; };
 		736595F32435F4C200DE04D9 /* PostRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouterInput.swift; sourceTree = "<group>"; };
@@ -562,6 +574,7 @@
 		734ACB6F245EF2AC00356775 /* Reply */ = {
 			isa = PBXGroup;
 			children = (
+				735A97662465867D00F181BA /* Data Source */,
 				734ACB7C2460049500356775 /* Entity */,
 				734ACB73245EF2DB00356775 /* Router */,
 				734ACB72245EF2D400356775 /* Interactor */,
@@ -575,6 +588,7 @@
 		734ACB70245EF2C500356775 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				735A975F24656AB600F181BA /* Attachment Cell */,
 				734ACB74245EF2F200356775 /* ReplyViewController.swift */,
 				734ACB762460033900356775 /* ReplyViewInput.swift */,
 				734ACB782460037D00356775 /* ReplyViewOutput.swift */,
@@ -613,6 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				73B66ABE2462A958007A2852 /* PostingFailReason.swift */,
+				735A9764246574CB00F181BA /* PostAttachment.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -624,6 +639,25 @@
 				734ACB8924600D5200356775 /* PostViewDelegate.swift */,
 			);
 			path = "Post View";
+			sourceTree = "<group>";
+		};
+		735A975F24656AB600F181BA /* Attachment Cell */ = {
+			isa = PBXGroup;
+			children = (
+				735A976024656ADA00F181BA /* PostAttachmentCell.swift */,
+				735A9762246571AB00F181BA /* AttachmentCellDelegate.swift */,
+			);
+			path = "Attachment Cell";
+			sourceTree = "<group>";
+		};
+		735A97662465867D00F181BA /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				735A97672465869900F181BA /* ReplyDataSource.swift */,
+				735A9769246586F600F181BA /* ReplyDataSourceImpl.swift */,
+				735A976B246588C100F181BA /* ReplyDataSourceOutput.swift */,
+			);
+			path = "Data Source";
 			sourceTree = "<group>";
 		};
 		735E618A241CB9C4001053A6 /* Tab Bar */ = {
@@ -1196,6 +1230,8 @@
 				73828DBB24154D8F0073623D /* BoardSecectorPresenter.swift in Sources */,
 				73828DCB2415548A0073623D /* BoardSelectorRouter.swift in Sources */,
 				73828DAD2414EE1E0073623D /* Colors.swift in Sources */,
+				735A976C246588C100F181BA /* ReplyDataSourceOutput.swift in Sources */,
+				735A976A246586F600F181BA /* ReplyDataSourceImpl.swift in Sources */,
 				7316BB7B244C57CF008943BC /* PlayerPresenter.swift in Sources */,
 				7306CEC12435F1CF00B301D1 /* PostViewInput.swift in Sources */,
 				73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */,
@@ -1231,6 +1267,7 @@
 				73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */,
 				73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */,
 				7391ED65243F4B17006C7FB0 /* BoardCategoriesCacheService.swift in Sources */,
+				735A97682465869900F181BA /* ReplyDataSource.swift in Sources */,
 				738EC27A24430B090067A9FC /* PostModel.swift in Sources */,
 				7316BB83244C5D0C008943BC /* PlayerRouterInput.swift in Sources */,
 				736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */,
@@ -1244,6 +1281,7 @@
 				73C2A17E2430D9B400BFDAAE /* ThreadSelectorRouterInput.swift in Sources */,
 				731431CD241E8BE20065E0DB /* ThreadSelectorInteractorOutput.swift in Sources */,
 				73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */,
+				735A976124656ADA00F181BA /* PostAttachmentCell.swift in Sources */,
 				7306CEBF2435E50F00B301D1 /* PostView.swift in Sources */,
 				73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */,
 				73B8DEF224421CAA00B8CDB3 /* CacheSubscriber.swift in Sources */,
@@ -1268,6 +1306,7 @@
 				734ACB8A24600D5200356775 /* PostViewDelegate.swift in Sources */,
 				73828DB92415482A0073623D /* BoardsDataSourceImpl.swift in Sources */,
 				73C2A19C2432000300BFDAAE /* ThreadInteractorInput.swift in Sources */,
+				735A9763246571AB00F181BA /* AttachmentCellDelegate.swift in Sources */,
 				731431B5241E6A160065E0DB /* BoardThreadsServiceImpl.swift in Sources */,
 				73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */,
 				73D0A939241E5B2900FF2C04 /* BoardThreadsService.swift in Sources */,
@@ -1316,6 +1355,7 @@
 				73C3FF732413C09F009D4A18 /* BoardCategoriesResponse.swift in Sources */,
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 				73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */,
+				735A9765246574CB00F181BA /* PostAttachment.swift in Sources */,
 				73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */,
 				738EC27D24430D4D0067A9FC /* ReplyService.swift in Sources */,
 				7316BB7D244C58DD008943BC /* PlayerInteractorInput.swift in Sources */,

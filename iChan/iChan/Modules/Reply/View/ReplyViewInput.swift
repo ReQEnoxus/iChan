@@ -27,4 +27,10 @@ protocol ReplyViewInput: AnyObject {
     
     /// tells view to dismiss loading view
     func dismissLoadingView()
+    
+    func registerDataSourceForAttachmentsTable(_ dataSource: ReplyDataSource)
+    
+    func reloadAttachmentsData()
+    
+    func reloadAttachmentsData(deletions: [IndexPath], insertions: [IndexPath])
 }

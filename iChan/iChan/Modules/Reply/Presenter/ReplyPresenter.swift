@@ -8,11 +8,12 @@
 
 import Foundation
 
-class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput {
+class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput, ReplyDataSourceOutput {
     
     weak var view: ReplyViewInput!
     var router: ReplyRouterInput!
     var interactor: ReplyIneractorInput!
+    var dataSource: ReplyDataSource!
     
     var board: String!
     var threadNum: String!
@@ -20,6 +21,9 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput {
     
     //MARK: - View Output
     func initialSetup() {
+        
+        view.registerDataSourceForAttachmentsTable(dataSource)
+        view.reloadAttachmentsData()
         
         if let replyNumber = replyingTo {
             view.setInitialMessageText(">>\(replyNumber)\n")
@@ -33,7 +37,10 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput {
     func sendButtonPressed(options: String, comment: String) {
         
         view.displayLoadingIndicator()
-        interactor.createNewPost(board: board, thread: threadNum, options: options, comment: comment)
+        
+        let images = dataSource.attachments.map({ $0.data })
+        
+        interactor.createNewPost(board: board, thread: threadNum, options: options, comment: comment, images: images)
     }
     
     func recaptchaValidated(with response: String) {
@@ -46,6 +53,19 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput {
     
     func manualDismissOfLoadingViewRequested() {
         view.dismissLoadingView()
+    }
+    
+    func didLoadNewAttachment(_ attachment: PostAttachment) {
+        
+        let insertIndex = dataSource.attachments.count
+        dataSource.attachments.append(attachment)
+        router.dismissPicker()
+        
+        view.reloadAttachmentsData(deletions: [], insertions: [IndexPath(item: insertIndex, section: .zero)])
+    }
+    
+    func didPressAddAttachmentButton() {
+        router.presentImagePicker()
     }
     
     //MARK: - InteractorOutput
@@ -74,5 +94,15 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput {
         
         view.dismissLoadingView()
         router.dismissReplyModule()
+    }
+    
+    //MARK: - Data Source Output
+    func deleteButtonPressed(on id: String) {
+        
+        if let indexToDelete = dataSource.attachments.firstIndex(where: { $0.id == id }) {
+            
+            dataSource.attachments.remove(at: indexToDelete)
+            view.reloadAttachmentsData(deletions: [IndexPath(item: indexToDelete, section: .zero)], insertions: [])
+        }
     }
 }

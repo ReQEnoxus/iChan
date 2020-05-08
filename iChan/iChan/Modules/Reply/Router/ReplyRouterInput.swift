@@ -12,4 +12,8 @@ protocol ReplyRouterInput: AnyObject {
     
     /// tells router to dismiss reply module
     func dismissReplyModule()
+    
+    func presentImagePicker()
+    
+    func dismissPicker()
 }

@@ -66,7 +66,7 @@ enum Endpoint {
     case board(id: String, page: Int)
     case thread(board: String, num: String)
     case posts(board: String, num: String, post: Int)
-    case createPost(board: String, num: String, options: String, comment: String, captcha: String)
+    case createPost(message: Message)
     case captchaSettings(board: String)
     case captchaPublicKey(captchaType: String)
     
@@ -116,19 +116,19 @@ enum Endpoint {
                         URLQueryItem(name: Endpoint.postsBoardParameterName, value: board),
                         URLQueryItem(name: Endpoint.postsThreadParameterName, value: num),
                         URLQueryItem(name: Endpoint.postsPostParameterName, value: String(post))]
-        case .createPost(let board, let num, let options, let comment, let captcha):
+        case .createPost(let message):
             return [.init(name: Endpoint.postsParameterName, value: Endpoint.postsPostParameterName),
-                    .init(name: Endpoint.postsBoardParameterName, value: board),
-                    .init(name: Endpoint.postsThreadParameterName, value: num),
+                    .init(name: Endpoint.postsBoardParameterName, value: message.board),
+                    .init(name: Endpoint.postsThreadParameterName, value: message.thread),
                     .init(name: Endpoint.postsUsercodeParameterName, value: String()),
                     .init(name: Endpoint.postsCodeParameterName, value: String()),
                     .init(name: Endpoint.postsCaptchaTypeParameterName, value: Endpoint.postsCaptchaDefaultValueName),
-                    .init(name: Endpoint.postsOptionsParameterName, value: options),
+                    .init(name: Endpoint.postsOptionsParameterName, value: message.options),
                     .init(name: Endpoint.postsNameParameterName, value: String()),
                     .init(name: Endpoint.postsSubjectParameterName, value: String()),
-                    .init(name: Endpoint.postsCommentParameterName, value: comment),
+                    .init(name: Endpoint.postsCommentParameterName, value: message.comment),
                     .init(name: Endpoint.postsCaptchaIdParameterName, value: Endpoint.postsCaptchaIdDefaultValue),
-                    .init(name: Endpoint.postsCaptchaResponseParameterName, value: captcha)]
+                    .init(name: Endpoint.postsCaptchaResponseParameterName, value: message.captchaResponseKey)]
             case .captchaSettings:
                 return []
             case .captchaPublicKey:

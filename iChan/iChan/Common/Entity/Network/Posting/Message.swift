@@ -16,12 +16,14 @@ class Message {
     var thread: String
     var board: String
     var captchaResponseKey: String?
+    var images: [Data]
     
-    init(options: String, comment: String, thread: String, board: String, captchaResponseKey: String?) {
+    init(options: String, comment: String, thread: String, board: String, captchaResponseKey: String?, images: [Data]) {
         self.options = options
         self.comment = comment
         self.thread = thread
         self.board = board
         self.captchaResponseKey = captchaResponseKey
+        self.images = images
     }
 }

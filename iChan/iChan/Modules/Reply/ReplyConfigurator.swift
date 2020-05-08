@@ -17,6 +17,7 @@ class ReplyConfigurator {
         let router = ReplyRouter()
         let interactor = ReplyInteractor()
         let postingService = PostingServiceImpl()
+        let dataSource = ReplyDataSourceImpl()
         
         view.presenter = presenter
         
@@ -26,6 +27,9 @@ class ReplyConfigurator {
         presenter.board = board
         presenter.threadNum = threadNum
         presenter.replyingTo = replyingTo
+        presenter.dataSource = dataSource
+        
+        dataSource.presenter = presenter
         
         interactor.postingService = postingService
         interactor.presenter = presenter

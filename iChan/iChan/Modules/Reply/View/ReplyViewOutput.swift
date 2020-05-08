@@ -32,4 +32,8 @@ protocol ReplyViewOutput: AnyObject {
     
     /// tells presenter that user has requested loading view dismissal
     func manualDismissOfLoadingViewRequested()
+    
+    func didLoadNewAttachment(_ attachment: PostAttachment)
+    
+    func didPressAddAttachmentButton()
 }

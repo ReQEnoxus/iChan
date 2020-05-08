@@ -30,7 +30,7 @@ extension ApiClient {
         
         switch endpoint {
             
-            case .createPost:
+            case .createPost(let message):
             
                 var components = URLComponents()
                 components.scheme = endpoint.scheme
@@ -39,7 +39,7 @@ extension ApiClient {
                 
                 guard let url = components.url else { return }
                 
-                urlRequest = MultipartFormDataRequestBuilder.build(from: endpoint.parameters, targetUrl: url)
+                urlRequest = MultipartFormDataRequestBuilder.build(from: endpoint.parameters, attachments: message.images, targetUrl: url)
                 
             default:
                 

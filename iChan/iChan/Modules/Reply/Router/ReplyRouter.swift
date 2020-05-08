@@ -7,12 +7,33 @@
 //
 
 import Foundation
+import UIKit
 
 class ReplyRouter: ReplyRouterInput {
     
     weak var view: UIViewController!
     
+    var picker: UIImagePickerController!
+    
     func dismissReplyModule() {
         view.dismiss(animated: true)
+    }
+    
+    func presentImagePicker() {
+        
+        if let delegate = view as? (UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
+            
+            picker = UIImagePickerController()
+            picker.allowsEditing = true
+            picker.delegate = delegate
+            picker.sourceType = .photoLibrary
+            
+            view.present(picker, animated: true)
+        }
+    }
+    
+    func dismissPicker() {
+        
+        picker.dismiss(animated: true)
     }
 }

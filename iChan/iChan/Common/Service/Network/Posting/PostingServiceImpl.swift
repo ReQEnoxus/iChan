@@ -12,7 +12,7 @@ class PostingServiceImpl: AbstractApiClientService, PostingService {
     
     func createNewPost(message: Message, completion: @escaping (Result<PostCreationResult, ApiError>) -> Void) {
         
-        request(endpoint: .createPost(board: message.board, num: message.thread, options: message.options, comment: message.comment, captcha: message.captchaResponseKey ?? String())) { (result: Result<PostCreationResult, ApiError>) in
+        request(endpoint: .createPost(message: message)) { (result: Result<PostCreationResult, ApiError>) in
             
             DispatchQueue.main.async {
                 

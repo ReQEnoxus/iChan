@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import ReCaptcha
 import Lottie
+import Photos
 
 class ReplyViewController: UIViewController, ReplyViewInput {
     
@@ -30,7 +31,7 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         static let messageLabelRightOffset = -8
         
         static let messageTextFieldTopOffset = 8
-        static let messageTextFieldHeight = 250
+        static let messageTextFieldHeight = 150
         
         static let loadingViewCornerRadius: CGFloat = 10
         
@@ -50,12 +51,23 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         static let errorViewLeftOffset = 16
         static let errorViewRightOffset = -16
         
+        static let addAttachmentButtonLeftOffset = 20
+        static let addAttachmentButtonRightOffset = -20
+        static let addAttachmentButtonHeight = 50
+        static let addAttachmentButtonTopOffset = 8
+        
+        static let attachmentsTableViewTopOffset = 8
+        static let attachmentsTableViewLeftOffset = 16
+        static let attachmentsTableViewRightOffset = -16
+        static let attachmentsTableViewBottomOffset = -16
+        
         static let errorLabelLineNumber = 0
         
         static let conatinerSpacing: CGFloat = 5
         
         static let errorViewHeightOffset: CGFloat = 60
         
+        static let addAttachmentButtonTitle = "Добавить вложения"
         static let okButtonTitle = "Понял"
         static let loadingAnimationName = "loading"
         static let topicLabelText = "Тема"
@@ -140,6 +152,29 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         return view
     }()
     
+    lazy var addAttachmentButton: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = Appearance.loadingViewCornerRadius
+        button.backgroundColor = .swipeActionPrimary
+        button.setTitle(Appearance.addAttachmentButtonTitle, for: .normal)
+        button.tintColor = .orangeUi
+        button.addTarget(self, action: #selector(addAttachmentButtonPressed), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var attachmentsTableView: UITableView = {
+        
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .blackBg
+        tableView.register(cell: PostAttachmentCell.self)
+        
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -160,6 +195,8 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         view.addSubview(topicTextField)
         view.addSubview(messageLabel)
         view.addSubview(messageTextView)
+        view.addSubview(addAttachmentButton)
+        view.addSubview(attachmentsTableView)
         
         configureLeftNavbarButton()
         configureRightNavbarButton()
@@ -218,6 +255,22 @@ class ReplyViewController: UIViewController, ReplyViewInput {
             make.right.equalToSuperview()
             make.height.equalTo(Appearance.messageTextFieldHeight)
         }
+        
+        addAttachmentButton.snp.makeConstraints { make in
+            
+            make.top.equalTo(messageTextView.snp.bottom).offset(Appearance.addAttachmentButtonTopOffset)
+            make.left.equalToSuperview().offset(Appearance.addAttachmentButtonLeftOffset)
+            make.right.equalToSuperview().offset(Appearance.addAttachmentButtonRightOffset)
+            make.height.equalTo(Appearance.addAttachmentButtonHeight)
+        }
+        
+        attachmentsTableView.snp.makeConstraints { make in
+            
+            make.top.equalTo(addAttachmentButton.snp.bottom).offset(Appearance.attachmentsTableViewTopOffset)
+            make.left.equalToSuperview().offset(Appearance.attachmentsTableViewLeftOffset)
+            make.right.equalToSuperview().offset(Appearance.attachmentsTableViewRightOffset)
+            make.bottom.equalToSuperview().offset(Appearance.attachmentsTableViewBottomOffset)
+        }
     }
     
     //MARK: - View Input
@@ -256,6 +309,24 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         }
         
         validateCaptcha()
+    }
+    
+    func reloadAttachmentsData() {
+        attachmentsTableView.reloadData()
+    }
+    
+    func reloadAttachmentsData(deletions: [IndexPath], insertions: [IndexPath]) {
+        
+        attachmentsTableView.beginUpdates()
+        
+        attachmentsTableView.deleteRows(at: deletions, with: .automatic)
+        attachmentsTableView.insertRows(at: insertions, with: .automatic)
+        
+        attachmentsTableView.endUpdates()
+    }
+    
+    func registerDataSourceForAttachmentsTable(_ dataSource: ReplyDataSource) {
+        attachmentsTableView.dataSource = dataSource
     }
     
     func displayLoadingIndicator() {
@@ -351,6 +422,10 @@ class ReplyViewController: UIViewController, ReplyViewInput {
     
     @objc func okButtonPressed() {
         presenter.manualDismissOfLoadingViewRequested()
+    }
+    
+    @objc func addAttachmentButtonPressed() {
+        presenter.didPressAddAttachmentButton()
     }
     
     //MARK: - Misc
@@ -462,4 +537,33 @@ extension ReplyViewController: UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         textView.resignFirstResponder()
     }
+}
+
+extension ReplyViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ReplyViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[.editedImage] as? UIImage,
+            let data = editedImage.pngData() {
+            
+            presenter.didLoadNewAttachment(PostAttachment(data: data, name: UUID().uuidString))
+        }
+        else if let originalImage = info[.originalImage] as? UIImage, let data = originalImage.pngData() {
+            
+            let name = (info[.phAsset] as? PHAsset)?.value(forKey: "filename") as? String ?? UUID().uuidString
+            
+            presenter.didLoadNewAttachment(PostAttachment(data: data, name: name))
+        }
+    }
+}
+
+extension ReplyViewController: UINavigationControllerDelegate {
+    
 }
