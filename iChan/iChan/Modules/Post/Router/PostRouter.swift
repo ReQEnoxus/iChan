@@ -66,7 +66,7 @@ class PostRouter: PostRouterInput {
     
     func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
         
-        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo)
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo, onPostCreated: .none)
         view.present(vc, animated: true)
     }
 }

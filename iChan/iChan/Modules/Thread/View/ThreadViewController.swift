@@ -277,6 +277,10 @@ class ThreadViewController: UIViewController, ThreadViewInput, UITableViewDelega
         }
     }
     
+    func scrollToRow(at indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .none, animated: false)
+    }
+    
     func displayErrorView() {
         
         view.subviews.forEach({ $0.removeFromSuperview() })

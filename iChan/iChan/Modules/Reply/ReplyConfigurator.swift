@@ -10,7 +10,7 @@ import Foundation
 
 class ReplyConfigurator {
     
-    class func configureModule(board: String, threadNum: String, replyingTo: String?) -> UIViewController {
+    class func configureModule(board: String, threadNum: String, replyingTo: String?, onPostCreated: (() -> Void)?) -> UIViewController {
         
         let view = ReplyViewController()
         let presenter = ReplyPresenter()
@@ -35,6 +35,7 @@ class ReplyConfigurator {
         interactor.presenter = presenter
         
         router.view = view
+        router.onPostCreated = onPostCreated
         
         let viewToPresent = UINavigationController(rootViewController: view)
         viewToPresent.modalPresentationStyle = .fullScreen

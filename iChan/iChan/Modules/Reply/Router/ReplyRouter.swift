@@ -15,8 +15,10 @@ class ReplyRouter: ReplyRouterInput {
     
     var picker: UIImagePickerController!
     
-    func dismissReplyModule() {
-        view.dismiss(animated: true)
+    var onPostCreated: (() -> Void)?
+    
+    func dismissReplyModule(postCreated: Bool) {
+        view.dismiss(animated: true, completion: postCreated ? onPostCreated : .none)
     }
     
     func presentImagePicker() {

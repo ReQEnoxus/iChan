@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourceOutput {
+class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourceOutput, ThreadRouterOutput {
     
     weak var view: ThreadViewInput!
     var interactor: ThreadInteractorInput!
@@ -18,6 +18,8 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     var board: String!
     var num: String!
     var postNum: String?
+    
+    private var needsToBeScrolledToBottom = false
     
     //MARK: - View Output
     func initialSetup() {
@@ -74,6 +76,12 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         
         dataSource.posts = posts
         view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: true)
+        
+        if needsToBeScrolledToBottom {
+            
+            view.scrollToRow(at: IndexPath(row: posts.count - 1, section: .zero))
+            needsToBeScrolledToBottom.toggle()
+        }
     }
     
     func didFinishLoadingMorePosts(with error: ApiError) {
@@ -99,6 +107,13 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
             case .outer(let url):
                 router.open(url: url)
         }
+    }
+    
+    //MARK: - Router Output
+    func refreshWithNewPost() {
+        
+        needsToBeScrolledToBottom.toggle()
+        update()
     }
     
     //MARK: - DataSourceOutput

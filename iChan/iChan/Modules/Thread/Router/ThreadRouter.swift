@@ -14,6 +14,7 @@ import SafariServices
 class ThreadRouter: ThreadRouterInput {
     
     weak var view: UIViewController!
+    weak var presenter: ThreadRouterOutput!
     
     //MARK: - Thread Router Input
     func presentImage(index: Int, files: [File]) {
@@ -68,7 +69,9 @@ class ThreadRouter: ThreadRouterInput {
     
     func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
         
-        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo)
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo) { [weak self] in
+            self?.presenter.refreshWithNewPost()
+        }
         view.present(vc, animated: true)
     }
 }

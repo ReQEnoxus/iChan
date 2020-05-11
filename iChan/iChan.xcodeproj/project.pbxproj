@@ -38,6 +38,7 @@
 		7316BB85244C5D2C008943BC /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB84244C5D2C008943BC /* PlayerRouter.swift */; };
 		7316BB87244C5D8B008943BC /* PlayerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB86244C5D8A008943BC /* PlayerConfigurator.swift */; };
 		7316BB8A244C68C8008943BC /* PlayerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7316BB89244C68C8008943BC /* PlayerInteractorOutput.swift */; };
+		731A123824693ABD00C23E6E /* ThreadRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A123724693ABD00C23E6E /* ThreadRouterOutput.swift */; };
 		731D6C8724433BC800546BCD /* ThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8624433BC800546BCD /* ThreadModel.swift */; };
 		731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8924434A9E00546BCD /* ThreadStorageService.swift */; };
 		731D6C8C24434B1E00546BCD /* ThreadStorageServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */; };
@@ -198,6 +199,7 @@
 		7316BB84244C5D2C008943BC /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
 		7316BB86244C5D8A008943BC /* PlayerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerConfigurator.swift; sourceTree = "<group>"; };
 		7316BB89244C68C8008943BC /* PlayerInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractorOutput.swift; sourceTree = "<group>"; };
+		731A123724693ABD00C23E6E /* ThreadRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRouterOutput.swift; sourceTree = "<group>"; };
 		731D6C8624433BC800546BCD /* ThreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadModel.swift; sourceTree = "<group>"; };
 		731D6C8924434A9E00546BCD /* ThreadStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageService.swift; sourceTree = "<group>"; };
 		731D6C8B24434B1E00546BCD /* ThreadStorageServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadStorageServiceImpl.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 			children = (
 				73C2A19D2432002200BFDAAE /* ThreadRouterInput.swift */,
 				73C2A1A724322FD200BFDAAE /* ThreadRouter.swift */,
+				731A123724693ABD00C23E6E /* ThreadRouterOutput.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1322,6 +1325,7 @@
 				73744C8F241D1145005BE264 /* BoardsDataSourceOutput.swift in Sources */,
 				73C3FF712413C026009D4A18 /* Board.swift in Sources */,
 				7391ED61243F0445006C7FB0 /* RealmCrudServiceImpl.swift in Sources */,
+				731A123824693ABD00C23E6E /* ThreadRouterOutput.swift in Sources */,
 				7391ED5C243F0199006C7FB0 /* BoardModel.swift in Sources */,
 				736595FA2436106D00DE04D9 /* PostRouter.swift in Sources */,
 				734ACB75245EF2F200356775 /* ReplyViewController.swift in Sources */,

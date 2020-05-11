@@ -44,6 +44,7 @@ class ThreadConfigurator {
         dataSource.presenter = presenter
         
         router.view = view
+        router.presenter = presenter
                 
         return view
     }
