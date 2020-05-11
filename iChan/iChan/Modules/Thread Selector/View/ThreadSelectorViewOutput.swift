@@ -38,4 +38,7 @@ protocol ThreadSelectorViewOutput: AnyObject {
     /// tells presenter that user pressed delete on a particular cell
     /// - Parameter indexPath: index of target cell
     func didPressedDelete(on indexPath: IndexPath)
+    
+    /// tells presenter that user pressed create thread button
+    func didPressedCreateThread()
 }

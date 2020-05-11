@@ -62,4 +62,7 @@ protocol ThreadSelectorViewInput: AnyObject {
     
     /// tells if the view is present in the view hierarchy
     var isVisible: Bool { get }
+    
+    /// tells view to configure create thread button
+    func configureCreateThreadButton()
 }

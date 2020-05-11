@@ -31,7 +31,7 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput, ReplyDataSourceOut
     }
     
     func cancelButtonPressed() {
-        router.dismissReplyModule(postCreated: false)
+        router.dismissReplyModule(postCreated: .none)
     }
     
     func sendButtonPressed(options: String, comment: String) {
@@ -90,10 +90,10 @@ class ReplyPresenter: ReplyViewOutput, ReplyInteractorOutput, ReplyDataSourceOut
         view.displayErrorMessage(message)
     }
     
-    func postingFinishedWithSuccess() {
+    func postingFinishedWithSuccess(num: Int) {
         
         view.dismissLoadingView()
-        router.dismissReplyModule(postCreated: true)
+        router.dismissReplyModule(postCreated: num)
     }
     
     //MARK: - Data Source Output

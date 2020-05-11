@@ -19,5 +19,6 @@ protocol ReplyInteractorOutput: AnyObject {
     func postingFinishedWithError(reason: PostingFailReason)
     
     /// tells presenter that posting was successful
-    func postingFinishedWithSuccess()
+    /// - Parameter num: number of created post
+    func postingFinishedWithSuccess(num: Int)
 }

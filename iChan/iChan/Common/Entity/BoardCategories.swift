@@ -20,6 +20,7 @@ class BoardCategories {
         
         categories.append(response.other)
         categoryNames.append("Разное")
+        categories[0].append(Board(id: "test", name: "test"))
         
         categories.append(response.tech)
         categoryNames.append("Техника и софт")

@@ -14,6 +14,7 @@ import SafariServices
 class ThreadSelectorRouter: ThreadSelectorRouterInput {
     
     weak var view: UIViewController!
+    weak var presenter: ThreadSelectorRouterOutput!
     
     //MARK: - Router Input
     func presentImage(with attachment: AttachmentDto) {
@@ -48,5 +49,17 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
             safariViewController.preferredBarTintColor = .blackBg
             view.present(safariViewController, animated: true)
         }
+    }
+    
+    func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
+        
+        print(presenter)
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo) { [weak self] num in
+            
+            if let threadNumber = num {
+                self?.presenter.createdThread(with: threadNumber)
+            }
+        }
+        view.present(vc, animated: true)
     }
 }

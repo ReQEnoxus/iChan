@@ -12,5 +12,6 @@ import Foundation
 protocol ThreadRouterOutput: AnyObject {
     
     /// tells presenter that thread should be refreshed because new post was added
-    func refreshWithNewPost()
+    /// - Parameter num: number of newly added post
+    func refreshWithNewPost(num: Int)
 }

@@ -13,12 +13,14 @@ struct PostCreationResult: Codable {
     
     let error: Int?
     let reason: String?
+    let num: Int?
     let target: Int?
     
     enum CodingKeys: String, CodingKey {
         
         case error = "Error"
         case reason = "Reason"
+        case num = "Num"
         case target = "Target"
     }
 }

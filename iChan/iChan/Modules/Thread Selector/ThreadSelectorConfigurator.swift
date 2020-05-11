@@ -40,6 +40,7 @@ class ThreadSelectorConfigurator {
         interactor.replyService = replyService
         
         router.view = view
+        router.presenter = presenter
         
         return view
     }
@@ -84,6 +85,7 @@ class ThreadSelectorConfigurator {
         }
         
         router.view = view
+        router.presenter = presenter
         
         return view
     }

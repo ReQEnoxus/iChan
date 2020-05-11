@@ -11,8 +11,8 @@ import Foundation
 protocol ReplyRouterInput: AnyObject {
     
     /// tells router to dismiss reply module
-    /// - Parameter postCreated: true if new post was created
-    func dismissReplyModule(postCreated: Bool)
+    /// - Parameter postCreated: number of created post
+    func dismissReplyModule(postCreated: Int?)
     
     /// tells router to present image picker controller
     func presentImagePicker()

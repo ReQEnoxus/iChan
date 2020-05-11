@@ -10,7 +10,7 @@ import Foundation
 
 class ReplyConfigurator {
     
-    class func configureModule(board: String, threadNum: String, replyingTo: String?, onPostCreated: (() -> Void)?) -> UIViewController {
+    class func configureModule(board: String, threadNum: String, replyingTo: String?, onPostCreated: ((Int?) -> Void)?) -> UIViewController {
         
         let view = ReplyViewController()
         let presenter = ReplyPresenter()

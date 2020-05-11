@@ -19,7 +19,8 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     var num: String!
     var postNum: String?
     
-    private var needsToBeScrolledToBottom = false
+    private var numberOfNewPost: Int?
+    private var needsToBeScrolled = false
     
     //MARK: - View Output
     func initialSetup() {
@@ -77,10 +78,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
         dataSource.posts = posts
         view.refreshData(indicesToInsert: idxToInsert, indicesToUpdate: idxToUpdate, animated: true)
         
-        if needsToBeScrolledToBottom {
+        if needsToBeScrolled, let newNumber = numberOfNewPost, let indexOfNewPost = posts.firstIndex(where: { $0.num == String(newNumber) }) {
             
-            view.scrollToRow(at: IndexPath(row: posts.count - 1, section: .zero))
-            needsToBeScrolledToBottom.toggle()
+            view.scrollToRow(at: IndexPath(row: indexOfNewPost, section: .zero))
+            needsToBeScrolled.toggle()
         }
     }
     
@@ -110,9 +111,10 @@ class ThreadPresenter: ThreadViewOutput, ThreadInteractorOutput, ThreadDataSourc
     }
     
     //MARK: - Router Output
-    func refreshWithNewPost() {
+    func refreshWithNewPost(num: Int) {
         
-        needsToBeScrolledToBottom.toggle()
+        needsToBeScrolled.toggle()
+        numberOfNewPost = num
         update()
     }
     

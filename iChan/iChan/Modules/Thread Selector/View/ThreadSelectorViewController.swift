@@ -38,6 +38,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let cacheErrorText = "Здесь будут отображаться просмотренные треды"
         static let historyErrorText = "Здесь будут отображаться сохраненные треды"
         static let retryButtonTitle = "Обновить"
+        static let createThreadButtonTitle = "Создать"
         
         static let collapseImageName = "SF_eye_fill"
         static let saveImageName = "SF_square_and_arrow_down_on_square"
@@ -177,6 +178,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         configureNavigationBar(largeTitleColor: .white, backgroundColor: .darkNavBar, tintColor: .white, title: boardName, preferredLargeTitle: true)
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = UIRectEdge.top
+        
         presenter.refreshRequested()
     }
     
@@ -314,6 +316,12 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     func configureHistoryContextualActions() {
         historyContextualSetup = true
+    }
+    
+    func configureCreateThreadButton() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Appearance.createThreadButtonTitle, style: .plain, target: self, action: #selector(didPressCreateThread))
+        navigationItem.rightBarButtonItem?.tintColor = .white
     }
     
     func displayTableView() {
@@ -480,5 +488,9 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         let top = tableView.adjustedContentInset.top
         let y = refreshControl.frame.maxY + top
         tableView.setContentOffset(CGPoint(x: .zero, y: -y), animated:true)
+    }
+    
+    @objc func didPressCreateThread() {
+        presenter.didPressedCreateThread()
     }
 }

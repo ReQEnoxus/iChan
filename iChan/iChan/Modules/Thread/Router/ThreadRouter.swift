@@ -69,8 +69,11 @@ class ThreadRouter: ThreadRouterInput {
     
     func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
         
-        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo) { [weak self] in
-            self?.presenter.refreshWithNewPost()
+        let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo) { [weak self] num in
+            
+            if let threadNumber = num {
+                self?.presenter.refreshWithNewPost(num: threadNumber)
+            }
         }
         view.present(vc, animated: true)
     }

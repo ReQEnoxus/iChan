@@ -28,5 +28,7 @@ protocol ThreadViewInput: AnyObject {
     /// tells view to display loading view
     func displayLoadingView()
     
+    /// scroll tableview to given index path
+    /// - Parameter at: where to scroll
     func scrollToRow(at: IndexPath)
 }

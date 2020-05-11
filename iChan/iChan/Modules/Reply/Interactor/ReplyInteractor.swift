@@ -60,14 +60,16 @@ class ReplyInteractor: ReplyIneractorInput {
                     case .failure(let error):
                         self?.presenter.postingFinishedWithError(reason: .requestError(error))
                     case .success(let postingResult):
-                        
+                        print(postingResult)
                         if let _ = postingResult.error, let reason = postingResult.reason {
                             
                             self?.presenter.postingFinishedWithError(reason: .serverSideError(description: reason))
                         }
-                        else if postingResult.error == .none {
-                            
-                            self?.presenter.postingFinishedWithSuccess()
+                        else if postingResult.error == .none, let num = postingResult.num {
+                            self?.presenter.postingFinishedWithSuccess(num: num)
+                        }
+                        else if postingResult.error == .none, let num = postingResult.target {
+                            self?.presenter.postingFinishedWithSuccess(num: num)
                         }
                     }
                 }

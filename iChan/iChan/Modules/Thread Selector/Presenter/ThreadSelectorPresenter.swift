@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput {
+class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteractorOutput, ThreadSelectorDataSourceOutput, ThreadSelectorRouterOutput {
     
     weak var view: ThreadSelectorViewInput!
     
@@ -27,6 +27,11 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     func initialSetup() {
         
         view.displayLoadingView()
+        
+        if mode == .none {
+            view.configureCreateThreadButton()
+        }
+        
         if let title = title, mode != nil {
             
             view.setBoardName(title)
@@ -54,6 +59,12 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func didPressedCollapse(on indexPath: IndexPath) {
         view.collapseCell(at: indexPath)
+    }
+    
+    func didPressedCreateThread() {
+        
+        guard let board = board?.id else { return }
+        router.presentReplyController(board: board, threadNum: String(Int.zero), replyingTo: .none)
     }
     
     func didPressedSave(on indexPath: IndexPath) {
@@ -203,5 +214,13 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     
     func didTapUrl(url: URL) {
         interactor.didTapUrl(url: url)
+    }
+    
+    //MARK: - Router Output
+    func createdThread(with num: Int) {
+        
+        if let board = board?.id {
+            router.pushThreadController(board: board, num: String(num), postNum: .none)
+        }
     }
 }
