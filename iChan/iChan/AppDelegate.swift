@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let boardController = UINavigationController(rootViewController: BoardSelectorConfigurator.configureModule())
         let historyController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .cached, title: historyModuleName))
         let savedController = UINavigationController(rootViewController: ThreadSelectorConfigurator.configureModule(mode: .realm, title: savedModuleName))
-        let settingsController = UINavigationController(rootViewController: UIViewController())
+        let settingsController = UINavigationController(rootViewController: SettingsConfigurator.configureModule())
         
         tabBarController.configure(with: [boardController, historyController, savedController, settingsController])
         
