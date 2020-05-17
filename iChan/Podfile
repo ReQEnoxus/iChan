@@ -12,7 +12,6 @@ target 'iChan' do
   pod 'Lightbox'
   pod 'lottie-ios'
   pod 'RealmSwift'
-  pod 'JGProgressHUD'
   pod 'MobileVLCKit'
   pod "ReCaptcha"
 

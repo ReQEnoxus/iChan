@@ -142,7 +142,6 @@
 		73B66ABB2462A3D6007A2852 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B66ABA2462A3D6007A2852 /* Message.swift */; };
 		73B66ABD2462A8FB007A2852 /* ReplyInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B66ABC2462A8FB007A2852 /* ReplyInteractorOutput.swift */; };
 		73B66ABF2462A958007A2852 /* PostingFailReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B66ABE2462A958007A2852 /* PostingFailReason.swift */; };
-		73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7781B244461B100950BD0 /* HudAnimationView.swift */; };
 		73B8DEEC2441BF7000B8CDB3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEB2441BF7000B8CDB3 /* Cache.swift */; };
 		73B8DEEE2441EC1F00B8CDB3 /* ThreadSelectorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */; };
 		73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */; };
@@ -197,11 +196,11 @@
 		73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB7243486EE007F7242 /* UrlCheckerService.swift */; };
 		73F38FBA24348753007F7242 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB924348753007F7242 /* UrlType.swift */; };
 		73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */; };
-		EDFB4350FB136553CC2ED969 /* libPods-iChan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C46F4CFAFACCE4E1305F3EF /* libPods-iChan.a */; };
+		DF300821B847330CFDD949F5 /* libPods-iChan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E708CBEFE24A5EF95FB22E15 /* libPods-iChan.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C46F4CFAFACCE4E1305F3EF /* libPods-iChan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iChan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		370313D3DCAE08D1DB68A522 /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
 		7306CEBB2435DF6300B301D1 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		7306CEBE2435E50F00B301D1 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		7306CEC02435F1CF00B301D1 /* PostViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewInput.swift; sourceTree = "<group>"; };
@@ -338,7 +337,6 @@
 		73B66ABA2462A3D6007A2852 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		73B66ABC2462A8FB007A2852 /* ReplyInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyInteractorOutput.swift; sourceTree = "<group>"; };
 		73B66ABE2462A958007A2852 /* PostingFailReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingFailReason.swift; sourceTree = "<group>"; };
-		73B7781B244461B100950BD0 /* HudAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudAnimationView.swift; sourceTree = "<group>"; };
 		73B8DEEB2441BF7000B8CDB3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		73B8DEED2441EC1F00B8CDB3 /* ThreadSelectorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSelectorMode.swift; sourceTree = "<group>"; };
 		73B8DEEF2442138500B8CDB3 /* ErrorMessageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageStyle.swift; sourceTree = "<group>"; };
@@ -395,8 +393,8 @@
 		73F38FB7243486EE007F7242 /* UrlCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerService.swift; sourceTree = "<group>"; };
 		73F38FB924348753007F7242 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
 		73F38FBB24348829007F7242 /* UrlCheckerServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerServiceImpl.swift; sourceTree = "<group>"; };
-		75CF7AC12B80E6375A5E9369 /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
-		FF5A0A8FBED7429EAC4B1C43 /* Pods-iChan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.debug.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.debug.xcconfig"; sourceTree = "<group>"; };
+		AEAC6CB13650FC4EC375B753 /* Pods-iChan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChan.release.xcconfig"; path = "Target Support Files/Pods-iChan/Pods-iChan.release.xcconfig"; sourceTree = "<group>"; };
+		E708CBEFE24A5EF95FB22E15 /* libPods-iChan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iChan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,7 +418,7 @@
 				7388A656244B45C00080D8BD /* CFNetwork.framework in Frameworks */,
 				7388A654244B45B10080D8BD /* AVFoundation.framework in Frameworks */,
 				7388A652244B45A80080D8BD /* AudioToolbox.framework in Frameworks */,
-				EDFB4350FB136553CC2ED969 /* libPods-iChan.a in Frameworks */,
+				DF300821B847330CFDD949F5 /* libPods-iChan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,8 +428,8 @@
 		341C06CE119DCF665B480F7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FF5A0A8FBED7429EAC4B1C43 /* Pods-iChan.debug.xcconfig */,
-				75CF7AC12B80E6375A5E9369 /* Pods-iChan.release.xcconfig */,
+				370313D3DCAE08D1DB68A522 /* Pods-iChan.debug.xcconfig */,
+				AEAC6CB13650FC4EC375B753 /* Pods-iChan.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -489,7 +487,6 @@
 			isa = PBXGroup;
 			children = (
 				734ACB8824600D3E00356775 /* Post View */,
-				73B7781B244461B100950BD0 /* HudAnimationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1336,7 +1333,7 @@
 				7388A655244B45C00080D8BD /* CFNetwork.framework */,
 				7388A653244B45B10080D8BD /* AVFoundation.framework */,
 				7388A651244B45A80080D8BD /* AudioToolbox.framework */,
-				4C46F4CFAFACCE4E1305F3EF /* libPods-iChan.a */,
+				E708CBEFE24A5EF95FB22E15 /* libPods-iChan.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1348,11 +1345,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73D75C5A2413A28300A9554C /* Build configuration list for PBXNativeTarget "iChan" */;
 			buildPhases = (
-				936E8889BE73E79CA8E7AEE1 /* [CP] Check Pods Manifest.lock */,
+				A7F98DA596A085209ECFD3D4 /* [CP] Check Pods Manifest.lock */,
 				73D75C422413A28200A9554C /* Sources */,
 				73D75C432413A28200A9554C /* Frameworks */,
 				73D75C442413A28200A9554C /* Resources */,
-				25FB71A73BFF034E1E1DA0ED /* [CP] Copy Pods Resources */,
+				26F2636DE1F92A46868E5344 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1412,7 +1409,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25FB71A73BFF034E1E1DA0ED /* [CP] Copy Pods Resources */ = {
+		26F2636DE1F92A46868E5344 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1429,7 +1426,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iChan/Pods-iChan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		936E8889BE73E79CA8E7AEE1 /* [CP] Check Pods Manifest.lock */ = {
+		A7F98DA596A085209ECFD3D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1543,7 +1540,6 @@
 				734ACB772460033900356775 /* ReplyViewInput.swift in Sources */,
 				73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */,
 				73629332246BF42800D1FA0E /* VideoRepository.swift in Sources */,
-				73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */,
 				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
 				7388A673244B47030080D8BD /* header.m in Sources */,
@@ -1761,7 +1757,7 @@
 		};
 		73D75C5B2413A28300A9554C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF5A0A8FBED7429EAC4B1C43 /* Pods-iChan.debug.xcconfig */;
+			baseConfigurationReference = 370313D3DCAE08D1DB68A522 /* Pods-iChan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1785,7 +1781,7 @@
 		};
 		73D75C5C2413A28300A9554C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75CF7AC12B80E6375A5E9369 /* Pods-iChan.release.xcconfig */;
+			baseConfigurationReference = AEAC6CB13650FC4EC375B753 /* Pods-iChan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
