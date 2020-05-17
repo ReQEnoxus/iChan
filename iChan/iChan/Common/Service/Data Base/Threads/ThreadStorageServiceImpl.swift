@@ -10,11 +10,14 @@ import Foundation
 
 class ThreadStorageServiceImpl: ThreadStorageService {
     
-    private let crudService: CrudService = RealmCrudServiceImpl()
+    /// crud service for realm accessing
+    var crudService: CrudService!
+    /// file manager that accesses device file system
+    var fileManager: FileManagingService!
     
     func getAll(completion: @escaping ([Thread]) -> Void) {
         
-        return crudService.get(type: ThreadModel.self, order: Order(keyPath: #keyPath(ThreadModel.createdAt), ascending: false), by: nil) { threads in
+        return crudService.get(type: ThreadModel.self, order: Order(keyPath: #keyPath(ThreadModel.createdAt), ascending: false), by: nil) { [weak self] threads in
             
             let threadsMapped = threads.map {
                 
@@ -22,7 +25,23 @@ class ThreadStorageServiceImpl: ThreadStorageService {
                 
                 let posts = model.posts.map { (post) -> Post in
                     
-                    return Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
+                    let postToReturn = Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: Endpoint.baseUrl + $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
+                    
+                    if postToReturn.files != nil {
+                        
+                        for i in .zero ..< postToReturn.files!.count {
+                            
+                            postToReturn.files![i].localThumbnailUrl = post.files[i].thumbnailDataUrl
+                            postToReturn.files![i].thumbnailData = self?.fileManager.get(by: postToReturn.files![i].localThumbnailUrl ?? String())
+                            
+                            postToReturn.files![i].localFileUrl = post.files[i].fileDataUrl
+                            postToReturn.files![i].fileData = self?.fileManager.get(by: postToReturn.files![i].localFileUrl ?? String())
+                            
+                            
+                        }
+                    }
+                    
+                    return postToReturn
                 }
                 
                 let thread = Thread(filesCount: model.filesCount, posts: Array(posts), postsCount: model.postsCount)
@@ -40,7 +59,7 @@ class ThreadStorageServiceImpl: ThreadStorageService {
     
     func get(board: String, num: String, completion: @escaping (Thread?) -> Void) {
                 
-        crudService.get(type: ThreadModel.self, by: "\(board)-\(num)") { found in
+        crudService.get(type: ThreadModel.self, by: "\(board)-\(num)") { [weak self] found in
             
             guard let found = found else {
                 
@@ -52,10 +71,23 @@ class ThreadStorageServiceImpl: ThreadStorageService {
             
             let posts = found.posts.map { (post) -> Post in
                 
-                let postOut = Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
-                postOut.repliesStr = post.repliesStr
+                let postToReturn = Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: Endpoint.baseUrl + $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
                 
-                return postOut
+                if postToReturn.files != nil {
+                    
+                    for i in .zero ..< postToReturn.files!.count {
+                        
+                        postToReturn.files![i].localThumbnailUrl = post.files[i].thumbnailDataUrl
+                        postToReturn.files![i].thumbnailData = self?.fileManager.get(by: postToReturn.files![i].localThumbnailUrl ?? String())
+                        
+                        postToReturn.files![i].localFileUrl = post.files[i].fileDataUrl
+                        postToReturn.files![i].fileData = self?.fileManager.get(by: postToReturn.files![i].localFileUrl ?? String())
+                        
+                        
+                    }
+                }
+                
+                return postToReturn
             }
             
             let thread = Thread(filesCount: found.filesCount, posts: Array(posts), postsCount: found.postsCount)
@@ -72,12 +104,46 @@ class ThreadStorageServiceImpl: ThreadStorageService {
     }
     
     func delete(thread: Thread) {
-        crudService.delete(object: thread)
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            
+            for post in thread.posts {
+                
+                for file in post.files ?? [] {
+                    
+                    self?.fileManager.delete(from: file.localThumbnailUrl)
+                    self?.fileManager.delete(from: file.localFileUrl)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.crudService.delete(object: thread)
+            }
+        }
     }
     
     func delete(board: String, num: String) {
         
-        crudService.delete(type: ThreadModel.self, predicate: NSPredicate(format: "pkey = '\(board)-\(num)'"))
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            
+            self?.get(board: board, num: num, completion: { (thread) in
+                
+                guard let thread = thread else { return }
+                
+                for post in thread.posts {
+                    
+                    for file in post.files ?? [] {
+                        
+                        self?.fileManager.delete(from: file.localThumbnailUrl)
+                        self?.fileManager.delete(from: file.localFileUrl)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self?.crudService.delete(type: ThreadModel.self, predicate: NSPredicate(format: "pkey = '\(board)-\(num)'"))
+                }
+            })
+        }
     }
     
     func update(thread: Thread) {

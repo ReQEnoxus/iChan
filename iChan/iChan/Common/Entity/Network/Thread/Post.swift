@@ -83,6 +83,31 @@ class File: Codable, RealmConvertible {
     var path: String
     var thumbnail: String
     var displayname: String
+    var thumbnailData: Data?
+    var fileData: Data?
+    var localThumbnailUrl: String?
+    var localFileUrl: String?
+    
+    var fileType: FileType {
+        
+        get {
+            
+            let pathExtension = (path as NSString).pathExtension
+            
+            let imageFormats = ["JPG", "JPEG", "PNG", "BMP", "GIF"]
+            let videoFormats = ["WEBM", "MP4", "M4V"]
+            
+            if imageFormats.contains(pathExtension.uppercased()) {
+                return .image
+            }
+            else if videoFormats.contains(pathExtension.uppercased()) {
+                return .video
+            }
+            else {
+                return .undefined
+            }
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         
@@ -116,10 +141,19 @@ class File: Codable, RealmConvertible {
         
         let model = FileModel()
         
-        model.path = path
+        model.path = URL(string: path)!.path
         model.thumbnail = thumbnail
         model.displayName = displayname
+        model.fileDataUrl = localFileUrl
+        model.thumbnailDataUrl = localThumbnailUrl
         
         return model
     }
+}
+
+enum FileType {
+    
+    case video
+    case image
+    case undefined
 }

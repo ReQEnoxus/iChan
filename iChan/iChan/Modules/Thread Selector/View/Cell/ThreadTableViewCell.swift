@@ -243,7 +243,10 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
             commentTextView.isUserInteractionEnabled = true
         }
         
-        if let url = dto.thumbnail {
+        if let thumbnailData = dto.thumbnailData {
+            thumbnailImageView.image = UIImage(data: thumbnailData)
+        }
+        else if let url = dto.thumbnail {
             thumbnailImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: Appearance.placeHolderImageName))
         }
         else {
@@ -292,7 +295,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
     @objc func didTapImage() {
         
         if let fileUrl = dto.file, let displayName = dto.fileName, let thumbnail = dto.thumbnail {
-            delegate?.didTapImage(with: AttachmentDto(url: fileUrl, displayName: displayName, thumbnail: thumbnail))
+            delegate?.didTapImage(with: AttachmentDto(url: fileUrl, displayName: displayName, thumbnail: thumbnail, thumbnailData: dto.thumbnailData, attachmentData: dto.fileData))
         }
     }
     

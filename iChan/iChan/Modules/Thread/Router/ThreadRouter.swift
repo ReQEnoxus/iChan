@@ -24,13 +24,20 @@ class ThreadRouter: ThreadRouterInput {
         for file in files {
             
             if let url = URL(string: file.path) {
-                
-                if url.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: file.thumbnail) {
+
+                if url.absoluteString.isValidVideoUrl, let thumbnailData = file.thumbnailData, let uiImage = UIImage(data: thumbnailData) {
+                    images.append(LightboxImage(image: uiImage, text: file.displayname, videoURL: url))
+                }
+                else if url.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: file.thumbnail) {
                     images.append(LightboxImage(imageURL: thumbnailUrl, text: file.displayname, videoURL: url))
+                }
+                else if let imageData = file.fileData, let uiImage = UIImage(data: imageData) {
+                    images.append(LightboxImage(image: uiImage, text: file.displayname, videoURL: .none))
                 }
                 else {
                     images.append(LightboxImage(imageURL: url, text: file.displayname, videoURL: .none))
                 }
+                
             }
         }
         

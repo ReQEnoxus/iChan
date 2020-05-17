@@ -20,6 +20,9 @@ class BoardSelectorConfigurator {
         let dataSource = BoardsDataSourceImpl()
         let service = BoardsServiceImpl()
         let cacheService = BoardCategoriesCacheServiceImpl()
+        let crudService = RealmCrudServiceImpl()
+        
+        cacheService.crudService = crudService
         
         view.presenter = presenter
         

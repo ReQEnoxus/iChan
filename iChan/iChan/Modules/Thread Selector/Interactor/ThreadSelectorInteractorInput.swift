@@ -32,4 +32,7 @@ protocol ThreadSelectorInteractorInput: AnyObject {
     /// - Parameter board: board
     /// - Parameter num: OP-number
     func deleteThread(board: String, num: String)
+    
+    /// tells interactor to interrupt current download
+    func interruptCurrentDownload()
 }

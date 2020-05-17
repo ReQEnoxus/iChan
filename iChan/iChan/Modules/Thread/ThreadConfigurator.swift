@@ -23,6 +23,11 @@ class ThreadConfigurator {
         let replyService = ReplyServiceImpl()
         let threadStorageService = ThreadStorageServiceImpl()
         let cache = (UIApplication.shared.delegate as! AppDelegate).threadCache
+        let fileSystemService = FileManagingServiceImpl()
+        let crudService = RealmCrudServiceImpl()
+        
+        threadStorageService.fileManager = fileSystemService
+        threadStorageService.crudService = crudService
         
         view.presenter = presenter
         

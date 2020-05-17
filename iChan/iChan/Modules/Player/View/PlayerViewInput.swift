@@ -23,4 +23,10 @@ protocol PlayerViewInput: AnyObject {
     
     /// tells view that setup was performed and playerview was assigned as drawable
     func initialSetupFinished()
+    
+    /// tells view to display loading indicator
+    func displayLoadingIndicator()
+    
+    /// tells view to remove loading indicator
+    func removeLoadingIndicator()
 }

@@ -122,7 +122,9 @@ class Thread: Codable, RealmConvertible, UniquelyIdentifiable {
                             text: posts[0].comment,
                             posterName: posts[0].name,
                             fileName: fileName,
-                            board: board)
+                            board: board,
+                            thumbnailData: posts[0].files?.first?.thumbnailData,
+                            fileData: posts[0].files?.first?.fileData)
         
         return dto
     }

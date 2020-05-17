@@ -41,4 +41,7 @@ protocol ThreadSelectorViewOutput: AnyObject {
     
     /// tells presenter that user pressed create thread button
     func didPressedCreateThread()
+    
+    /// tells presenter that user has requested the interruption of current download
+    func didRequestInterruption()
 }

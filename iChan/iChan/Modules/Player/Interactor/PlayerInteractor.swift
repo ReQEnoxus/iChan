@@ -12,10 +12,39 @@ class PlayerInteractor: NSObject, PlayerInteractorInput, VLCMediaPlayerDelegate 
     
     var player: VLCMediaPlayer!
     weak var presenter: PlayerInteractorOutput!
+    var videoRepository: VideoRepository!
+    var stream: InputStream?
     
     private var initialNotify = true
     
     //MARK: - Interactor Input
+    func setupPlayer(for url: URL) {
+        
+        let player = VLCMediaPlayer()
+        
+        player.delegate = self
+        self.player = player
+        
+        videoRepository.getVideo(by: url.path) { file in
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                if let fileUnwrapped = file, let fileData = fileUnwrapped.fileData, let self = self {
+                    
+                    self.stream = InputStream(data: fileData)
+                    player.media = VLCMedia(stream: self.stream!)
+                }
+                else {
+                    
+                    player.media = VLCMedia(url: url)
+                    player.media.addOptions(["network-caching" : 1000])
+                }
+                
+                self?.presenter.initialSetupFinished()
+            }
+        }
+    }
+    
     func togglePlayPause() {
         
         if player.isPlaying {
@@ -36,6 +65,8 @@ class PlayerInteractor: NSObject, PlayerInteractorInput, VLCMediaPlayerDelegate 
     }
     
     func stopPlayer() {
+        
+        stream?.close()
         player.stop()
     }
     

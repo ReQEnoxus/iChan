@@ -23,4 +23,8 @@ protocol PlayerInteractorInput: AnyObject {
     
     /// tells interactor to stop player
     func stopPlayer()
+    
+    /// tells interactor to setup player with given url
+    /// - Parameter url: url to setup
+    func setupPlayer(for url: URL)
 }

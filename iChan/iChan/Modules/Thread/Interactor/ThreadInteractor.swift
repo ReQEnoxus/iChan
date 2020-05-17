@@ -36,7 +36,6 @@ class ThreadInteractor: ThreadInteractorInput {
                         switch result {
                             
                             case .failure(let error):
-                                print("error loading from net")
                                 self?.presenter.didFinishLoadingThread(with: error)
                             case .success(let thread):
                                 
@@ -52,7 +51,6 @@ class ThreadInteractor: ThreadInteractorInput {
                 
                 return
             }
-            
             self?.cache.insert(stored, forKey: stored.id)
             self?.presenter.didFinishLoadingThread(thread: stored, replyLoadNeeded: false, idxToInsert: [], idxToUpdate: [])
         }

@@ -14,4 +14,6 @@ struct AttachmentDto {
     let url: String
     let displayName: String
     let thumbnail: String
+    let thumbnailData: Data?
+    let attachmentData: Data?
 }

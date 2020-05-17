@@ -16,8 +16,8 @@ class FileModel: Object {
     dynamic var thumbnail = String()
     dynamic var displayName = String()
     
-    dynamic var fileData: Data? = nil
-    dynamic var thumbnailData: Data? = nil
+    dynamic var fileDataUrl: String? = nil
+    dynamic var thumbnailDataUrl: String? = nil
     
     override class func primaryKey() -> String? {
         return #keyPath(FileModel.path)

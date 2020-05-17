@@ -23,8 +23,14 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
         
         let image: LightboxImage!
         
-        if imageUrl.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: attachment.thumbnail) {
+        if imageUrl.absoluteString.isValidVideoUrl, let thumbnailData = attachment.thumbnailData, let uiImage = UIImage(data: thumbnailData) {
+            image = LightboxImage(image: uiImage, text: attachment.displayName, videoURL: imageUrl)
+        }
+        else if imageUrl.absoluteString.isValidVideoUrl, let thumbnailUrl = URL(string: attachment.thumbnail) {
             image = LightboxImage(imageURL: thumbnailUrl, text: attachment.displayName, videoURL: imageUrl)
+        }
+        else if let imageData = attachment.attachmentData, let uiImage = UIImage(data: imageData) {
+            image = LightboxImage(image: uiImage, text: attachment.displayName, videoURL: .none)
         }
         else {
             image = LightboxImage(imageURL: imageUrl, text: attachment.displayName, videoURL: .none)
@@ -53,7 +59,6 @@ class ThreadSelectorRouter: ThreadSelectorRouterInput {
     
     func presentReplyController(board: String, threadNum: String, replyingTo: String?) {
         
-        print(presenter)
         let vc = ReplyConfigurator.configureModule(board: board, threadNum: threadNum, replyingTo: replyingTo) { [weak self] num in
             
             if let threadNumber = num {

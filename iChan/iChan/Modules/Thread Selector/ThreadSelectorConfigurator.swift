@@ -22,6 +22,15 @@ class ThreadSelectorConfigurator {
         let router = ThreadSelectorRouter()
         let threadStorageService = ThreadStorageServiceImpl()
         let replyService = ReplyServiceImpl()
+        let strategyService = SavingStrategyServiceImpl()
+        let attachmentLoaderService = AttachmentLoaderServiceImpl()
+        let fileSystemService = FileManagingServiceImpl()
+        let crudService = RealmCrudServiceImpl()
+        
+        attachmentLoaderService.fileManagingService = fileSystemService
+        threadStorageService.fileManager = fileSystemService
+        
+        threadStorageService.crudService = crudService
         
         view.presenter = presenter
         
@@ -38,7 +47,9 @@ class ThreadSelectorConfigurator {
         interactor.urlService = urlService
         interactor.threadStorageService = threadStorageService
         interactor.replyService = replyService
-        
+        interactor.strategyService = strategyService
+        interactor.attachmentLoaderService = attachmentLoaderService
+
         router.view = view
         router.presenter = presenter
         
@@ -57,6 +68,15 @@ class ThreadSelectorConfigurator {
         let threadStorageService = ThreadStorageServiceImpl()
         let replyService = ReplyServiceImpl()
         let cache = (UIApplication.shared.delegate as! AppDelegate).threadCache
+        let strategyService = SavingStrategyServiceImpl()
+        let attachmentLoaderService = AttachmentLoaderServiceImpl()
+        let fileSystemService = FileManagingServiceImpl()
+        let crudService = RealmCrudServiceImpl()
+        
+        threadStorageService.crudService = crudService
+        
+        attachmentLoaderService.fileManagingService = fileSystemService
+        threadStorageService.fileManager = fileSystemService
 
         view.presenter = presenter
         
@@ -79,6 +99,8 @@ class ThreadSelectorConfigurator {
         interactor.cache = cache
         interactor.threadStorageService = threadStorageService
         interactor.replyService = replyService
+        interactor.strategyService = strategyService
+        interactor.attachmentLoaderService = attachmentLoaderService
         
         if mode == .realm {
             interactor.observeThreadStorage()

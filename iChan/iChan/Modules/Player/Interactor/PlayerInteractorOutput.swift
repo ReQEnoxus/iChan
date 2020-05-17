@@ -15,4 +15,7 @@ protocol PlayerInteractorOutput: AnyObject {
     ///   - time: time object
     ///   - position: positiong of the player
     func updateCurrentTime(time: VLCTime, position: Float)
+    
+    /// tells presenter that initial setup is finished
+    func initialSetupFinished()
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class PlayerViewController: UIViewController, PlayerViewInput {
     
@@ -40,6 +41,9 @@ class PlayerViewController: UIViewController, PlayerViewInput {
         static let playButtonImageName = "SF_play_circle_fill"
         static let sliderThumbImageName = "SF_square_fill_and_line_vertical_and_square"
         static let exitImageName = "SF_xmark_square_fill"
+        static let loadingAnimationName = "loading"
+
+        static let animationSideLength = 100
         
         static let timePlaceholder = "00:00"
         
@@ -47,7 +51,7 @@ class PlayerViewController: UIViewController, PlayerViewInput {
         static let playButtonSize = CGSize(width: 25, height: 25)
         
         static let sliderThumbSize = CGSize(width: 10, height: 10)
-        
+            
         static let hideAnimationDuration = 0.5
         static let hideAnimationDelay = 2.0
     }
@@ -82,6 +86,15 @@ class PlayerViewController: UIViewController, PlayerViewInput {
         view.layer.cornerRadius = Appearance.controlsViewCornerRadius
         
         return view
+    }()
+    
+    lazy var loadingView: AnimationView = {
+        
+        var loadingView = AnimationView()
+        loadingView.animation = Animation.named(Appearance.loadingAnimationName)
+        loadingView.loopMode = .loop
+        
+        return loadingView
     }()
     
     lazy var exitButton: UIButton = {
@@ -207,6 +220,22 @@ class PlayerViewController: UIViewController, PlayerViewInput {
     
     func setValueForSlider(_ value: Float) {
         seekSlider.value = value
+    }
+    
+    func displayLoadingIndicator() {
+        
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.height.equalTo(Appearance.animationSideLength)
+            make.width.equalTo(Appearance.animationSideLength)
+        }
+        loadingView.play()
+    }
+    
+    func removeLoadingIndicator() {
+        loadingView.removeFromSuperview()
     }
     
     func initialSetupFinished() {

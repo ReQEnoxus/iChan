@@ -10,7 +10,7 @@ import Foundation
 
 class BoardCategoriesCacheServiceImpl: BoardCategoriesCacheService {
     
-    private let crudService: CrudService = RealmCrudServiceImpl()
+    var crudService: CrudService!
     
     func update(_ new: BoardCategories) {
         crudService.update(object: new)

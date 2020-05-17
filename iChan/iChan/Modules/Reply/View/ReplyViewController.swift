@@ -147,7 +147,7 @@ class ReplyViewController: UIViewController, ReplyViewInput {
     lazy var coverView: UIView = {
         
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.backgroundColor = .coverColor
         
         return view
     }()

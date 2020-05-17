@@ -17,6 +17,8 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
     var threadStorageService: ThreadStorageService!
     var replyService: ReplyService!
     var cachedThreadsLoaded = false
+    var strategyService: SavingStrategyService!
+    var attachmentLoaderService: AttachmentLoaderService!
     
     func observeThreadStorage() {
         
@@ -145,6 +147,10 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
     }
     
     func saveThread(board: String, num: String) {
+        
+        let strategy = strategyService.getCurrentStrategy()
+        
+        presenter.didStartLoading(with: strategy)
             
         service.loadThread(board: board, num: num) { [weak self] result in
             
@@ -154,9 +160,18 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
                 
                 self?.replyService.generateReplies(for: thread.posts) { posts in
                     
-                    thread.posts = posts
-                    self?.threadStorageService.update(thread: thread)
-                    self?.presenter.didFinishSavingThread()
+                    self?.attachmentLoaderService.loadAttachments(strategy: strategy, posts: posts, onFileLoaded: { progress in
+                        
+                        self?.presenter.didProgressAtLoading(progress)
+                    }, completion: { posts, successful in
+                        
+                        if successful {
+                            
+                            thread.posts = posts
+                            self?.threadStorageService.update(thread: thread)
+                        }
+                        self?.presenter.didFinishSavingThread()
+                    })
                 }
             case .failure(let error):
                 
@@ -168,6 +183,10 @@ class ThreadSelectorInteractor: ThreadSelectorInteractorInput, CacheSubscriber {
     
     func didTapUrl(url: URL) {
         presenter.didFinishCheckingUrl(with: urlService.typeOf(url: url))
+    }
+    
+    func interruptCurrentDownload() {
+        attachmentLoaderService.interruptCurrentLoading()
     }
     
     //MARK: - Cache Subscriber

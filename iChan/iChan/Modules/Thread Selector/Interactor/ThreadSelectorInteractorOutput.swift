@@ -39,4 +39,12 @@ protocol ThreadSelectorInteractorOutput: AnyObject {
     /// - Parameter insertions: idx of inserted object
     /// - Parameter modifications: idx of modified objects
     func didReceiveUpdateNotification(new: [ThreadDto], deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
+    
+    /// informs presenter that loading progress has changed
+    /// - Parameter progress: current progress percentage
+    func didProgressAtLoading(_ progress: Double)
+    
+    /// tells presenter that loading has started so it can tell view to display loading indicator
+    /// - Parameter strategy: loading strategy
+    func didStartLoading(with strategy: SavingStrategy)
 }

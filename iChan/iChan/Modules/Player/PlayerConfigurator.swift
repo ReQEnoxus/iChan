@@ -16,11 +16,12 @@ class PlayerConfigurator {
         let presenter = PlayerPresenter()
         let interactor = PlayerInteractor()
         let router = PlayerRouter()
+        let videoRepository = VideoRepositoryImpl()
+        let fileManager = FileManagingServiceImpl()
+        let crudService = RealmCrudServiceImpl()
         
-        let player = VLCMediaPlayer()
-        player.media = VLCMedia(url: url)
-        player.media.addOptions(["network-caching" : 1000])
-        player.delegate = interactor
+        videoRepository.fileManager = fileManager
+        videoRepository.crudService = crudService
         
         view.presenter = presenter
         view.modalPresentationStyle = .fullScreen
@@ -28,9 +29,10 @@ class PlayerConfigurator {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
+        presenter.url = url
         
-        interactor.player = player
         interactor.presenter = presenter
+        interactor.videoRepository = videoRepository
         
         router.view = view
         

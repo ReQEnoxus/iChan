@@ -9,9 +9,8 @@
 import UIKit
 import SnapKit
 import Lottie
-import JGProgressHUD
 
-class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate, JGProgressHUDDelegate {
+class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, UITableViewDelegate {
     
     //MARK: - UI Constraints
     private class Appearance {
@@ -32,6 +31,22 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let errorViewWidthMultiplier = 0.75
         static let errorLabelLineNumber = 0
         
+        static let loadingContainerHeight = 100
+        static let loadingContainerWidth = 100
+        
+        static let downloadAnimationWidth = 200
+        static let downloadAnimationHeight = 200
+        
+        static let hudOffset = 20
+        
+        static let loadingContainerCornerRadius: CGFloat = 10
+        
+        static let animationDuration = 0.25
+        
+        static let progressBarTransform = CGAffineTransform(rotationAngle: 1).concatenating(CGAffineTransform(scaleX: -1, y: 1))
+        
+        static let loadingAnimationTransform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        
         static let collapseActionTitle = "  Скрыть  "
         static let saveActionTitle = "Сохранить"
         static let networkErrorText = "Не удалось загрузить треды с этой доски"
@@ -47,12 +62,17 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         static let historyErrorLogoImageName = "SF_square_and_arrow_down_on_square-1"
         static let historyDeleteActionImageName = "SF_xmark_octagon"
         
+        static let animationFrameOffset: CGFloat = 15
+        
         static let defaultCellHeight: CGFloat = 44
         
         static let footerHeight: CGFloat = 60
         static let collapsedFooterHeright: CGFloat = 10
         
         static let loadingAnimationName = "loading"
+        static let determinedAnimationName = "determinedAnimation"
+        
+        static let endAlpha: CGFloat = 1
         static let loadingAnimationWidth = 200
         static let loadingAnimationHeight = 200
     }
@@ -87,14 +107,38 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     //MARK: - Views
     
-    lazy var hud: JGProgressHUD = {
+    lazy var cancelGestureRecognizer: UITapGestureRecognizer = {
         
-        let hud = JGProgressHUD(style: .dark)
-        hud.interactionType = .blockAllTouches
-        hud.indicatorView = HudAnimationView()
-        hud.delegate = self
+        let recognizer = UITapGestureRecognizer()
         
-        return hud
+        recognizer.addTarget(self, action: #selector(coverViewTapped))
+        
+        return recognizer
+    }()
+    
+    lazy var hud: AnimationView = {
+        
+        var loadingView = AnimationView()
+        loadingView.loopMode = .loop
+        
+        return loadingView
+    }()
+    
+    lazy var coverView: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = .coverColor
+        
+        return view
+    }()
+    
+    lazy var loadingContainerView: UIView = {
+        
+        let view = UIView()
+        view.layer.cornerRadius = Appearance.loadingContainerCornerRadius
+        view.backgroundColor = .darkNavBar
+        
+        return view
     }()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -373,16 +417,90 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         }
     }
     
-    func displayLoadingHud() {
+    func displayLoadingHud(determined: Bool) {
         
-        loadingView.play()
-        hud.show(in: view, animated: true)
+        view.addSubview(coverView)
+        
+        coverView.alpha = .zero
+        coverView.frame = .init(x: .zero, y: .zero, width: view.frame.width, height: view.frame.height)
+        
+        coverView.addGestureRecognizer(cancelGestureRecognizer)
+        
+        view.addSubview(loadingContainerView)
+        loadingContainerView.addSubview(hud)
+        
+        loadingContainerView.alpha = .zero
+        hud.alpha = .zero
+        
+        if determined {
+            
+            hud.animation = Animation.named(Appearance.determinedAnimationName)
+            hud.loopMode = .playOnce
+            hud.transform = Appearance.progressBarTransform
+        }
+        else {
+            
+            hud.animation = Animation.named(Appearance.loadingAnimationName)
+            hud.loopMode = .loop
+            hud.play()
+            hud.transform = Appearance.loadingAnimationTransform
+        }
+        
+        navigationItem.leftBarButtonItem?.isEnabled.toggle()
+        navigationItem.rightBarButtonItem?.isEnabled.toggle()
+        
+        loadingContainerView.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.width.equalTo(Appearance.loadingContainerWidth)
+            make.height.equalTo(Appearance.loadingContainerHeight)
+        }
+        
+        hud.snp.makeConstraints { make in
+            
+            make.center.equalToSuperview()
+            make.height.equalTo(Appearance.downloadAnimationHeight)
+            make.width.equalTo(Appearance.downloadAnimationWidth)
+        }
+        
+        UIView.animate(withDuration: Appearance.animationDuration, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
+            
+            self?.coverView.alpha = Appearance.endAlpha
+            self?.loadingContainerView.alpha = Appearance.endAlpha
+            self?.hud.alpha = Appearance.endAlpha
+            self?.loadingContainerView.layoutIfNeeded()
+            self?.hud.layoutIfNeeded()
+        }, completion: .none)
+    }
+    
+    func updateDownloadingProgress(percentage: Double) {
+        
+        if let totalFrames = hud.animation?.endFrame {
+            
+            let currentProgress = ceil((totalFrames - Appearance.animationFrameOffset) * CGFloat(percentage))
+            hud.currentFrame = currentProgress
+        }
     }
     
     func hideLoadingHud() {
         
-        loadingView.stop()
-        hud.dismiss(animated: true)
+        UIView.animate(withDuration: Appearance.animationDuration, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
+            
+            self?.loadingContainerView.alpha = .zero
+            self?.coverView.alpha = .zero
+            }, completion: { [weak self] _ in
+                
+                if let cancelGestureRecognizer = self?.cancelGestureRecognizer {
+                    self?.coverView.removeGestureRecognizer(cancelGestureRecognizer)
+                }
+                self?.coverView.removeFromSuperview()
+                self?.loadingContainerView.removeFromSuperview()
+                self?.hud.stop()
+                
+                
+                self?.navigationItem.leftBarButtonItem?.isEnabled.toggle()
+                self?.navigationItem.rightBarButtonItem?.isEnabled.toggle()
+        })
     }
     
     func displayLoadingView() {
@@ -465,23 +583,6 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         tableView.endUpdates()
     }
     
-    //MARK: - JGProgressHUDDelegate
-    func progressHUD(_ progressHUD: JGProgressHUD, willPresentIn view: UIView) {
-        
-        if let indicatorView = progressHUD.indicatorView as? HudAnimationView {
-            
-            indicatorView.playAnimation()
-        }
-    }
-    
-    func progressHUD(_ progressHUD: JGProgressHUD, didDismissFrom view: UIView) {
-        
-        if let indicatorView = progressHUD.indicatorView as? HudAnimationView {
-            
-            indicatorView.stopAnimation()
-        }
-    }
-    
     //MARK: - Utils
     private func fixLargeTitlePositioning() {
         
@@ -492,5 +593,9 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     @objc func didPressCreateThread() {
         presenter.didPressedCreateThread()
+    }
+    
+    @objc func coverViewTapped() {
+        presenter.didRequestInterruption()
     }
 }

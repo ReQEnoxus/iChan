@@ -39,6 +39,10 @@ extension UIColor {
       return UIColor(white: 35.0 / 255.0, alpha: 1.0)
     }
     
+    @nonobjc class var coverColor: UIColor {
+        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+    }
+    
     @nonobjc class var paleGrey60: UIColor {
       return UIColor(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 245.0 / 255.0, alpha: 0.6)
     }

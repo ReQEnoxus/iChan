@@ -72,6 +72,13 @@
 		735A976A246586F600F181BA /* ReplyDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A9769246586F600F181BA /* ReplyDataSourceImpl.swift */; };
 		735A976C246588C100F181BA /* ReplyDataSourceOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735A976B246588C100F181BA /* ReplyDataSourceOutput.swift */; };
 		735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E618C241CB9FC001053A6 /* MainTabBarController.swift */; };
+		7362932D246BCE2E00D1FA0E /* AttachmentLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362932C246BCE2E00D1FA0E /* AttachmentLoaderService.swift */; };
+		7362932F246BCF6600D1FA0E /* AttachmentLoaderServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362932E246BCF6600D1FA0E /* AttachmentLoaderServiceImpl.swift */; };
+		73629332246BF42800D1FA0E /* VideoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629331246BF42800D1FA0E /* VideoRepository.swift */; };
+		73629334246BF4F500D1FA0E /* VideoRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629333246BF4F500D1FA0E /* VideoRepositoryImpl.swift */; };
+		73629336246C010500D1FA0E /* Realm+CascadeDeleting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629335246C010500D1FA0E /* Realm+CascadeDeleting.swift */; };
+		73629339246C63D800D1FA0E /* FileManagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629338246C63D800D1FA0E /* FileManagingService.swift */; };
+		7362933B246C646300D1FA0E /* FileManagingServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362933A246C646300D1FA0E /* FileManagingServiceImpl.swift */; };
 		736595F12435F45300DE04D9 /* PostInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F02435F45300DE04D9 /* PostInteractorInput.swift */; };
 		736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F32435F4C200DE04D9 /* PostRouterInput.swift */; };
 		736595F62435FCF600DE04D9 /* PostInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736595F52435FCF600DE04D9 /* PostInteractorOutput.swift */; };
@@ -168,6 +175,7 @@
 		73C3FF7A2413DBA8009D4A18 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF792413DBA8009D4A18 /* ApiError.swift */; };
 		73C3FF7C2413E024009D4A18 /* BoardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7B2413E024009D4A18 /* BoardsService.swift */; };
 		73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */; };
+		73CCAB41246D76410027D186 /* determinedAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 73CCAB40246D76410027D186 /* determinedAnimation.json */; };
 		73D0A939241E5B2900FF2C04 /* BoardThreadsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D0A938241E5B2900FF2C04 /* BoardThreadsService.swift */; };
 		73D0A93D241E5B6900FF2C04 /* ThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D0A93C241E5B6900FF2C04 /* ThreadResponse.swift */; };
 		73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D75C492413A28200A9554C /* AppDelegate.swift */; };
@@ -259,6 +267,13 @@
 		735A9769246586F600F181BA /* ReplyDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataSourceImpl.swift; sourceTree = "<group>"; };
 		735A976B246588C100F181BA /* ReplyDataSourceOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataSourceOutput.swift; sourceTree = "<group>"; };
 		735E618C241CB9FC001053A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7362932C246BCE2E00D1FA0E /* AttachmentLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentLoaderService.swift; sourceTree = "<group>"; };
+		7362932E246BCF6600D1FA0E /* AttachmentLoaderServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentLoaderServiceImpl.swift; sourceTree = "<group>"; };
+		73629331246BF42800D1FA0E /* VideoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRepository.swift; sourceTree = "<group>"; };
+		73629333246BF4F500D1FA0E /* VideoRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRepositoryImpl.swift; sourceTree = "<group>"; };
+		73629335246C010500D1FA0E /* Realm+CascadeDeleting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+CascadeDeleting.swift"; sourceTree = "<group>"; };
+		73629338246C63D800D1FA0E /* FileManagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagingService.swift; sourceTree = "<group>"; };
+		7362933A246C646300D1FA0E /* FileManagingServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagingServiceImpl.swift; sourceTree = "<group>"; };
 		736595F02435F45300DE04D9 /* PostInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInteractorInput.swift; sourceTree = "<group>"; };
 		736595F32435F4C200DE04D9 /* PostRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouterInput.swift; sourceTree = "<group>"; };
 		736595F52435FCF600DE04D9 /* PostInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInteractorOutput.swift; sourceTree = "<group>"; };
@@ -356,6 +371,7 @@
 		73C3FF792413DBA8009D4A18 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		73C3FF7B2413E024009D4A18 /* BoardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsService.swift; sourceTree = "<group>"; };
 		73C3FF7E2413E0D7009D4A18 /* BoardsServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsServiceImpl.swift; sourceTree = "<group>"; };
+		73CCAB40246D76410027D186 /* determinedAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = determinedAnimation.json; sourceTree = "<group>"; };
 		73D0A938241E5B2900FF2C04 /* BoardThreadsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardThreadsService.swift; sourceTree = "<group>"; };
 		73D0A93C241E5B6900FF2C04 /* ThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadResponse.swift; sourceTree = "<group>"; };
 		73D75C462413A28200A9554C /* iChan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -830,6 +846,33 @@
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
+		7362932B246BCE1000D1FA0E /* File Loading */ = {
+			isa = PBXGroup;
+			children = (
+				7362932C246BCE2E00D1FA0E /* AttachmentLoaderService.swift */,
+				7362932E246BCF6600D1FA0E /* AttachmentLoaderServiceImpl.swift */,
+			);
+			path = "File Loading";
+			sourceTree = "<group>";
+		};
+		73629330246BF3B800D1FA0E /* Video Repository */ = {
+			isa = PBXGroup;
+			children = (
+				73629331246BF42800D1FA0E /* VideoRepository.swift */,
+				73629333246BF4F500D1FA0E /* VideoRepositoryImpl.swift */,
+			);
+			path = "Video Repository";
+			sourceTree = "<group>";
+		};
+		73629337246C63B100D1FA0E /* Filesystem */ = {
+			isa = PBXGroup;
+			children = (
+				73629338246C63D800D1FA0E /* FileManagingService.swift */,
+				7362933A246C646300D1FA0E /* FileManagingServiceImpl.swift */,
+			);
+			path = Filesystem;
+			sourceTree = "<group>";
+		};
 		73828DB224153ED10073623D /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -876,12 +919,15 @@
 		7391ED5D243F029C006C7FB0 /* Data Base */ = {
 			isa = PBXGroup;
 			children = (
+				73629337246C63B100D1FA0E /* Filesystem */,
+				73629330246BF3B800D1FA0E /* Video Repository */,
 				738A2658246A996B0008D0AC /* Saving Strategy Service */,
 				731D6C8824434A7900546BCD /* Threads */,
 				7391ED5E243F02BE006C7FB0 /* CrudService.swift */,
 				7391ED60243F0445006C7FB0 /* RealmCrudServiceImpl.swift */,
 				7391ED69243F5953006C7FB0 /* BoardCategories */,
 				739964F22458319E0097201B /* Order.swift */,
+				73629335246C010500D1FA0E /* Realm+CascadeDeleting.swift */,
 			);
 			path = "Data Base";
 			sourceTree = "<group>";
@@ -1047,6 +1093,7 @@
 		73C3FF742413CBF2009D4A18 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				7362932B246BCE1000D1FA0E /* File Loading */,
 				73EA1E1F2461597300C3F000 /* Posting */,
 				73F38FB5243486BE007F7242 /* URL Checker */,
 				73D0A937241E5B0100FF2C04 /* Board Threads */,
@@ -1254,6 +1301,7 @@
 		73F38FB424339387007F7242 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
+				73CCAB40246D76410027D186 /* determinedAnimation.json */,
 				73F38FB124339376007F7242 /* loading.json */,
 			);
 			path = Loading;
@@ -1355,6 +1403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D75C562413A28300A9554C /* LaunchScreen.storyboard in Resources */,
+				73CCAB41246D76410027D186 /* determinedAnimation.json in Resources */,
 				73D75C532413A28300A9554C /* Assets.xcassets in Resources */,
 				73F38FB224339377007F7242 /* loading.json in Resources */,
 			);
@@ -1410,6 +1459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				734ACB82246005BD00356775 /* ReplyRouter.swift in Sources */,
+				7362932D246BCE2E00D1FA0E /* AttachmentLoaderService.swift in Sources */,
 				73C3FF7C2413E024009D4A18 /* BoardsService.swift in Sources */,
 				738A2657246A92230008D0AC /* SavingSettingsConfigurator.swift in Sources */,
 				731431AD241E5E1F0065E0DB /* Thread.swift in Sources */,
@@ -1418,12 +1468,14 @@
 				73828DAD2414EE1E0073623D /* Colors.swift in Sources */,
 				735A976C246588C100F181BA /* ReplyDataSourceOutput.swift in Sources */,
 				735A976A246586F600F181BA /* ReplyDataSourceImpl.swift in Sources */,
+				73629336246C010500D1FA0E /* Realm+CascadeDeleting.swift in Sources */,
 				731A124C246A6FBB00C23E6E /* Route.swift in Sources */,
 				7316BB7B244C57CF008943BC /* PlayerPresenter.swift in Sources */,
 				7306CEC12435F1CF00B301D1 /* PostViewInput.swift in Sources */,
 				73C3FF762413CD07009D4A18 /* Endpoint.swift in Sources */,
 				73C2A1AA2432317D00BFDAAE /* ThreadConfigurator.swift in Sources */,
 				731D6C8C24434B1E00546BCD /* ThreadStorageServiceImpl.swift in Sources */,
+				73629339246C63D800D1FA0E /* FileManagingService.swift in Sources */,
 				73C2A1A824322FD200BFDAAE /* ThreadRouter.swift in Sources */,
 				7306CEC32435F2D000B301D1 /* PostViewOutput.swift in Sources */,
 				731A1252246A78A000C23E6E /* SettingsRouterInput.swift in Sources */,
@@ -1455,6 +1507,7 @@
 				731431C8241E8B230065E0DB /* ThreadSelectorPresenter.swift in Sources */,
 				736595F62435FCF600DE04D9 /* PostInteractorOutput.swift in Sources */,
 				73D75C4A2413A28200A9554C /* AppDelegate.swift in Sources */,
+				7362933B246C646300D1FA0E /* FileManagingServiceImpl.swift in Sources */,
 				73F38FBC24348829007F7242 /* UrlCheckerServiceImpl.swift in Sources */,
 				73B8DEF02442138500B8CDB3 /* ErrorMessageStyle.swift in Sources */,
 				73EBB39C246AE1DD0021E6DD /* SavingSettingsInteractor.swift in Sources */,
@@ -1480,6 +1533,7 @@
 				73C2A1962431F7C900BFDAAE /* AttachmentCell.swift in Sources */,
 				735A976124656ADA00F181BA /* PostAttachmentCell.swift in Sources */,
 				7306CEBF2435E50F00B301D1 /* PostView.swift in Sources */,
+				7362932F246BCF6600D1FA0E /* AttachmentLoaderServiceImpl.swift in Sources */,
 				73C2A1982431FDA400BFDAAE /* ThreadPostCellDelegate.swift in Sources */,
 				73B8DEF224421CAA00B8CDB3 /* CacheSubscriber.swift in Sources */,
 				738EC27F24430F9C0067A9FC /* ReplyServiceImpl.swift in Sources */,
@@ -1488,6 +1542,7 @@
 				736595F824360EC700DE04D9 /* PostInteractor.swift in Sources */,
 				734ACB772460033900356775 /* ReplyViewInput.swift in Sources */,
 				73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */,
+				73629332246BF42800D1FA0E /* VideoRepository.swift in Sources */,
 				73B7781C244461B100950BD0 /* HudAnimationView.swift in Sources */,
 				73C2A1A624322F5E00BFDAAE /* ThreadDataSourceOutput.swift in Sources */,
 				73C3FF7F2413E0D7009D4A18 /* BoardsServiceImpl.swift in Sources */,
@@ -1567,6 +1622,7 @@
 				731431D4241E8F4A0065E0DB /* ThreadSelectorDataSourceImpl.swift in Sources */,
 				73C2A1802430D9F100BFDAAE /* ThreadSelectorRouter.swift in Sources */,
 				731A12422469BA5A00C23E6E /* SettingsViewController.swift in Sources */,
+				73629334246BF4F500D1FA0E /* VideoRepositoryImpl.swift in Sources */,
 				735A9765246574CB00F181BA /* PostAttachment.swift in Sources */,
 				73C2A18A2431EA0900BFDAAE /* ThreadViewInput.swift in Sources */,
 				738EC27D24430D4D0067A9FC /* ReplyService.swift in Sources */,

@@ -41,7 +41,7 @@ class RealmCrudServiceImpl: CrudService {
             
             try? realm.write {
                 
-                realm.delete(object.toRealmModel())
+                realm.delete(object.toRealmModel(), cascading: true)
             }
         }
     }
@@ -54,7 +54,7 @@ class RealmCrudServiceImpl: CrudService {
             
             try? realm.write {
                 
-                realm.delete(object)
+                realm.delete(object, cascading: true)
             }
         }
     }
@@ -69,7 +69,7 @@ class RealmCrudServiceImpl: CrudService {
             
             try? realm.write {
                 
-                realm.delete(objectsToDelete)
+                realm.delete(objectsToDelete, cascading: true)
             }
         }
     }
@@ -82,7 +82,7 @@ class RealmCrudServiceImpl: CrudService {
             
             try? realm.write {
                 
-                realm.delete(realm.objects(type))
+                realm.delete(realm.objects(type), cascading: true)
             }
         }
     }

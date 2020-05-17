@@ -55,7 +55,7 @@ protocol ThreadSelectorViewInput: AnyObject {
     func configureHistoryContextualActions()
     
     /// displays loading indicator
-    func displayLoadingHud()
+    func displayLoadingHud(determined: Bool)
     
     /// hides loading indicator
     func hideLoadingHud()
@@ -65,4 +65,8 @@ protocol ThreadSelectorViewInput: AnyObject {
     
     /// tells view to configure create thread button
     func configureCreateThreadButton()
+    
+    /// tells view to update loading indicator
+    /// - Parameter percentage: progress of download
+    func updateDownloadingProgress(percentage: Double)
 }

@@ -72,7 +72,6 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         let board = dataSource.threads[indexPath.row].board
         let num = dataSource.threads[indexPath.row].number
         
-        view.displayLoadingHud()
         interactor.saveThread(board: board, num: num)
     }
     
@@ -96,6 +95,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
             
             router.pushThreadController(board: board, num: num, postNum: nil)
         }
+    }
+    
+    func didRequestInterruption() {
+        interactor.interruptCurrentDownload()
     }
     
     //MARK: - ThreadSelectorInteractorOutput
@@ -185,6 +188,10 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
         view.hideLoadingHud()
     }
     
+    func didProgressAtLoading(_ progress: Double) {
+        view.updateDownloadingProgress(percentage: progress)
+    }
+    
     func didFinishCheckingUrl(with type: UrlType) {
         
         switch type {
@@ -196,6 +203,17 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
             case .innerReply:
                 // impossible case
                 break
+        }
+    }
+    
+    func didStartLoading(with strategy: SavingStrategy) {
+        
+        switch strategy {
+            
+            case .textOnly:
+                view.displayLoadingHud(determined: false)
+            default:
+                view.displayLoadingHud(determined: true)
         }
     }
     
