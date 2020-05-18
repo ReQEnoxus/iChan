@@ -98,6 +98,8 @@ class ThreadSelectorPresenter: ThreadSelectorViewOutput, ThreadSelectorInteracto
     }
     
     func didRequestInterruption() {
+        
+        view.hideLoadingHud()
         interactor.interruptCurrentDownload()
     }
     

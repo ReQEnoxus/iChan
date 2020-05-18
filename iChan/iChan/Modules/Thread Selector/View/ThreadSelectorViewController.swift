@@ -484,6 +484,8 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
     
     func hideLoadingHud() {
         
+        guard view.subviews.contains(coverView), view.subviews.contains(loadingContainerView) else { return }
+        
         UIView.animate(withDuration: Appearance.animationDuration, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
             
             self?.loadingContainerView.alpha = .zero
