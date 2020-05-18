@@ -391,7 +391,7 @@ class ThreadSelectorViewController: UIViewController, ThreadSelectorViewInput, U
         case .network:
             
             errorLabel.text = Appearance.networkErrorText
-            errorImageView.image = UIImage(named: Appearance.networkErrorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: Appearance.errorLogoLeftShift, shiftTop: .zero)
+            errorImageView.image = UIImage(named: Appearance.networkErrorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
             retryButton.isHidden = false
             
         case .cache:
