@@ -21,4 +21,8 @@ protocol BoardSelectorInteractorOutput: AnyObject {
     /// tells presenter that boards are successfully refreshed
     /// - Parameter boards: refreshed boards
     func didFinishRefreshingBoards(boards: BoardCategories)
+    
+    /// tells presenter that boards are filtered
+    /// - Parameter boards: filtered boards
+    func didPerformSearch(boards: BoardCategories)
 }

@@ -19,4 +19,8 @@ protocol BoardSelectorInteractorInput: AnyObject {
     
     /// tells interactor that manual refresh is requested
     func manualRefresh()
+    
+    /// tells interactor to perform search
+    /// - Parameter query: query to search by
+    func performSearch(by query: String)
 }

@@ -21,6 +21,9 @@ class BoardSelectorConfigurator {
         let service = BoardsServiceImpl()
         let cacheService = BoardCategoriesCacheServiceImpl()
         let crudService = RealmCrudServiceImpl()
+        let searchService = BoardSearchServiceImpl()
+        
+        searchService.cacheService = cacheService
         
         cacheService.crudService = crudService
         
@@ -36,6 +39,7 @@ class BoardSelectorConfigurator {
         interactor.presenter = presenter
         interactor.service = service
         interactor.boardCacheService = cacheService
+        interactor.boardSearchService = searchService
         
         router.view = view
         

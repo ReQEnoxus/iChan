@@ -13,6 +13,7 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
     weak var presenter: BoardSelectorInteractorOutput?
     var service: BoardsService!
     var boardCacheService: BoardCategoriesCacheService!
+    var boardSearchService: BoardSearchService!
     
     func updateCachedCopy(with object: BoardCategories?) {
         
@@ -51,6 +52,14 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
                     self?.presenter?.didFinishRefreshingBoards(boards: categories)
                 }
             }
+        }
+    }
+    
+    func performSearch(by query: String) {
+        
+        boardSearchService.filterBoards(with: query) { [weak self] filtered in
+            
+            self?.presenter?.didPerformSearch(boards: filtered)
         }
     }
     

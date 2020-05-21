@@ -192,6 +192,9 @@
 		73EBB39C246AE1DD0021E6DD /* SavingSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBB39B246AE1DD0021E6DD /* SavingSettingsInteractor.swift */; };
 		73EBB39F246AEDF60021E6DD /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBB39E246AEDF60021E6DD /* Option.swift */; };
 		73F10AB224615C7C001F8302 /* ReplyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F10AB124615C7C001F8302 /* ReplyInteractor.swift */; };
+		73F2370A247689E900E50549 /* BoardSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F23709247689E900E50549 /* BoardSearchService.swift */; };
+		73F2370D24768AD300E50549 /* BoardSearchServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F2370C24768AD300E50549 /* BoardSearchServiceImpl.swift */; };
+		73F2370F2476962300E50549 /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F2370E2476962300E50549 /* ErrorType.swift */; };
 		73F38FB224339377007F7242 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 73F38FB124339376007F7242 /* loading.json */; };
 		73F38FB8243486EE007F7242 /* UrlCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB7243486EE007F7242 /* UrlCheckerService.swift */; };
 		73F38FBA24348753007F7242 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F38FB924348753007F7242 /* UrlType.swift */; };
@@ -389,6 +392,9 @@
 		73EBB39B246AE1DD0021E6DD /* SavingSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingSettingsInteractor.swift; sourceTree = "<group>"; };
 		73EBB39E246AEDF60021E6DD /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		73F10AB124615C7C001F8302 /* ReplyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyInteractor.swift; sourceTree = "<group>"; };
+		73F23709247689E900E50549 /* BoardSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchService.swift; sourceTree = "<group>"; };
+		73F2370C24768AD300E50549 /* BoardSearchServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSearchServiceImpl.swift; sourceTree = "<group>"; };
+		73F2370E2476962300E50549 /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		73F38FB124339376007F7242 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		73F38FB7243486EE007F7242 /* UrlCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlCheckerService.swift; sourceTree = "<group>"; };
 		73F38FB924348753007F7242 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
@@ -934,6 +940,8 @@
 			children = (
 				7391ED64243F4B17006C7FB0 /* BoardCategoriesCacheService.swift */,
 				7391ED66243F4BA0006C7FB0 /* BoardCategoriesCacheServiceImpl.swift */,
+				73F23709247689E900E50549 /* BoardSearchService.swift */,
+				73F2370C24768AD300E50549 /* BoardSearchServiceImpl.swift */,
 			);
 			path = BoardCategories;
 			sourceTree = "<group>";
@@ -1202,6 +1210,7 @@
 				73D75C4D2413A28200A9554C /* BoardSelectorViewController.swift */,
 				73828DB02415383D0073623D /* BoardSelectorViewOutput.swift */,
 				73828DC224154E650073623D /* BoardSelectorViewInput.swift */,
+				73F2370E2476962300E50549 /* ErrorType.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1493,6 +1502,7 @@
 				731D6C8A24434A9E00546BCD /* ThreadStorageService.swift in Sources */,
 				73EA1E1E246158D800C3F000 /* PostCreationResult.swift in Sources */,
 				73E36260241622A3006029DA /* BoardTableViewCell.swift in Sources */,
+				73F2370F2476962300E50549 /* ErrorType.swift in Sources */,
 				738A265E246ADE800008D0AC /* UserDefaultsKeys.swift in Sources */,
 				73EBB39F246AEDF60021E6DD /* Option.swift in Sources */,
 				7391ED5A243F0104006C7FB0 /* BoardCategoriesModel.swift in Sources */,
@@ -1517,6 +1527,7 @@
 				7316BB83244C5D0C008943BC /* PlayerRouterInput.swift in Sources */,
 				736595F42435F4C200DE04D9 /* PostRouterInput.swift in Sources */,
 				73C2A17A2430D89700BFDAAE /* ThreadTableViewCellDelegate.swift in Sources */,
+				73F2370A247689E900E50549 /* BoardSearchService.swift in Sources */,
 				73B66ABB2462A3D6007A2852 /* Message.swift in Sources */,
 				73EA1E23246159FA00C3F000 /* PostingServiceImpl.swift in Sources */,
 				738A265C246ADDBE0008D0AC /* SavingStrategyServiceImpl.swift in Sources */,
@@ -1600,6 +1611,7 @@
 				739964F32458319E0097201B /* Order.swift in Sources */,
 				73C2A1912431EE0E00BFDAAE /* ThreadDataSource.swift in Sources */,
 				73828DAF24150FB90073623D /* Extensions.swift in Sources */,
+				73F2370D24768AD300E50549 /* BoardSearchServiceImpl.swift in Sources */,
 				731431D6241E90F70065E0DB /* ThreadSelectorConfigurator.swift in Sources */,
 				7316BB7F244C594B008943BC /* PlayerInteractor.swift in Sources */,
 				735E618D241CB9FC001053A6 /* MainTabBarController.swift in Sources */,

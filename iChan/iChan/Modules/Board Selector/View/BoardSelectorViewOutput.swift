@@ -34,4 +34,8 @@ protocol BoardSelectorViewOutput: AnyObject {
     
     /// tells presenter that user has requested the refresh by pull-to-refresh
     func refreshRequested()
+    
+    /// tells presenter to perform search of boards with current query
+    /// - Parameter query: filter query
+    func searchRequested(query: String)
 }

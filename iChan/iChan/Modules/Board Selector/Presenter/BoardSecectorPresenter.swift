@@ -56,6 +56,10 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
         dataSource.unpinItem(at: at)
     }
     
+    func searchRequested(query: String) {
+        interactor.performSearch(by: query)
+    }
+    
     //MARK: - Interactor Output
     func didFinishObtainingBoards(boards: BoardCategories) {
         
@@ -72,7 +76,25 @@ class BoardSelectorPresenter: BoardSelectorViewOutput, BoardSelectorInteractorOu
     }
     
     func didFinishObtainingBoards(with error: ApiError) {
-        view.displayErrorView()
+        view.displayErrorView(type: .network)
+    }
+    
+    func didPerformSearch(boards: BoardCategories) {
+        
+        dataSource.boardCategories = boards
+        
+        view.refreshData()
+        
+        if boards.categories.isEmpty {
+            
+            if !view.isDisplayingSearchErrorView {
+                
+                view.displayErrorView(type: .search)
+            }
+        }
+        else if view.isDisplayingSearchErrorView {
+            view.displayTableView()
+        }
     }
     
     //MARK: - DataSourceOutput

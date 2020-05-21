@@ -10,6 +10,9 @@ import Foundation
 
 protocol BoardSelectorViewInput: AnyObject {
     
+    /// returns true if searchErrorView is currently visible
+    var isDisplayingSearchErrorView: Bool { get }
+    
     /// connects datasource to the tableview
     /// - Parameter dataSource: datasource to be connected
     func connectDataSource(_ dataSource: BoardsDataSource)
@@ -34,5 +37,6 @@ protocol BoardSelectorViewInput: AnyObject {
     func displayLoadingView()
     
     /// tells view to display error view and remove all other views
-    func displayErrorView()
+    /// - Parameter type: type of the error
+    func displayErrorView(type: ErrorType)
 }

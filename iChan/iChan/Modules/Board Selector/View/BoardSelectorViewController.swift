@@ -40,6 +40,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         static let title = "Доски"
         static let pinActionTitle = "Закрепить"
         static let unpinActionTitle = "Открепить"
+        static let searchPlaceholder = "Поиск доски"
         static let pinActionImage = "SF_pin_slash_fill"
         static let unpinActionImage = "SF_pin_slash"
         static let numberOfLinesInLabel = 0
@@ -54,16 +55,37 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         static let errorLogoImageName = "SF_exclamationmark_octagon-1"
         
         static let errorText = "Не удалось загрузить доски"
+        static let searchErrorText = "Доски не найдены"
         static let retryButtonTitle = "Обновить"
     }
     
     var presenter: BoardSelectorViewOutput!
+    
+    var searchInProgress = false
+    var isDisplayingSearchErrorView = false
+    
+    private var searchBarIsActive = false
         
     lazy var tableView: UITableView = {
         
         var tableView = UITableView()
+        tableView.keyboardDismissMode = .interactive
+        tableView.tableFooterView = UIView()
         
         return tableView
+    }()
+    
+    lazy var searchController: UISearchController = {
+        
+        let controller = UISearchController(searchResultsController: .none)
+        
+        controller.searchResultsUpdater = self
+        controller.searchBar.delegate = self
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = Appearance.searchPlaceholder
+        controller.definesPresentationContext = true
+        
+        return controller
     }()
     
     lazy var loadingView: AnimationView = {
@@ -111,12 +133,31 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         return containter
     }()
     
+    lazy var searchErrorView: UIStackView = {
+        
+        let containter = UIStackView()
+        containter.alignment = .center
+        containter.axis = .vertical
+        containter.spacing = Appearance.conatinerSpacing
+        
+        let errorImage = UIImage(named: Appearance.errorLogoImageName)?.resizeAndShift(newSize: Appearance.errorLogoImageSize, shiftLeft: .zero, shiftTop: .zero)
+        let imageView = UIImageView(image: errorImage)
+        let textLabel = UILabel()
+        textLabel.text = Appearance.searchErrorText
+        textLabel.textColor = .white
+        
+        containter.addArrangedSubview(imageView)
+        containter.addArrangedSubview(textLabel)
+        
+        return containter
+    }()
+    
     var initialLoad = true
     
     let favouriteHeaderTitle = "Избранное"
     
     override func viewDidAppear(_ animated: Bool) {
-        //dunno why it works but it fixes the problem with refreshcontrol
+        
         super.viewDidAppear(animated)
         
         if initialLoad {
@@ -136,17 +177,12 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         
         presenter.initialSetup()
         
-        
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = UIRectEdge.top
-    }
-    
-    override func loadView() {
         
-        super.loadView()
         setupTableView()
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         return .lightContent
@@ -179,7 +215,10 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     
     @objc private func refresh() {
         
-        presenter.refreshRequested()
+        if !searchBarIsActive {
+            
+            presenter.refreshRequested()
+        }
     }
     
     //MARK: - TableViewDelegate
@@ -258,6 +297,7 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         
         refreshControl.endRefreshing()
         tableView.reloadData()
+        searchInProgress = false
     }
     
     func pinItem(at index: IndexPath, sectionAdded: Bool) {
@@ -288,6 +328,12 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     
     func displayTableView() {
         
+        isDisplayingSearchErrorView = false
+        
+        if navigationItem.searchController == .none {
+            navigationItem.searchController = searchController
+        }
+        
         view.subviews.forEach({ $0.removeFromSuperview() })
         view.addSubview(tableView)
         
@@ -300,14 +346,24 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
         }
     }
     
-    func displayErrorView() {
+    func displayErrorView(type: ErrorType) {
+        
+        let viewToDisplay: UIView
+        
+        switch type {
+        case .network:
+            viewToDisplay = errorView
+        case .search:
+            isDisplayingSearchErrorView = true
+            viewToDisplay = searchErrorView
+        }
         
         refreshControl.endRefreshing()
         view.subviews.forEach({ $0.removeFromSuperview() })
-        view.addSubview(errorView)
+        view.addSubview(viewToDisplay)
         view.backgroundColor = .blackBg
         
-        errorView.snp.makeConstraints { make in
+        viewToDisplay.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
     }
@@ -336,3 +392,25 @@ class BoardSelectorViewController: UIViewController, UITableViewDelegate, BoardS
     }
 }
 
+extension BoardSelectorViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        if !searchBarIsActive {
+            searchBarIsActive = true
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBarIsActive = false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let query = searchController.searchBar.text, !searchInProgress else { return }
+        
+        searchInProgress.toggle()
+        presenter.searchRequested(query: query)
+    }
+}
