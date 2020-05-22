@@ -44,6 +44,8 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         static let infoFontSize: CGFloat = 13
         static let commentFontSize: CGFloat = 14
         
+        static let postCountHeight = 20
+        
         static let dateLabelLineNumber = 0
         static let numberLabelLineNumber = 1
         static let commentTextViewLineNumberExpanded = 12
@@ -208,6 +210,12 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
             
             make.left.equalToSuperview()
             make.right.equalToSuperview()
+        }
+        
+        postCountLabel.snp.makeConstraints { make in
+            
+            make.height.equalTo(Appearance.postCountHeight)
+            make.width.equalToSuperview()
         }
     }
     
