@@ -54,6 +54,10 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         view.addSubview(scrollView)
         
         let outsideTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissRequested))
+        
+        let replyTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTextView(tapGesture:)))
+        let commentTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTextView(tapGesture:)))
+        
         outsideTapGestureRecognizer.delegate = self
         view.addGestureRecognizer(outsideTapGestureRecognizer)
         
@@ -61,8 +65,9 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         
         postView.attachmentCollectionView.dataSource = self
         postView.attachmentCollectionView.delegate = self
-        postView.commentTextView.delegate = self
-        postView.repliesTextView.delegate = self
+        
+        postView.commentTextView.addGestureRecognizer(commentTapRecognizer)
+        postView.repliesTextView.addGestureRecognizer(replyTapRecognizer)
         
         postView.setupConstraints()
         
@@ -94,7 +99,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.25) { [weak self] in
+        UIView.animate(withDuration: Appearance.animationTime) { [weak self] in
             
             guard let self = self else { return }
             self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -105,7 +110,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         
         super.viewWillDisappear(animated)
         
-        UIView.animate(withDuration: 0.25) { [weak self] in
+        UIView.animate(withDuration: Appearance.animationTime) { [weak self] in
             
             guard let self = self else { return }
             self.view.backgroundColor = .clear
@@ -114,7 +119,7 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
     
     //MARK: - CollectionView Delegate & Datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return post.files?.count ?? 0
+        return post.files?.count ?? .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -132,19 +137,12 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
             presenter.didTapImage(index: indexPath.item, files: files)
         }
     }
-
-    //MARK: - TextView Delegate
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
-        presenter.didTapUrl(url: URL)
-        return false
-    }
     
     //MARK: - ViewInput
     func configure(with post: Post) {
         
         self.post = post
-                        
+        
         postView.dateAndNameLabel.setHTMLFromString(htmlText: "\(post.name) \(post.date)", fontSize: Appearance.infoFontSize, hexColor: Appearance.infoHexColor)
         postView.numberButton.setTitle(post.num, for: .normal)
         
@@ -153,23 +151,23 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         
         scrollView.setContentOffset(.zero, animated: false)
             
-            if !post.repliesStr.isEmpty {
-                
-                postView.repliesTextView.isHidden = false
-            }
-            else {
-                postView.repliesTextView.isHidden = true
-            }
+        if !post.repliesStr.isEmpty {
             
-            if post.files != nil, !post.files!.isEmpty {
-                
-                postView.attachmentCollectionView.isHidden = false
-                postView.attachmentCollectionView.refreshLayout()
-                postView.attachmentCollectionView.reloadData()
-            }
-            else {
-                postView.attachmentCollectionView.isHidden = true
-            }
+            postView.repliesTextView.isHidden = false
+        }
+        else {
+            postView.repliesTextView.isHidden = true
+        }
+        
+        if post.files != nil, !post.files!.isEmpty {
+            
+            postView.attachmentCollectionView.isHidden = false
+            postView.attachmentCollectionView.refreshLayout()
+            postView.attachmentCollectionView.reloadData()
+        }
+        else {
+            postView.attachmentCollectionView.isHidden = true
+        }
         
         UIView.animate(withDuration: Appearance.animationTime, delay: .zero, options: .curveEaseOut, animations: { [weak self] in
             
@@ -190,6 +188,16 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
             
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    //MARK: - Gesture
+    @objc func tappedTextView(tapGesture: UIGestureRecognizer) {
+        
+        guard let textView = tapGesture.view as? UITextView else { return }
+        guard let position = textView.closestPosition(to: tapGesture.location(in: textView)) else { return }
+        if let url = textView.textStyling(at: position, in: .forward)?[NSAttributedString.Key.link] as? URL {
+            presenter.didTapUrl(url: url)
+        }
     }
     
     //MARK: - PostView Delegate
