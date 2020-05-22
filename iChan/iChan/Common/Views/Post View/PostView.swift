@@ -92,6 +92,7 @@ class PostView: UIView {
         textView.textColor = .white
         textView.tintColor = .orangeUi
         textView.isScrollEnabled = false
+        textView.textDragInteraction?.isEnabled = false
         
         return textView
     }()
@@ -107,6 +108,7 @@ class PostView: UIView {
         textView.tintColor = .orangeUi
         textView.isScrollEnabled = false
         textView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        textView.textDragInteraction?.isEnabled = false
         
         return textView
     }()

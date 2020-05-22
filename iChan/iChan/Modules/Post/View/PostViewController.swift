@@ -68,6 +68,8 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
         
         postView.commentTextView.addGestureRecognizer(commentTapRecognizer)
         postView.repliesTextView.addGestureRecognizer(replyTapRecognizer)
+        postView.commentTextView.delegate = self
+        postView.repliesTextView.delegate = self
         
         postView.setupConstraints()
         
@@ -188,6 +190,11 @@ class PostViewController: UIViewController, UITextViewDelegate, UICollectionView
             
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    //MARK: - TextView Delegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return false
     }
     
     //MARK: - Gesture

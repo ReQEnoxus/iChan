@@ -70,6 +70,8 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         let commentTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTextView(tapGesture:)))
         postView.commentTextView.addGestureRecognizer(commentTapRecognizer)
         postView.repliesTextView.addGestureRecognizer(replyTapRecognizer)
+        postView.commentTextView.delegate = self
+        postView.repliesTextView.delegate = self
         
         contentView.addSubview(postView)
         postView.setupConstraints()
@@ -117,6 +119,11 @@ class ThreadPostCell: UITableViewCell, UICollectionViewDataSource, UICollectionV
         if let url = textView.textStyling(at: position, in: .forward)?[NSAttributedString.Key.link] as? URL {
             delegate?.didTapUrl(url: url)
         }
+    }
+    
+    //MARK: - Delegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return false
     }
     
     //MARK: - PostView Delegate
