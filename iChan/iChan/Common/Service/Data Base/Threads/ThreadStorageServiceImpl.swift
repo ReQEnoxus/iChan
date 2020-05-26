@@ -27,6 +27,8 @@ class ThreadStorageServiceImpl: ThreadStorageService {
                     
                     let postToReturn = Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: Endpoint.baseUrl + $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
                     
+                    postToReturn.repliesStr = post.repliesStr
+                    
                     if postToReturn.files != nil {
                         
                         for i in .zero ..< postToReturn.files!.count {
@@ -72,6 +74,8 @@ class ThreadStorageServiceImpl: ThreadStorageService {
             let posts = found.posts.map { (post) -> Post in
                 
                 let postToReturn = Post(comment: post.comment, name: post.name, op: post.op, num: post.num, date: post.date, files: Array(post.files).map( { File(path: Endpoint.baseUrl + $0.path, thumbnail: $0.thumbnail, displayname: $0.displayName) }))
+                
+                postToReturn.repliesStr = post.repliesStr
                 
                 if postToReturn.files != nil {
                     
