@@ -206,7 +206,7 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem()
         navigationItem.leftBarButtonItem?.title = Appearance.closeButtonTitle
-        navigationItem.leftBarButtonItem?.tintColor = .orangeUi
+        navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.leftBarButtonItem?.target = self
         navigationItem.leftBarButtonItem?.action = #selector(cancelButtonPressed)
     }
@@ -215,7 +215,7 @@ class ReplyViewController: UIViewController, ReplyViewInput {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem()
         navigationItem.rightBarButtonItem?.title = Appearance.sendButtonTitle
-        navigationItem.rightBarButtonItem?.tintColor = .orangeUi
+        navigationItem.rightBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.target = self
         navigationItem.rightBarButtonItem?.action = #selector(sendButtonPressed)
     }
