@@ -95,6 +95,9 @@ final class Cache<Key: Hashable, Value: UniquelyIdentifiable>: NSObject, NSCache
             
             keys.removeAll(where: { $0.hashValue == entry.value.id.hashValue })
         }
+        subscribers.forEach {
+            $0.cacheDidUpdate()
+        }
     }
 }
 
