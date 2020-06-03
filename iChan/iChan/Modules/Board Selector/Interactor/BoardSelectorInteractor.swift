@@ -52,7 +52,7 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
                         return
                     }
                     
-                    if cachedCategories.hasPinndedBoards {
+                    if cachedCategories.hasPinnedBoards {
                         for board in cachedCategories.categories[0] {
                             categories.pin(board: board)
                         }

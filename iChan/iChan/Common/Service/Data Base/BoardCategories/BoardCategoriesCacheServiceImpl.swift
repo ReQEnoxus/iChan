@@ -13,7 +13,43 @@ class BoardCategoriesCacheServiceImpl: BoardCategoriesCacheService {
     var crudService: CrudService!
     
     func update(_ new: BoardCategories) {
-        crudService.update(object: new)
+        
+        current { [weak self] cached in
+
+            if let cachedBoards = cached {
+
+                if cachedBoards.hasPinnedBoards, new.hasPinnedBoards {
+
+                    for category in new.categories[.zero] {
+
+                        if !cachedBoards.categories[.zero].contains(where: { $0.id == category.id }) {
+                            cachedBoards.categories[.zero].append(category)
+                        }
+                    }
+                }
+                else if !cachedBoards.hasPinnedBoards, new.hasPinnedBoards {
+
+                    cachedBoards.categories.insert(new.categories[.zero], at: .zero)
+                    cachedBoards.categoryNames.insert(new.categoryNames[.zero], at: .zero)
+                }
+
+                if !new.recentlyUnpinned.isEmpty {
+
+                    for category in new.recentlyUnpinned {
+                        cachedBoards.categories[.zero].removeAll(where: { $0.id == category.id })
+                    }
+
+                    if cachedBoards.categories[.zero].isEmpty {
+                        cachedBoards.categoryNames.remove(at: .zero)
+                        cachedBoards.categories.remove(at: .zero)
+                    }
+
+                    new.recentlyUnpinned.removeAll()
+                }
+
+                self?.crudService.update(object: cachedBoards)
+            }
+        }
     }
     
     func current(completion: @escaping (BoardCategories?) -> Void) {
@@ -31,13 +67,9 @@ class BoardCategoriesCacheServiceImpl: BoardCategoriesCacheService {
             
             let boardCategories = BoardCategories()
             
-            if !modelUnwrapped.favourites.isEmpty {
-                boardCategories.hasPinndedBoards = true
-            }
-            
             boardCategories.categoryNames = Array(modelUnwrapped.categoryNames)
             
-            if boardCategories.hasPinndedBoards {
+            if boardCategories.hasPinnedBoards {
                 boardCategories.categories.append(Array(modelUnwrapped.favourites).map({ Board(id: $0.id, name: $0.name) }))
             }
             

@@ -14,7 +14,14 @@ class BoardCategories {
     
     var categories: [[Board]] = []
     var categoryNames: [String] = []
-    var hasPinndedBoards = false
+    var recentlyUnpinned: [Board] = []
+    
+    var hasPinnedBoards: Bool {
+        
+        get {
+            return categoryNames[.zero] == "Избранное"
+        }
+    }
     
     init(from response: BoardCategoriesResponse) {
         
@@ -53,11 +60,11 @@ class BoardCategories {
     
     func pin(board: Board) -> Bool {
         
-        if !hasPinndedBoards {
+        if !hasPinnedBoards {
             
             categoryNames.insert("Избранное", at: 0)
             categories.insert([board], at: 0)
-            hasPinndedBoards = true
+//            hasPinnedBoards = true
             
             return true
         }
@@ -73,7 +80,7 @@ class BoardCategories {
     
     func unpin(board: Board) -> Bool {
         
-        if hasPinndedBoards {
+        if hasPinnedBoards {
             
             let beforeRemove = categories[0].count
             
@@ -85,8 +92,10 @@ class BoardCategories {
                 
                 categories.remove(at: 0)
                 categoryNames.remove(at: 0)
-                hasPinndedBoards = false
+//                hasPinnedBoards = false
             }
+            
+            recentlyUnpinned.append(board)
             
             return afterRemove < beforeRemove
         }
@@ -101,7 +110,7 @@ extension BoardCategories: RealmConvertible {
         
         let model = BoardCategoriesModel()
         
-        if hasPinndedBoards {
+        if hasPinnedBoards {
             
             categories[0].forEach({ model.favourites.append($0.toRealmModel() as! BoardModel) })
             categories[1].forEach({ model.other.append($0.toRealmModel() as! BoardModel) })
