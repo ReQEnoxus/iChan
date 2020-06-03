@@ -29,7 +29,16 @@ class BoardSelectorInteractor: BoardSelectorInteractorInput {
             switch response {
                 
             case .failure(let error):
-                self?.presenter?.didFinishObtainingBoards(with: error)
+                
+                self?.boardCacheService.current { cachedBoards in
+                    
+                    if let boards = cachedBoards {
+                        self?.presenter?.didFinishRefreshingBoards(boards: boards)
+                    }
+                    else {
+                        self?.presenter?.didFinishObtainingBoards(with: error)
+                    }
+                }
             case .success(let boards):
                 
                 let categories = BoardCategories(from: boards)
