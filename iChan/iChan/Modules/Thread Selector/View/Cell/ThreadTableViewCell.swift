@@ -99,6 +99,13 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         return imageView
     }()
     
+    lazy var urlRecognizerGesture: UITapGestureRecognizer = {
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapUrlInTextView(tapGesture:)))
+        
+        return recognizer
+    }()
+    
     let dateAndNumberView = UIView()
     
     lazy var commentTextView: UITextView = {
@@ -113,9 +120,7 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         textView.isScrollEnabled = false
         textView.textContainer.lineBreakMode = .byTruncatingTail
         textView.delegate = self
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
-        textView.addGestureRecognizer(tapGesture)
+        textView.textDragInteraction?.isEnabled = false
             
         return textView
     }()
@@ -163,6 +168,8 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         mainStackView.addArrangedSubview(postCountLabel)
         
         contentView.addSubview(mainStackView)
+        
+        commentTextView.addGestureRecognizer(urlRecognizerGesture)
         
         setupConstraints()
     }
@@ -307,16 +314,21 @@ class ThreadTableViewCell: UITableViewCell, UITextViewDelegate {
         }
     }
     
-    @objc func didTapTextView() {
-        delegate?.didTapTextView(threadNum: dto.number)
+    //MARK: - Gesture
+    @objc func didTapUrlInTextView(tapGesture: UIGestureRecognizer) {
+        
+        guard let textView = tapGesture.view as? UITextView else { return }
+        guard let position = textView.closestPosition(to: tapGesture.location(in: textView)) else { return }
+        if let url = textView.textStyling(at: position, in: .forward)?[NSAttributedString.Key.link] as? URL {
+            delegate?.didTapUrl(url: url)
+        }
+        else {
+            delegate?.didTapTextView(threadNum: dto.number)
+        }
     }
     
     //MARK: - TextViewDelegate
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
-        textView.gestureRecognizers?.forEach({ $0.isEnabled = false })
-        delegate?.didTapUrl(url: URL)
-        textView.gestureRecognizers?.forEach({ $0.isEnabled = true })
-        return true
+        return false
     }
 }
